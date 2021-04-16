@@ -1,0 +1,72 @@
+language: python
+
+dist: xenial
+
+cache: pip
+
+notifications:
+  email: true
+
+# After creating your SDK project from this template repository,
+# uncomment this section to enable builds on the appropriate python versions.
+# matrix:
+#   include:
+#     - python: 3.6
+#     - python: 3.7
+#     - python: 3.8
+#     - python: 3.9
+
+before_install:
+- npm install npm@latest -g
+- sudo apt-get update
+- sudo apt-get install pandoc
+- pip install pypandoc
+- echo -e "machine github.ibm.com\n  login $GITHUB_OAUTH_TOKEN" > ~/.netrc
+# - '[ "${TRAVIS_PULL_REQUEST}" == "false" ] && openssl aes-256-cbc -K $my_key -iv $my_iv -in myservice.env.enc -out myservice.env -d || true'
+
+install:
+- pip install tox-travis
+
+script: tox
+
+# After creating your SDK project from this template repository,
+# remove this entire "jobs" section as this is only applicable
+# to the template repo's travis build.
+jobs:
+  include:
+    - stage: Run tox tests
+      python: "3.6"
+    - python: "3.7"
+    - python: "3.8"
+    - python: "3.9"
+    - stage: Run system test with template
+      script: 
+        - git clone https://github.ibm.com/CloudEngineering/sdkgen-systest.git
+        - cd sdkgen-systest
+        - ./install_scripts/install_deps_ubuntu.sh
+        - ./setup_and_generate.sh -l ibm-python -t $TRAVIS_BRANCH -s
+
+# To enable semantic-release, uncomment these sections.
+# before_deploy:
+# - pip install bump2version
+# - nvm install 12
+# - npm install @semantic-release/changelog
+# - npm install @semantic-release/exec
+# - npm install @semantic-release/git
+# - npm install @semantic-release/github
+# 
+# deploy:
+# - provider: script
+#   script: npx semantic-release
+#   skip_cleanup: true
+#   on:
+#     python: '3.6'
+#     branch: main
+# - provider: pypi
+#   user: __token__
+#   password: $PYPI_TOKEN
+#   repository: https://upload.pypi.org/legacy
+#   skip_cleanup: true
+#   on:
+#     python: '3.6'
+#     tags: true
