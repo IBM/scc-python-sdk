@@ -25,7 +25,7 @@ import re
 import requests
 import responses
 import urllib
-from ibm_cloud.notifications_api_v1 import *
+from ibm_security_and_compliance_center.notifications_api_v1 import *
 
 
 service = NotificationsApiV1(
