@@ -17,7 +17,7 @@
 # IBM OpenAPI SDK Code Generator Version: 3.30.0-bd714324-20210406-200538
  
 """
-The Findings API
+API specification for the Findings service.
 """
 
 from datetime import datetime
@@ -37,19 +37,19 @@ from .common import get_sdk_headers
 # Service
 ##############################################################################
 
-class FindingsApiV1(BaseService):
-    """The Findings API V1 service."""
+class FindingsV1(BaseService):
+    """The Findings V1 service."""
 
-    DEFAULT_SERVICE_URL = 'https://findings-api.cloud.ibm.com/findings'
-    DEFAULT_SERVICE_NAME = 'findings_api'
+    DEFAULT_SERVICE_URL = 'https://findings.cloud.ibm.com/findings'
+    DEFAULT_SERVICE_NAME = 'findings'
 
     @classmethod
     def new_instance(cls,
                      service_name: str = DEFAULT_SERVICE_NAME,
-                    ) -> 'FindingsApiV1':
+                    ) -> 'FindingsV1':
         """
-        Return a new client for the Findings API service using the specified
-               parameters and external configuration.
+        Return a new client for the Findings service using the specified parameters
+               and external configuration.
         """
         authenticator = get_authenticator_from_environment(service_name)
         service = cls(
@@ -62,7 +62,7 @@ class FindingsApiV1(BaseService):
                  authenticator: Authenticator = None,
                 ) -> None:
         """
-        Construct a new client for the Findings API service.
+        Construct a new client for the Findings service.
 
         :param Authenticator authenticator: The authenticator specifies the authentication mechanism.
                Get up to date information from https://github.com/IBM/python-sdk-core/blob/master/README.md

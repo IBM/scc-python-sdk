@@ -14,7 +14,7 @@
 # limitations under the License.
 
 """
-Unit Tests for NotificationsApiV1
+Unit Tests for NotificationsV1
 """
 
 from ibm_cloud_sdk_core.authenticators.no_auth_authenticator import NoAuthAuthenticator
@@ -25,14 +25,15 @@ import re
 import requests
 import responses
 import urllib
-from ibm_security_and_compliance_center.notifications_api_v1 import *
+from ibm_security_and_compliance_center.notifications_v1 import TestChannel as TestNotificationChannel
+from ibm_security_and_compliance_center.notifications_v1 import *
 
 
-service = NotificationsApiV1(
+service = NotificationsV1(
     authenticator=NoAuthAuthenticator()
     )
 
-base_url = 'https://notifications-api.cloud.ibm.com/notifications'
+base_url = 'https://notifications.cloud.ibm.com/notifications'
 service.set_service_url(base_url)
 
 ##############################################################################
@@ -61,7 +62,7 @@ class TestListAllChannels():
         """
         # Set up mock
         url = self.preprocess_url(base_url + '/v1/testString/notifications/channels')
-        mock_response = '{"channels": [{"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "provider_name", "finding_types": ["finding_types"]}], "frequency": "frequency"}]}'
+        mock_response = '{"channels": [{"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "VA", "finding_types": [{"anyKey": "anyValue"}]}], "frequency": "frequency"}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -100,7 +101,7 @@ class TestListAllChannels():
         """
         # Set up mock
         url = self.preprocess_url(base_url + '/v1/testString/notifications/channels')
-        mock_response = '{"channels": [{"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "provider_name", "finding_types": ["finding_types"]}], "frequency": "frequency"}]}'
+        mock_response = '{"channels": [{"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "VA", "finding_types": [{"anyKey": "anyValue"}]}], "frequency": "frequency"}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -128,7 +129,7 @@ class TestListAllChannels():
         """
         # Set up mock
         url = self.preprocess_url(base_url + '/v1/testString/notifications/channels')
-        mock_response = '{"channels": [{"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "provider_name", "finding_types": ["finding_types"]}], "frequency": "frequency"}]}'
+        mock_response = '{"channels": [{"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "VA", "finding_types": [{"anyKey": "anyValue"}]}], "frequency": "frequency"}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -559,7 +560,7 @@ class TestGetNotificationChannel():
         """
         # Set up mock
         url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString')
-        mock_response = '{"channel": {"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "provider_name", "finding_types": ["finding_types"]}], "frequency": "frequency"}}'
+        mock_response = '{"channel": {"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "VA", "finding_types": [{"anyKey": "anyValue"}]}], "frequency": "frequency"}}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -591,7 +592,7 @@ class TestGetNotificationChannel():
         """
         # Set up mock
         url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString')
-        mock_response = '{"channel": {"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "provider_name", "finding_types": ["finding_types"]}], "frequency": "frequency"}}'
+        mock_response = '{"channel": {"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "VA", "finding_types": [{"anyKey": "anyValue"}]}], "frequency": "frequency"}}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -621,7 +622,7 @@ class TestGetNotificationChannel():
         """
         # Set up mock
         url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString')
-        mock_response = '{"channel": {"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "provider_name", "finding_types": ["finding_types"]}], "frequency": "frequency"}}'
+        mock_response = '{"channel": {"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "VA", "finding_types": [{"anyKey": "anyValue"}]}], "frequency": "frequency"}}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1037,67 +1038,371 @@ class TestGetPublicKey():
 # Start of Model Tests
 ##############################################################################
 # region
-class TestChannelResponseDefinitionAlertSourceItem():
+class TestChannelAlertSourceItem():
     """
-    Test Class for ChannelResponseDefinitionAlertSourceItem
+    Test Class for ChannelAlertSourceItem
     """
 
-    def test_channel_response_definition_alert_source_item_serialization(self):
+    def test_channel_alert_source_item_serialization(self):
         """
-        Test serialization/deserialization for ChannelResponseDefinitionAlertSourceItem
+        Test serialization/deserialization for ChannelAlertSourceItem
         """
 
-        # Construct a json representation of a ChannelResponseDefinitionAlertSourceItem model
-        channel_response_definition_alert_source_item_model_json = {}
-        channel_response_definition_alert_source_item_model_json['provider_name'] = 'testString'
-        channel_response_definition_alert_source_item_model_json['finding_types'] = ['testString']
+        # Construct a json representation of a ChannelAlertSourceItem model
+        channel_alert_source_item_model_json = {}
+        channel_alert_source_item_model_json['provider_name'] = 'VA'
+        channel_alert_source_item_model_json['finding_types'] = [{ 'foo': 'bar' }]
 
-        # Construct a model instance of ChannelResponseDefinitionAlertSourceItem by calling from_dict on the json representation
-        channel_response_definition_alert_source_item_model = ChannelResponseDefinitionAlertSourceItem.from_dict(channel_response_definition_alert_source_item_model_json)
-        assert channel_response_definition_alert_source_item_model != False
+        # Construct a model instance of ChannelAlertSourceItem by calling from_dict on the json representation
+        channel_alert_source_item_model = ChannelAlertSourceItem.from_dict(channel_alert_source_item_model_json)
+        assert channel_alert_source_item_model != False
 
-        # Construct a model instance of ChannelResponseDefinitionAlertSourceItem by calling from_dict on the json representation
-        channel_response_definition_alert_source_item_model_dict = ChannelResponseDefinitionAlertSourceItem.from_dict(channel_response_definition_alert_source_item_model_json).__dict__
-        channel_response_definition_alert_source_item_model2 = ChannelResponseDefinitionAlertSourceItem(**channel_response_definition_alert_source_item_model_dict)
+        # Construct a model instance of ChannelAlertSourceItem by calling from_dict on the json representation
+        channel_alert_source_item_model_dict = ChannelAlertSourceItem.from_dict(channel_alert_source_item_model_json).__dict__
+        channel_alert_source_item_model2 = ChannelAlertSourceItem(**channel_alert_source_item_model_dict)
 
         # Verify the model instances are equivalent
-        assert channel_response_definition_alert_source_item_model == channel_response_definition_alert_source_item_model2
+        assert channel_alert_source_item_model == channel_alert_source_item_model2
 
         # Convert model instance back to dict and verify no loss of data
-        channel_response_definition_alert_source_item_model_json2 = channel_response_definition_alert_source_item_model.to_dict()
-        assert channel_response_definition_alert_source_item_model_json2 == channel_response_definition_alert_source_item_model_json
+        channel_alert_source_item_model_json2 = channel_alert_source_item_model.to_dict()
+        assert channel_alert_source_item_model_json2 == channel_alert_source_item_model_json
 
-class TestChannelResponseDefinitionSeverity():
+class TestChannelDelete():
     """
-    Test Class for ChannelResponseDefinitionSeverity
+    Test Class for ChannelDelete
     """
 
-    def test_channel_response_definition_severity_serialization(self):
+    def test_channel_delete_serialization(self):
         """
-        Test serialization/deserialization for ChannelResponseDefinitionSeverity
+        Test serialization/deserialization for ChannelDelete
         """
 
-        # Construct a json representation of a ChannelResponseDefinitionSeverity model
-        channel_response_definition_severity_model_json = {}
-        channel_response_definition_severity_model_json['critical'] = True
-        channel_response_definition_severity_model_json['high'] = True
-        channel_response_definition_severity_model_json['medium'] = True
-        channel_response_definition_severity_model_json['low'] = True
+        # Construct a json representation of a ChannelDelete model
+        channel_delete_model_json = {}
+        channel_delete_model_json['channel_id'] = 'testString'
+        channel_delete_model_json['message'] = 'testString'
 
-        # Construct a model instance of ChannelResponseDefinitionSeverity by calling from_dict on the json representation
-        channel_response_definition_severity_model = ChannelResponseDefinitionSeverity.from_dict(channel_response_definition_severity_model_json)
-        assert channel_response_definition_severity_model != False
+        # Construct a model instance of ChannelDelete by calling from_dict on the json representation
+        channel_delete_model = ChannelDelete.from_dict(channel_delete_model_json)
+        assert channel_delete_model != False
 
-        # Construct a model instance of ChannelResponseDefinitionSeverity by calling from_dict on the json representation
-        channel_response_definition_severity_model_dict = ChannelResponseDefinitionSeverity.from_dict(channel_response_definition_severity_model_json).__dict__
-        channel_response_definition_severity_model2 = ChannelResponseDefinitionSeverity(**channel_response_definition_severity_model_dict)
+        # Construct a model instance of ChannelDelete by calling from_dict on the json representation
+        channel_delete_model_dict = ChannelDelete.from_dict(channel_delete_model_json).__dict__
+        channel_delete_model2 = ChannelDelete(**channel_delete_model_dict)
 
         # Verify the model instances are equivalent
-        assert channel_response_definition_severity_model == channel_response_definition_severity_model2
+        assert channel_delete_model == channel_delete_model2
 
         # Convert model instance back to dict and verify no loss of data
-        channel_response_definition_severity_model_json2 = channel_response_definition_severity_model.to_dict()
-        assert channel_response_definition_severity_model_json2 == channel_response_definition_severity_model_json
+        channel_delete_model_json2 = channel_delete_model.to_dict()
+        assert channel_delete_model_json2 == channel_delete_model_json
+
+class TestChannelGet():
+    """
+    Test Class for ChannelGet
+    """
+
+    def test_channel_get_serialization(self):
+        """
+        Test serialization/deserialization for ChannelGet
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        channel_get_channel_severity_model = {} # ChannelGetChannelSeverity
+        channel_get_channel_severity_model['critical'] = True
+        channel_get_channel_severity_model['high'] = True
+        channel_get_channel_severity_model['medium'] = True
+        channel_get_channel_severity_model['low'] = True
+
+        channel_get_channel_alert_source_item_model = {} # ChannelGetChannelAlertSourceItem
+        channel_get_channel_alert_source_item_model['provider_name'] = 'VA'
+        channel_get_channel_alert_source_item_model['finding_types'] = [{ 'foo': 'bar' }]
+
+        channel_get_channel_model = {} # ChannelGetChannel
+        channel_get_channel_model['channel_id'] = 'testString'
+        channel_get_channel_model['name'] = 'testString'
+        channel_get_channel_model['description'] = 'testString'
+        channel_get_channel_model['type'] = 'Webhook'
+        channel_get_channel_model['severity'] = channel_get_channel_severity_model
+        channel_get_channel_model['endpoint'] = 'testString'
+        channel_get_channel_model['enabled'] = True
+        channel_get_channel_model['alert_source'] = [channel_get_channel_alert_source_item_model]
+        channel_get_channel_model['frequency'] = 'testString'
+
+        # Construct a json representation of a ChannelGet model
+        channel_get_model_json = {}
+        channel_get_model_json['channel'] = channel_get_channel_model
+
+        # Construct a model instance of ChannelGet by calling from_dict on the json representation
+        channel_get_model = ChannelGet.from_dict(channel_get_model_json)
+        assert channel_get_model != False
+
+        # Construct a model instance of ChannelGet by calling from_dict on the json representation
+        channel_get_model_dict = ChannelGet.from_dict(channel_get_model_json).__dict__
+        channel_get_model2 = ChannelGet(**channel_get_model_dict)
+
+        # Verify the model instances are equivalent
+        assert channel_get_model == channel_get_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        channel_get_model_json2 = channel_get_model.to_dict()
+        assert channel_get_model_json2 == channel_get_model_json
+
+class TestChannelGetChannel():
+    """
+    Test Class for ChannelGetChannel
+    """
+
+    def test_channel_get_channel_serialization(self):
+        """
+        Test serialization/deserialization for ChannelGetChannel
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        channel_get_channel_severity_model = {} # ChannelGetChannelSeverity
+        channel_get_channel_severity_model['critical'] = True
+        channel_get_channel_severity_model['high'] = True
+        channel_get_channel_severity_model['medium'] = True
+        channel_get_channel_severity_model['low'] = True
+
+        channel_get_channel_alert_source_item_model = {} # ChannelGetChannelAlertSourceItem
+        channel_get_channel_alert_source_item_model['provider_name'] = 'VA'
+        channel_get_channel_alert_source_item_model['finding_types'] = [{ 'foo': 'bar' }]
+
+        # Construct a json representation of a ChannelGetChannel model
+        channel_get_channel_model_json = {}
+        channel_get_channel_model_json['channel_id'] = 'testString'
+        channel_get_channel_model_json['name'] = 'testString'
+        channel_get_channel_model_json['description'] = 'testString'
+        channel_get_channel_model_json['type'] = 'Webhook'
+        channel_get_channel_model_json['severity'] = channel_get_channel_severity_model
+        channel_get_channel_model_json['endpoint'] = 'testString'
+        channel_get_channel_model_json['enabled'] = True
+        channel_get_channel_model_json['alert_source'] = [channel_get_channel_alert_source_item_model]
+        channel_get_channel_model_json['frequency'] = 'testString'
+
+        # Construct a model instance of ChannelGetChannel by calling from_dict on the json representation
+        channel_get_channel_model = ChannelGetChannel.from_dict(channel_get_channel_model_json)
+        assert channel_get_channel_model != False
+
+        # Construct a model instance of ChannelGetChannel by calling from_dict on the json representation
+        channel_get_channel_model_dict = ChannelGetChannel.from_dict(channel_get_channel_model_json).__dict__
+        channel_get_channel_model2 = ChannelGetChannel(**channel_get_channel_model_dict)
+
+        # Verify the model instances are equivalent
+        assert channel_get_channel_model == channel_get_channel_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        channel_get_channel_model_json2 = channel_get_channel_model.to_dict()
+        assert channel_get_channel_model_json2 == channel_get_channel_model_json
+
+class TestChannelGetChannelAlertSourceItem():
+    """
+    Test Class for ChannelGetChannelAlertSourceItem
+    """
+
+    def test_channel_get_channel_alert_source_item_serialization(self):
+        """
+        Test serialization/deserialization for ChannelGetChannelAlertSourceItem
+        """
+
+        # Construct a json representation of a ChannelGetChannelAlertSourceItem model
+        channel_get_channel_alert_source_item_model_json = {}
+        channel_get_channel_alert_source_item_model_json['provider_name'] = 'VA'
+        channel_get_channel_alert_source_item_model_json['finding_types'] = [{ 'foo': 'bar' }]
+
+        # Construct a model instance of ChannelGetChannelAlertSourceItem by calling from_dict on the json representation
+        channel_get_channel_alert_source_item_model = ChannelGetChannelAlertSourceItem.from_dict(channel_get_channel_alert_source_item_model_json)
+        assert channel_get_channel_alert_source_item_model != False
+
+        # Construct a model instance of ChannelGetChannelAlertSourceItem by calling from_dict on the json representation
+        channel_get_channel_alert_source_item_model_dict = ChannelGetChannelAlertSourceItem.from_dict(channel_get_channel_alert_source_item_model_json).__dict__
+        channel_get_channel_alert_source_item_model2 = ChannelGetChannelAlertSourceItem(**channel_get_channel_alert_source_item_model_dict)
+
+        # Verify the model instances are equivalent
+        assert channel_get_channel_alert_source_item_model == channel_get_channel_alert_source_item_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        channel_get_channel_alert_source_item_model_json2 = channel_get_channel_alert_source_item_model.to_dict()
+        assert channel_get_channel_alert_source_item_model_json2 == channel_get_channel_alert_source_item_model_json
+
+class TestChannelGetChannelSeverity():
+    """
+    Test Class for ChannelGetChannelSeverity
+    """
+
+    def test_channel_get_channel_severity_serialization(self):
+        """
+        Test serialization/deserialization for ChannelGetChannelSeverity
+        """
+
+        # Construct a json representation of a ChannelGetChannelSeverity model
+        channel_get_channel_severity_model_json = {}
+        channel_get_channel_severity_model_json['critical'] = True
+        channel_get_channel_severity_model_json['high'] = True
+        channel_get_channel_severity_model_json['medium'] = True
+        channel_get_channel_severity_model_json['low'] = True
+
+        # Construct a model instance of ChannelGetChannelSeverity by calling from_dict on the json representation
+        channel_get_channel_severity_model = ChannelGetChannelSeverity.from_dict(channel_get_channel_severity_model_json)
+        assert channel_get_channel_severity_model != False
+
+        # Construct a model instance of ChannelGetChannelSeverity by calling from_dict on the json representation
+        channel_get_channel_severity_model_dict = ChannelGetChannelSeverity.from_dict(channel_get_channel_severity_model_json).__dict__
+        channel_get_channel_severity_model2 = ChannelGetChannelSeverity(**channel_get_channel_severity_model_dict)
+
+        # Verify the model instances are equivalent
+        assert channel_get_channel_severity_model == channel_get_channel_severity_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        channel_get_channel_severity_model_json2 = channel_get_channel_severity_model.to_dict()
+        assert channel_get_channel_severity_model_json2 == channel_get_channel_severity_model_json
+
+class TestChannelInfo():
+    """
+    Test Class for ChannelInfo
+    """
+
+    def test_channel_info_serialization(self):
+        """
+        Test serialization/deserialization for ChannelInfo
+        """
+
+        # Construct a json representation of a ChannelInfo model
+        channel_info_model_json = {}
+        channel_info_model_json['channel_id'] = 'testString'
+        channel_info_model_json['status_code'] = 38
+
+        # Construct a model instance of ChannelInfo by calling from_dict on the json representation
+        channel_info_model = ChannelInfo.from_dict(channel_info_model_json)
+        assert channel_info_model != False
+
+        # Construct a model instance of ChannelInfo by calling from_dict on the json representation
+        channel_info_model_dict = ChannelInfo.from_dict(channel_info_model_json).__dict__
+        channel_info_model2 = ChannelInfo(**channel_info_model_dict)
+
+        # Verify the model instances are equivalent
+        assert channel_info_model == channel_info_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        channel_info_model_json2 = channel_info_model.to_dict()
+        assert channel_info_model_json2 == channel_info_model_json
+
+class TestChannelSeverity():
+    """
+    Test Class for ChannelSeverity
+    """
+
+    def test_channel_severity_serialization(self):
+        """
+        Test serialization/deserialization for ChannelSeverity
+        """
+
+        # Construct a json representation of a ChannelSeverity model
+        channel_severity_model_json = {}
+        channel_severity_model_json['critical'] = True
+        channel_severity_model_json['high'] = True
+        channel_severity_model_json['medium'] = True
+        channel_severity_model_json['low'] = True
+
+        # Construct a model instance of ChannelSeverity by calling from_dict on the json representation
+        channel_severity_model = ChannelSeverity.from_dict(channel_severity_model_json)
+        assert channel_severity_model != False
+
+        # Construct a model instance of ChannelSeverity by calling from_dict on the json representation
+        channel_severity_model_dict = ChannelSeverity.from_dict(channel_severity_model_json).__dict__
+        channel_severity_model2 = ChannelSeverity(**channel_severity_model_dict)
+
+        # Verify the model instances are equivalent
+        assert channel_severity_model == channel_severity_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        channel_severity_model_json2 = channel_severity_model.to_dict()
+        assert channel_severity_model_json2 == channel_severity_model_json
+
+class TestChannelsDelete():
+    """
+    Test Class for ChannelsDelete
+    """
+
+    def test_channels_delete_serialization(self):
+        """
+        Test serialization/deserialization for ChannelsDelete
+        """
+
+        # Construct a json representation of a ChannelsDelete model
+        channels_delete_model_json = {}
+        channels_delete_model_json['message'] = 'testString'
+
+        # Construct a model instance of ChannelsDelete by calling from_dict on the json representation
+        channels_delete_model = ChannelsDelete.from_dict(channels_delete_model_json)
+        assert channels_delete_model != False
+
+        # Construct a model instance of ChannelsDelete by calling from_dict on the json representation
+        channels_delete_model_dict = ChannelsDelete.from_dict(channels_delete_model_json).__dict__
+        channels_delete_model2 = ChannelsDelete(**channels_delete_model_dict)
+
+        # Verify the model instances are equivalent
+        assert channels_delete_model == channels_delete_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        channels_delete_model_json2 = channels_delete_model.to_dict()
+        assert channels_delete_model_json2 == channels_delete_model_json
+
+class TestChannelsList():
+    """
+    Test Class for ChannelsList
+    """
+
+    def test_channels_list_serialization(self):
+        """
+        Test serialization/deserialization for ChannelsList
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        channel_severity_model = {} # ChannelSeverity
+        channel_severity_model['critical'] = True
+        channel_severity_model['high'] = True
+        channel_severity_model['medium'] = True
+        channel_severity_model['low'] = True
+
+        channel_alert_source_item_model = {} # ChannelAlertSourceItem
+        channel_alert_source_item_model['provider_name'] = 'VA'
+        channel_alert_source_item_model['finding_types'] = [{ 'foo': 'bar' }]
+
+        channel_model = {} # Channel
+        channel_model['channel_id'] = 'testString'
+        channel_model['name'] = 'testString'
+        channel_model['description'] = 'testString'
+        channel_model['type'] = 'Webhook'
+        channel_model['severity'] = channel_severity_model
+        channel_model['endpoint'] = 'testString'
+        channel_model['enabled'] = True
+        channel_model['alert_source'] = [channel_alert_source_item_model]
+        channel_model['frequency'] = 'testString'
+
+        # Construct a json representation of a ChannelsList model
+        channels_list_model_json = {}
+        channels_list_model_json['channels'] = [channel_model]
+
+        # Construct a model instance of ChannelsList by calling from_dict on the json representation
+        channels_list_model = ChannelsList.from_dict(channels_list_model_json)
+        assert channels_list_model != False
+
+        # Construct a model instance of ChannelsList by calling from_dict on the json representation
+        channels_list_model_dict = ChannelsList.from_dict(channels_list_model_json).__dict__
+        channels_list_model2 = ChannelsList(**channels_list_model_dict)
+
+        # Verify the model instances are equivalent
+        assert channels_list_model == channels_list_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        channels_list_model_json2 = channels_list_model.to_dict()
+        assert channels_list_model_json2 == channels_list_model_json
 
 class TestNotificationChannelAlertSourceItem():
     """
@@ -1129,335 +1434,112 @@ class TestNotificationChannelAlertSourceItem():
         notification_channel_alert_source_item_model_json2 = notification_channel_alert_source_item_model.to_dict()
         assert notification_channel_alert_source_item_model_json2 == notification_channel_alert_source_item_model_json
 
-class TestBulkDeleteChannelsResponse():
+class TestPublicKeyGet():
     """
-    Test Class for BulkDeleteChannelsResponse
+    Test Class for PublicKeyGet
     """
 
-    def test_bulk_delete_channels_response_serialization(self):
+    def test_public_key_get_serialization(self):
         """
-        Test serialization/deserialization for BulkDeleteChannelsResponse
+        Test serialization/deserialization for PublicKeyGet
         """
 
-        # Construct a json representation of a BulkDeleteChannelsResponse model
-        bulk_delete_channels_response_model_json = {}
-        bulk_delete_channels_response_model_json['message'] = 'testString'
+        # Construct a json representation of a PublicKeyGet model
+        public_key_get_model_json = {}
+        public_key_get_model_json['public_key'] = 'testString'
 
-        # Construct a model instance of BulkDeleteChannelsResponse by calling from_dict on the json representation
-        bulk_delete_channels_response_model = BulkDeleteChannelsResponse.from_dict(bulk_delete_channels_response_model_json)
-        assert bulk_delete_channels_response_model != False
+        # Construct a model instance of PublicKeyGet by calling from_dict on the json representation
+        public_key_get_model = PublicKeyGet.from_dict(public_key_get_model_json)
+        assert public_key_get_model != False
 
-        # Construct a model instance of BulkDeleteChannelsResponse by calling from_dict on the json representation
-        bulk_delete_channels_response_model_dict = BulkDeleteChannelsResponse.from_dict(bulk_delete_channels_response_model_json).__dict__
-        bulk_delete_channels_response_model2 = BulkDeleteChannelsResponse(**bulk_delete_channels_response_model_dict)
+        # Construct a model instance of PublicKeyGet by calling from_dict on the json representation
+        public_key_get_model_dict = PublicKeyGet.from_dict(public_key_get_model_json).__dict__
+        public_key_get_model2 = PublicKeyGet(**public_key_get_model_dict)
 
         # Verify the model instances are equivalent
-        assert bulk_delete_channels_response_model == bulk_delete_channels_response_model2
+        assert public_key_get_model == public_key_get_model2
 
         # Convert model instance back to dict and verify no loss of data
-        bulk_delete_channels_response_model_json2 = bulk_delete_channels_response_model.to_dict()
-        assert bulk_delete_channels_response_model_json2 == bulk_delete_channels_response_model_json
+        public_key_get_model_json2 = public_key_get_model.to_dict()
+        assert public_key_get_model_json2 == public_key_get_model_json
 
-class TestChannelResponseDefinition():
+class TestTestNotificationChannel():
     """
-    Test Class for ChannelResponseDefinition
+    Test Class for TestNotificationChannel
     """
 
-    def test_channel_response_definition_serialization(self):
+    def test_test_channel_serialization(self):
         """
-        Test serialization/deserialization for ChannelResponseDefinition
+        Test serialization/deserialization for TestNotificationChannel
+        """
+
+        # Construct a json representation of a TestNotificationChannel model
+        test_channel_model_json = {}
+        test_channel_model_json['test'] = 'testString'
+
+        # Construct a model instance of TestNotificationChannel by calling from_dict on the json representation
+        test_channel_model = TestNotificationChannel.from_dict(test_channel_model_json)
+        assert test_channel_model != False
+
+        # Construct a model instance of TestNotificationChannel by calling from_dict on the json representation
+        test_channel_model_dict = TestNotificationChannel.from_dict(test_channel_model_json).__dict__
+        test_channel_model2 = TestNotificationChannel(**test_channel_model_dict)
+
+        # Verify the model instances are equivalent
+        assert test_channel_model == test_channel_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        test_channel_model_json2 = test_channel_model.to_dict()
+        assert test_channel_model_json2 == test_channel_model_json
+
+class TestChannel():
+    """
+    Test Class for Channel
+    """
+
+    def test_channel_serialization(self):
+        """
+        Test serialization/deserialization for Channel
         """
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        channel_response_definition_severity_model = {} # ChannelResponseDefinitionSeverity
-        channel_response_definition_severity_model['critical'] = True
-        channel_response_definition_severity_model['high'] = True
-        channel_response_definition_severity_model['medium'] = True
-        channel_response_definition_severity_model['low'] = True
+        channel_severity_model = {} # ChannelSeverity
+        channel_severity_model['critical'] = True
+        channel_severity_model['high'] = True
+        channel_severity_model['medium'] = True
+        channel_severity_model['low'] = True
 
-        channel_response_definition_alert_source_item_model = {} # ChannelResponseDefinitionAlertSourceItem
-        channel_response_definition_alert_source_item_model['provider_name'] = 'testString'
-        channel_response_definition_alert_source_item_model['finding_types'] = ['testString']
+        channel_alert_source_item_model = {} # ChannelAlertSourceItem
+        channel_alert_source_item_model['provider_name'] = 'VA'
+        channel_alert_source_item_model['finding_types'] = [{ 'foo': 'bar' }]
 
-        # Construct a json representation of a ChannelResponseDefinition model
-        channel_response_definition_model_json = {}
-        channel_response_definition_model_json['channel_id'] = 'testString'
-        channel_response_definition_model_json['name'] = 'testString'
-        channel_response_definition_model_json['description'] = 'testString'
-        channel_response_definition_model_json['type'] = 'Webhook'
-        channel_response_definition_model_json['severity'] = channel_response_definition_severity_model
-        channel_response_definition_model_json['endpoint'] = 'testString'
-        channel_response_definition_model_json['enabled'] = True
-        channel_response_definition_model_json['alert_source'] = [channel_response_definition_alert_source_item_model]
-        channel_response_definition_model_json['frequency'] = 'testString'
+        # Construct a json representation of a Channel model
+        channel_model_json = {}
+        channel_model_json['channel_id'] = 'testString'
+        channel_model_json['name'] = 'testString'
+        channel_model_json['description'] = 'testString'
+        channel_model_json['type'] = 'Webhook'
+        channel_model_json['severity'] = channel_severity_model
+        channel_model_json['endpoint'] = 'testString'
+        channel_model_json['enabled'] = True
+        channel_model_json['alert_source'] = [channel_alert_source_item_model]
+        channel_model_json['frequency'] = 'testString'
 
-        # Construct a model instance of ChannelResponseDefinition by calling from_dict on the json representation
-        channel_response_definition_model = ChannelResponseDefinition.from_dict(channel_response_definition_model_json)
-        assert channel_response_definition_model != False
+        # Construct a model instance of Channel by calling from_dict on the json representation
+        channel_model = Channel.from_dict(channel_model_json)
+        assert channel_model != False
 
-        # Construct a model instance of ChannelResponseDefinition by calling from_dict on the json representation
-        channel_response_definition_model_dict = ChannelResponseDefinition.from_dict(channel_response_definition_model_json).__dict__
-        channel_response_definition_model2 = ChannelResponseDefinition(**channel_response_definition_model_dict)
-
-        # Verify the model instances are equivalent
-        assert channel_response_definition_model == channel_response_definition_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        channel_response_definition_model_json2 = channel_response_definition_model.to_dict()
-        assert channel_response_definition_model_json2 == channel_response_definition_model_json
-
-class TestCreateChannelsResponse():
-    """
-    Test Class for CreateChannelsResponse
-    """
-
-    def test_create_channels_response_serialization(self):
-        """
-        Test serialization/deserialization for CreateChannelsResponse
-        """
-
-        # Construct a json representation of a CreateChannelsResponse model
-        create_channels_response_model_json = {}
-        create_channels_response_model_json['channel_id'] = 'testString'
-        create_channels_response_model_json['status_code'] = 38
-
-        # Construct a model instance of CreateChannelsResponse by calling from_dict on the json representation
-        create_channels_response_model = CreateChannelsResponse.from_dict(create_channels_response_model_json)
-        assert create_channels_response_model != False
-
-        # Construct a model instance of CreateChannelsResponse by calling from_dict on the json representation
-        create_channels_response_model_dict = CreateChannelsResponse.from_dict(create_channels_response_model_json).__dict__
-        create_channels_response_model2 = CreateChannelsResponse(**create_channels_response_model_dict)
+        # Construct a model instance of Channel by calling from_dict on the json representation
+        channel_model_dict = Channel.from_dict(channel_model_json).__dict__
+        channel_model2 = Channel(**channel_model_dict)
 
         # Verify the model instances are equivalent
-        assert create_channels_response_model == create_channels_response_model2
+        assert channel_model == channel_model2
 
         # Convert model instance back to dict and verify no loss of data
-        create_channels_response_model_json2 = create_channels_response_model.to_dict()
-        assert create_channels_response_model_json2 == create_channels_response_model_json
-
-class TestDeleteChannelResponse():
-    """
-    Test Class for DeleteChannelResponse
-    """
-
-    def test_delete_channel_response_serialization(self):
-        """
-        Test serialization/deserialization for DeleteChannelResponse
-        """
-
-        # Construct a json representation of a DeleteChannelResponse model
-        delete_channel_response_model_json = {}
-        delete_channel_response_model_json['channel_id'] = 'testString'
-        delete_channel_response_model_json['message'] = 'testString'
-
-        # Construct a model instance of DeleteChannelResponse by calling from_dict on the json representation
-        delete_channel_response_model = DeleteChannelResponse.from_dict(delete_channel_response_model_json)
-        assert delete_channel_response_model != False
-
-        # Construct a model instance of DeleteChannelResponse by calling from_dict on the json representation
-        delete_channel_response_model_dict = DeleteChannelResponse.from_dict(delete_channel_response_model_json).__dict__
-        delete_channel_response_model2 = DeleteChannelResponse(**delete_channel_response_model_dict)
-
-        # Verify the model instances are equivalent
-        assert delete_channel_response_model == delete_channel_response_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        delete_channel_response_model_json2 = delete_channel_response_model.to_dict()
-        assert delete_channel_response_model_json2 == delete_channel_response_model_json
-
-class TestGetChannelResponse():
-    """
-    Test Class for GetChannelResponse
-    """
-
-    def test_get_channel_response_serialization(self):
-        """
-        Test serialization/deserialization for GetChannelResponse
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        channel_response_definition_severity_model = {} # ChannelResponseDefinitionSeverity
-        channel_response_definition_severity_model['critical'] = True
-        channel_response_definition_severity_model['high'] = True
-        channel_response_definition_severity_model['medium'] = True
-        channel_response_definition_severity_model['low'] = True
-
-        channel_response_definition_alert_source_item_model = {} # ChannelResponseDefinitionAlertSourceItem
-        channel_response_definition_alert_source_item_model['provider_name'] = 'testString'
-        channel_response_definition_alert_source_item_model['finding_types'] = ['testString']
-
-        channel_response_definition_model = {} # ChannelResponseDefinition
-        channel_response_definition_model['channel_id'] = 'testString'
-        channel_response_definition_model['name'] = 'testString'
-        channel_response_definition_model['description'] = 'testString'
-        channel_response_definition_model['type'] = 'Webhook'
-        channel_response_definition_model['severity'] = channel_response_definition_severity_model
-        channel_response_definition_model['endpoint'] = 'testString'
-        channel_response_definition_model['enabled'] = True
-        channel_response_definition_model['alert_source'] = [channel_response_definition_alert_source_item_model]
-        channel_response_definition_model['frequency'] = 'testString'
-
-        # Construct a json representation of a GetChannelResponse model
-        get_channel_response_model_json = {}
-        get_channel_response_model_json['channel'] = channel_response_definition_model
-
-        # Construct a model instance of GetChannelResponse by calling from_dict on the json representation
-        get_channel_response_model = GetChannelResponse.from_dict(get_channel_response_model_json)
-        assert get_channel_response_model != False
-
-        # Construct a model instance of GetChannelResponse by calling from_dict on the json representation
-        get_channel_response_model_dict = GetChannelResponse.from_dict(get_channel_response_model_json).__dict__
-        get_channel_response_model2 = GetChannelResponse(**get_channel_response_model_dict)
-
-        # Verify the model instances are equivalent
-        assert get_channel_response_model == get_channel_response_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        get_channel_response_model_json2 = get_channel_response_model.to_dict()
-        assert get_channel_response_model_json2 == get_channel_response_model_json
-
-class TestListChannelsResponse():
-    """
-    Test Class for ListChannelsResponse
-    """
-
-    def test_list_channels_response_serialization(self):
-        """
-        Test serialization/deserialization for ListChannelsResponse
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        channel_response_definition_severity_model = {} # ChannelResponseDefinitionSeverity
-        channel_response_definition_severity_model['critical'] = True
-        channel_response_definition_severity_model['high'] = True
-        channel_response_definition_severity_model['medium'] = True
-        channel_response_definition_severity_model['low'] = True
-
-        channel_response_definition_alert_source_item_model = {} # ChannelResponseDefinitionAlertSourceItem
-        channel_response_definition_alert_source_item_model['provider_name'] = 'testString'
-        channel_response_definition_alert_source_item_model['finding_types'] = ['testString']
-
-        channel_response_definition_model = {} # ChannelResponseDefinition
-        channel_response_definition_model['channel_id'] = 'testString'
-        channel_response_definition_model['name'] = 'testString'
-        channel_response_definition_model['description'] = 'testString'
-        channel_response_definition_model['type'] = 'Webhook'
-        channel_response_definition_model['severity'] = channel_response_definition_severity_model
-        channel_response_definition_model['endpoint'] = 'testString'
-        channel_response_definition_model['enabled'] = True
-        channel_response_definition_model['alert_source'] = [channel_response_definition_alert_source_item_model]
-        channel_response_definition_model['frequency'] = 'testString'
-
-        # Construct a json representation of a ListChannelsResponse model
-        list_channels_response_model_json = {}
-        list_channels_response_model_json['channels'] = [channel_response_definition_model]
-
-        # Construct a model instance of ListChannelsResponse by calling from_dict on the json representation
-        list_channels_response_model = ListChannelsResponse.from_dict(list_channels_response_model_json)
-        assert list_channels_response_model != False
-
-        # Construct a model instance of ListChannelsResponse by calling from_dict on the json representation
-        list_channels_response_model_dict = ListChannelsResponse.from_dict(list_channels_response_model_json).__dict__
-        list_channels_response_model2 = ListChannelsResponse(**list_channels_response_model_dict)
-
-        # Verify the model instances are equivalent
-        assert list_channels_response_model == list_channels_response_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        list_channels_response_model_json2 = list_channels_response_model.to_dict()
-        assert list_channels_response_model_json2 == list_channels_response_model_json
-
-class TestPublicKeyResponse():
-    """
-    Test Class for PublicKeyResponse
-    """
-
-    def test_public_key_response_serialization(self):
-        """
-        Test serialization/deserialization for PublicKeyResponse
-        """
-
-        # Construct a json representation of a PublicKeyResponse model
-        public_key_response_model_json = {}
-        public_key_response_model_json['public_key'] = 'testString'
-
-        # Construct a model instance of PublicKeyResponse by calling from_dict on the json representation
-        public_key_response_model = PublicKeyResponse.from_dict(public_key_response_model_json)
-        assert public_key_response_model != False
-
-        # Construct a model instance of PublicKeyResponse by calling from_dict on the json representation
-        public_key_response_model_dict = PublicKeyResponse.from_dict(public_key_response_model_json).__dict__
-        public_key_response_model2 = PublicKeyResponse(**public_key_response_model_dict)
-
-        # Verify the model instances are equivalent
-        assert public_key_response_model == public_key_response_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        public_key_response_model_json2 = public_key_response_model.to_dict()
-        assert public_key_response_model_json2 == public_key_response_model_json
-
-class TestTestChannelResponse():
-    """
-    Test Class for TestChannelResponse
-    """
-
-    def test_test_channel_response_serialization(self):
-        """
-        Test serialization/deserialization for TestChannelResponse
-        """
-
-        # Construct a json representation of a TestChannelResponse model
-        test_channel_response_model_json = {}
-        test_channel_response_model_json['test'] = 'testString'
-
-        # Construct a model instance of TestChannelResponse by calling from_dict on the json representation
-        test_channel_response_model = TestChannelResponse.from_dict(test_channel_response_model_json)
-        assert test_channel_response_model != False
-
-        # Construct a model instance of TestChannelResponse by calling from_dict on the json representation
-        test_channel_response_model_dict = TestChannelResponse.from_dict(test_channel_response_model_json).__dict__
-        test_channel_response_model2 = TestChannelResponse(**test_channel_response_model_dict)
-
-        # Verify the model instances are equivalent
-        assert test_channel_response_model == test_channel_response_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        test_channel_response_model_json2 = test_channel_response_model.to_dict()
-        assert test_channel_response_model_json2 == test_channel_response_model_json
-
-class TestUpdateChannelResponse():
-    """
-    Test Class for UpdateChannelResponse
-    """
-
-    def test_update_channel_response_serialization(self):
-        """
-        Test serialization/deserialization for UpdateChannelResponse
-        """
-
-        # Construct a json representation of a UpdateChannelResponse model
-        update_channel_response_model_json = {}
-        update_channel_response_model_json['channel_id'] = 'testString'
-        update_channel_response_model_json['status_code'] = 38
-
-        # Construct a model instance of UpdateChannelResponse by calling from_dict on the json representation
-        update_channel_response_model = UpdateChannelResponse.from_dict(update_channel_response_model_json)
-        assert update_channel_response_model != False
-
-        # Construct a model instance of UpdateChannelResponse by calling from_dict on the json representation
-        update_channel_response_model_dict = UpdateChannelResponse.from_dict(update_channel_response_model_json).__dict__
-        update_channel_response_model2 = UpdateChannelResponse(**update_channel_response_model_dict)
-
-        # Verify the model instances are equivalent
-        assert update_channel_response_model == update_channel_response_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        update_channel_response_model_json2 = update_channel_response_model.to_dict()
-        assert update_channel_response_model_json2 == update_channel_response_model_json
+        channel_model_json2 = channel_model.to_dict()
+        assert channel_model_json2 == channel_model_json
 
 
 # endregion

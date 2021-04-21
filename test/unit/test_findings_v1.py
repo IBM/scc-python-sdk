@@ -14,7 +14,7 @@
 # limitations under the License.
 
 """
-Unit Tests for FindingsApiV1
+Unit Tests for FindingsV1
 """
 
 from datetime import datetime, timezone
@@ -27,14 +27,14 @@ import re
 import requests
 import responses
 import urllib
-from ibm_security_and_compliance_center.findings_api_v1 import *
+from ibm_security_and_compliance_center.findings_v1 import *
 
 
-service = FindingsApiV1(
+service = FindingsV1(
     authenticator=NoAuthAuthenticator()
     )
 
-base_url = 'https://findings-api.cloud.ibm.com/findings'
+base_url = 'https://findings.cloud.ibm.com/findings'
 service.set_service_url(base_url)
 
 ##############################################################################
