@@ -38,11 +38,11 @@ Changes might occur which impact applications that use this SDK.
 The IBM Cloud MySDK Python SDK allows developers to programmatically interact with the following
 IBM Cloud services:
 
-Service Name | Imported Class Name
---- | ---
-[FindingsApiV1](https://cloud.ibm.com/apidocs/security-and-compliance-center/findings) | FindingsApiV1
-[NotificationsApiV1](https://cloud.ibm.com/apidocs/security-and-compliance-center/notifications) | NotificationsApiV1
-[ConfigurationGovernanceApiV1](https://cloud.ibm.com/apidocs/security-and-compliance-center/configuration-governance) | ConfigurationGovernanceApiV1
+Service Name | Module Name | Imported Class Name
+--- | --- | ---
+[Findings](https://cloud.ibm.com/apidocs/security-and-compliance-center/findings) | findings_v1 | FindingsV1
+[Notifications](https://cloud.ibm.com/apidocs/security-and-compliance-center/notifications) | notifications_v1 | NotificationsV1
+[Configuration Governance](https://cloud.ibm.com/apidocs/security-and-compliance-center/configuration-governance) | configuration_governance_v1 | ConfigurationGovernanceV1
 
 ## Prerequisites
 
