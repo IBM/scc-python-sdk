@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python -m pylint mysdk test --exit-zero
+python -m pylint ibm_security_and_compliance_center test --exit-zero
