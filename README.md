@@ -35,7 +35,7 @@ Changes might occur which impact applications that use this SDK.
 
 ## Overview
 
-The IBM Cloud MySDK Python SDK allows developers to programmatically interact with the following
+The IBM Cloud Security & Compliance Center Python SDK allows developers to programmatically interact with the following
 IBM Cloud services:
 
 Service Name | Module Name | Imported Class Name
@@ -57,13 +57,13 @@ Service Name | Module Name | Imported Class Name
 To install, use `pip` or `easy_install`:
 
 ```bash
-pip install --upgrade "security-and-compliance-center-sdk>=0.0.1"
+pip install --upgrade "ibm-scc>=0.0.1"
 ```
 
 or
 
 ```bash
-easy_install --upgrade "security-and-compliance-center-sdk>=0.0.1"
+easy_install --upgrade "ibm-scc>=0.0.1"
 ```
 
 ## Using the SDK

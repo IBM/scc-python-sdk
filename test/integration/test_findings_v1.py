@@ -20,7 +20,7 @@ Integration Tests for FindingsV1
 import os
 import pytest
 from ibm_cloud_sdk_core import *
-from ibm_security_and_compliance_center.findings_v1 import *
+from ibm_scc.findings_v1 import *
 
 # Config file name
 config_file = 'findings_v1.env'

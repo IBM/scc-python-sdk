@@ -27,7 +27,7 @@ import re
 import requests
 import responses
 import urllib
-from ibm_security_and_compliance_center.findings_v1 import *
+from ibm_scc.findings_v1 import *
 
 
 service = FindingsV1(

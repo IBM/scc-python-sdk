@@ -20,7 +20,7 @@ Integration Tests for ConfigurationGovernanceV1
 import os
 import pytest
 from ibm_cloud_sdk_core import *
-from ibm_security_and_compliance_center.configuration_governance_v1 import *
+from ibm_scc.configuration_governance_v1 import *
 
 # Config file name
 config_file = 'configuration_governance_v1.env'

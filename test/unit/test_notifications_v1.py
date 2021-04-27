@@ -25,8 +25,8 @@ import re
 import requests
 import responses
 import urllib
-from ibm_security_and_compliance_center.notifications_v1 import TestChannel as TestNotificationChannel
-from ibm_security_and_compliance_center.notifications_v1 import *
+from ibm_scc.notifications_v1 import TestChannel as TestNotificationChannel
+from ibm_scc.notifications_v1 import *
 
 
 service = NotificationsV1(

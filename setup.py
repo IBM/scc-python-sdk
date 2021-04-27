@@ -20,7 +20,7 @@ import sys
 import pkg_resources
 
 __version__ = '0.0.1'
-PACKAGE_NAME = 'ibm_security_and_compliance_center'
+PACKAGE_NAME = 'ibm_scc'
 PACKAGE_DESC = 'Python client library for IBM Cloud Security & Compliance Center Services'
 
 with open('requirements.txt') as f:
@@ -54,7 +54,7 @@ setup(
     author_email='devxsdk@us.ibm.com',
     long_description=readme,
     long_description_content_type='text/markdown',
-    url='https://github.com/mysdk/python-sdk',
+    url='https://github.com/ibm-cloud-security/scc-python-sdk',
     packages=[PACKAGE_NAME],
     include_package_data=True,
     keywords=PACKAGE_NAME,

@@ -19,7 +19,7 @@ Test methods in the common module
 """
 
 import unittest
-from ibm_security_and_compliance_center import common
+from ibm_scc import common
 
 class TestCommon(unittest.TestCase):
     """
