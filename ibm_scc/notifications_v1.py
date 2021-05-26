@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.30.0-bd714324-20210406-200538
+# IBM OpenAPI SDK Code Generator Version: 3.32.0-4c6a3129-20210514-210323
  
 """
 API specification for the Notifications service.
@@ -38,7 +38,7 @@ from .common import get_sdk_headers
 class NotificationsV1(BaseService):
     """The Notifications V1 service."""
 
-    DEFAULT_SERVICE_URL = 'https://notifications.cloud.ibm.com/notifications'
+    DEFAULT_SERVICE_URL = 'https://us-south.secadvisor.cloud.ibm.com/notifications'
     DEFAULT_SERVICE_NAME = 'notifications'
 
     @classmethod
@@ -152,7 +152,8 @@ class NotificationsV1(BaseService):
         create notification channel.
 
         :param str account_id: Account ID.
-        :param str name:
+        :param str name: The name of the notification channel in the form
+               "v1/{account_id}/notifications/channelName".
         :param str type: Type of callback URL.
         :param str endpoint: The callback URL which receives the notification.
         :param str description: (optional) A one sentence description of this
@@ -389,7 +390,8 @@ class NotificationsV1(BaseService):
 
         :param str account_id: Account ID.
         :param str channel_id: Channel ID.
-        :param str name:
+        :param str name: The name of the notification channel in the form
+               "v1/{account_id}/notifications/channelName".
         :param str type: Type of callback URL.
         :param str endpoint: The callback URL which receives the notification.
         :param str description: (optional) A one sentence description of this
@@ -713,16 +715,16 @@ class ChannelGet():
     """
     The returned response when get channel is run.
 
-    :attr ChannelGetChannel channel: (optional) Response including channels.
+    :attr Channel channel: (optional) get channel.
     """
 
     def __init__(self,
                  *,
-                 channel: 'ChannelGetChannel' = None) -> None:
+                 channel: 'Channel' = None) -> None:
         """
         Initialize a ChannelGet object.
 
-        :param ChannelGetChannel channel: (optional) Response including channels.
+        :param Channel channel: (optional) get channel.
         """
         self.channel = channel
 
@@ -731,7 +733,7 @@ class ChannelGet():
         """Initialize a ChannelGet object from a json dictionary."""
         args = {}
         if 'channel' in _dict:
-            args['channel'] = ChannelGetChannel.from_dict(_dict.get('channel'))
+            args['channel'] = Channel.from_dict(_dict.get('channel'))
         return cls(**args)
 
     @classmethod
@@ -761,308 +763,6 @@ class ChannelGet():
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'ChannelGet') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-class ChannelGetChannel():
-    """
-    Response including channels.
-
-    :attr str channel_id: (optional) A unique ID for the channel.
-    :attr str name: (optional)
-    :attr str description: (optional) A one sentence description of this `Channel`.
-    :attr str type: (optional) Type of callback URL.
-    :attr ChannelGetChannelSeverity severity: (optional) The severity of the
-          notification.
-    :attr str endpoint: (optional) The callback URL which receives the notification.
-    :attr bool enabled: (optional) Whether the channel is enabled. The default is
-          disabled.
-    :attr List[ChannelGetChannelAlertSourceItem] alert_source: (optional)
-    :attr str frequency: (optional)
-    """
-
-    def __init__(self,
-                 *,
-                 channel_id: str = None,
-                 name: str = None,
-                 description: str = None,
-                 type: str = None,
-                 severity: 'ChannelGetChannelSeverity' = None,
-                 endpoint: str = None,
-                 enabled: bool = None,
-                 alert_source: List['ChannelGetChannelAlertSourceItem'] = None,
-                 frequency: str = None) -> None:
-        """
-        Initialize a ChannelGetChannel object.
-
-        :param str channel_id: (optional) A unique ID for the channel.
-        :param str name: (optional)
-        :param str description: (optional) A one sentence description of this
-               `Channel`.
-        :param str type: (optional) Type of callback URL.
-        :param ChannelGetChannelSeverity severity: (optional) The severity of the
-               notification.
-        :param str endpoint: (optional) The callback URL which receives the
-               notification.
-        :param bool enabled: (optional) Whether the channel is enabled. The default
-               is disabled.
-        :param List[ChannelGetChannelAlertSourceItem] alert_source: (optional)
-        :param str frequency: (optional)
-        """
-        self.channel_id = channel_id
-        self.name = name
-        self.description = description
-        self.type = type
-        self.severity = severity
-        self.endpoint = endpoint
-        self.enabled = enabled
-        self.alert_source = alert_source
-        self.frequency = frequency
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'ChannelGetChannel':
-        """Initialize a ChannelGetChannel object from a json dictionary."""
-        args = {}
-        if 'channel_id' in _dict:
-            args['channel_id'] = _dict.get('channel_id')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'type' in _dict:
-            args['type'] = _dict.get('type')
-        if 'severity' in _dict:
-            args['severity'] = ChannelGetChannelSeverity.from_dict(_dict.get('severity'))
-        if 'endpoint' in _dict:
-            args['endpoint'] = _dict.get('endpoint')
-        if 'enabled' in _dict:
-            args['enabled'] = _dict.get('enabled')
-        if 'alert_source' in _dict:
-            args['alert_source'] = [ChannelGetChannelAlertSourceItem.from_dict(x) for x in _dict.get('alert_source')]
-        if 'frequency' in _dict:
-            args['frequency'] = _dict.get('frequency')
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a ChannelGetChannel object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'channel_id') and self.channel_id is not None:
-            _dict['channel_id'] = self.channel_id
-        if hasattr(self, 'name') and self.name is not None:
-            _dict['name'] = self.name
-        if hasattr(self, 'description') and self.description is not None:
-            _dict['description'] = self.description
-        if hasattr(self, 'type') and self.type is not None:
-            _dict['type'] = self.type
-        if hasattr(self, 'severity') and self.severity is not None:
-            _dict['severity'] = self.severity.to_dict()
-        if hasattr(self, 'endpoint') and self.endpoint is not None:
-            _dict['endpoint'] = self.endpoint
-        if hasattr(self, 'enabled') and self.enabled is not None:
-            _dict['enabled'] = self.enabled
-        if hasattr(self, 'alert_source') and self.alert_source is not None:
-            _dict['alert_source'] = [x.to_dict() for x in self.alert_source]
-        if hasattr(self, 'frequency') and self.frequency is not None:
-            _dict['frequency'] = self.frequency
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this ChannelGetChannel object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'ChannelGetChannel') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'ChannelGetChannel') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-    class TypeEnum(str, Enum):
-        """
-        Type of callback URL.
-        """
-        WEBHOOK = 'Webhook'
-
-
-class ChannelGetChannelAlertSourceItem():
-    """
-    The providers that act as alert sources and the potential findings that can be flagged
-    as alerts.
-
-    :attr str provider_name: (optional) The providers that you can receive alerts
-          for. To view your available providers, you can call the
-          /v1/{account_id}/providers endpoint of the Findings API.
-    :attr List[object] finding_types: (optional) The types of findings for each
-          provider that you want to receive alerts for. Options are dependent upon the
-          provider that you select. Depending on that selection, some available options
-          include `image_with_vulnerabilities`, `anonym_server`, `server_suspected_ratio`,
-          `appid`, `cos`, `expired_cert`, and `expiring_1day_cert`For a full list of
-          available finding types, see [the docs](/docs/).
-    """
-
-    def __init__(self,
-                 *,
-                 provider_name: str = None,
-                 finding_types: List[object] = None) -> None:
-        """
-        Initialize a ChannelGetChannelAlertSourceItem object.
-
-        :param str provider_name: (optional) The providers that you can receive
-               alerts for. To view your available providers, you can call the
-               /v1/{account_id}/providers endpoint of the Findings API.
-        :param List[object] finding_types: (optional) The types of findings for
-               each provider that you want to receive alerts for. Options are dependent
-               upon the provider that you select. Depending on that selection, some
-               available options include `image_with_vulnerabilities`, `anonym_server`,
-               `server_suspected_ratio`, `appid`, `cos`, `expired_cert`, and
-               `expiring_1day_cert`For a full list of available finding types, see [the
-               docs](/docs/).
-        """
-        self.provider_name = provider_name
-        self.finding_types = finding_types
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'ChannelGetChannelAlertSourceItem':
-        """Initialize a ChannelGetChannelAlertSourceItem object from a json dictionary."""
-        args = {}
-        if 'provider_name' in _dict:
-            args['provider_name'] = _dict.get('provider_name')
-        if 'finding_types' in _dict:
-            args['finding_types'] = _dict.get('finding_types')
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a ChannelGetChannelAlertSourceItem object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'provider_name') and self.provider_name is not None:
-            _dict['provider_name'] = self.provider_name
-        if hasattr(self, 'finding_types') and self.finding_types is not None:
-            _dict['finding_types'] = self.finding_types
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this ChannelGetChannelAlertSourceItem object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'ChannelGetChannelAlertSourceItem') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'ChannelGetChannelAlertSourceItem') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-    class ProviderNameEnum(str, Enum):
-        """
-        The providers that you can receive alerts for. To view your available providers,
-        you can call the /v1/{account_id}/providers endpoint of the Findings API.
-        """
-        VA = 'VA'
-        NA = 'NA'
-        ATA = 'ATA'
-        CERT = 'CERT'
-        ALL = 'ALL'
-
-
-class ChannelGetChannelSeverity():
-    """
-    The severity of the notification.
-
-    :attr bool critical: (optional) Critical severity.
-    :attr bool high: (optional) High severity.
-    :attr bool medium: (optional) Medium severity.
-    :attr bool low: (optional) Low severity.
-    """
-
-    def __init__(self,
-                 *,
-                 critical: bool = None,
-                 high: bool = None,
-                 medium: bool = None,
-                 low: bool = None) -> None:
-        """
-        Initialize a ChannelGetChannelSeverity object.
-
-        :param bool critical: (optional) Critical severity.
-        :param bool high: (optional) High severity.
-        :param bool medium: (optional) Medium severity.
-        :param bool low: (optional) Low severity.
-        """
-        self.critical = critical
-        self.high = high
-        self.medium = medium
-        self.low = low
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'ChannelGetChannelSeverity':
-        """Initialize a ChannelGetChannelSeverity object from a json dictionary."""
-        args = {}
-        if 'critical' in _dict:
-            args['critical'] = _dict.get('critical')
-        if 'high' in _dict:
-            args['high'] = _dict.get('high')
-        if 'medium' in _dict:
-            args['medium'] = _dict.get('medium')
-        if 'low' in _dict:
-            args['low'] = _dict.get('low')
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a ChannelGetChannelSeverity object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'critical') and self.critical is not None:
-            _dict['critical'] = self.critical
-        if hasattr(self, 'high') and self.high is not None:
-            _dict['high'] = self.high
-        if hasattr(self, 'medium') and self.medium is not None:
-            _dict['medium'] = self.medium
-        if hasattr(self, 'low') and self.low is not None:
-            _dict['low'] = self.low
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this ChannelGetChannelSeverity object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'ChannelGetChannelSeverity') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'ChannelGetChannelSeverity') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -1267,7 +967,7 @@ class ChannelsList():
     """
     Available channels in your account are listed.
 
-    :attr List[Channel] channels: (optional)
+    :attr List[Channel] channels: (optional) List of channels.
     """
 
     def __init__(self,
@@ -1276,7 +976,7 @@ class ChannelsList():
         """
         Initialize a ChannelsList object.
 
-        :param List[Channel] channels: (optional)
+        :param List[Channel] channels: (optional) List of channels.
         """
         self.channels = channels
 
@@ -1544,7 +1244,8 @@ class Channel():
     Response including channels.
 
     :attr str channel_id: (optional) A unique ID for the channel.
-    :attr str name: (optional)
+    :attr str name: (optional) The name of the notification channel in the form
+          "v1/{account_id}/notifications/channelName".
     :attr str description: (optional) A one sentence description of this `Channel`.
     :attr str type: (optional) Type of callback URL.
     :attr ChannelSeverity severity: (optional) The severity of the notification.
@@ -1570,7 +1271,8 @@ class Channel():
         Initialize a Channel object.
 
         :param str channel_id: (optional) A unique ID for the channel.
-        :param str name: (optional)
+        :param str name: (optional) The name of the notification channel in the
+               form "v1/{account_id}/notifications/channelName".
         :param str description: (optional) A one sentence description of this
                `Channel`.
         :param str type: (optional) Type of callback URL.
