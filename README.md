@@ -4,7 +4,7 @@
 [![PyPi](https://pypip.in/d/ibm-scc/badge.svg)](https://pypi.python.org/pypi/ibm-scc/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-# IBM Cloud Security & Compliance Center Python SDK Version 0.0.2
+# IBM Cloud Security & Compliance Center Python SDK Version 0.0.3
 
 Python client library to interact with various [IBM Cloud Security & Compliance Center APIs](https://cloud.ibm.com/apidocs/security-and-compliance-center).
 
@@ -61,13 +61,13 @@ Service Name | Module Name | Imported Class Name
 To install, use `pip` or `easy_install`:
 
 ```bash
-pip install --upgrade "ibm-scc>=0.0.2"
+pip install --upgrade "ibm-scc>=0.0.3"
 ```
 
 or
 
 ```bash
-easy_install --upgrade "ibm-scc>=0.0.2"
+easy_install --upgrade "ibm-scc>=0.0.3"
 ```
 
 ## Using the SDK
