@@ -25,16 +25,16 @@ import re
 import requests
 import responses
 import urllib
-from ibm_scc.notifications_v1 import TestChannel as TestNotificationChannel
 from ibm_scc.notifications_v1 import *
+from ibm_scc.notifications_v1 import TestChannel as TestNotificationChannel
 
 
-service = NotificationsV1(
+_service = NotificationsV1(
     authenticator=NoAuthAuthenticator()
     )
 
-base_url = 'https://notifications.cloud.ibm.com/notifications'
-service.set_service_url(base_url)
+_base_url = 'https://us-south.secadvisor.cloud.ibm.com/notifications'
+_service.set_service_url(_base_url)
 
 ##############################################################################
 # Start of Service: NotificationChannel
@@ -61,7 +61,7 @@ class TestListAllChannels():
         list_all_channels()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels')
         mock_response = '{"channels": [{"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "VA", "finding_types": [{"anyKey": "anyValue"}]}], "frequency": "frequency"}]}'
         responses.add(responses.GET,
                       url,
@@ -76,7 +76,7 @@ class TestListAllChannels():
         skip = 38
 
         # Invoke method
-        response = service.list_all_channels(
+        response = _service.list_all_channels(
             account_id,
             transaction_id=transaction_id,
             limit=limit,
@@ -100,7 +100,7 @@ class TestListAllChannels():
         test_list_all_channels_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels')
         mock_response = '{"channels": [{"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "VA", "finding_types": [{"anyKey": "anyValue"}]}], "frequency": "frequency"}]}'
         responses.add(responses.GET,
                       url,
@@ -112,7 +112,7 @@ class TestListAllChannels():
         account_id = 'testString'
 
         # Invoke method
-        response = service.list_all_channels(
+        response = _service.list_all_channels(
             account_id,
             headers={}
         )
@@ -128,7 +128,7 @@ class TestListAllChannels():
         test_list_all_channels_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels')
         mock_response = '{"channels": [{"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "VA", "finding_types": [{"anyKey": "anyValue"}]}], "frequency": "frequency"}]}'
         responses.add(responses.GET,
                       url,
@@ -146,7 +146,7 @@ class TestListAllChannels():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.list_all_channels(**req_copy)
+                _service.list_all_channels(**req_copy)
 
 
 
@@ -170,7 +170,7 @@ class TestCreateNotificationChannel():
         create_notification_channel()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels')
         mock_response = '{"channel_id": "channel_id", "status_code": 11}'
         responses.add(responses.POST,
                       url,
@@ -195,7 +195,7 @@ class TestCreateNotificationChannel():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.create_notification_channel(
+        response = _service.create_notification_channel(
             account_id,
             name,
             type,
@@ -228,7 +228,7 @@ class TestCreateNotificationChannel():
         test_create_notification_channel_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels')
         mock_response = '{"channel_id": "channel_id", "status_code": 11}'
         responses.add(responses.POST,
                       url,
@@ -252,7 +252,7 @@ class TestCreateNotificationChannel():
         alert_source = [notification_channel_alert_source_item_model]
 
         # Invoke method
-        response = service.create_notification_channel(
+        response = _service.create_notification_channel(
             account_id,
             name,
             type,
@@ -284,7 +284,7 @@ class TestCreateNotificationChannel():
         test_create_notification_channel_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels')
         mock_response = '{"channel_id": "channel_id", "status_code": 11}'
         responses.add(responses.POST,
                       url,
@@ -317,7 +317,7 @@ class TestCreateNotificationChannel():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.create_notification_channel(**req_copy)
+                _service.create_notification_channel(**req_copy)
 
 
 
@@ -341,7 +341,7 @@ class TestDeleteNotificationChannels():
         delete_notification_channels()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels')
         mock_response = '{"message": "message"}'
         responses.add(responses.DELETE,
                       url,
@@ -355,7 +355,7 @@ class TestDeleteNotificationChannels():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.delete_notification_channels(
+        response = _service.delete_notification_channels(
             account_id,
             request_body,
             transaction_id=transaction_id,
@@ -376,7 +376,7 @@ class TestDeleteNotificationChannels():
         test_delete_notification_channels_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels')
         mock_response = '{"message": "message"}'
         responses.add(responses.DELETE,
                       url,
@@ -389,7 +389,7 @@ class TestDeleteNotificationChannels():
         request_body = ['testString']
 
         # Invoke method
-        response = service.delete_notification_channels(
+        response = _service.delete_notification_channels(
             account_id,
             request_body,
             headers={}
@@ -409,7 +409,7 @@ class TestDeleteNotificationChannels():
         test_delete_notification_channels_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels')
         mock_response = '{"message": "message"}'
         responses.add(responses.DELETE,
                       url,
@@ -429,7 +429,7 @@ class TestDeleteNotificationChannels():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.delete_notification_channels(**req_copy)
+                _service.delete_notification_channels(**req_copy)
 
 
 
@@ -453,7 +453,7 @@ class TestDeleteNotificationChannel():
         delete_notification_channel()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels/testString')
         mock_response = '{"channel_id": "channel_id", "message": "message"}'
         responses.add(responses.DELETE,
                       url,
@@ -467,7 +467,7 @@ class TestDeleteNotificationChannel():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.delete_notification_channel(
+        response = _service.delete_notification_channel(
             account_id,
             channel_id,
             transaction_id=transaction_id,
@@ -485,7 +485,7 @@ class TestDeleteNotificationChannel():
         test_delete_notification_channel_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels/testString')
         mock_response = '{"channel_id": "channel_id", "message": "message"}'
         responses.add(responses.DELETE,
                       url,
@@ -498,7 +498,7 @@ class TestDeleteNotificationChannel():
         channel_id = 'testString'
 
         # Invoke method
-        response = service.delete_notification_channel(
+        response = _service.delete_notification_channel(
             account_id,
             channel_id,
             headers={}
@@ -515,7 +515,7 @@ class TestDeleteNotificationChannel():
         test_delete_notification_channel_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels/testString')
         mock_response = '{"channel_id": "channel_id", "message": "message"}'
         responses.add(responses.DELETE,
                       url,
@@ -535,7 +535,7 @@ class TestDeleteNotificationChannel():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.delete_notification_channel(**req_copy)
+                _service.delete_notification_channel(**req_copy)
 
 
 
@@ -559,7 +559,7 @@ class TestGetNotificationChannel():
         get_notification_channel()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels/testString')
         mock_response = '{"channel": {"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "VA", "finding_types": [{"anyKey": "anyValue"}]}], "frequency": "frequency"}}'
         responses.add(responses.GET,
                       url,
@@ -573,7 +573,7 @@ class TestGetNotificationChannel():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.get_notification_channel(
+        response = _service.get_notification_channel(
             account_id,
             channel_id,
             transaction_id=transaction_id,
@@ -591,7 +591,7 @@ class TestGetNotificationChannel():
         test_get_notification_channel_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels/testString')
         mock_response = '{"channel": {"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "VA", "finding_types": [{"anyKey": "anyValue"}]}], "frequency": "frequency"}}'
         responses.add(responses.GET,
                       url,
@@ -604,7 +604,7 @@ class TestGetNotificationChannel():
         channel_id = 'testString'
 
         # Invoke method
-        response = service.get_notification_channel(
+        response = _service.get_notification_channel(
             account_id,
             channel_id,
             headers={}
@@ -621,7 +621,7 @@ class TestGetNotificationChannel():
         test_get_notification_channel_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels/testString')
         mock_response = '{"channel": {"channel_id": "channel_id", "name": "name", "description": "description", "type": "Webhook", "severity": {"critical": true, "high": true, "medium": true, "low": false}, "endpoint": "endpoint", "enabled": false, "alert_source": [{"provider_name": "VA", "finding_types": [{"anyKey": "anyValue"}]}], "frequency": "frequency"}}'
         responses.add(responses.GET,
                       url,
@@ -641,7 +641,7 @@ class TestGetNotificationChannel():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.get_notification_channel(**req_copy)
+                _service.get_notification_channel(**req_copy)
 
 
 
@@ -665,7 +665,7 @@ class TestUpdateNotificationChannel():
         update_notification_channel()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels/testString')
         mock_response = '{"channel_id": "channel_id", "status_code": 11}'
         responses.add(responses.PUT,
                       url,
@@ -691,7 +691,7 @@ class TestUpdateNotificationChannel():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.update_notification_channel(
+        response = _service.update_notification_channel(
             account_id,
             channel_id,
             name,
@@ -725,7 +725,7 @@ class TestUpdateNotificationChannel():
         test_update_notification_channel_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels/testString')
         mock_response = '{"channel_id": "channel_id", "status_code": 11}'
         responses.add(responses.PUT,
                       url,
@@ -750,7 +750,7 @@ class TestUpdateNotificationChannel():
         alert_source = [notification_channel_alert_source_item_model]
 
         # Invoke method
-        response = service.update_notification_channel(
+        response = _service.update_notification_channel(
             account_id,
             channel_id,
             name,
@@ -783,7 +783,7 @@ class TestUpdateNotificationChannel():
         test_update_notification_channel_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels/testString')
         mock_response = '{"channel_id": "channel_id", "status_code": 11}'
         responses.add(responses.PUT,
                       url,
@@ -818,7 +818,7 @@ class TestUpdateNotificationChannel():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.update_notification_channel(**req_copy)
+                _service.update_notification_channel(**req_copy)
 
 
 
@@ -842,7 +842,7 @@ class TestTestNotificationChannel():
         test_notification_channel()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString/test')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels/testString/test')
         mock_response = '{"test": "test"}'
         responses.add(responses.GET,
                       url,
@@ -856,7 +856,7 @@ class TestTestNotificationChannel():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.test_notification_channel(
+        response = _service.test_notification_channel(
             account_id,
             channel_id,
             transaction_id=transaction_id,
@@ -874,7 +874,7 @@ class TestTestNotificationChannel():
         test_test_notification_channel_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString/test')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels/testString/test')
         mock_response = '{"test": "test"}'
         responses.add(responses.GET,
                       url,
@@ -887,7 +887,7 @@ class TestTestNotificationChannel():
         channel_id = 'testString'
 
         # Invoke method
-        response = service.test_notification_channel(
+        response = _service.test_notification_channel(
             account_id,
             channel_id,
             headers={}
@@ -904,7 +904,7 @@ class TestTestNotificationChannel():
         test_test_notification_channel_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/channels/testString/test')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/channels/testString/test')
         mock_response = '{"test": "test"}'
         responses.add(responses.GET,
                       url,
@@ -924,7 +924,7 @@ class TestTestNotificationChannel():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.test_notification_channel(**req_copy)
+                _service.test_notification_channel(**req_copy)
 
 
 
@@ -948,7 +948,7 @@ class TestGetPublicKey():
         get_public_key()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/public_key')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/public_key')
         mock_response = '{"public_key": "public_key"}'
         responses.add(responses.GET,
                       url,
@@ -961,7 +961,7 @@ class TestGetPublicKey():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.get_public_key(
+        response = _service.get_public_key(
             account_id,
             transaction_id=transaction_id,
             headers={}
@@ -978,7 +978,7 @@ class TestGetPublicKey():
         test_get_public_key_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/public_key')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/public_key')
         mock_response = '{"public_key": "public_key"}'
         responses.add(responses.GET,
                       url,
@@ -990,7 +990,7 @@ class TestGetPublicKey():
         account_id = 'testString'
 
         # Invoke method
-        response = service.get_public_key(
+        response = _service.get_public_key(
             account_id,
             headers={}
         )
@@ -1006,7 +1006,7 @@ class TestGetPublicKey():
         test_get_public_key_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/notifications/public_key')
+        url = self.preprocess_url(_base_url + '/v1/testString/notifications/public_key')
         mock_response = '{"public_key": "public_key"}'
         responses.add(responses.GET,
                       url,
@@ -1024,7 +1024,7 @@ class TestGetPublicKey():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.get_public_key(**req_copy)
+                _service.get_public_key(**req_copy)
 
 
 
@@ -1110,30 +1110,30 @@ class TestChannelGet():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        channel_get_channel_severity_model = {} # ChannelGetChannelSeverity
-        channel_get_channel_severity_model['critical'] = True
-        channel_get_channel_severity_model['high'] = True
-        channel_get_channel_severity_model['medium'] = True
-        channel_get_channel_severity_model['low'] = True
+        channel_severity_model = {} # ChannelSeverity
+        channel_severity_model['critical'] = True
+        channel_severity_model['high'] = True
+        channel_severity_model['medium'] = True
+        channel_severity_model['low'] = True
 
-        channel_get_channel_alert_source_item_model = {} # ChannelGetChannelAlertSourceItem
-        channel_get_channel_alert_source_item_model['provider_name'] = 'VA'
-        channel_get_channel_alert_source_item_model['finding_types'] = [{ 'foo': 'bar' }]
+        channel_alert_source_item_model = {} # ChannelAlertSourceItem
+        channel_alert_source_item_model['provider_name'] = 'VA'
+        channel_alert_source_item_model['finding_types'] = [{ 'foo': 'bar' }]
 
-        channel_get_channel_model = {} # ChannelGetChannel
-        channel_get_channel_model['channel_id'] = 'testString'
-        channel_get_channel_model['name'] = 'testString'
-        channel_get_channel_model['description'] = 'testString'
-        channel_get_channel_model['type'] = 'Webhook'
-        channel_get_channel_model['severity'] = channel_get_channel_severity_model
-        channel_get_channel_model['endpoint'] = 'testString'
-        channel_get_channel_model['enabled'] = True
-        channel_get_channel_model['alert_source'] = [channel_get_channel_alert_source_item_model]
-        channel_get_channel_model['frequency'] = 'testString'
+        channel_model = {} # Channel
+        channel_model['channel_id'] = 'testString'
+        channel_model['name'] = 'testString'
+        channel_model['description'] = 'testString'
+        channel_model['type'] = 'Webhook'
+        channel_model['severity'] = channel_severity_model
+        channel_model['endpoint'] = 'testString'
+        channel_model['enabled'] = True
+        channel_model['alert_source'] = [channel_alert_source_item_model]
+        channel_model['frequency'] = 'testString'
 
         # Construct a json representation of a ChannelGet model
         channel_get_model_json = {}
-        channel_get_model_json['channel'] = channel_get_channel_model
+        channel_get_model_json['channel'] = channel_model
 
         # Construct a model instance of ChannelGet by calling from_dict on the json representation
         channel_get_model = ChannelGet.from_dict(channel_get_model_json)
@@ -1149,117 +1149,6 @@ class TestChannelGet():
         # Convert model instance back to dict and verify no loss of data
         channel_get_model_json2 = channel_get_model.to_dict()
         assert channel_get_model_json2 == channel_get_model_json
-
-class TestChannelGetChannel():
-    """
-    Test Class for ChannelGetChannel
-    """
-
-    def test_channel_get_channel_serialization(self):
-        """
-        Test serialization/deserialization for ChannelGetChannel
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        channel_get_channel_severity_model = {} # ChannelGetChannelSeverity
-        channel_get_channel_severity_model['critical'] = True
-        channel_get_channel_severity_model['high'] = True
-        channel_get_channel_severity_model['medium'] = True
-        channel_get_channel_severity_model['low'] = True
-
-        channel_get_channel_alert_source_item_model = {} # ChannelGetChannelAlertSourceItem
-        channel_get_channel_alert_source_item_model['provider_name'] = 'VA'
-        channel_get_channel_alert_source_item_model['finding_types'] = [{ 'foo': 'bar' }]
-
-        # Construct a json representation of a ChannelGetChannel model
-        channel_get_channel_model_json = {}
-        channel_get_channel_model_json['channel_id'] = 'testString'
-        channel_get_channel_model_json['name'] = 'testString'
-        channel_get_channel_model_json['description'] = 'testString'
-        channel_get_channel_model_json['type'] = 'Webhook'
-        channel_get_channel_model_json['severity'] = channel_get_channel_severity_model
-        channel_get_channel_model_json['endpoint'] = 'testString'
-        channel_get_channel_model_json['enabled'] = True
-        channel_get_channel_model_json['alert_source'] = [channel_get_channel_alert_source_item_model]
-        channel_get_channel_model_json['frequency'] = 'testString'
-
-        # Construct a model instance of ChannelGetChannel by calling from_dict on the json representation
-        channel_get_channel_model = ChannelGetChannel.from_dict(channel_get_channel_model_json)
-        assert channel_get_channel_model != False
-
-        # Construct a model instance of ChannelGetChannel by calling from_dict on the json representation
-        channel_get_channel_model_dict = ChannelGetChannel.from_dict(channel_get_channel_model_json).__dict__
-        channel_get_channel_model2 = ChannelGetChannel(**channel_get_channel_model_dict)
-
-        # Verify the model instances are equivalent
-        assert channel_get_channel_model == channel_get_channel_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        channel_get_channel_model_json2 = channel_get_channel_model.to_dict()
-        assert channel_get_channel_model_json2 == channel_get_channel_model_json
-
-class TestChannelGetChannelAlertSourceItem():
-    """
-    Test Class for ChannelGetChannelAlertSourceItem
-    """
-
-    def test_channel_get_channel_alert_source_item_serialization(self):
-        """
-        Test serialization/deserialization for ChannelGetChannelAlertSourceItem
-        """
-
-        # Construct a json representation of a ChannelGetChannelAlertSourceItem model
-        channel_get_channel_alert_source_item_model_json = {}
-        channel_get_channel_alert_source_item_model_json['provider_name'] = 'VA'
-        channel_get_channel_alert_source_item_model_json['finding_types'] = [{ 'foo': 'bar' }]
-
-        # Construct a model instance of ChannelGetChannelAlertSourceItem by calling from_dict on the json representation
-        channel_get_channel_alert_source_item_model = ChannelGetChannelAlertSourceItem.from_dict(channel_get_channel_alert_source_item_model_json)
-        assert channel_get_channel_alert_source_item_model != False
-
-        # Construct a model instance of ChannelGetChannelAlertSourceItem by calling from_dict on the json representation
-        channel_get_channel_alert_source_item_model_dict = ChannelGetChannelAlertSourceItem.from_dict(channel_get_channel_alert_source_item_model_json).__dict__
-        channel_get_channel_alert_source_item_model2 = ChannelGetChannelAlertSourceItem(**channel_get_channel_alert_source_item_model_dict)
-
-        # Verify the model instances are equivalent
-        assert channel_get_channel_alert_source_item_model == channel_get_channel_alert_source_item_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        channel_get_channel_alert_source_item_model_json2 = channel_get_channel_alert_source_item_model.to_dict()
-        assert channel_get_channel_alert_source_item_model_json2 == channel_get_channel_alert_source_item_model_json
-
-class TestChannelGetChannelSeverity():
-    """
-    Test Class for ChannelGetChannelSeverity
-    """
-
-    def test_channel_get_channel_severity_serialization(self):
-        """
-        Test serialization/deserialization for ChannelGetChannelSeverity
-        """
-
-        # Construct a json representation of a ChannelGetChannelSeverity model
-        channel_get_channel_severity_model_json = {}
-        channel_get_channel_severity_model_json['critical'] = True
-        channel_get_channel_severity_model_json['high'] = True
-        channel_get_channel_severity_model_json['medium'] = True
-        channel_get_channel_severity_model_json['low'] = True
-
-        # Construct a model instance of ChannelGetChannelSeverity by calling from_dict on the json representation
-        channel_get_channel_severity_model = ChannelGetChannelSeverity.from_dict(channel_get_channel_severity_model_json)
-        assert channel_get_channel_severity_model != False
-
-        # Construct a model instance of ChannelGetChannelSeverity by calling from_dict on the json representation
-        channel_get_channel_severity_model_dict = ChannelGetChannelSeverity.from_dict(channel_get_channel_severity_model_json).__dict__
-        channel_get_channel_severity_model2 = ChannelGetChannelSeverity(**channel_get_channel_severity_model_dict)
-
-        # Verify the model instances are equivalent
-        assert channel_get_channel_severity_model == channel_get_channel_severity_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        channel_get_channel_severity_model_json2 = channel_get_channel_severity_model.to_dict()
-        assert channel_get_channel_severity_model_json2 == channel_get_channel_severity_model_json
 
 class TestChannelInfo():
     """
@@ -1463,25 +1352,25 @@ class TestPublicKeyGet():
         public_key_get_model_json2 = public_key_get_model.to_dict()
         assert public_key_get_model_json2 == public_key_get_model_json
 
-class TestTestNotificationChannel():
+class TestTestChannel():
     """
-    Test Class for TestNotificationChannel
+    Test Class for TestChannel
     """
 
     def test_test_channel_serialization(self):
         """
-        Test serialization/deserialization for TestNotificationChannel
+        Test serialization/deserialization for TestChannel
         """
 
-        # Construct a json representation of a TestNotificationChannel model
+        # Construct a json representation of a TestChannel model
         test_channel_model_json = {}
         test_channel_model_json['test'] = 'testString'
 
-        # Construct a model instance of TestNotificationChannel by calling from_dict on the json representation
+        # Construct a model instance of TestChannel by calling from_dict on the json representation
         test_channel_model = TestNotificationChannel.from_dict(test_channel_model_json)
         assert test_channel_model != False
 
-        # Construct a model instance of TestNotificationChannel by calling from_dict on the json representation
+        # Construct a model instance of TestChannel by calling from_dict on the json representation
         test_channel_model_dict = TestNotificationChannel.from_dict(test_channel_model_json).__dict__
         test_channel_model2 = TestNotificationChannel(**test_channel_model_dict)
 

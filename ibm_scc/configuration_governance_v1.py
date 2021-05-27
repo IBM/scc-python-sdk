@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.30.0-bd714324-20210406-200538
+# IBM OpenAPI SDK Code Generator Version: 3.32.0-4c6a3129-20210514-210323
  
 """
 API specification for the Configuration Governance service.
@@ -39,7 +39,7 @@ from .common import get_sdk_headers
 class ConfigurationGovernanceV1(BaseService):
     """The Configuration Governance V1 service."""
 
-    DEFAULT_SERVICE_URL = 'https://compliance.cloud.ibm.com'
+    DEFAULT_SERVICE_URL = 'https://us.compliance.cloud.ibm.com'
     DEFAULT_SERVICE_NAME = 'configuration_governance'
 
     @classmethod

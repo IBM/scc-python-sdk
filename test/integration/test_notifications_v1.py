@@ -24,6 +24,8 @@ from ibm_scc.notifications_v1 import *
 
 # Config file name
 config_file = 'notifications_v1.env'
+account_id = os.getenv("ACCOUNT_ID")
+testString = "testString"
 
 class TestNotificationsV1():
     """
@@ -45,6 +47,33 @@ class TestNotificationsV1():
 
         print('Setup complete.')
 
+    @classmethod
+    def teardown_class(cls):
+        if os.path.exists(config_file):
+            os.environ['IBM_CREDENTIALS_FILE'] = config_file
+
+            cls.notifications_service = NotificationsV1.new_instance(
+                )
+            assert cls.notifications_service is not None
+
+            cls.config = read_external_sources(
+                NotificationsV1.DEFAULT_SERVICE_NAME)
+            assert cls.config is not None
+
+        print('Setup complete.')
+        print(f'cleaning up account: {account_id}\n')
+        list_all_channels_response = cls.notifications_service.list_all_channels(
+            account_id=account_id,
+        )
+        for channel in list_all_channels_response.get_result()['channels']:
+            if channel['channel_id'] == os.getenv('CHANNEL_ID'):
+                cls.notifications_service.delete_notification_channel(
+                    account_id=account_id,
+                    channel_id=channel['channel_id'],
+                )
+        os.environ.pop('CHANNEL_ID')
+        print("cleanup was successful\n")
+
     needscredentials = pytest.mark.skipif(
         not os.path.exists(config_file), reason="External configuration not available, skipping..."
     )
@@ -53,10 +82,7 @@ class TestNotificationsV1():
     def test_list_all_channels(self):
 
         list_all_channels_response = self.notifications_service.list_all_channels(
-            account_id='testString',
-            transaction_id='testString',
-            limit=38,
-            skip=38
+            account_id=account_id,
         )
 
         assert list_all_channels_response.get_status_code() == 200
@@ -68,21 +94,22 @@ class TestNotificationsV1():
 
         # Construct a dict representation of a NotificationChannelAlertSourceItem model
         notification_channel_alert_source_item_model = {
-            'provider_name': 'testString',
-            'finding_types': ['testString']
+            'provider_name': 'VA',
+            'finding_types': ['image_with_vulnerabilities']
         }
 
         create_notification_channel_response = self.notifications_service.create_notification_channel(
-            account_id='testString',
-            name='testString',
+            account_id=account_id,
+            name=testString,
             type='Webhook',
-            endpoint='testString',
-            description='testString',
+            endpoint='https://webhook.site/136fe1e2-3c3f-4bff-925f-391fbb202546',
+            description=testString,
             severity=['low'],
             enabled=True,
             alert_source=[notification_channel_alert_source_item_model],
-            transaction_id='testString'
         )
+
+        os.environ['CHANNEL_ID'] = create_notification_channel_response.get_result()['channel_id']
 
         assert create_notification_channel_response.get_status_code() == 200
         channel_info = create_notification_channel_response.get_result()
@@ -92,9 +119,8 @@ class TestNotificationsV1():
     def test_get_notification_channel(self):
 
         get_notification_channel_response = self.notifications_service.get_notification_channel(
-            account_id='testString',
-            channel_id='testString',
-            transaction_id='testString'
+            account_id=account_id,
+            channel_id=os.getenv('CHANNEL_ID'),
         )
 
         assert get_notification_channel_response.get_status_code() == 200
@@ -106,21 +132,20 @@ class TestNotificationsV1():
 
         # Construct a dict representation of a NotificationChannelAlertSourceItem model
         notification_channel_alert_source_item_model = {
-            'provider_name': 'testString',
-            'finding_types': ['testString']
+            'provider_name': 'VA',
+            'finding_types': ['image_with_vulnerabilities']
         }
 
         update_notification_channel_response = self.notifications_service.update_notification_channel(
-            account_id='testString',
-            channel_id='testString',
-            name='testString',
+            account_id=account_id,
+            channel_id=os.getenv('CHANNEL_ID'),
+            name=testString,
             type='Webhook',
-            endpoint='testString',
-            description='testString',
+            endpoint='https://webhook.site/136fe1e2-3c3f-4bff-925f-391fbb202546',
+            description=testString,
             severity=['low'],
             enabled=True,
             alert_source=[notification_channel_alert_source_item_model],
-            transaction_id='testString'
         )
 
         assert update_notification_channel_response.get_status_code() == 200
@@ -129,11 +154,9 @@ class TestNotificationsV1():
 
     @needscredentials
     def test_test_notification_channel(self):
-
         test_notification_channel_response = self.notifications_service.test_notification_channel(
-            account_id='testString',
-            channel_id='testString',
-            transaction_id='testString'
+            account_id=account_id,
+            channel_id=os.getenv('CHANNEL_ID'),
         )
 
         assert test_notification_channel_response.get_status_code() == 200
@@ -142,10 +165,8 @@ class TestNotificationsV1():
 
     @needscredentials
     def test_get_public_key(self):
-
         get_public_key_response = self.notifications_service.get_public_key(
-            account_id='testString',
-            transaction_id='testString'
+            account_id=account_id,
         )
 
         assert get_public_key_response.get_status_code() == 200
@@ -153,28 +174,42 @@ class TestNotificationsV1():
         assert public_key_get is not None
 
     @needscredentials
-    def test_delete_notification_channels(self):
-
-        delete_notification_channels_response = self.notifications_service.delete_notification_channels(
-            account_id='testString',
-            request_body=['testString'],
-            transaction_id='testString'
-        )
-
-        assert delete_notification_channels_response.get_status_code() == 200
-        channels_delete = delete_notification_channels_response.get_result()
-        assert channels_delete is not None
-
-    @needscredentials
     def test_delete_notification_channel(self):
-
         delete_notification_channel_response = self.notifications_service.delete_notification_channel(
-            account_id='testString',
-            channel_id='testString',
-            transaction_id='testString'
+            account_id=account_id,
+            channel_id=os.getenv('CHANNEL_ID'),
         )
 
         assert delete_notification_channel_response.get_status_code() == 200
         channel_delete = delete_notification_channel_response.get_result()
         assert channel_delete is not None
 
+    @needscredentials
+    def test_delete_notification_channels(self):
+        # Construct a dict representation of a NotificationChannelAlertSourceItem model
+        notification_channel_alert_source_item_model = {
+            'provider_name': 'VA',
+            'finding_types': ['image_with_vulnerabilities']
+        }
+
+        create_notification_channel_response = self.notifications_service.create_notification_channel(
+            account_id=account_id,
+            name=testString,
+            type='Webhook',
+            endpoint='https://webhook.site/136fe1e2-3c3f-4bff-925f-391fbb202546',
+            description=testString,
+            severity=['low'],
+            enabled=True,
+            alert_source=[notification_channel_alert_source_item_model],
+        )
+
+        channel_id = create_notification_channel_response.get_result()['channel_id']
+
+        delete_notification_channels_response = self.notifications_service.delete_notification_channels(
+            account_id=account_id,
+            request_body=[channel_id],
+        )
+
+        assert delete_notification_channels_response.get_status_code() == 200
+        channels_delete = delete_notification_channels_response.get_result()
+        assert channels_delete is not None

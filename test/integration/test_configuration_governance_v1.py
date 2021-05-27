@@ -60,14 +60,14 @@ class TestConfigurationGovernanceV1():
         target_resource_additional_target_attributes_item_model = {
             'name': 'resource_id',
             'value': '81f3db5e-f9db-4c46-9de3-a4a76e66adbf',
-            'operator': 'string_equals'
+            'operator': 'string_equals',
         }
 
         # Construct a dict representation of a TargetResource model
         target_resource_model = {
             'service_name': 'iam-groups',
             'resource_kind': 'service',
-            'additional_target_attributes': [target_resource_additional_target_attributes_item_model]
+            'additional_target_attributes': [target_resource_additional_target_attributes_item_model],
         }
 
         # Construct a dict representation of a RuleRequiredConfigSingleProperty model
@@ -75,12 +75,12 @@ class TestConfigurationGovernanceV1():
             'description': 'Public access check',
             'property': 'public_access_enabled',
             'operator': 'is_true',
-            'value': 'testString'
+            'value': 'testString',
         }
 
         # Construct a dict representation of a EnforcementAction model
         enforcement_action_model = {
-            'action': 'disallow'
+            'action': 'disallow',
         }
 
         # Construct a dict representation of a RuleRequest model
@@ -89,16 +89,16 @@ class TestConfigurationGovernanceV1():
             'name': 'Disable public access',
             'description': 'Ensure that public access to account resources is disabled.',
             'rule_type': 'user_defined',
-            'target': target_resource_model,
-            'required_config': rule_required_config_model,
+            'target': {'service_name':'iam-groups','resource_kind':'service'},
+            'required_config': {'description':'Public access check','and':[{'property':'public_access_enabled','operator':'is_false'}]},
             'enforcement_actions': [enforcement_action_model],
-            'labels': ['Access', 'IAM']
+            'labels': ['Access', 'IAM'],
         }
 
         # Construct a dict representation of a CreateRuleRequest model
         create_rule_request_model = {
             'request_id': '3cebc877-58e7-44a5-a292-32114fa73558',
-            'rule': rule_request_model
+            'rule': {'account_id':'531fc3e28bfc43c5a2cea07786d93f5c','name':'Disable public access','description':'Ensure that public access to account resources is disabled.','labels':['Access','IAM'],'target':{'service_name':'iam-groups','resource_kind':'service'},'required_config':{'description':'Public access check','and':[{'property':'public_access_enabled','operator':'is_false'}]},'enforcement_actions':[{'action':'disallow'},{'action':'audit_log'}]},
         }
 
         create_rules_response = self.configuration_governance_service.create_rules(
@@ -121,14 +121,14 @@ class TestConfigurationGovernanceV1():
         rule_scope_model = {
             'note': 'My enterprise',
             'scope_id': '282cf433ac91493ba860480d92519990',
-            'scope_type': 'enterprise'
+            'scope_type': 'enterprise',
         }
 
         # Construct a dict representation of a RuleAttachmentRequest model
         rule_attachment_request_model = {
             'account_id': '531fc3e28bfc43c5a2cea07786d93f5c',
-            'included_scope': rule_scope_model,
-            'excluded_scopes': [rule_scope_model]
+            'included_scope': {'note':'My enterprise','scope_id':'282cf433ac91493ba860480d92519990','scope_type':'enterprise'},
+            'excluded_scopes': [rule_scope_model],
         }
 
         create_rule_attachments_response = self.configuration_governance_service.create_rule_attachments(
@@ -181,14 +181,14 @@ class TestConfigurationGovernanceV1():
         target_resource_additional_target_attributes_item_model = {
             'name': 'testString',
             'value': 'testString',
-            'operator': 'string_equals'
+            'operator': 'string_equals',
         }
 
         # Construct a dict representation of a TargetResource model
         target_resource_model = {
             'service_name': 'iam-groups',
             'resource_kind': 'service',
-            'additional_target_attributes': [target_resource_additional_target_attributes_item_model]
+            'additional_target_attributes': [target_resource_additional_target_attributes_item_model],
         }
 
         # Construct a dict representation of a RuleRequiredConfigSingleProperty model
@@ -196,12 +196,12 @@ class TestConfigurationGovernanceV1():
             'description': 'testString',
             'property': 'public_access_enabled',
             'operator': 'is_false',
-            'value': 'testString'
+            'value': 'testString',
         }
 
         # Construct a dict representation of a EnforcementAction model
         enforcement_action_model = {
-            'action': 'audit_log'
+            'action': 'audit_log',
         }
 
         update_rule_response = self.configuration_governance_service.update_rule(
@@ -256,7 +256,7 @@ class TestConfigurationGovernanceV1():
         rule_scope_model = {
             'note': 'My enterprise',
             'scope_id': '282cf433ac91493ba860480d92519990',
-            'scope_type': 'enterprise'
+            'scope_type': 'enterprise',
         }
 
         update_rule_attachment_response = self.configuration_governance_service.update_rule_attachment(

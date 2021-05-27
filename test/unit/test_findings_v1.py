@@ -30,12 +30,12 @@ import urllib
 from ibm_scc.findings_v1 import *
 
 
-service = FindingsV1(
+_service = FindingsV1(
     authenticator=NoAuthAuthenticator()
     )
 
-base_url = 'https://findings.cloud.ibm.com/findings'
-service.set_service_url(base_url)
+_base_url = 'https://us-south.secadvisor.cloud.ibm.com/findings'
+_service.set_service_url(_base_url)
 
 ##############################################################################
 # Start of Service: FindingsGraph
@@ -62,7 +62,7 @@ class TestPostGraph():
         post_graph()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/graph')
+        url = self.preprocess_url(_base_url + '/v1/testString/graph')
         responses.add(responses.POST,
                       url,
                       status=200)
@@ -74,7 +74,7 @@ class TestPostGraph():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.post_graph(
+        response = _service.post_graph(
             account_id,
             body,
             content_type=content_type,
@@ -94,7 +94,7 @@ class TestPostGraph():
         test_post_graph_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/graph')
+        url = self.preprocess_url(_base_url + '/v1/testString/graph')
         responses.add(responses.POST,
                       url,
                       status=200)
@@ -104,7 +104,7 @@ class TestPostGraph():
         body = 'testString'
 
         # Invoke method
-        response = service.post_graph(
+        response = _service.post_graph(
             account_id,
             body,
             headers={}
@@ -122,7 +122,7 @@ class TestPostGraph():
         test_post_graph_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/graph')
+        url = self.preprocess_url(_base_url + '/v1/testString/graph')
         responses.add(responses.POST,
                       url,
                       status=200)
@@ -139,7 +139,7 @@ class TestPostGraph():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.post_graph(**req_copy)
+                _service.post_graph(**req_copy)
 
 
 
@@ -173,7 +173,7 @@ class TestCreateNote():
         create_note()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes')
         mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.POST,
                       url,
@@ -247,8 +247,6 @@ class TestCreateNote():
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
         expiration_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -257,7 +255,7 @@ class TestCreateNote():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.create_note(
+        response = _service.create_note(
             account_id,
             provider_id,
             short_description,
@@ -267,8 +265,6 @@ class TestCreateNote():
             reported_by,
             related_url=related_url,
             expiration_time=expiration_time,
-            create_time=create_time,
-            update_time=update_time,
             shared=shared,
             finding=finding,
             kpi=kpi,
@@ -289,9 +285,7 @@ class TestCreateNote():
         assert req_body['id'] == 'testString'
         assert req_body['reported_by'] == reporter_model
         assert req_body['related_url'] == [api_note_related_url_model]
-        assert req_body['expiration_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        assert req_body['create_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        assert req_body['update_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
+        assert req_body['expiration_time'] == "2019-01-01T12:00:00Z"
         assert req_body['shared'] == True
         assert req_body['finding'] == finding_type_model
         assert req_body['kpi'] == kpi_type_model
@@ -305,7 +299,7 @@ class TestCreateNote():
         test_create_note_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes')
         mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.POST,
                       url,
@@ -379,8 +373,6 @@ class TestCreateNote():
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
         expiration_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -388,7 +380,7 @@ class TestCreateNote():
         section = section_model
 
         # Invoke method
-        response = service.create_note(
+        response = _service.create_note(
             account_id,
             provider_id,
             short_description,
@@ -398,8 +390,6 @@ class TestCreateNote():
             reported_by,
             related_url=related_url,
             expiration_time=expiration_time,
-            create_time=create_time,
-            update_time=update_time,
             shared=shared,
             finding=finding,
             kpi=kpi,
@@ -419,9 +409,7 @@ class TestCreateNote():
         assert req_body['id'] == 'testString'
         assert req_body['reported_by'] == reporter_model
         assert req_body['related_url'] == [api_note_related_url_model]
-        assert req_body['expiration_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        assert req_body['create_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        assert req_body['update_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
+        assert req_body['expiration_time'] == "2019-01-01T12:00:00Z"
         assert req_body['shared'] == True
         assert req_body['finding'] == finding_type_model
         assert req_body['kpi'] == kpi_type_model
@@ -435,7 +423,7 @@ class TestCreateNote():
         test_create_note_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes')
         mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.POST,
                       url,
@@ -509,8 +497,6 @@ class TestCreateNote():
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
         expiration_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -530,7 +516,7 @@ class TestCreateNote():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.create_note(**req_copy)
+                _service.create_note(**req_copy)
 
 
 
@@ -554,7 +540,7 @@ class TestListNotes():
         list_notes()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes')
         mock_response = '{"notes": [{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
@@ -570,7 +556,7 @@ class TestListNotes():
         page_token = 'testString'
 
         # Invoke method
-        response = service.list_notes(
+        response = _service.list_notes(
             account_id,
             provider_id,
             transaction_id=transaction_id,
@@ -595,7 +581,7 @@ class TestListNotes():
         test_list_notes_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes')
         mock_response = '{"notes": [{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
@@ -608,7 +594,7 @@ class TestListNotes():
         provider_id = 'testString'
 
         # Invoke method
-        response = service.list_notes(
+        response = _service.list_notes(
             account_id,
             provider_id,
             headers={}
@@ -625,7 +611,7 @@ class TestListNotes():
         test_list_notes_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes')
         mock_response = '{"notes": [{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
@@ -645,7 +631,7 @@ class TestListNotes():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.list_notes(**req_copy)
+                _service.list_notes(**req_copy)
 
 
 
@@ -669,7 +655,7 @@ class TestGetNote():
         get_note()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
         mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.GET,
                       url,
@@ -684,7 +670,7 @@ class TestGetNote():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.get_note(
+        response = _service.get_note(
             account_id,
             provider_id,
             note_id,
@@ -703,7 +689,7 @@ class TestGetNote():
         test_get_note_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
         mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.GET,
                       url,
@@ -717,7 +703,7 @@ class TestGetNote():
         note_id = 'testString'
 
         # Invoke method
-        response = service.get_note(
+        response = _service.get_note(
             account_id,
             provider_id,
             note_id,
@@ -735,7 +721,7 @@ class TestGetNote():
         test_get_note_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
         mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.GET,
                       url,
@@ -757,7 +743,7 @@ class TestGetNote():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.get_note(**req_copy)
+                _service.get_note(**req_copy)
 
 
 
@@ -781,7 +767,7 @@ class TestUpdateNote():
         update_note()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
         mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.PUT,
                       url,
@@ -856,8 +842,6 @@ class TestUpdateNote():
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
         expiration_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -866,7 +850,7 @@ class TestUpdateNote():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.update_note(
+        response = _service.update_note(
             account_id,
             provider_id,
             note_id,
@@ -877,8 +861,6 @@ class TestUpdateNote():
             reported_by,
             related_url=related_url,
             expiration_time=expiration_time,
-            create_time=create_time,
-            update_time=update_time,
             shared=shared,
             finding=finding,
             kpi=kpi,
@@ -899,9 +881,7 @@ class TestUpdateNote():
         assert req_body['id'] == 'testString'
         assert req_body['reported_by'] == reporter_model
         assert req_body['related_url'] == [api_note_related_url_model]
-        assert req_body['expiration_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        assert req_body['create_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        assert req_body['update_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
+        assert req_body['expiration_time'] == "2019-01-01T12:00:00Z"
         assert req_body['shared'] == True
         assert req_body['finding'] == finding_type_model
         assert req_body['kpi'] == kpi_type_model
@@ -915,7 +895,7 @@ class TestUpdateNote():
         test_update_note_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
         mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.PUT,
                       url,
@@ -990,8 +970,6 @@ class TestUpdateNote():
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
         expiration_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -999,7 +977,7 @@ class TestUpdateNote():
         section = section_model
 
         # Invoke method
-        response = service.update_note(
+        response = _service.update_note(
             account_id,
             provider_id,
             note_id,
@@ -1010,8 +988,6 @@ class TestUpdateNote():
             reported_by,
             related_url=related_url,
             expiration_time=expiration_time,
-            create_time=create_time,
-            update_time=update_time,
             shared=shared,
             finding=finding,
             kpi=kpi,
@@ -1031,9 +1007,7 @@ class TestUpdateNote():
         assert req_body['id'] == 'testString'
         assert req_body['reported_by'] == reporter_model
         assert req_body['related_url'] == [api_note_related_url_model]
-        assert req_body['expiration_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        assert req_body['create_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        assert req_body['update_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
+        assert req_body['expiration_time'] == "2019-01-01T12:00:00Z"
         assert req_body['shared'] == True
         assert req_body['finding'] == finding_type_model
         assert req_body['kpi'] == kpi_type_model
@@ -1047,7 +1021,7 @@ class TestUpdateNote():
         test_update_note_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
         mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.PUT,
                       url,
@@ -1122,8 +1096,6 @@ class TestUpdateNote():
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
         expiration_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -1144,7 +1116,7 @@ class TestUpdateNote():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.update_note(**req_copy)
+                _service.update_note(**req_copy)
 
 
 
@@ -1168,7 +1140,7 @@ class TestDeleteNote():
         delete_note()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
         responses.add(responses.DELETE,
                       url,
                       status=200)
@@ -1180,7 +1152,7 @@ class TestDeleteNote():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.delete_note(
+        response = _service.delete_note(
             account_id,
             provider_id,
             note_id,
@@ -1199,7 +1171,7 @@ class TestDeleteNote():
         test_delete_note_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
         responses.add(responses.DELETE,
                       url,
                       status=200)
@@ -1210,7 +1182,7 @@ class TestDeleteNote():
         note_id = 'testString'
 
         # Invoke method
-        response = service.delete_note(
+        response = _service.delete_note(
             account_id,
             provider_id,
             note_id,
@@ -1228,7 +1200,7 @@ class TestDeleteNote():
         test_delete_note_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
         responses.add(responses.DELETE,
                       url,
                       status=200)
@@ -1247,7 +1219,7 @@ class TestDeleteNote():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.delete_note(**req_copy)
+                _service.delete_note(**req_copy)
 
 
 
@@ -1271,7 +1243,7 @@ class TestGetOccurrenceNote():
         get_occurrence_note()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences/testString/note')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString/note')
         mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.GET,
                       url,
@@ -1286,7 +1258,7 @@ class TestGetOccurrenceNote():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.get_occurrence_note(
+        response = _service.get_occurrence_note(
             account_id,
             provider_id,
             occurrence_id,
@@ -1305,7 +1277,7 @@ class TestGetOccurrenceNote():
         test_get_occurrence_note_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences/testString/note')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString/note')
         mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.GET,
                       url,
@@ -1319,7 +1291,7 @@ class TestGetOccurrenceNote():
         occurrence_id = 'testString'
 
         # Invoke method
-        response = service.get_occurrence_note(
+        response = _service.get_occurrence_note(
             account_id,
             provider_id,
             occurrence_id,
@@ -1337,7 +1309,7 @@ class TestGetOccurrenceNote():
         test_get_occurrence_note_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences/testString/note')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString/note')
         mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.GET,
                       url,
@@ -1359,7 +1331,7 @@ class TestGetOccurrenceNote():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.get_occurrence_note(**req_copy)
+                _service.get_occurrence_note(**req_copy)
 
 
 
@@ -1393,7 +1365,7 @@ class TestCreateOccurrence():
         create_occurrence()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences')
         mock_response = '{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}'
         responses.add(responses.POST,
                       url,
@@ -1459,8 +1431,6 @@ class TestCreateOccurrence():
         id = 'testString'
         resource_url = 'testString'
         remediation = 'testString'
-        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         context = context_model
         finding = finding_model
         kpi = kpi_model
@@ -1469,7 +1439,7 @@ class TestCreateOccurrence():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.create_occurrence(
+        response = _service.create_occurrence(
             account_id,
             provider_id,
             note_name,
@@ -1477,8 +1447,6 @@ class TestCreateOccurrence():
             id,
             resource_url=resource_url,
             remediation=remediation,
-            create_time=create_time,
-            update_time=update_time,
             context=context,
             finding=finding,
             kpi=kpi,
@@ -1498,8 +1466,6 @@ class TestCreateOccurrence():
         assert req_body['id'] == 'testString'
         assert req_body['resource_url'] == 'testString'
         assert req_body['remediation'] == 'testString'
-        assert req_body['create_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        assert req_body['update_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         assert req_body['context'] == context_model
         assert req_body['finding'] == finding_model
         assert req_body['kpi'] == kpi_model
@@ -1512,7 +1478,7 @@ class TestCreateOccurrence():
         test_create_occurrence_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences')
         mock_response = '{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}'
         responses.add(responses.POST,
                       url,
@@ -1578,15 +1544,13 @@ class TestCreateOccurrence():
         id = 'testString'
         resource_url = 'testString'
         remediation = 'testString'
-        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         context = context_model
         finding = finding_model
         kpi = kpi_model
         reference_data = { 'foo': 'bar' }
 
         # Invoke method
-        response = service.create_occurrence(
+        response = _service.create_occurrence(
             account_id,
             provider_id,
             note_name,
@@ -1594,8 +1558,6 @@ class TestCreateOccurrence():
             id,
             resource_url=resource_url,
             remediation=remediation,
-            create_time=create_time,
-            update_time=update_time,
             context=context,
             finding=finding,
             kpi=kpi,
@@ -1613,8 +1575,6 @@ class TestCreateOccurrence():
         assert req_body['id'] == 'testString'
         assert req_body['resource_url'] == 'testString'
         assert req_body['remediation'] == 'testString'
-        assert req_body['create_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        assert req_body['update_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         assert req_body['context'] == context_model
         assert req_body['finding'] == finding_model
         assert req_body['kpi'] == kpi_model
@@ -1627,7 +1587,7 @@ class TestCreateOccurrence():
         test_create_occurrence_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences')
         mock_response = '{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}'
         responses.add(responses.POST,
                       url,
@@ -1693,8 +1653,6 @@ class TestCreateOccurrence():
         id = 'testString'
         resource_url = 'testString'
         remediation = 'testString'
-        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         context = context_model
         finding = finding_model
         kpi = kpi_model
@@ -1711,7 +1669,7 @@ class TestCreateOccurrence():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.create_occurrence(**req_copy)
+                _service.create_occurrence(**req_copy)
 
 
 
@@ -1735,7 +1693,7 @@ class TestListOccurrences():
         list_occurrences()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences')
         mock_response = '{"occurrences": [{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
@@ -1751,7 +1709,7 @@ class TestListOccurrences():
         page_token = 'testString'
 
         # Invoke method
-        response = service.list_occurrences(
+        response = _service.list_occurrences(
             account_id,
             provider_id,
             transaction_id=transaction_id,
@@ -1776,7 +1734,7 @@ class TestListOccurrences():
         test_list_occurrences_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences')
         mock_response = '{"occurrences": [{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
@@ -1789,7 +1747,7 @@ class TestListOccurrences():
         provider_id = 'testString'
 
         # Invoke method
-        response = service.list_occurrences(
+        response = _service.list_occurrences(
             account_id,
             provider_id,
             headers={}
@@ -1806,7 +1764,7 @@ class TestListOccurrences():
         test_list_occurrences_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences')
         mock_response = '{"occurrences": [{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
@@ -1826,7 +1784,7 @@ class TestListOccurrences():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.list_occurrences(**req_copy)
+                _service.list_occurrences(**req_copy)
 
 
 
@@ -1850,7 +1808,7 @@ class TestListNoteOccurrences():
         list_note_occurrences()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes/testString/occurrences')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString/occurrences')
         mock_response = '{"occurrences": [{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
@@ -1867,7 +1825,7 @@ class TestListNoteOccurrences():
         page_token = 'testString'
 
         # Invoke method
-        response = service.list_note_occurrences(
+        response = _service.list_note_occurrences(
             account_id,
             provider_id,
             note_id,
@@ -1893,7 +1851,7 @@ class TestListNoteOccurrences():
         test_list_note_occurrences_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes/testString/occurrences')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString/occurrences')
         mock_response = '{"occurrences": [{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
@@ -1907,7 +1865,7 @@ class TestListNoteOccurrences():
         note_id = 'testString'
 
         # Invoke method
-        response = service.list_note_occurrences(
+        response = _service.list_note_occurrences(
             account_id,
             provider_id,
             note_id,
@@ -1925,7 +1883,7 @@ class TestListNoteOccurrences():
         test_list_note_occurrences_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/notes/testString/occurrences')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString/occurrences')
         mock_response = '{"occurrences": [{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
@@ -1947,7 +1905,7 @@ class TestListNoteOccurrences():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.list_note_occurrences(**req_copy)
+                _service.list_note_occurrences(**req_copy)
 
 
 
@@ -1971,7 +1929,7 @@ class TestGetOccurrence():
         get_occurrence()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString')
         mock_response = '{"occurrences": [{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
@@ -1986,7 +1944,7 @@ class TestGetOccurrence():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.get_occurrence(
+        response = _service.get_occurrence(
             account_id,
             provider_id,
             occurrence_id,
@@ -2005,7 +1963,7 @@ class TestGetOccurrence():
         test_get_occurrence_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString')
         mock_response = '{"occurrences": [{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
@@ -2019,7 +1977,7 @@ class TestGetOccurrence():
         occurrence_id = 'testString'
 
         # Invoke method
-        response = service.get_occurrence(
+        response = _service.get_occurrence(
             account_id,
             provider_id,
             occurrence_id,
@@ -2037,7 +1995,7 @@ class TestGetOccurrence():
         test_get_occurrence_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString')
         mock_response = '{"occurrences": [{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
@@ -2059,7 +2017,7 @@ class TestGetOccurrence():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.get_occurrence(**req_copy)
+                _service.get_occurrence(**req_copy)
 
 
 
@@ -2083,7 +2041,7 @@ class TestUpdateOccurrence():
         update_occurrence()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString')
         mock_response = '{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}'
         responses.add(responses.PUT,
                       url,
@@ -2150,8 +2108,6 @@ class TestUpdateOccurrence():
         id = 'testString'
         resource_url = 'testString'
         remediation = 'testString'
-        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         context = context_model
         finding = finding_model
         kpi = kpi_model
@@ -2159,7 +2115,7 @@ class TestUpdateOccurrence():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.update_occurrence(
+        response = _service.update_occurrence(
             account_id,
             provider_id,
             occurrence_id,
@@ -2168,8 +2124,6 @@ class TestUpdateOccurrence():
             id,
             resource_url=resource_url,
             remediation=remediation,
-            create_time=create_time,
-            update_time=update_time,
             context=context,
             finding=finding,
             kpi=kpi,
@@ -2188,8 +2142,6 @@ class TestUpdateOccurrence():
         assert req_body['id'] == 'testString'
         assert req_body['resource_url'] == 'testString'
         assert req_body['remediation'] == 'testString'
-        assert req_body['create_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        assert req_body['update_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         assert req_body['context'] == context_model
         assert req_body['finding'] == finding_model
         assert req_body['kpi'] == kpi_model
@@ -2202,7 +2154,7 @@ class TestUpdateOccurrence():
         test_update_occurrence_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString')
         mock_response = '{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}'
         responses.add(responses.PUT,
                       url,
@@ -2269,15 +2221,13 @@ class TestUpdateOccurrence():
         id = 'testString'
         resource_url = 'testString'
         remediation = 'testString'
-        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         context = context_model
         finding = finding_model
         kpi = kpi_model
         reference_data = { 'foo': 'bar' }
 
         # Invoke method
-        response = service.update_occurrence(
+        response = _service.update_occurrence(
             account_id,
             provider_id,
             occurrence_id,
@@ -2286,8 +2236,6 @@ class TestUpdateOccurrence():
             id,
             resource_url=resource_url,
             remediation=remediation,
-            create_time=create_time,
-            update_time=update_time,
             context=context,
             finding=finding,
             kpi=kpi,
@@ -2305,8 +2253,6 @@ class TestUpdateOccurrence():
         assert req_body['id'] == 'testString'
         assert req_body['resource_url'] == 'testString'
         assert req_body['remediation'] == 'testString'
-        assert req_body['create_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        assert req_body['update_time'] == datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         assert req_body['context'] == context_model
         assert req_body['finding'] == finding_model
         assert req_body['kpi'] == kpi_model
@@ -2319,7 +2265,7 @@ class TestUpdateOccurrence():
         test_update_occurrence_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString')
         mock_response = '{"resource_url": "resource_url", "note_name": "note_name", "kind": "FINDING", "remediation": "remediation", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "context": {"region": "region", "resource_crn": "resource_crn", "resource_id": "resource_id", "resource_name": "resource_name", "resource_type": "resource_type", "service_crn": "service_crn", "service_name": "service_name", "environment_name": "environment_name", "component_name": "component_name", "toolchain_id": "toolchain_id"}, "finding": {"severity": "LOW", "certainty": "LOW", "next_steps": [{"title": "title", "url": "url"}], "network_connection": {"direction": "direction", "protocol": "protocol", "client": {"address": "address", "port": 4}, "server": {"address": "address", "port": 4}}, "data_transferred": {"client_bytes": 12, "server_bytes": 12, "client_packets": 14, "server_packets": 14}}, "kpi": {"value": 5, "total": 5}, "reference_data": {"anyKey": "anyValue"}}'
         responses.add(responses.PUT,
                       url,
@@ -2386,8 +2332,6 @@ class TestUpdateOccurrence():
         id = 'testString'
         resource_url = 'testString'
         remediation = 'testString'
-        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
-        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         context = context_model
         finding = finding_model
         kpi = kpi_model
@@ -2405,7 +2349,7 @@ class TestUpdateOccurrence():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.update_occurrence(**req_copy)
+                _service.update_occurrence(**req_copy)
 
 
 
@@ -2429,7 +2373,7 @@ class TestDeleteOccurrence():
         delete_occurrence()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString')
         responses.add(responses.DELETE,
                       url,
                       status=200)
@@ -2441,7 +2385,7 @@ class TestDeleteOccurrence():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.delete_occurrence(
+        response = _service.delete_occurrence(
             account_id,
             provider_id,
             occurrence_id,
@@ -2460,7 +2404,7 @@ class TestDeleteOccurrence():
         test_delete_occurrence_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString')
         responses.add(responses.DELETE,
                       url,
                       status=200)
@@ -2471,7 +2415,7 @@ class TestDeleteOccurrence():
         occurrence_id = 'testString'
 
         # Invoke method
-        response = service.delete_occurrence(
+        response = _service.delete_occurrence(
             account_id,
             provider_id,
             occurrence_id,
@@ -2489,7 +2433,7 @@ class TestDeleteOccurrence():
         test_delete_occurrence_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers/testString/occurrences/testString')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString')
         responses.add(responses.DELETE,
                       url,
                       status=200)
@@ -2508,7 +2452,7 @@ class TestDeleteOccurrence():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.delete_occurrence(**req_copy)
+                _service.delete_occurrence(**req_copy)
 
 
 
@@ -2542,7 +2486,7 @@ class TestListProviders():
         list_providers()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers')
         mock_response = '{"providers": [{"name": "name", "id": "id"}]}'
         responses.add(responses.GET,
                       url,
@@ -2559,7 +2503,7 @@ class TestListProviders():
         end_provider_id = 'testString'
 
         # Invoke method
-        response = service.list_providers(
+        response = _service.list_providers(
             account_id,
             transaction_id=transaction_id,
             limit=limit,
@@ -2587,7 +2531,7 @@ class TestListProviders():
         test_list_providers_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers')
         mock_response = '{"providers": [{"name": "name", "id": "id"}]}'
         responses.add(responses.GET,
                       url,
@@ -2599,7 +2543,7 @@ class TestListProviders():
         account_id = 'testString'
 
         # Invoke method
-        response = service.list_providers(
+        response = _service.list_providers(
             account_id,
             headers={}
         )
@@ -2615,7 +2559,7 @@ class TestListProviders():
         test_list_providers_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/v1/testString/providers')
+        url = self.preprocess_url(_base_url + '/v1/testString/providers')
         mock_response = '{"providers": [{"name": "name", "id": "id"}]}'
         responses.add(responses.GET,
                       url,
@@ -2633,7 +2577,7 @@ class TestListProviders():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.list_providers(**req_copy)
+                _service.list_providers(**req_copy)
 
 
 
@@ -3137,8 +3081,8 @@ class TestApiListNoteOccurrencesResponse():
         api_occurrence_model['note_name'] = 'testString'
         api_occurrence_model['kind'] = 'FINDING'
         api_occurrence_model['remediation'] = 'testString'
-        api_occurrence_model['create_time'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        api_occurrence_model['update_time'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
+        api_occurrence_model['create_time'] = "2019-01-01T12:00:00Z"
+        api_occurrence_model['update_time'] = "2019-01-01T12:00:00Z"
         api_occurrence_model['id'] = 'testString'
         api_occurrence_model['context'] = context_model
         api_occurrence_model['finding'] = finding_model
@@ -3229,9 +3173,9 @@ class TestApiListNotesResponse():
         api_note_model['long_description'] = 'testString'
         api_note_model['kind'] = 'FINDING'
         api_note_model['related_url'] = [api_note_related_url_model]
-        api_note_model['expiration_time'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        api_note_model['create_time'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        api_note_model['update_time'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
+        api_note_model['expiration_time'] = "2019-01-01T12:00:00Z"
+        api_note_model['create_time'] = "2019-01-01T12:00:00Z"
+        api_note_model['update_time'] = "2019-01-01T12:00:00Z"
         api_note_model['id'] = 'testString'
         api_note_model['shared'] = True
         api_note_model['reported_by'] = reporter_model
@@ -3320,8 +3264,8 @@ class TestApiListOccurrencesResponse():
         api_occurrence_model['note_name'] = 'testString'
         api_occurrence_model['kind'] = 'FINDING'
         api_occurrence_model['remediation'] = 'testString'
-        api_occurrence_model['create_time'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        api_occurrence_model['update_time'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
+        api_occurrence_model['create_time'] = "2019-01-01T12:00:00Z"
+        api_occurrence_model['update_time'] = "2019-01-01T12:00:00Z"
         api_occurrence_model['id'] = 'testString'
         api_occurrence_model['context'] = context_model
         api_occurrence_model['finding'] = finding_model
@@ -3448,9 +3392,9 @@ class TestApiNote():
         api_note_model_json['long_description'] = 'testString'
         api_note_model_json['kind'] = 'FINDING'
         api_note_model_json['related_url'] = [api_note_related_url_model]
-        api_note_model_json['expiration_time'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        api_note_model_json['create_time'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        api_note_model_json['update_time'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
+        api_note_model_json['expiration_time'] = "2019-01-01T12:00:00Z"
+        api_note_model_json['create_time'] = "2019-01-01T12:00:00Z"
+        api_note_model_json['update_time'] = "2019-01-01T12:00:00Z"
         api_note_model_json['id'] = 'testString'
         api_note_model_json['shared'] = True
         api_note_model_json['reported_by'] = reporter_model
@@ -3565,8 +3509,8 @@ class TestApiOccurrence():
         api_occurrence_model_json['note_name'] = 'testString'
         api_occurrence_model_json['kind'] = 'FINDING'
         api_occurrence_model_json['remediation'] = 'testString'
-        api_occurrence_model_json['create_time'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        api_occurrence_model_json['update_time'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
+        api_occurrence_model_json['create_time'] = "2019-01-01T12:00:00Z"
+        api_occurrence_model_json['update_time'] = "2019-01-01T12:00:00Z"
         api_occurrence_model_json['id'] = 'testString'
         api_occurrence_model_json['context'] = context_model
         api_occurrence_model_json['finding'] = finding_model

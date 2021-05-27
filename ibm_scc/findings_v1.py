@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.30.0-bd714324-20210406-200538
+# IBM OpenAPI SDK Code Generator Version: 3.32.0-4c6a3129-20210514-210323
  
 """
 API specification for the Findings service.
@@ -40,7 +40,7 @@ from .common import get_sdk_headers
 class FindingsV1(BaseService):
     """The Findings V1 service."""
 
-    DEFAULT_SERVICE_URL = 'https://findings.cloud.ibm.com/findings'
+    DEFAULT_SERVICE_URL = 'https://us-south.secadvisor.cloud.ibm.com/findings'
     DEFAULT_SERVICE_NAME = 'findings'
 
     @classmethod
@@ -153,8 +153,6 @@ class FindingsV1(BaseService):
         *,
         related_url: List['ApiNoteRelatedUrl'] = None,
         expiration_time: datetime = None,
-        create_time: datetime = None,
-        update_time: datetime = None,
         shared: bool = None,
         finding: 'FindingType' = None,
         kpi: 'KpiType' = None,
@@ -180,15 +178,12 @@ class FindingsV1(BaseService):
                 - CARD_CONFIGURED&#58; The note represents a card configured for a user
                account.
                 - SECTION&#58; The note represents a section in a dashboard.
-        :param str id:
+        :param str id: The id of the note.
         :param Reporter reported_by: The entity reporting a note.
-        :param List[ApiNoteRelatedUrl] related_url: (optional)
+        :param List[ApiNoteRelatedUrl] related_url: (optional) URLs associated with
+               this note.
         :param datetime expiration_time: (optional) Time of expiration for this
                note, null if note does not expire.
-        :param datetime create_time: (optional) Output only. The time this note was
-               created. This field can be used as a filter in list requests.
-        :param datetime update_time: (optional) Output only. The time this note was
-               last updated. This field can be used as a filter in list requests.
         :param bool shared: (optional) True if this `Note` can be shared by
                multiple accounts.
         :param FindingType finding: (optional) FindingType provides details about a
@@ -224,10 +219,6 @@ class FindingsV1(BaseService):
             related_url = [convert_model(x) for x in related_url]
         if expiration_time is not None:
             expiration_time = datetime_to_string(expiration_time)
-        if create_time is not None:
-            create_time = datetime_to_string(create_time)
-        if update_time is not None:
-            update_time = datetime_to_string(update_time)
         if finding is not None:
             finding = convert_model(finding)
         if kpi is not None:
@@ -252,8 +243,6 @@ class FindingsV1(BaseService):
             'reported_by': reported_by,
             'related_url': related_url,
             'expiration_time': expiration_time,
-            'create_time': create_time,
-            'update_time': update_time,
             'shared': shared,
             'finding': finding,
             'kpi': kpi,
@@ -405,8 +394,6 @@ class FindingsV1(BaseService):
         *,
         related_url: List['ApiNoteRelatedUrl'] = None,
         expiration_time: datetime = None,
-        create_time: datetime = None,
-        update_time: datetime = None,
         shared: bool = None,
         finding: 'FindingType' = None,
         kpi: 'KpiType' = None,
@@ -434,15 +421,12 @@ class FindingsV1(BaseService):
                 - CARD_CONFIGURED&#58; The note represents a card configured for a user
                account.
                 - SECTION&#58; The note represents a section in a dashboard.
-        :param str id:
+        :param str id: The id of the note.
         :param Reporter reported_by: The entity reporting a note.
-        :param List[ApiNoteRelatedUrl] related_url: (optional)
+        :param List[ApiNoteRelatedUrl] related_url: (optional) URLs associated with
+               this note.
         :param datetime expiration_time: (optional) Time of expiration for this
                note, null if note does not expire.
-        :param datetime create_time: (optional) Output only. The time this note was
-               created. This field can be used as a filter in list requests.
-        :param datetime update_time: (optional) Output only. The time this note was
-               last updated. This field can be used as a filter in list requests.
         :param bool shared: (optional) True if this `Note` can be shared by
                multiple accounts.
         :param FindingType finding: (optional) FindingType provides details about a
@@ -480,10 +464,6 @@ class FindingsV1(BaseService):
             related_url = [convert_model(x) for x in related_url]
         if expiration_time is not None:
             expiration_time = datetime_to_string(expiration_time)
-        if create_time is not None:
-            create_time = datetime_to_string(create_time)
-        if update_time is not None:
-            update_time = datetime_to_string(update_time)
         if finding is not None:
             finding = convert_model(finding)
         if kpi is not None:
@@ -508,8 +488,6 @@ class FindingsV1(BaseService):
             'reported_by': reported_by,
             'related_url': related_url,
             'expiration_time': expiration_time,
-            'create_time': create_time,
-            'update_time': update_time,
             'shared': shared,
             'finding': finding,
             'kpi': kpi,
@@ -656,8 +634,6 @@ class FindingsV1(BaseService):
         *,
         resource_url: str = None,
         remediation: str = None,
-        create_time: datetime = None,
-        update_time: datetime = None,
         context: 'Context' = None,
         finding: 'Finding' = None,
         kpi: 'Kpi' = None,
@@ -684,16 +660,13 @@ class FindingsV1(BaseService):
                 - CARD_CONFIGURED&#58; The note represents a card configured for a user
                account.
                 - SECTION&#58; The note represents a section in a dashboard.
-        :param str id:
+        :param str id: The id of the occurrence.
         :param str resource_url: (optional) The unique URL of the resource, image
                or the container, for which the `Occurrence` applies. For example,
                https://gcr.io/provider/image@sha256:foo. This field can be used as a
                filter in list requests.
-        :param str remediation: (optional)
-        :param datetime create_time: (optional) Output only. The time this
-               `Occurrence` was created.
-        :param datetime update_time: (optional) Output only. The time this
-               `Occurrence` was last updated.
+        :param str remediation: (optional) A description of actions that can be
+               taken to remedy the `Note`.
         :param Context context: (optional)
         :param Finding finding: (optional) Finding provides details about a finding
                occurrence.
@@ -719,10 +692,6 @@ class FindingsV1(BaseService):
             raise ValueError('kind must be provided')
         if id is None:
             raise ValueError('id must be provided')
-        if create_time is not None:
-            create_time = datetime_to_string(create_time)
-        if update_time is not None:
-            update_time = datetime_to_string(update_time)
         if context is not None:
             context = convert_model(context)
         if finding is not None:
@@ -744,8 +713,6 @@ class FindingsV1(BaseService):
             'id': id,
             'resource_url': resource_url,
             'remediation': remediation,
-            'create_time': create_time,
-            'update_time': update_time,
             'context': context,
             'finding': finding,
             'kpi': kpi,
@@ -959,8 +926,6 @@ class FindingsV1(BaseService):
         *,
         resource_url: str = None,
         remediation: str = None,
-        create_time: datetime = None,
-        update_time: datetime = None,
         context: 'Context' = None,
         finding: 'Finding' = None,
         kpi: 'Kpi' = None,
@@ -988,16 +953,13 @@ class FindingsV1(BaseService):
                 - CARD_CONFIGURED&#58; The note represents a card configured for a user
                account.
                 - SECTION&#58; The note represents a section in a dashboard.
-        :param str id:
+        :param str id: The id of the occurrence.
         :param str resource_url: (optional) The unique URL of the resource, image
                or the container, for which the `Occurrence` applies. For example,
                https://gcr.io/provider/image@sha256:foo. This field can be used as a
                filter in list requests.
-        :param str remediation: (optional)
-        :param datetime create_time: (optional) Output only. The time this
-               `Occurrence` was created.
-        :param datetime update_time: (optional) Output only. The time this
-               `Occurrence` was last updated.
+        :param str remediation: (optional) A description of actions that can be
+               taken to remedy the `Note`.
         :param Context context: (optional)
         :param Finding finding: (optional) Finding provides details about a finding
                occurrence.
@@ -1023,10 +985,6 @@ class FindingsV1(BaseService):
             raise ValueError('kind must be provided')
         if id is None:
             raise ValueError('id must be provided')
-        if create_time is not None:
-            create_time = datetime_to_string(create_time)
-        if update_time is not None:
-            update_time = datetime_to_string(update_time)
         if context is not None:
             context = convert_model(context)
         if finding is not None:
@@ -1047,8 +1005,6 @@ class FindingsV1(BaseService):
             'id': id,
             'resource_url': resource_url,
             'remediation': remediation,
-            'create_time': create_time,
-            'update_time': update_time,
             'context': context,
             'finding': finding,
             'kpi': kpi,
@@ -1912,8 +1868,8 @@ class KpiType():
     """
     KpiType provides details about a KPI note.
 
-    :attr str aggregation_type: The aggregation type of the KPI values.
-          - SUM&#58; A single-value metrics aggregation type that sums up numeric values
+    :attr str aggregation_type: The aggregation type of the KPI values. - SUM&#58; A
+          single-value metrics aggregation type that sums up numeric values
             that are extracted from KPI occurrences.
     """
 
@@ -1922,8 +1878,8 @@ class KpiType():
         """
         Initialize a KpiType object.
 
-        :param str aggregation_type: The aggregation type of the KPI values.
-               - SUM&#58; A single-value metrics aggregation type that sums up numeric
+        :param str aggregation_type: The aggregation type of the KPI values. -
+               SUM&#58; A single-value metrics aggregation type that sums up numeric
                values
                  that are extracted from KPI occurrences.
         """
@@ -1971,8 +1927,8 @@ class KpiType():
 
     class AggregationTypeEnum(str, Enum):
         """
-        The aggregation type of the KPI values.
-        - SUM&#58; A single-value metrics aggregation type that sums up numeric values
+        The aggregation type of the KPI values. - SUM&#58; A single-value metrics
+        aggregation type that sums up numeric values
           that are extracted from KPI occurrences.
         """
         SUM = 'SUM'
@@ -2448,7 +2404,7 @@ class ApiListNotesResponse():
     """
     Response including listed notes.
 
-    :attr List[ApiNote] notes: (optional)
+    :attr List[ApiNote] notes: (optional) The occurrences requested.
     :attr str next_page_token: (optional) The next pagination token in the list
           response. It should be used as page_token for the following request. An empty
           value means no more result.
@@ -2461,7 +2417,7 @@ class ApiListNotesResponse():
         """
         Initialize a ApiListNotesResponse object.
 
-        :param List[ApiNote] notes: (optional)
+        :param List[ApiNote] notes: (optional) The occurrences requested.
         :param str next_page_token: (optional) The next pagination token in the
                list response. It should be used as page_token for the following request.
                An empty value means no more result.
@@ -2584,7 +2540,7 @@ class ApiListProvidersResponse():
     """
     Response including listed providers.
 
-    :attr List[ApiProvider] providers: (optional)
+    :attr List[ApiProvider] providers: (optional) The providers requested.
     """
 
     def __init__(self,
@@ -2593,7 +2549,7 @@ class ApiListProvidersResponse():
         """
         Initialize a ApiListProvidersResponse object.
 
-        :param List[ApiProvider] providers: (optional)
+        :param List[ApiProvider] providers: (optional) The providers requested.
         """
         self.providers = providers
 
@@ -2650,14 +2606,15 @@ class ApiNote():
            - CARD_CONFIGURED&#58; The note represents a card configured for a user
           account.
            - SECTION&#58; The note represents a section in a dashboard.
-    :attr List[ApiNoteRelatedUrl] related_url: (optional)
+    :attr List[ApiNoteRelatedUrl] related_url: (optional) URLs associated with this
+          note.
     :attr datetime expiration_time: (optional) Time of expiration for this note,
           null if note does not expire.
     :attr datetime create_time: (optional) Output only. The time this note was
           created. This field can be used as a filter in list requests.
     :attr datetime update_time: (optional) Output only. The time this note was last
           updated. This field can be used as a filter in list requests.
-    :attr str id:
+    :attr str id: The id of the note.
     :attr bool shared: (optional) True if this `Note` can be shared by multiple
           accounts.
     :attr Reporter reported_by: The entity reporting a note.
@@ -2699,15 +2656,12 @@ class ApiNote():
                 - CARD_CONFIGURED&#58; The note represents a card configured for a user
                account.
                 - SECTION&#58; The note represents a section in a dashboard.
-        :param str id:
+        :param str id: The id of the note.
         :param Reporter reported_by: The entity reporting a note.
-        :param List[ApiNoteRelatedUrl] related_url: (optional)
+        :param List[ApiNoteRelatedUrl] related_url: (optional) URLs associated with
+               this note.
         :param datetime expiration_time: (optional) Time of expiration for this
                note, null if note does not expire.
-        :param datetime create_time: (optional) Output only. The time this note was
-               created. This field can be used as a filter in list requests.
-        :param datetime update_time: (optional) Output only. The time this note was
-               last updated. This field can be used as a filter in list requests.
         :param bool shared: (optional) True if this `Note` can be shared by
                multiple accounts.
         :param FindingType finding: (optional) FindingType provides details about a
@@ -2795,10 +2749,10 @@ class ApiNote():
             _dict['related_url'] = [x.to_dict() for x in self.related_url]
         if hasattr(self, 'expiration_time') and self.expiration_time is not None:
             _dict['expiration_time'] = datetime_to_string(self.expiration_time)
-        if hasattr(self, 'create_time') and self.create_time is not None:
-            _dict['create_time'] = datetime_to_string(self.create_time)
-        if hasattr(self, 'update_time') and self.update_time is not None:
-            _dict['update_time'] = datetime_to_string(self.update_time)
+        if hasattr(self, 'create_time') and getattr(self, 'create_time') is not None:
+            _dict['create_time'] = datetime_to_string(getattr(self, 'create_time'))
+        if hasattr(self, 'update_time') and getattr(self, 'update_time') is not None:
+            _dict['update_time'] = datetime_to_string(getattr(self, 'update_time'))
         if hasattr(self, 'id') and self.id is not None:
             _dict['id'] = self.id
         if hasattr(self, 'shared') and self.shared is not None:
@@ -2855,19 +2809,18 @@ class ApiNoteRelatedUrl():
     """
     Metadata for any related URL information.
 
-    :attr str label: (optional)
-    :attr str url: (optional)
+    :attr str label: Label to describe usage of the URL.
+    :attr str url: Specific URL to associate with the note.
     """
 
     def __init__(self,
-                 *,
-                 label: str = None,
-                 url: str = None) -> None:
+                 label: str,
+                 url: str) -> None:
         """
         Initialize a ApiNoteRelatedUrl object.
 
-        :param str label: (optional)
-        :param str url: (optional)
+        :param str label: Label to describe usage of the URL.
+        :param str url: Specific URL to associate with the note.
         """
         self.label = label
         self.url = url
@@ -2878,8 +2831,12 @@ class ApiNoteRelatedUrl():
         args = {}
         if 'label' in _dict:
             args['label'] = _dict.get('label')
+        else:
+            raise ValueError('Required property \'label\' not present in ApiNoteRelatedUrl JSON')
         if 'url' in _dict:
             args['url'] = _dict.get('url')
+        else:
+            raise ValueError('Required property \'url\' not present in ApiNoteRelatedUrl JSON')
         return cls(**args)
 
     @classmethod
@@ -2934,12 +2891,13 @@ class ApiOccurrence():
            - CARD_CONFIGURED&#58; The note represents a card configured for a user
           account.
            - SECTION&#58; The note represents a section in a dashboard.
-    :attr str remediation: (optional)
+    :attr str remediation: (optional) A description of actions that can be taken to
+          remedy the `Note`.
     :attr datetime create_time: (optional) Output only. The time this `Occurrence`
           was created.
     :attr datetime update_time: (optional) Output only. The time this `Occurrence`
           was last updated.
-    :attr str id:
+    :attr str id: The id of the occurrence.
     :attr Context context: (optional)
     :attr Finding finding: (optional) Finding provides details about a finding
           occurrence.
@@ -2976,16 +2934,13 @@ class ApiOccurrence():
                 - CARD_CONFIGURED&#58; The note represents a card configured for a user
                account.
                 - SECTION&#58; The note represents a section in a dashboard.
-        :param str id:
+        :param str id: The id of the occurrence.
         :param str resource_url: (optional) The unique URL of the resource, image
                or the container, for which the `Occurrence` applies. For example,
                https://gcr.io/provider/image@sha256:foo. This field can be used as a
                filter in list requests.
-        :param str remediation: (optional)
-        :param datetime create_time: (optional) Output only. The time this
-               `Occurrence` was created.
-        :param datetime update_time: (optional) Output only. The time this
-               `Occurrence` was last updated.
+        :param str remediation: (optional) A description of actions that can be
+               taken to remedy the `Note`.
         :param Context context: (optional)
         :param Finding finding: (optional) Finding provides details about a finding
                occurrence.
@@ -3055,10 +3010,10 @@ class ApiOccurrence():
             _dict['kind'] = self.kind
         if hasattr(self, 'remediation') and self.remediation is not None:
             _dict['remediation'] = self.remediation
-        if hasattr(self, 'create_time') and self.create_time is not None:
-            _dict['create_time'] = datetime_to_string(self.create_time)
-        if hasattr(self, 'update_time') and self.update_time is not None:
-            _dict['update_time'] = datetime_to_string(self.update_time)
+        if hasattr(self, 'create_time') and getattr(self, 'create_time') is not None:
+            _dict['create_time'] = datetime_to_string(getattr(self, 'create_time'))
+        if hasattr(self, 'update_time') and getattr(self, 'update_time') is not None:
+            _dict['update_time'] = datetime_to_string(getattr(self, 'update_time'))
         if hasattr(self, 'id') and self.id is not None:
             _dict['id'] = self.id
         if hasattr(self, 'context') and self.context is not None:
@@ -3111,8 +3066,9 @@ class ApiProvider():
     """
     Provides a detailed description of a `Provider`.
 
-    :attr str name:
-    :attr str id:
+    :attr str name: The name of the provider in the form
+          "{account_id}/providers/{provider_id}".
+    :attr str id: The id of the provider.
     """
 
     def __init__(self,
@@ -3121,8 +3077,9 @@ class ApiProvider():
         """
         Initialize a ApiProvider object.
 
-        :param str name:
-        :param str id:
+        :param str name: The name of the provider in the form
+               "{account_id}/providers/{provider_id}".
+        :param str id: The id of the provider.
         """
         self.name = name
         self.id = id

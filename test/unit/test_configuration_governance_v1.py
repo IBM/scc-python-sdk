@@ -30,12 +30,12 @@ import urllib
 from ibm_scc.configuration_governance_v1 import *
 
 
-service = ConfigurationGovernanceV1(
+_service = ConfigurationGovernanceV1(
     authenticator=NoAuthAuthenticator()
     )
 
-base_url = 'https://compliance.cloud.ibm.com'
-service.set_service_url(base_url)
+_base_url = 'https://us.compliance.cloud.ibm.com'
+_service.set_service_url(_base_url)
 
 ##############################################################################
 # Start of Service: Rules
@@ -62,7 +62,7 @@ class TestCreateRules():
         create_rules()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules')
+        url = self.preprocess_url(_base_url + '/config/v1/rules')
         mock_response = '{"rules": [{"request_id": "3cebc877-58e7-44a5-a292-32114fa73558", "status_code": 201, "rule": {"account_id": "account_id", "name": "name", "description": "description", "rule_type": "user_defined", "target": {"service_name": "cloud-object-storage", "resource_kind": "bucket", "additional_target_attributes": [{"name": "name", "value": "value", "operator": "string_equals"}]}, "required_config": {"description": "description", "property": "public_access_enabled", "operator": "is_true", "value": "value"}, "enforcement_actions": [{"action": "audit_log"}], "labels": ["label"], "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "creation_date": "2020-01-10T05:23:19.000Z", "created_by": "created_by", "modification_date": "2020-01-10T05:23:19.000Z", "modified_by": "modified_by", "number_of_attachments": 3}, "errors": [{"code": "bad_request", "message": "The rule is missing an account ID"}], "trace": "861263b4-cee3-4514-8d8c-05d17308e6eb"}]}'
         responses.add(responses.POST,
                       url,
@@ -114,7 +114,7 @@ class TestCreateRules():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.create_rules(
+        response = _service.create_rules(
             rules,
             transaction_id=transaction_id,
             headers={}
@@ -134,7 +134,7 @@ class TestCreateRules():
         test_create_rules_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules')
+        url = self.preprocess_url(_base_url + '/config/v1/rules')
         mock_response = '{"rules": [{"request_id": "3cebc877-58e7-44a5-a292-32114fa73558", "status_code": 201, "rule": {"account_id": "account_id", "name": "name", "description": "description", "rule_type": "user_defined", "target": {"service_name": "cloud-object-storage", "resource_kind": "bucket", "additional_target_attributes": [{"name": "name", "value": "value", "operator": "string_equals"}]}, "required_config": {"description": "description", "property": "public_access_enabled", "operator": "is_true", "value": "value"}, "enforcement_actions": [{"action": "audit_log"}], "labels": ["label"], "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "creation_date": "2020-01-10T05:23:19.000Z", "created_by": "created_by", "modification_date": "2020-01-10T05:23:19.000Z", "modified_by": "modified_by", "number_of_attachments": 3}, "errors": [{"code": "bad_request", "message": "The rule is missing an account ID"}], "trace": "861263b4-cee3-4514-8d8c-05d17308e6eb"}]}'
         responses.add(responses.POST,
                       url,
@@ -185,7 +185,7 @@ class TestCreateRules():
         rules = [create_rule_request_model]
 
         # Invoke method
-        response = service.create_rules(
+        response = _service.create_rules(
             rules,
             headers={}
         )
@@ -204,7 +204,7 @@ class TestCreateRules():
         test_create_rules_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules')
+        url = self.preprocess_url(_base_url + '/config/v1/rules')
         mock_response = '{"rules": [{"request_id": "3cebc877-58e7-44a5-a292-32114fa73558", "status_code": 201, "rule": {"account_id": "account_id", "name": "name", "description": "description", "rule_type": "user_defined", "target": {"service_name": "cloud-object-storage", "resource_kind": "bucket", "additional_target_attributes": [{"name": "name", "value": "value", "operator": "string_equals"}]}, "required_config": {"description": "description", "property": "public_access_enabled", "operator": "is_true", "value": "value"}, "enforcement_actions": [{"action": "audit_log"}], "labels": ["label"], "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "creation_date": "2020-01-10T05:23:19.000Z", "created_by": "created_by", "modification_date": "2020-01-10T05:23:19.000Z", "modified_by": "modified_by", "number_of_attachments": 3}, "errors": [{"code": "bad_request", "message": "The rule is missing an account ID"}], "trace": "861263b4-cee3-4514-8d8c-05d17308e6eb"}]}'
         responses.add(responses.POST,
                       url,
@@ -261,7 +261,7 @@ class TestCreateRules():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.create_rules(**req_copy)
+                _service.create_rules(**req_copy)
 
 
 
@@ -285,7 +285,7 @@ class TestListRules():
         list_rules()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules')
+        url = self.preprocess_url(_base_url + '/config/v1/rules')
         mock_response = '{"offset": 6, "limit": 1000, "total_count": 11, "first": {"href": "href"}, "last": {"href": "href"}, "rules": [{"account_id": "account_id", "name": "name", "description": "description", "rule_type": "user_defined", "target": {"service_name": "cloud-object-storage", "resource_kind": "bucket", "additional_target_attributes": [{"name": "name", "value": "value", "operator": "string_equals"}]}, "required_config": {"description": "description", "property": "public_access_enabled", "operator": "is_true", "value": "value"}, "enforcement_actions": [{"action": "audit_log"}], "labels": ["label"], "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "creation_date": "2020-01-10T05:23:19.000Z", "created_by": "created_by", "modification_date": "2020-01-10T05:23:19.000Z", "modified_by": "modified_by", "number_of_attachments": 3}]}'
         responses.add(responses.GET,
                       url,
@@ -303,7 +303,7 @@ class TestListRules():
         offset = 38
 
         # Invoke method
-        response = service.list_rules(
+        response = _service.list_rules(
             account_id,
             transaction_id=transaction_id,
             attached=attached,
@@ -334,7 +334,7 @@ class TestListRules():
         test_list_rules_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules')
+        url = self.preprocess_url(_base_url + '/config/v1/rules')
         mock_response = '{"offset": 6, "limit": 1000, "total_count": 11, "first": {"href": "href"}, "last": {"href": "href"}, "rules": [{"account_id": "account_id", "name": "name", "description": "description", "rule_type": "user_defined", "target": {"service_name": "cloud-object-storage", "resource_kind": "bucket", "additional_target_attributes": [{"name": "name", "value": "value", "operator": "string_equals"}]}, "required_config": {"description": "description", "property": "public_access_enabled", "operator": "is_true", "value": "value"}, "enforcement_actions": [{"action": "audit_log"}], "labels": ["label"], "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "creation_date": "2020-01-10T05:23:19.000Z", "created_by": "created_by", "modification_date": "2020-01-10T05:23:19.000Z", "modified_by": "modified_by", "number_of_attachments": 3}]}'
         responses.add(responses.GET,
                       url,
@@ -346,7 +346,7 @@ class TestListRules():
         account_id = '531fc3e28bfc43c5a2cea07786d93f5c'
 
         # Invoke method
-        response = service.list_rules(
+        response = _service.list_rules(
             account_id,
             headers={}
         )
@@ -366,7 +366,7 @@ class TestListRules():
         test_list_rules_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules')
+        url = self.preprocess_url(_base_url + '/config/v1/rules')
         mock_response = '{"offset": 6, "limit": 1000, "total_count": 11, "first": {"href": "href"}, "last": {"href": "href"}, "rules": [{"account_id": "account_id", "name": "name", "description": "description", "rule_type": "user_defined", "target": {"service_name": "cloud-object-storage", "resource_kind": "bucket", "additional_target_attributes": [{"name": "name", "value": "value", "operator": "string_equals"}]}, "required_config": {"description": "description", "property": "public_access_enabled", "operator": "is_true", "value": "value"}, "enforcement_actions": [{"action": "audit_log"}], "labels": ["label"], "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "creation_date": "2020-01-10T05:23:19.000Z", "created_by": "created_by", "modification_date": "2020-01-10T05:23:19.000Z", "modified_by": "modified_by", "number_of_attachments": 3}]}'
         responses.add(responses.GET,
                       url,
@@ -384,7 +384,7 @@ class TestListRules():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.list_rules(**req_copy)
+                _service.list_rules(**req_copy)
 
 
 
@@ -408,7 +408,7 @@ class TestGetRule():
         get_rule()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString')
         mock_response = '{"account_id": "account_id", "name": "name", "description": "description", "rule_type": "user_defined", "target": {"service_name": "cloud-object-storage", "resource_kind": "bucket", "additional_target_attributes": [{"name": "name", "value": "value", "operator": "string_equals"}]}, "required_config": {"description": "description", "property": "public_access_enabled", "operator": "is_true", "value": "value"}, "enforcement_actions": [{"action": "audit_log"}], "labels": ["label"], "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "creation_date": "2020-01-10T05:23:19.000Z", "created_by": "created_by", "modification_date": "2020-01-10T05:23:19.000Z", "modified_by": "modified_by", "number_of_attachments": 3}'
         responses.add(responses.GET,
                       url,
@@ -421,7 +421,7 @@ class TestGetRule():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.get_rule(
+        response = _service.get_rule(
             rule_id,
             transaction_id=transaction_id,
             headers={}
@@ -438,7 +438,7 @@ class TestGetRule():
         test_get_rule_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString')
         mock_response = '{"account_id": "account_id", "name": "name", "description": "description", "rule_type": "user_defined", "target": {"service_name": "cloud-object-storage", "resource_kind": "bucket", "additional_target_attributes": [{"name": "name", "value": "value", "operator": "string_equals"}]}, "required_config": {"description": "description", "property": "public_access_enabled", "operator": "is_true", "value": "value"}, "enforcement_actions": [{"action": "audit_log"}], "labels": ["label"], "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "creation_date": "2020-01-10T05:23:19.000Z", "created_by": "created_by", "modification_date": "2020-01-10T05:23:19.000Z", "modified_by": "modified_by", "number_of_attachments": 3}'
         responses.add(responses.GET,
                       url,
@@ -450,7 +450,7 @@ class TestGetRule():
         rule_id = 'testString'
 
         # Invoke method
-        response = service.get_rule(
+        response = _service.get_rule(
             rule_id,
             headers={}
         )
@@ -466,7 +466,7 @@ class TestGetRule():
         test_get_rule_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString')
         mock_response = '{"account_id": "account_id", "name": "name", "description": "description", "rule_type": "user_defined", "target": {"service_name": "cloud-object-storage", "resource_kind": "bucket", "additional_target_attributes": [{"name": "name", "value": "value", "operator": "string_equals"}]}, "required_config": {"description": "description", "property": "public_access_enabled", "operator": "is_true", "value": "value"}, "enforcement_actions": [{"action": "audit_log"}], "labels": ["label"], "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "creation_date": "2020-01-10T05:23:19.000Z", "created_by": "created_by", "modification_date": "2020-01-10T05:23:19.000Z", "modified_by": "modified_by", "number_of_attachments": 3}'
         responses.add(responses.GET,
                       url,
@@ -484,7 +484,7 @@ class TestGetRule():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.get_rule(**req_copy)
+                _service.get_rule(**req_copy)
 
 
 
@@ -508,7 +508,7 @@ class TestUpdateRule():
         update_rule()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString')
         mock_response = '{"account_id": "account_id", "name": "name", "description": "description", "rule_type": "user_defined", "target": {"service_name": "cloud-object-storage", "resource_kind": "bucket", "additional_target_attributes": [{"name": "name", "value": "value", "operator": "string_equals"}]}, "required_config": {"description": "description", "property": "public_access_enabled", "operator": "is_true", "value": "value"}, "enforcement_actions": [{"action": "audit_log"}], "labels": ["label"], "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "creation_date": "2020-01-10T05:23:19.000Z", "created_by": "created_by", "modification_date": "2020-01-10T05:23:19.000Z", "modified_by": "modified_by", "number_of_attachments": 3}'
         responses.add(responses.PUT,
                       url,
@@ -553,7 +553,7 @@ class TestUpdateRule():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.update_rule(
+        response = _service.update_rule(
             rule_id,
             if_match,
             name,
@@ -589,7 +589,7 @@ class TestUpdateRule():
         test_update_rule_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString')
         mock_response = '{"account_id": "account_id", "name": "name", "description": "description", "rule_type": "user_defined", "target": {"service_name": "cloud-object-storage", "resource_kind": "bucket", "additional_target_attributes": [{"name": "name", "value": "value", "operator": "string_equals"}]}, "required_config": {"description": "description", "property": "public_access_enabled", "operator": "is_true", "value": "value"}, "enforcement_actions": [{"action": "audit_log"}], "labels": ["label"], "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "creation_date": "2020-01-10T05:23:19.000Z", "created_by": "created_by", "modification_date": "2020-01-10T05:23:19.000Z", "modified_by": "modified_by", "number_of_attachments": 3}'
         responses.add(responses.PUT,
                       url,
@@ -633,7 +633,7 @@ class TestUpdateRule():
         labels = ['SOC2', 'ITCS300']
 
         # Invoke method
-        response = service.update_rule(
+        response = _service.update_rule(
             rule_id,
             if_match,
             name,
@@ -668,7 +668,7 @@ class TestUpdateRule():
         test_update_rule_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString')
         mock_response = '{"account_id": "account_id", "name": "name", "description": "description", "rule_type": "user_defined", "target": {"service_name": "cloud-object-storage", "resource_kind": "bucket", "additional_target_attributes": [{"name": "name", "value": "value", "operator": "string_equals"}]}, "required_config": {"description": "description", "property": "public_access_enabled", "operator": "is_true", "value": "value"}, "enforcement_actions": [{"action": "audit_log"}], "labels": ["label"], "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "creation_date": "2020-01-10T05:23:19.000Z", "created_by": "created_by", "modification_date": "2020-01-10T05:23:19.000Z", "modified_by": "modified_by", "number_of_attachments": 3}'
         responses.add(responses.PUT,
                       url,
@@ -724,7 +724,7 @@ class TestUpdateRule():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.update_rule(**req_copy)
+                _service.update_rule(**req_copy)
 
 
 
@@ -748,7 +748,7 @@ class TestDeleteRule():
         delete_rule()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString')
         responses.add(responses.DELETE,
                       url,
                       status=204)
@@ -758,7 +758,7 @@ class TestDeleteRule():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.delete_rule(
+        response = _service.delete_rule(
             rule_id,
             transaction_id=transaction_id,
             headers={}
@@ -775,7 +775,7 @@ class TestDeleteRule():
         test_delete_rule_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString')
         responses.add(responses.DELETE,
                       url,
                       status=204)
@@ -784,7 +784,7 @@ class TestDeleteRule():
         rule_id = 'testString'
 
         # Invoke method
-        response = service.delete_rule(
+        response = _service.delete_rule(
             rule_id,
             headers={}
         )
@@ -800,7 +800,7 @@ class TestDeleteRule():
         test_delete_rule_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString')
         responses.add(responses.DELETE,
                       url,
                       status=204)
@@ -815,7 +815,7 @@ class TestDeleteRule():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.delete_rule(**req_copy)
+                _service.delete_rule(**req_copy)
 
 
 
@@ -839,7 +839,7 @@ class TestCreateRuleAttachments():
         create_rule_attachments()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments')
         mock_response = '{"attachments": [{"attachment_id": "attachment-fc7b9a77-1c85-406c-b346-f3f5bb9aa7e2", "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "account_id": "account_id", "included_scope": {"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}, "excluded_scopes": [{"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}]}]}'
         responses.add(responses.POST,
                       url,
@@ -865,7 +865,7 @@ class TestCreateRuleAttachments():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.create_rule_attachments(
+        response = _service.create_rule_attachments(
             rule_id,
             attachments,
             transaction_id=transaction_id,
@@ -886,7 +886,7 @@ class TestCreateRuleAttachments():
         test_create_rule_attachments_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments')
         mock_response = '{"attachments": [{"attachment_id": "attachment-fc7b9a77-1c85-406c-b346-f3f5bb9aa7e2", "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "account_id": "account_id", "included_scope": {"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}, "excluded_scopes": [{"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}]}]}'
         responses.add(responses.POST,
                       url,
@@ -911,7 +911,7 @@ class TestCreateRuleAttachments():
         attachments = [rule_attachment_request_model]
 
         # Invoke method
-        response = service.create_rule_attachments(
+        response = _service.create_rule_attachments(
             rule_id,
             attachments,
             headers={}
@@ -931,7 +931,7 @@ class TestCreateRuleAttachments():
         test_create_rule_attachments_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments')
         mock_response = '{"attachments": [{"attachment_id": "attachment-fc7b9a77-1c85-406c-b346-f3f5bb9aa7e2", "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "account_id": "account_id", "included_scope": {"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}, "excluded_scopes": [{"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}]}]}'
         responses.add(responses.POST,
                       url,
@@ -963,7 +963,7 @@ class TestCreateRuleAttachments():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.create_rule_attachments(**req_copy)
+                _service.create_rule_attachments(**req_copy)
 
 
 
@@ -987,7 +987,7 @@ class TestListRuleAttachments():
         list_rule_attachments()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments')
         mock_response = '{"offset": 6, "limit": 1000, "total_count": 11, "first": {"href": "href"}, "last": {"href": "href"}, "attachments": [{"attachment_id": "attachment-fc7b9a77-1c85-406c-b346-f3f5bb9aa7e2", "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "account_id": "account_id", "included_scope": {"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}, "excluded_scopes": [{"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}]}]}'
         responses.add(responses.GET,
                       url,
@@ -1002,7 +1002,7 @@ class TestListRuleAttachments():
         offset = 38
 
         # Invoke method
-        response = service.list_rule_attachments(
+        response = _service.list_rule_attachments(
             rule_id,
             transaction_id=transaction_id,
             limit=limit,
@@ -1026,7 +1026,7 @@ class TestListRuleAttachments():
         test_list_rule_attachments_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments')
         mock_response = '{"offset": 6, "limit": 1000, "total_count": 11, "first": {"href": "href"}, "last": {"href": "href"}, "attachments": [{"attachment_id": "attachment-fc7b9a77-1c85-406c-b346-f3f5bb9aa7e2", "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "account_id": "account_id", "included_scope": {"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}, "excluded_scopes": [{"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}]}]}'
         responses.add(responses.GET,
                       url,
@@ -1038,7 +1038,7 @@ class TestListRuleAttachments():
         rule_id = 'testString'
 
         # Invoke method
-        response = service.list_rule_attachments(
+        response = _service.list_rule_attachments(
             rule_id,
             headers={}
         )
@@ -1054,7 +1054,7 @@ class TestListRuleAttachments():
         test_list_rule_attachments_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments')
         mock_response = '{"offset": 6, "limit": 1000, "total_count": 11, "first": {"href": "href"}, "last": {"href": "href"}, "attachments": [{"attachment_id": "attachment-fc7b9a77-1c85-406c-b346-f3f5bb9aa7e2", "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "account_id": "account_id", "included_scope": {"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}, "excluded_scopes": [{"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}]}]}'
         responses.add(responses.GET,
                       url,
@@ -1072,7 +1072,7 @@ class TestListRuleAttachments():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.list_rule_attachments(**req_copy)
+                _service.list_rule_attachments(**req_copy)
 
 
 
@@ -1096,7 +1096,7 @@ class TestGetRuleAttachment():
         get_rule_attachment()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments/testString')
         mock_response = '{"attachment_id": "attachment-fc7b9a77-1c85-406c-b346-f3f5bb9aa7e2", "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "account_id": "account_id", "included_scope": {"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}, "excluded_scopes": [{"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}]}'
         responses.add(responses.GET,
                       url,
@@ -1110,7 +1110,7 @@ class TestGetRuleAttachment():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.get_rule_attachment(
+        response = _service.get_rule_attachment(
             rule_id,
             attachment_id,
             transaction_id=transaction_id,
@@ -1128,7 +1128,7 @@ class TestGetRuleAttachment():
         test_get_rule_attachment_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments/testString')
         mock_response = '{"attachment_id": "attachment-fc7b9a77-1c85-406c-b346-f3f5bb9aa7e2", "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "account_id": "account_id", "included_scope": {"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}, "excluded_scopes": [{"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}]}'
         responses.add(responses.GET,
                       url,
@@ -1141,7 +1141,7 @@ class TestGetRuleAttachment():
         attachment_id = 'testString'
 
         # Invoke method
-        response = service.get_rule_attachment(
+        response = _service.get_rule_attachment(
             rule_id,
             attachment_id,
             headers={}
@@ -1158,7 +1158,7 @@ class TestGetRuleAttachment():
         test_get_rule_attachment_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments/testString')
         mock_response = '{"attachment_id": "attachment-fc7b9a77-1c85-406c-b346-f3f5bb9aa7e2", "rule_id": "rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf", "account_id": "account_id", "included_scope": {"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}, "excluded_scopes": [{"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}]}'
         responses.add(responses.GET,
                       url,
@@ -1178,7 +1178,7 @@ class TestGetRuleAttachment():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.get_rule_attachment(**req_copy)
+                _service.get_rule_attachment(**req_copy)
 
 
 
@@ -1202,7 +1202,7 @@ class TestUpdateRuleAttachment():
         update_rule_attachment()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments/testString')
         mock_response = '{"attachment_id": "attachment_id", "template_id": "template_id", "account_id": "account_id", "included_scope": {"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}, "excluded_scopes": [{"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}]}'
         responses.add(responses.PUT,
                       url,
@@ -1226,7 +1226,7 @@ class TestUpdateRuleAttachment():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.update_rule_attachment(
+        response = _service.update_rule_attachment(
             rule_id,
             attachment_id,
             if_match,
@@ -1253,7 +1253,7 @@ class TestUpdateRuleAttachment():
         test_update_rule_attachment_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments/testString')
         mock_response = '{"attachment_id": "attachment_id", "template_id": "template_id", "account_id": "account_id", "included_scope": {"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}, "excluded_scopes": [{"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}]}'
         responses.add(responses.PUT,
                       url,
@@ -1276,7 +1276,7 @@ class TestUpdateRuleAttachment():
         excluded_scopes = [rule_scope_model]
 
         # Invoke method
-        response = service.update_rule_attachment(
+        response = _service.update_rule_attachment(
             rule_id,
             attachment_id,
             if_match,
@@ -1302,7 +1302,7 @@ class TestUpdateRuleAttachment():
         test_update_rule_attachment_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments/testString')
         mock_response = '{"attachment_id": "attachment_id", "template_id": "template_id", "account_id": "account_id", "included_scope": {"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}, "excluded_scopes": [{"note": "note", "scope_id": "scope_id", "scope_type": "enterprise"}]}'
         responses.add(responses.PUT,
                       url,
@@ -1335,7 +1335,7 @@ class TestUpdateRuleAttachment():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.update_rule_attachment(**req_copy)
+                _service.update_rule_attachment(**req_copy)
 
 
 
@@ -1359,7 +1359,7 @@ class TestDeleteRuleAttachment():
         delete_rule_attachment()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments/testString')
         responses.add(responses.DELETE,
                       url,
                       status=204)
@@ -1370,7 +1370,7 @@ class TestDeleteRuleAttachment():
         transaction_id = 'testString'
 
         # Invoke method
-        response = service.delete_rule_attachment(
+        response = _service.delete_rule_attachment(
             rule_id,
             attachment_id,
             transaction_id=transaction_id,
@@ -1388,7 +1388,7 @@ class TestDeleteRuleAttachment():
         test_delete_rule_attachment_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments/testString')
         responses.add(responses.DELETE,
                       url,
                       status=204)
@@ -1398,7 +1398,7 @@ class TestDeleteRuleAttachment():
         attachment_id = 'testString'
 
         # Invoke method
-        response = service.delete_rule_attachment(
+        response = _service.delete_rule_attachment(
             rule_id,
             attachment_id,
             headers={}
@@ -1415,7 +1415,7 @@ class TestDeleteRuleAttachment():
         test_delete_rule_attachment_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/config/v1/rules/testString/attachments/testString')
+        url = self.preprocess_url(_base_url + '/config/v1/rules/testString/attachments/testString')
         responses.add(responses.DELETE,
                       url,
                       status=204)
@@ -1432,7 +1432,7 @@ class TestDeleteRuleAttachment():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.delete_rule_attachment(**req_copy)
+                _service.delete_rule_attachment(**req_copy)
 
 
 
@@ -1591,9 +1591,9 @@ class TestCreateRuleResponse():
         rule_model['enforcement_actions'] = [enforcement_action_model]
         rule_model['labels'] = ['SOC2', 'ITCS300']
         rule_model['rule_id'] = 'rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf'
-        rule_model['creation_date'] = datetime_to_string(string_to_datetime("2020-01-10T05:23:19.000Z"))
+        rule_model['creation_date'] = "2020-01-10T05:23:19Z"
         rule_model['created_by'] = 'testString'
-        rule_model['modification_date'] = datetime_to_string(string_to_datetime("2020-01-10T05:23:19.000Z"))
+        rule_model['modification_date'] = "2020-01-10T05:23:19Z"
         rule_model['modified_by'] = 'testString'
         rule_model['number_of_attachments'] = 3
 
@@ -1665,9 +1665,9 @@ class TestCreateRulesResponse():
         rule_model['enforcement_actions'] = [enforcement_action_model]
         rule_model['labels'] = ['SOC2', 'ITCS300']
         rule_model['rule_id'] = 'rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf'
-        rule_model['creation_date'] = datetime_to_string(string_to_datetime("2020-01-10T05:23:19.000Z"))
+        rule_model['creation_date'] = "2020-01-10T05:23:19Z"
         rule_model['created_by'] = 'testString'
-        rule_model['modification_date'] = datetime_to_string(string_to_datetime("2020-01-10T05:23:19.000Z"))
+        rule_model['modification_date'] = "2020-01-10T05:23:19Z"
         rule_model['modified_by'] = 'testString'
         rule_model['number_of_attachments'] = 3
 
@@ -1801,9 +1801,9 @@ class TestRule():
         rule_model_json['enforcement_actions'] = [enforcement_action_model]
         rule_model_json['labels'] = ['SOC2', 'ITCS300']
         rule_model_json['rule_id'] = 'rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf'
-        rule_model_json['creation_date'] = datetime_to_string(string_to_datetime("2020-01-10T05:23:19.000Z"))
+        rule_model_json['creation_date'] = "2020-01-10T05:23:19Z"
         rule_model_json['created_by'] = 'testString'
-        rule_model_json['modification_date'] = datetime_to_string(string_to_datetime("2020-01-10T05:23:19.000Z"))
+        rule_model_json['modification_date'] = "2020-01-10T05:23:19Z"
         rule_model_json['modified_by'] = 'testString'
         rule_model_json['number_of_attachments'] = 3
 
@@ -1995,9 +1995,9 @@ class TestRuleList():
         rule_model['enforcement_actions'] = [enforcement_action_model]
         rule_model['labels'] = ['SOC2', 'ITCS300']
         rule_model['rule_id'] = 'rule-81f3db5e-f9db-4c46-9de3-a4a76e66adbf'
-        rule_model['creation_date'] = datetime_to_string(string_to_datetime("2020-01-10T05:23:19.000Z"))
+        rule_model['creation_date'] = "2020-01-10T05:23:19Z"
         rule_model['created_by'] = 'testString'
-        rule_model['modification_date'] = datetime_to_string(string_to_datetime("2020-01-10T05:23:19.000Z"))
+        rule_model['modification_date'] = "2020-01-10T05:23:19Z"
         rule_model['modified_by'] = 'testString'
         rule_model['number_of_attachments'] = 3
 
