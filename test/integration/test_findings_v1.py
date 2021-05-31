@@ -22,12 +22,14 @@ import pytest
 from ibm_cloud_sdk_core import *
 from ibm_scc.findings_v1 import *
 import logging
+import time
 
 # Config file name
 config_file = 'findings_v1.env'
 account_id = os.getenv("ACCOUNT_ID")
 provider_id = os.getenv("PROVIDER_ID", "sdk-it")
 testString = "testString"
+identifier = os.getenv("TRAVIS_JOB_ID") or time.time()
 
 class TestFindingsV1():
     """
@@ -69,21 +71,25 @@ class TestFindingsV1():
             provider_id=provider_id,
         )
         for note in list_notes_response.get_result()["notes"]:
-            cls.findings_service.delete_note(
-                account_id=account_id,
-                provider_id=provider_id,
-                note_id=note["id"],
-            )
+            parts = note["id"].split("-")
+            if parts[-1]==identifier:
+                cls.findings_service.delete_note(
+                    account_id=account_id,
+                    provider_id=provider_id,
+                    note_id=note["id"],
+                )
         list_occurrences_response = cls.findings_service.list_occurrences(
             account_id=account_id,
             provider_id=provider_id,
         )
         for occurrence in list_occurrences_response.get_result()["occurrences"]:
-            cls.findings_service.delete_occurrence(
-                account_id=account_id,
-                provider_id=provider_id,
-                occurrence_id=occurrence["id"],
-            )
+            parts = occurrence["id"].split("-")
+            if parts[-1]==identifier:
+                cls.findings_service.delete_occurrence(
+                    account_id=account_id,
+                    provider_id=provider_id,
+                    occurrence_id=occurrence["id"],
+                )
         print("cleanup was successful\n")
 
         list_providers_response = cls.findings_service.list_providers(
@@ -141,7 +147,7 @@ class TestFindingsV1():
             short_description=testString,
             long_description=testString,
             kind='FINDING',
-            id='finding-note',
+            id=f'finding-note-{identifier}',
             reported_by=reporter_model,
             related_url=[api_note_related_url_model],
             expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
@@ -176,7 +182,7 @@ class TestFindingsV1():
             short_description=testString,
             long_description=testString,
             kind='KPI',
-            id='kpi-note',
+            id=f'kpi-note-{identifier}',
             reported_by=reporter_model,
             expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
@@ -235,7 +241,7 @@ class TestFindingsV1():
             short_description=testString,
             long_description=testString,
             kind='CARD',
-            id='card-note',
+            id=f'card-note-{identifier}',
             reported_by=reporter_model,
             expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
@@ -270,7 +276,7 @@ class TestFindingsV1():
             short_description=testString,
             long_description=testString,
             kind='SECTION',
-            id='section-note',
+            id=f'section-note-{identifier}',
             reported_by=reporter_model,
             expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
@@ -301,7 +307,7 @@ class TestFindingsV1():
         get_note_response = self.findings_service.get_note(
             account_id=account_id,
             provider_id=provider_id,
-            note_id='section-note',
+            note_id=f'section-note-{identifier}',
         )
 
         assert get_note_response.get_status_code() == 200
@@ -339,11 +345,11 @@ class TestFindingsV1():
         update_note_response = self.findings_service.update_note(
             account_id=account_id,
             provider_id=provider_id,
-            note_id='finding-note',
+            note_id=f'finding-note-{identifier}',
             short_description=testString,
             long_description=testString,
             kind='FINDING',
-            id='finding-note',
+            id=f'finding-note-{identifier}',
             reported_by=reporter_model,
             related_url=[api_note_related_url_model],
             expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
@@ -375,11 +381,11 @@ class TestFindingsV1():
         update_note_response = self.findings_service.update_note(
             account_id=account_id,
             provider_id=provider_id,
-            note_id='kpi-note',
+            note_id=f'kpi-note-{identifier}',
             short_description=testString,
             long_description=testString,
             kind='KPI',
-            id='kpi-note',
+            id=f'kpi-note-{identifier}',
             reported_by=reporter_model,
             expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
@@ -433,11 +439,11 @@ class TestFindingsV1():
         update_note_response = self.findings_service.update_note(
             account_id=account_id,
             provider_id=provider_id,
-            note_id='card-note',
+            note_id=f'card-note-{identifier}',
             short_description=testString,
             long_description=testString,
             kind='CARD',
-            id='card-note',
+            id=f'card-note-{identifier}',
             reported_by=reporter_model,
             expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
@@ -469,11 +475,11 @@ class TestFindingsV1():
         update_note_response = self.findings_service.update_note(
             account_id=account_id,
             provider_id=provider_id,
-            note_id='section-note',
+            note_id=f'section-note-{identifier}',
             short_description=testString,
             long_description=testString,
             kind='SECTION',
-            id='section-note',
+            id=f'section-note-{identifier}',
             reported_by=reporter_model,
             expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
@@ -543,9 +549,9 @@ class TestFindingsV1():
         create_occurrence_response = self.findings_service.create_occurrence(
             account_id=account_id,
             provider_id=provider_id,
-            note_name="{0}/provider/{1}/notes/finding-note".format(account_id, provider_id),
+            note_name="{0}/provider/{1}/notes/finding-note-{2}".format(account_id, provider_id, identifier),
             kind='FINDING',
-            id='finding-occurrence',
+            id=f'finding-occurrence-{identifier}',
             resource_url=testString,
             remediation=testString,
             create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
@@ -622,9 +628,9 @@ class TestFindingsV1():
         create_occurrence_response = self.findings_service.create_occurrence(
             account_id=account_id,
             provider_id=provider_id,
-            note_name="{0}/provider/{1}/notes/kpi-note".format(account_id, provider_id),
+            note_name="{0}/provider/{1}/notes/kpi-note-{2}".format(account_id, provider_id, identifier),
             kind='KPI',
-            id='kpi-occurrence',
+            id=f'kpi-occurrence-{identifier}',
             resource_url=testString,
             remediation=testString,
             create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
@@ -644,7 +650,7 @@ class TestFindingsV1():
         get_occurrence_note_response = self.findings_service.get_occurrence_note(
             account_id=account_id,
             provider_id=provider_id,
-            occurrence_id='finding-occurrence',
+            occurrence_id=f'kpi-occurrence-{identifier}',
         )
 
         assert get_occurrence_note_response.get_status_code() == 200
@@ -669,7 +675,7 @@ class TestFindingsV1():
         list_note_occurrences_response = self.findings_service.list_note_occurrences(
             account_id=account_id,
             provider_id=provider_id,
-            note_id='finding-note',
+            note_id=f'finding-note-{identifier}',
         )
 
         assert list_note_occurrences_response.get_status_code() == 200
@@ -682,7 +688,7 @@ class TestFindingsV1():
         get_occurrence_response = self.findings_service.get_occurrence(
             account_id=account_id,
             provider_id=provider_id,
-            occurrence_id='finding-occurrence',
+            occurrence_id=f'finding-occurrence-{identifier}',
         )
 
         assert get_occurrence_response.get_status_code() == 200
@@ -709,9 +715,9 @@ class TestFindingsV1():
             account_id=account_id,
             provider_id=provider_id,
             occurrence_id='finding-occurrence',
-            note_name="{0}/provider/{1}/notes/finding-note".format(account_id, provider_id),
+            note_name="{0}/provider/{1}/notes/finding-note-{2}".format(account_id, provider_id, identifier),
             kind='FINDING',
-            id='finding-occurrence',
+            id=f'finding-occurrence-{identifier}',
             resource_url=testString,
             remediation=testString,
             create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
@@ -742,9 +748,9 @@ class TestFindingsV1():
             account_id=account_id,
             provider_id=provider_id,
             occurrence_id='kpi-occurrence',
-            note_name="{0}/provider/{1}/notes/kpi-note".format(account_id, provider_id),
+            note_name="{0}/provider/{1}/notes/kpi-note-{2}".format(account_id, provider_id, identifier),
             kind='KPI',
-            id='kpi-occurrence',
+            id=f'kpi-occurrence-{identifier}',
             resource_url=testString,
             remediation=testString,
             create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
@@ -773,7 +779,7 @@ class TestFindingsV1():
         delete_occurrence_response = self.findings_service.delete_occurrence(
             account_id=account_id,
             provider_id=provider_id,
-            occurrence_id='kpi-occurrence',
+            occurrence_id=f'kpi-occurrence-{identifier}',
         )
 
         assert delete_occurrence_response.get_status_code() == 200
@@ -784,7 +790,7 @@ class TestFindingsV1():
         delete_note_response = self.findings_service.delete_note(
             account_id=account_id,
             provider_id=provider_id,
-            note_id='section-note',
+            note_id=f'section-note-{identifier}',
         )
 
         assert delete_note_response.get_status_code() == 200
