@@ -19,6 +19,7 @@ Integration Tests for NotificationsV1
 
 import os
 import pytest
+import time
 from ibm_cloud_sdk_core import *
 from ibm_scc.notifications_v1 import *
 
@@ -26,6 +27,7 @@ from ibm_scc.notifications_v1 import *
 config_file = 'notifications_v1.env'
 account_id = os.getenv("ACCOUNT_ID")
 testString = "testString"
+identifier = os.getenv("TRAVIS_JOB_ID") or time.time()
 
 class TestNotificationsV1():
     """
@@ -100,7 +102,7 @@ class TestNotificationsV1():
 
         create_notification_channel_response = self.notifications_service.create_notification_channel(
             account_id=account_id,
-            name=testString,
+            name=f'testString-{identifier}',
             type='Webhook',
             endpoint='https://webhook.site/136fe1e2-3c3f-4bff-925f-391fbb202546',
             description=testString,
@@ -139,7 +141,7 @@ class TestNotificationsV1():
         update_notification_channel_response = self.notifications_service.update_notification_channel(
             account_id=account_id,
             channel_id=os.getenv('CHANNEL_ID'),
-            name=testString,
+            name=f'testString-{identifier}',
             type='Webhook',
             endpoint='https://webhook.site/136fe1e2-3c3f-4bff-925f-391fbb202546',
             description=testString,
@@ -194,7 +196,7 @@ class TestNotificationsV1():
 
         create_notification_channel_response = self.notifications_service.create_notification_channel(
             account_id=account_id,
-            name=testString,
+            name=f'testString-{identifier}',
             type='Webhook',
             endpoint='https://webhook.site/136fe1e2-3c3f-4bff-925f-391fbb202546',
             description=testString,
