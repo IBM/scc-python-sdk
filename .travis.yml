@@ -1,24 +1,34 @@
 language: python
-python:
-- 3.8
+
+matrix:
+  include:
+    - python: 3.6
+    - python: 3.7
+    - python: 3.8
+    - python: 3.9
+
+dist: xenial
+
 cache: pip
+
 before_install:
-- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && openssl aes-256-cbc -K $encrypted_3c84dcdc6bbe_key -iv $encrypted_3c84dcdc6bbe_iv -in .env.enc -out .env -d || true'
 - npm install npm@latest -g
+- sudo apt-get update
+- sudo apt-get install pandoc
+- pip install pypandoc
+
 install:
-- pip3 install tox-travis
+- pip install tox-travis
+
 before_script:
 - pip3 install -r requirements.txt
 - pip3 install -r requirements-dev.txt
 - pip3 install --editable .
-script:
 - pip3 install -U python-dotenv
-- curl https://us-south.functions.appdomain.cloud/api/v1/web/e6b54af6-ab44-4149-a8e4-e906dcc58136/default/secadvstg-location-shift.json
-- echo "${FINDINGS_ENV}" | base64 -d >> findings_v1.env
-- echo "${NOTIFICATIONS_ENV}" | base64 -d >> notifications_v1.env
-# - echo "${CONFIGURATION_GOVERNANCE_ENV}" | base64 -d >> configuration_governance_v1.env
-- tox
-- find . -name "*.env" -type f -delete
+
+script:
+- build/testScript.sh
+
 before_deploy:
 - pip3 install bumpversion pypandoc
 - sudo apt-get update
@@ -28,6 +38,7 @@ before_deploy:
 - npm install @semantic-release/exec
 - npm install @semantic-release/git
 - npm install @semantic-release/github
+
 deploy:
 - provider: script
   script: npx semantic-release
