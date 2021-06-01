@@ -27,6 +27,9 @@ before_script:
 - pip3 install -U python-dotenv
 
 script:
+- tox
+
+after_success:
 - build/testScript.sh
 
 before_deploy:
