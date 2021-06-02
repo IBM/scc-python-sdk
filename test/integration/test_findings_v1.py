@@ -227,7 +227,6 @@ class TestFindingsV1():
             'section': testString,
             'title': testString,
             'subtitle': testString,
-            'order': 1,
             'finding_note_names': [testString],
             'requires_configuration': True,
             'badge_text': testString,
