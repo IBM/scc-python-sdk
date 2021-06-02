@@ -27,6 +27,7 @@ from ibm_scc.notifications_v1 import *
 config_file = 'notifications_v1.env'
 account_id = os.getenv("ACCOUNT_ID")
 testString = "testString"
+channel_id = ""
 identifier = os.getenv("TRAVIS_JOB_ID") or time.time()
 
 class TestNotificationsV1():
@@ -68,12 +69,11 @@ class TestNotificationsV1():
             account_id=account_id,
         )
         for channel in list_all_channels_response.get_result()['channels']:
-            if channel['channel_id'] == os.getenv('CHANNEL_ID'):
+            if channel['channel_id'] == channel_id:
                 cls.notifications_service.delete_notification_channel(
                     account_id=account_id,
                     channel_id=channel['channel_id'],
                 )
-        os.environ.pop('CHANNEL_ID')
         print("cleanup was successful\n")
 
     needscredentials = pytest.mark.skipif(
@@ -111,7 +111,8 @@ class TestNotificationsV1():
             alert_source=[notification_channel_alert_source_item_model],
         )
 
-        os.environ['CHANNEL_ID'] = create_notification_channel_response.get_result()['channel_id']
+        global channel_id
+        channel_id = create_notification_channel_response.get_result()['channel_id']
 
         assert create_notification_channel_response.get_status_code() == 200
         channel_info = create_notification_channel_response.get_result()
@@ -122,7 +123,7 @@ class TestNotificationsV1():
 
         get_notification_channel_response = self.notifications_service.get_notification_channel(
             account_id=account_id,
-            channel_id=os.getenv('CHANNEL_ID'),
+            channel_id=channel_id,
         )
 
         assert get_notification_channel_response.get_status_code() == 200
@@ -140,7 +141,7 @@ class TestNotificationsV1():
 
         update_notification_channel_response = self.notifications_service.update_notification_channel(
             account_id=account_id,
-            channel_id=os.getenv('CHANNEL_ID'),
+            channel_id=channel_id,
             name=f'testString-{identifier}',
             type='Webhook',
             endpoint='https://webhook.site/136fe1e2-3c3f-4bff-925f-391fbb202546',
@@ -158,7 +159,7 @@ class TestNotificationsV1():
     def test_test_notification_channel(self):
         test_notification_channel_response = self.notifications_service.test_notification_channel(
             account_id=account_id,
-            channel_id=os.getenv('CHANNEL_ID'),
+            channel_id=channel_id,
         )
 
         assert test_notification_channel_response.get_status_code() == 200
@@ -179,7 +180,7 @@ class TestNotificationsV1():
     def test_delete_notification_channel(self):
         delete_notification_channel_response = self.notifications_service.delete_notification_channel(
             account_id=account_id,
-            channel_id=os.getenv('CHANNEL_ID'),
+            channel_id=channel_id,
         )
 
         assert delete_notification_channel_response.get_status_code() == 200
