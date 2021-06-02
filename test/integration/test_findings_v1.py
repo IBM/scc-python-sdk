@@ -97,7 +97,7 @@ class TestFindingsV1():
         )
         for provider in list_providers_response.get_result()["providers"]:
             if provider["id"] == provider_id:
-                print(f"seems like account has some resources left even after a successful cleanup, please consider manual cleanup for account: {0} and provider: {1}\n", accountID, providerID)
+                print(f"seems like account has some resources left even after a successful cleanup, please consider manual cleanup for account: {account_id} and provider: {provider_id}\n")
 
     needscredentials = pytest.mark.skipif(
         not os.path.exists(config_file), reason="External configuration not available, skipping..."
@@ -549,7 +549,7 @@ class TestFindingsV1():
         create_occurrence_response = self.findings_service.create_occurrence(
             account_id=account_id,
             provider_id=provider_id,
-            note_name="{0}/provider/{1}/notes/finding-note-{2}".format(account_id, provider_id, identifier),
+            note_name="{0}/providers/{1}/notes/finding-note-{2}".format(account_id, provider_id, identifier),
             kind='FINDING',
             id=f'finding-occurrence-{identifier}',
             resource_url=testString,
@@ -628,7 +628,7 @@ class TestFindingsV1():
         create_occurrence_response = self.findings_service.create_occurrence(
             account_id=account_id,
             provider_id=provider_id,
-            note_name="{0}/provider/{1}/notes/kpi-note-{2}".format(account_id, provider_id, identifier),
+            note_name="{0}/providers/{1}/notes/kpi-note-{2}".format(account_id, provider_id, identifier),
             kind='KPI',
             id=f'kpi-occurrence-{identifier}',
             resource_url=testString,
@@ -714,10 +714,10 @@ class TestFindingsV1():
         update_occurrence_response = self.findings_service.update_occurrence(
             account_id=account_id,
             provider_id=provider_id,
-            occurrence_id='finding-occurrence',
-            note_name="{0}/provider/{1}/notes/finding-note-{2}".format(account_id, provider_id, identifier),
+            note_name="{0}/providers/{1}/notes/finding-note-{2}".format(account_id, provider_id, identifier),
             kind='FINDING',
             id=f'finding-occurrence-{identifier}',
+            occurrence_id=f'finding-occurrence-{identifier}',
             resource_url=testString,
             remediation=testString,
             create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
@@ -747,10 +747,10 @@ class TestFindingsV1():
         update_occurrence_response = self.findings_service.update_occurrence(
             account_id=account_id,
             provider_id=provider_id,
-            occurrence_id='kpi-occurrence',
-            note_name="{0}/provider/{1}/notes/kpi-note-{2}".format(account_id, provider_id, identifier),
+            note_name="{0}/providers/{1}/notes/kpi-note-{2}".format(account_id, provider_id, identifier),
             kind='KPI',
             id=f'kpi-occurrence-{identifier}',
+            occurrence_id=f'kpi-occurrence-{identifier}',
             resource_url=testString,
             remediation=testString,
             create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
