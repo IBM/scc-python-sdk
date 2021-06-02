@@ -30,7 +30,7 @@ script:
 - tox
 
 after_success:
-- build/testScript.sh
+- build/testScript.sh || travis_terminate 1
 
 before_deploy:
 - pip3 install bumpversion pypandoc
