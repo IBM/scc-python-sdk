@@ -1,3 +1,11 @@
+## [0.0.5](https://github.com/ibm-cloud-security/scc-python-sdk/compare/v0.0.4...v0.0.5) (2021-06-02)
+
+
+### Bug Fixes
+
+* **FINDINGS ITs:** removed order from card note, to resolve conflict ([09ce3c3](https://github.com/ibm-cloud-security/scc-python-sdk/commit/09ce3c332a878164d8317dd131a671cee668f121))
+* **SemanticRelease:** skip CI ops on SR commits ([848c267](https://github.com/ibm-cloud-security/scc-python-sdk/commit/848c267b403da9fd69258b3842a4daeffb5c2f2d))
+
 ## [0.0.4](https://github.com/ibm-cloud-security/scc-python-sdk/compare/v0.0.3...v0.0.4) (2021-06-02)
 
 
