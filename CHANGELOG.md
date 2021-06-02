@@ -1,3 +1,11 @@
+## [0.0.4](https://github.com/ibm-cloud-security/scc-python-sdk/compare/v0.0.3...v0.0.4) (2021-06-02)
+
+
+### Bug Fixes
+
+* **SDK:** IBM Cloud SCC Python SDK ([970acae](https://github.com/ibm-cloud-security/scc-python-sdk/commit/970acaeb0b081918d283df0cfad27af30e67e8db))
+* **TestScript:** ITs script should exit with error code for test failure ([b6cd3ab](https://github.com/ibm-cloud-security/scc-python-sdk/commit/b6cd3ab142ea8628af4ccf0cd175449459c79b7a))
+
 ## [0.0.3](https://github.com/ibm-cloud-security/scc-python-sdk/compare/v0.0.2...v0.0.3) (2021-05-27)
 
 
