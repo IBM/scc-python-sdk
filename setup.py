@@ -54,7 +54,7 @@ setup(
     author_email='devxsdk@us.ibm.com',
     long_description=readme,
     long_description_content_type='text/markdown',
-    url='https://github.com/ibm-cloud-security/scc-python-sdk',
+    url='https://github.com/IBM/scc-python-sdk',
     packages=[PACKAGE_NAME],
     include_package_data=True,
     keywords=PACKAGE_NAME,
