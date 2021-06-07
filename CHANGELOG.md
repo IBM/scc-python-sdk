@@ -1,3 +1,10 @@
+## [0.0.6](https://github.com/IBM/scc-python-sdk/compare/v0.0.5...v0.0.6) (2021-06-07)
+
+
+### Bug Fixes
+
+* **SDK:** IBM Cloud SCC Python SDK ([926aa3a](https://github.com/IBM/scc-python-sdk/commit/926aa3af40ad73aa5d302df704b5a5dee57b7e14))
+
 ## [0.0.5](https://github.com/IBM/scc-python-sdk/compare/v0.0.4...v0.0.5) (2021-06-02)
 
 
