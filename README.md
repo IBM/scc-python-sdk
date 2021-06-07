@@ -1,10 +1,10 @@
-[![Build Status](https://travis-ci.com/ibm-cloud-security/scc-python-sdk.svg?branch=main)](https://travis-ci.com/github/ibm-cloud-security/scc-python-sdk)
-[![Release](https://img.shields.io/github/v/release/ibm-cloud-security/scc-python-sdk)](https://img.shields.io/github/v/release/ibm-cloud-security/scc-python-sdk)
+[![Build Status](https://travis-ci.com/IBM/scc-python-sdk.svg?branch=main)](https://travis-ci.com/github/IBM/scc-python-sdk)
+[![Release](https://img.shields.io/github/v/release/IBM/scc-python-sdk)](https://img.shields.io/github/v/release/IBM/scc-python-sdk)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ibm-platform-services)](https://pypi.org/project/ibm-scc/)
 [![PyPi](https://pypip.in/v/ibm-scc/badge.svg)](https://pypi.python.org/pypi/ibm-scc/)
 [![PyPi](https://pypip.in/d/ibm-scc/badge.svg)](https://pypi.python.org/pypi/ibm-scc/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![codecov](https://codecov.io/gh/ibm-cloud-security/scc-python-sdk/branch/main/graph/badge.svg?token=U0DC9HWWOA)](https://codecov.io/gh/ibm-cloud-security/scc-python-sdk)
+[![codecov](https://codecov.io/gh/IBM/scc-python-sdk/branch/main/graph/badge.svg?token=U0DC9HWWOA)](https://codecov.io/gh/IBM/scc-python-sdk)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 # IBM Cloud Security & Compliance Center Python SDK Version 0.0.5
 
@@ -83,7 +83,7 @@ please ask a question
 
 ## Issues
 If you encounter an issue with the project, you are welcome to submit a
-[bug report](https://github.com/ibm-cloud-security/scc-python-sdk/issues).
+[bug report](https://github.com/IBM/scc-python-sdk/issues).
 Before that, please search for similar issues. It's possible that someone has already reported the problem.
 
 ## Open source @ IBM
