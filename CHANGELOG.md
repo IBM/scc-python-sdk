@@ -1,3 +1,10 @@
+## [0.0.7](https://github.com/IBM/scc-python-sdk/compare/v0.0.6...v0.0.7) (2021-06-07)
+
+
+### Bug Fixes
+
+* **PyPI:** releasing new version ([d2795b4](https://github.com/IBM/scc-python-sdk/commit/d2795b46ad07363f4402db0a039a2be703ffa6b4))
+
 ## [0.0.6](https://github.com/IBM/scc-python-sdk/compare/v0.0.5...v0.0.6) (2021-06-07)
 
 
