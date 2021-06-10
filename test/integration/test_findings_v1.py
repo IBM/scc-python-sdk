@@ -31,7 +31,7 @@ provider_id = os.getenv("PROVIDER_ID", "sdk-it")
 testString = "testString"
 identifier = os.getenv("TRAVIS_JOB_ID") or time.time()
 
-class TestFindingsV1():
+class FindingsV1IntegrationTests():
     """
     Integration Test Class for FindingsV1
     """
@@ -42,6 +42,7 @@ class TestFindingsV1():
             os.environ['IBM_CREDENTIALS_FILE'] = config_file
 
             cls.findings_service = FindingsV1.new_instance(
+                account_id=account_id
                 )
             assert cls.findings_service is not None
 
@@ -105,8 +106,8 @@ class TestFindingsV1():
 
     @needscredentials
     def test_post_graph(self):
+
         post_graph_response = self.findings_service.post_graph(
-            account_id=account_id,
             body='{notes{id}}',
             content_type='application/graphql',
         )
@@ -142,7 +143,6 @@ class TestFindingsV1():
         }
 
         create_note_response = self.findings_service.create_note(
-            account_id=account_id,
             provider_id=provider_id,
             short_description=testString,
             long_description=testString,
@@ -177,7 +177,6 @@ class TestFindingsV1():
         }
 
         create_note_response = self.findings_service.create_note(
-            account_id=account_id,
             provider_id=provider_id,
             short_description=testString,
             long_description=testString,
@@ -235,7 +234,6 @@ class TestFindingsV1():
         }
 
         create_note_response = self.findings_service.create_note(
-            account_id=account_id,
             provider_id=provider_id,
             short_description=testString,
             long_description=testString,
@@ -270,7 +268,6 @@ class TestFindingsV1():
         }
 
         create_note_response = self.findings_service.create_note(
-            account_id=account_id,
             provider_id=provider_id,
             short_description=testString,
             long_description=testString,
@@ -292,7 +289,6 @@ class TestFindingsV1():
     def test_list_notes(self):
 
         list_notes_response = self.findings_service.list_notes(
-            account_id=account_id,
             provider_id=provider_id,
         )
 
@@ -304,7 +300,6 @@ class TestFindingsV1():
     def test_get_note(self):
 
         get_note_response = self.findings_service.get_note(
-            account_id=account_id,
             provider_id=provider_id,
             note_id=f'section-note-{identifier}',
         )
@@ -342,7 +337,6 @@ class TestFindingsV1():
         }
 
         update_note_response = self.findings_service.update_note(
-            account_id=account_id,
             provider_id=provider_id,
             note_id=f'finding-note-{identifier}',
             short_description=testString,
@@ -378,7 +372,6 @@ class TestFindingsV1():
         }
 
         update_note_response = self.findings_service.update_note(
-            account_id=account_id,
             provider_id=provider_id,
             note_id=f'kpi-note-{identifier}',
             short_description=testString,
@@ -436,7 +429,6 @@ class TestFindingsV1():
         }
 
         update_note_response = self.findings_service.update_note(
-            account_id=account_id,
             provider_id=provider_id,
             note_id=f'card-note-{identifier}',
             short_description=testString,
@@ -472,7 +464,6 @@ class TestFindingsV1():
         }
 
         update_note_response = self.findings_service.update_note(
-            account_id=account_id,
             provider_id=provider_id,
             note_id=f'section-note-{identifier}',
             short_description=testString,
@@ -546,7 +537,6 @@ class TestFindingsV1():
         }
 
         create_occurrence_response = self.findings_service.create_occurrence(
-            account_id=account_id,
             provider_id=provider_id,
             note_name="{0}/providers/{1}/notes/finding-note-{2}".format(account_id, provider_id, identifier),
             kind='FINDING',
@@ -625,7 +615,6 @@ class TestFindingsV1():
         }
 
         create_occurrence_response = self.findings_service.create_occurrence(
-            account_id=account_id,
             provider_id=provider_id,
             note_name="{0}/providers/{1}/notes/kpi-note-{2}".format(account_id, provider_id, identifier),
             kind='KPI',
@@ -647,7 +636,6 @@ class TestFindingsV1():
     def test_get_occurrence_note(self):
 
         get_occurrence_note_response = self.findings_service.get_occurrence_note(
-            account_id=account_id,
             provider_id=provider_id,
             occurrence_id=f'kpi-occurrence-{identifier}',
         )
@@ -660,7 +648,6 @@ class TestFindingsV1():
     def test_list_occurrences(self):
 
         list_occurrences_response = self.findings_service.list_occurrences(
-            account_id=account_id,
             provider_id=provider_id,
         )
 
@@ -672,7 +659,6 @@ class TestFindingsV1():
     def test_list_note_occurrences(self):
 
         list_note_occurrences_response = self.findings_service.list_note_occurrences(
-            account_id=account_id,
             provider_id=provider_id,
             note_id=f'finding-note-{identifier}',
         )
@@ -685,7 +671,6 @@ class TestFindingsV1():
     def test_get_occurrence(self):
 
         get_occurrence_response = self.findings_service.get_occurrence(
-            account_id=account_id,
             provider_id=provider_id,
             occurrence_id=f'finding-occurrence-{identifier}',
         )
@@ -711,7 +696,6 @@ class TestFindingsV1():
         }
 
         update_occurrence_response = self.findings_service.update_occurrence(
-            account_id=account_id,
             provider_id=provider_id,
             note_name="{0}/providers/{1}/notes/finding-note-{2}".format(account_id, provider_id, identifier),
             kind='FINDING',
@@ -744,7 +728,6 @@ class TestFindingsV1():
         }
 
         update_occurrence_response = self.findings_service.update_occurrence(
-            account_id=account_id,
             provider_id=provider_id,
             note_name="{0}/providers/{1}/notes/kpi-note-{2}".format(account_id, provider_id, identifier),
             kind='KPI',
@@ -764,9 +747,7 @@ class TestFindingsV1():
     @needscredentials
     def test_list_providers(self):
 
-        list_providers_response = self.findings_service.list_providers(
-            account_id=account_id,
-        )
+        list_providers_response = self.findings_service.list_providers()
 
         assert list_providers_response.get_status_code() == 200
         api_list_providers_response = list_providers_response.get_result()
@@ -776,7 +757,6 @@ class TestFindingsV1():
     def test_delete_occurrence(self):
 
         delete_occurrence_response = self.findings_service.delete_occurrence(
-            account_id=account_id,
             provider_id=provider_id,
             occurrence_id=f'kpi-occurrence-{identifier}',
         )
@@ -787,7 +767,6 @@ class TestFindingsV1():
     def test_delete_note(self):
 
         delete_note_response = self.findings_service.delete_note(
-            account_id=account_id,
             provider_id=provider_id,
             note_id=f'section-note-{identifier}',
         )
