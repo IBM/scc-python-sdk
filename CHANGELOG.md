@@ -1,3 +1,10 @@
+## [0.0.8](https://github.com/IBM/scc-python-sdk/compare/v0.0.7...v0.0.8) (2021-06-11)
+
+
+### Bug Fixes
+
+* **listProviders:** Addressed api definition review comments ([9c1f8e5](https://github.com/IBM/scc-python-sdk/commit/9c1f8e5ce5183aed046432d76688c7fa46a97f91))
+
 ## [0.0.7](https://github.com/IBM/scc-python-sdk/compare/v0.0.6...v0.0.7) (2021-06-07)
 
 
