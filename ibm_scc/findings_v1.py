@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.32.0-4c6a3129-20210514-210323
+# IBM OpenAPI SDK Code Generator Version: 3.33.0-caf29bd0-20210603-225214
  
 """
 API specification for the Findings service.
@@ -45,32 +45,46 @@ class FindingsV1(BaseService):
 
     @classmethod
     def new_instance(cls,
+                     account_id: str,
                      service_name: str = DEFAULT_SERVICE_NAME,
                     ) -> 'FindingsV1':
         """
         Return a new client for the Findings service using the specified parameters
                and external configuration.
+
+        :param str account_id: Account ID.
         """
+        if account_id is None:
+            raise ValueError('account_id must be provided')
+
         authenticator = get_authenticator_from_environment(service_name)
         service = cls(
+            account_id,
             authenticator
             )
         service.configure_service(service_name)
         return service
 
     def __init__(self,
+                 account_id: str,
                  authenticator: Authenticator = None,
                 ) -> None:
         """
         Construct a new client for the Findings service.
 
+        :param str account_id: Account ID.
+
         :param Authenticator authenticator: The authenticator specifies the authentication mechanism.
                Get up to date information from https://github.com/IBM/python-sdk-core/blob/master/README.md
                about initializing the authenticator of your choice.
         """
+        if account_id is None:
+            raise ValueError('account_id must be provided')
+
         BaseService.__init__(self,
                              service_url=self.DEFAULT_SERVICE_URL,
                              authenticator=authenticator)
+        self.account_id = account_id
 
 
     #########################
@@ -79,7 +93,6 @@ class FindingsV1(BaseService):
 
 
     def post_graph(self,
-        account_id: str,
         body: Union[str, TextIO],
         *,
         content_type: str = None,
@@ -91,7 +104,6 @@ class FindingsV1(BaseService):
 
         query findings.
 
-        :param str account_id: Account ID.
         :param str body: Body for query findings.
         :param str content_type: (optional) The type of the input.
         :param str transaction_id: (optional) The transaction id for the request in
@@ -101,8 +113,6 @@ class FindingsV1(BaseService):
         :rtype: DetailedResponse
         """
 
-        if account_id is None:
-            raise ValueError('account_id must be provided')
         if body is None:
             raise ValueError('body must be provided')
         headers = {
@@ -126,7 +136,7 @@ class FindingsV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['account_id']
-        path_param_values = self.encode_path_vars(account_id)
+        path_param_values = self.encode_path_vars(self.account_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/v1/{account_id}/graph'.format(**path_param_dict)
         request = self.prepare_request(method='POST',
@@ -143,7 +153,6 @@ class FindingsV1(BaseService):
 
 
     def create_note(self,
-        account_id: str,
         provider_id: str,
         short_description: str,
         long_description: str,
@@ -164,7 +173,6 @@ class FindingsV1(BaseService):
         """
         Creates a new `Note`.
 
-        :param str account_id: Account ID.
         :param str provider_id: Part of `parent`. This field contains the
                provider_id for example: providers/{provider_id}.
         :param str short_description: A one sentence description of this `Note`.
@@ -200,8 +208,6 @@ class FindingsV1(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `ApiNote` object
         """
 
-        if account_id is None:
-            raise ValueError('account_id must be provided')
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         if short_description is None:
@@ -258,7 +264,7 @@ class FindingsV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['account_id', 'provider_id']
-        path_param_values = self.encode_path_vars(account_id, provider_id)
+        path_param_values = self.encode_path_vars(self.account_id, provider_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/v1/{account_id}/providers/{provider_id}/notes'.format(**path_param_dict)
         request = self.prepare_request(method='POST',
@@ -271,7 +277,6 @@ class FindingsV1(BaseService):
 
 
     def list_notes(self,
-        account_id: str,
         provider_id: str,
         *,
         transaction_id: str = None,
@@ -282,7 +287,6 @@ class FindingsV1(BaseService):
         """
         Lists all `Notes` for a given provider.
 
-        :param str account_id: Account ID.
         :param str provider_id: Part of `parent`. This field contains the
                provider_id for example: providers/{provider_id}.
         :param str transaction_id: (optional) The transaction id for the request in
@@ -295,8 +299,6 @@ class FindingsV1(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `ApiListNotesResponse` object
         """
 
-        if account_id is None:
-            raise ValueError('account_id must be provided')
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         headers = {
@@ -317,7 +319,7 @@ class FindingsV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['account_id', 'provider_id']
-        path_param_values = self.encode_path_vars(account_id, provider_id)
+        path_param_values = self.encode_path_vars(self.account_id, provider_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/v1/{account_id}/providers/{provider_id}/notes'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
@@ -330,7 +332,6 @@ class FindingsV1(BaseService):
 
 
     def get_note(self,
-        account_id: str,
         provider_id: str,
         note_id: str,
         *,
@@ -340,7 +341,6 @@ class FindingsV1(BaseService):
         """
         Returns the requested `Note`.
 
-        :param str account_id: Account ID.
         :param str provider_id: First part of note `name`:
                providers/{provider_id}/notes/{note_id}.
         :param str note_id: Second part of note `name`:
@@ -352,8 +352,6 @@ class FindingsV1(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `ApiNote` object
         """
 
-        if account_id is None:
-            raise ValueError('account_id must be provided')
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         if note_id is None:
@@ -371,7 +369,7 @@ class FindingsV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['account_id', 'provider_id', 'note_id']
-        path_param_values = self.encode_path_vars(account_id, provider_id, note_id)
+        path_param_values = self.encode_path_vars(self.account_id, provider_id, note_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/v1/{account_id}/providers/{provider_id}/notes/{note_id}'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
@@ -383,7 +381,6 @@ class FindingsV1(BaseService):
 
 
     def update_note(self,
-        account_id: str,
         provider_id: str,
         note_id: str,
         short_description: str,
@@ -405,7 +402,6 @@ class FindingsV1(BaseService):
         """
         Updates an existing `Note`.
 
-        :param str account_id: Account ID.
         :param str provider_id: First part of note `name`:
                providers/{provider_id}/notes/{note_id}.
         :param str note_id: Second part of note `name`:
@@ -443,8 +439,6 @@ class FindingsV1(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `ApiNote` object
         """
 
-        if account_id is None:
-            raise ValueError('account_id must be provided')
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         if note_id is None:
@@ -503,7 +497,7 @@ class FindingsV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['account_id', 'provider_id', 'note_id']
-        path_param_values = self.encode_path_vars(account_id, provider_id, note_id)
+        path_param_values = self.encode_path_vars(self.account_id, provider_id, note_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/v1/{account_id}/providers/{provider_id}/notes/{note_id}'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
@@ -516,7 +510,6 @@ class FindingsV1(BaseService):
 
 
     def delete_note(self,
-        account_id: str,
         provider_id: str,
         note_id: str,
         *,
@@ -526,7 +519,6 @@ class FindingsV1(BaseService):
         """
         Deletes the given `Note` from the system.
 
-        :param str account_id: Account ID.
         :param str provider_id: First part of note `name`:
                providers/{provider_id}/notes/{note_id}.
         :param str note_id: Second part of note `name`:
@@ -538,8 +530,6 @@ class FindingsV1(BaseService):
         :rtype: DetailedResponse
         """
 
-        if account_id is None:
-            raise ValueError('account_id must be provided')
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         if note_id is None:
@@ -557,7 +547,7 @@ class FindingsV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['account_id', 'provider_id', 'note_id']
-        path_param_values = self.encode_path_vars(account_id, provider_id, note_id)
+        path_param_values = self.encode_path_vars(self.account_id, provider_id, note_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/v1/{account_id}/providers/{provider_id}/notes/{note_id}'.format(**path_param_dict)
         request = self.prepare_request(method='DELETE',
@@ -569,7 +559,6 @@ class FindingsV1(BaseService):
 
 
     def get_occurrence_note(self,
-        account_id: str,
         provider_id: str,
         occurrence_id: str,
         *,
@@ -579,7 +568,6 @@ class FindingsV1(BaseService):
         """
         Gets the `Note` attached to the given `Occurrence`.
 
-        :param str account_id: Account ID.
         :param str provider_id: First part of occurrence `name`:
                providers/{provider_id}/occurrences/{occurrence_id}.
         :param str occurrence_id: Second part of occurrence `name`:
@@ -591,8 +579,6 @@ class FindingsV1(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `ApiNote` object
         """
 
-        if account_id is None:
-            raise ValueError('account_id must be provided')
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         if occurrence_id is None:
@@ -610,7 +596,7 @@ class FindingsV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['account_id', 'provider_id', 'occurrence_id']
-        path_param_values = self.encode_path_vars(account_id, provider_id, occurrence_id)
+        path_param_values = self.encode_path_vars(self.account_id, provider_id, occurrence_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/v1/{account_id}/providers/{provider_id}/occurrences/{occurrence_id}/note'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
@@ -626,7 +612,6 @@ class FindingsV1(BaseService):
 
 
     def create_occurrence(self,
-        account_id: str,
         provider_id: str,
         note_name: str,
         kind: str,
@@ -645,7 +630,6 @@ class FindingsV1(BaseService):
         """
         Creates a new `Occurrence`. Use this method to create `Occurrences` for a resource.
 
-        :param str account_id: Account ID.
         :param str provider_id: Part of `parent`. This contains the provider_id for
                example: providers/{provider_id}.
         :param str note_name: An analysis note associated with this image, in the
@@ -682,8 +666,6 @@ class FindingsV1(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `ApiOccurrence` object
         """
 
-        if account_id is None:
-            raise ValueError('account_id must be provided')
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         if note_name is None:
@@ -727,7 +709,7 @@ class FindingsV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['account_id', 'provider_id']
-        path_param_values = self.encode_path_vars(account_id, provider_id)
+        path_param_values = self.encode_path_vars(self.account_id, provider_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/v1/{account_id}/providers/{provider_id}/occurrences'.format(**path_param_dict)
         request = self.prepare_request(method='POST',
@@ -740,7 +722,6 @@ class FindingsV1(BaseService):
 
 
     def list_occurrences(self,
-        account_id: str,
         provider_id: str,
         *,
         transaction_id: str = None,
@@ -751,7 +732,6 @@ class FindingsV1(BaseService):
         """
         Lists active `Occurrences` for a given provider matching the filters.
 
-        :param str account_id: Account ID.
         :param str provider_id: Part of `parent`. This contains the provider_id for
                example: providers/{provider_id}.
         :param str transaction_id: (optional) The transaction id for the request in
@@ -765,8 +745,6 @@ class FindingsV1(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `ApiListOccurrencesResponse` object
         """
 
-        if account_id is None:
-            raise ValueError('account_id must be provided')
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         headers = {
@@ -787,7 +765,7 @@ class FindingsV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['account_id', 'provider_id']
-        path_param_values = self.encode_path_vars(account_id, provider_id)
+        path_param_values = self.encode_path_vars(self.account_id, provider_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/v1/{account_id}/providers/{provider_id}/occurrences'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
@@ -800,7 +778,6 @@ class FindingsV1(BaseService):
 
 
     def list_note_occurrences(self,
-        account_id: str,
         provider_id: str,
         note_id: str,
         *,
@@ -812,7 +789,6 @@ class FindingsV1(BaseService):
         """
         Lists `Occurrences` referencing the specified `Note`. Use this method to get all occurrences referencing your `Note` across all your customer providers.
 
-        :param str account_id: Account ID.
         :param str provider_id: First part of note `name`:
                providers/{provider_id}/notes/{note_id}.
         :param str note_id: Second part of note `name`:
@@ -827,8 +803,6 @@ class FindingsV1(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `ApiListNoteOccurrencesResponse` object
         """
 
-        if account_id is None:
-            raise ValueError('account_id must be provided')
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         if note_id is None:
@@ -851,7 +825,7 @@ class FindingsV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['account_id', 'provider_id', 'note_id']
-        path_param_values = self.encode_path_vars(account_id, provider_id, note_id)
+        path_param_values = self.encode_path_vars(self.account_id, provider_id, note_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/v1/{account_id}/providers/{provider_id}/notes/{note_id}/occurrences'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
@@ -864,7 +838,6 @@ class FindingsV1(BaseService):
 
 
     def get_occurrence(self,
-        account_id: str,
         provider_id: str,
         occurrence_id: str,
         *,
@@ -874,7 +847,6 @@ class FindingsV1(BaseService):
         """
         Returns the requested `Occurrence`.
 
-        :param str account_id: Account ID.
         :param str provider_id: First part of occurrence `name`:
                providers/{provider_id}/occurrences/{occurrence_id}.
         :param str occurrence_id: Second part of occurrence `name`:
@@ -886,8 +858,6 @@ class FindingsV1(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `ApiListOccurrencesResponse` object
         """
 
-        if account_id is None:
-            raise ValueError('account_id must be provided')
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         if occurrence_id is None:
@@ -905,7 +875,7 @@ class FindingsV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['account_id', 'provider_id', 'occurrence_id']
-        path_param_values = self.encode_path_vars(account_id, provider_id, occurrence_id)
+        path_param_values = self.encode_path_vars(self.account_id, provider_id, occurrence_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/v1/{account_id}/providers/{provider_id}/occurrences/{occurrence_id}'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
@@ -917,7 +887,6 @@ class FindingsV1(BaseService):
 
 
     def update_occurrence(self,
-        account_id: str,
         provider_id: str,
         occurrence_id: str,
         note_name: str,
@@ -936,7 +905,6 @@ class FindingsV1(BaseService):
         """
         Updates an existing `Occurrence`.
 
-        :param str account_id: Account ID.
         :param str provider_id: First part of occurrence `name`:
                providers/{provider_id}/occurrences/{occurrence_id}.
         :param str occurrence_id: Second part of occurrence `name`:
@@ -973,8 +941,6 @@ class FindingsV1(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `ApiOccurrence` object
         """
 
-        if account_id is None:
-            raise ValueError('account_id must be provided')
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         if occurrence_id is None:
@@ -1019,7 +985,7 @@ class FindingsV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['account_id', 'provider_id', 'occurrence_id']
-        path_param_values = self.encode_path_vars(account_id, provider_id, occurrence_id)
+        path_param_values = self.encode_path_vars(self.account_id, provider_id, occurrence_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/v1/{account_id}/providers/{provider_id}/occurrences/{occurrence_id}'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
@@ -1032,7 +998,6 @@ class FindingsV1(BaseService):
 
 
     def delete_occurrence(self,
-        account_id: str,
         provider_id: str,
         occurrence_id: str,
         *,
@@ -1042,7 +1007,6 @@ class FindingsV1(BaseService):
         """
         Deletes the given `Occurrence` from the system.
 
-        :param str account_id: Account ID.
         :param str provider_id: First part of occurrence `name`:
                providers/{provider_id}/notes/{occurrence_id}.
         :param str occurrence_id: Second part of occurrence `name`:
@@ -1054,8 +1018,6 @@ class FindingsV1(BaseService):
         :rtype: DetailedResponse
         """
 
-        if account_id is None:
-            raise ValueError('account_id must be provided')
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         if occurrence_id is None:
@@ -1073,7 +1035,7 @@ class FindingsV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['account_id', 'provider_id', 'occurrence_id']
-        path_param_values = self.encode_path_vars(account_id, provider_id, occurrence_id)
+        path_param_values = self.encode_path_vars(self.account_id, provider_id, occurrence_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/v1/{account_id}/providers/{provider_id}/occurrences/{occurrence_id}'.format(**path_param_dict)
         request = self.prepare_request(method='DELETE',
@@ -1089,7 +1051,6 @@ class FindingsV1(BaseService):
 
 
     def list_providers(self,
-        account_id: str,
         *,
         transaction_id: str = None,
         limit: int = None,
@@ -1101,7 +1062,6 @@ class FindingsV1(BaseService):
         """
         Lists all `Providers` for a given account id.
 
-        :param str account_id: Account ID.
         :param str transaction_id: (optional) The transaction id for the request in
                uuid v4 format.
         :param int limit: (optional) Limit the number of the returned documents to
@@ -1117,8 +1077,6 @@ class FindingsV1(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `ApiListProvidersResponse` object
         """
 
-        if account_id is None:
-            raise ValueError('account_id must be provided')
         headers = {
             'Transaction-Id': transaction_id
         }
@@ -1139,7 +1097,7 @@ class FindingsV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['account_id']
-        path_param_values = self.encode_path_vars(account_id)
+        path_param_values = self.encode_path_vars(self.account_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/v1/{account_id}/providers'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
@@ -2541,17 +2499,33 @@ class ApiListProvidersResponse():
     Response including listed providers.
 
     :attr List[ApiProvider] providers: (optional) The providers requested.
+    :attr int limit: (optional) The number of elements returned in the current
+          instance. Default is 200.
+    :attr int skip: (optional) The offset is the index of the item from which you
+          want to start returning data from. Default is 0.
+    :attr int total_count: (optional) The total number of providers available.
     """
 
     def __init__(self,
                  *,
-                 providers: List['ApiProvider'] = None) -> None:
+                 providers: List['ApiProvider'] = None,
+                 limit: int = None,
+                 skip: int = None,
+                 total_count: int = None) -> None:
         """
         Initialize a ApiListProvidersResponse object.
 
         :param List[ApiProvider] providers: (optional) The providers requested.
+        :param int limit: (optional) The number of elements returned in the current
+               instance. Default is 200.
+        :param int skip: (optional) The offset is the index of the item from which
+               you want to start returning data from. Default is 0.
+        :param int total_count: (optional) The total number of providers available.
         """
         self.providers = providers
+        self.limit = limit
+        self.skip = skip
+        self.total_count = total_count
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'ApiListProvidersResponse':
@@ -2559,6 +2533,12 @@ class ApiListProvidersResponse():
         args = {}
         if 'providers' in _dict:
             args['providers'] = [ApiProvider.from_dict(x) for x in _dict.get('providers')]
+        if 'limit' in _dict:
+            args['limit'] = _dict.get('limit')
+        if 'skip' in _dict:
+            args['skip'] = _dict.get('skip')
+        if 'total_count' in _dict:
+            args['total_count'] = _dict.get('total_count')
         return cls(**args)
 
     @classmethod
@@ -2571,6 +2551,12 @@ class ApiListProvidersResponse():
         _dict = {}
         if hasattr(self, 'providers') and self.providers is not None:
             _dict['providers'] = [x.to_dict() for x in self.providers]
+        if hasattr(self, 'limit') and self.limit is not None:
+            _dict['limit'] = self.limit
+        if hasattr(self, 'skip') and self.skip is not None:
+            _dict['skip'] = self.skip
+        if hasattr(self, 'total_count') and self.total_count is not None:
+            _dict['total_count'] = self.total_count
         return _dict
 
     def _to_dict(self):

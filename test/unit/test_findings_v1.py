@@ -29,9 +29,11 @@ import responses
 import urllib
 from ibm_scc.findings_v1 import *
 
+account_id = 'testString'
 
 _service = FindingsV1(
-    authenticator=NoAuthAuthenticator()
+    authenticator=NoAuthAuthenticator(),
+    account_id=account_id
     )
 
 _base_url = 'https://us-south.secadvisor.cloud.ibm.com/findings'
@@ -68,14 +70,12 @@ class TestPostGraph():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         body = 'testString'
         content_type = 'application/json'
         transaction_id = 'testString'
 
         # Invoke method
         response = _service.post_graph(
-            account_id,
             body,
             content_type=content_type,
             transaction_id=transaction_id,
@@ -100,12 +100,10 @@ class TestPostGraph():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         body = 'testString'
 
         # Invoke method
         response = _service.post_graph(
-            account_id,
             body,
             headers={}
         )
@@ -128,12 +126,10 @@ class TestPostGraph():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         body = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "account_id": account_id,
             "body": body,
         }
         for param in req_param_dict.keys():
@@ -238,7 +234,6 @@ class TestCreateNote():
         section_model['image'] = 'testString'
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         short_description = 'testString'
         long_description = 'testString'
@@ -256,7 +251,6 @@ class TestCreateNote():
 
         # Invoke method
         response = _service.create_note(
-            account_id,
             provider_id,
             short_description,
             long_description,
@@ -364,7 +358,6 @@ class TestCreateNote():
         section_model['image'] = 'testString'
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         short_description = 'testString'
         long_description = 'testString'
@@ -381,7 +374,6 @@ class TestCreateNote():
 
         # Invoke method
         response = _service.create_note(
-            account_id,
             provider_id,
             short_description,
             long_description,
@@ -488,7 +480,6 @@ class TestCreateNote():
         section_model['image'] = 'testString'
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         short_description = 'testString'
         long_description = 'testString'
@@ -505,7 +496,6 @@ class TestCreateNote():
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "account_id": account_id,
             "provider_id": provider_id,
             "short_description": short_description,
             "long_description": long_description,
@@ -549,7 +539,6 @@ class TestListNotes():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         transaction_id = 'testString'
         page_size = 2
@@ -557,7 +546,6 @@ class TestListNotes():
 
         # Invoke method
         response = _service.list_notes(
-            account_id,
             provider_id,
             transaction_id=transaction_id,
             page_size=page_size,
@@ -590,12 +578,10 @@ class TestListNotes():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
 
         # Invoke method
         response = _service.list_notes(
-            account_id,
             provider_id,
             headers={}
         )
@@ -620,12 +606,10 @@ class TestListNotes():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "account_id": account_id,
             "provider_id": provider_id,
         }
         for param in req_param_dict.keys():
@@ -664,14 +648,12 @@ class TestGetNote():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_id = 'testString'
         transaction_id = 'testString'
 
         # Invoke method
         response = _service.get_note(
-            account_id,
             provider_id,
             note_id,
             transaction_id=transaction_id,
@@ -698,13 +680,11 @@ class TestGetNote():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_id = 'testString'
 
         # Invoke method
         response = _service.get_note(
-            account_id,
             provider_id,
             note_id,
             headers={}
@@ -730,13 +710,11 @@ class TestGetNote():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_id = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "account_id": account_id,
             "provider_id": provider_id,
             "note_id": note_id,
         }
@@ -832,7 +810,6 @@ class TestUpdateNote():
         section_model['image'] = 'testString'
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_id = 'testString'
         short_description = 'testString'
@@ -851,7 +828,6 @@ class TestUpdateNote():
 
         # Invoke method
         response = _service.update_note(
-            account_id,
             provider_id,
             note_id,
             short_description,
@@ -960,7 +936,6 @@ class TestUpdateNote():
         section_model['image'] = 'testString'
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_id = 'testString'
         short_description = 'testString'
@@ -978,7 +953,6 @@ class TestUpdateNote():
 
         # Invoke method
         response = _service.update_note(
-            account_id,
             provider_id,
             note_id,
             short_description,
@@ -1086,7 +1060,6 @@ class TestUpdateNote():
         section_model['image'] = 'testString'
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_id = 'testString'
         short_description = 'testString'
@@ -1104,7 +1077,6 @@ class TestUpdateNote():
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "account_id": account_id,
             "provider_id": provider_id,
             "note_id": note_id,
             "short_description": short_description,
@@ -1146,14 +1118,12 @@ class TestDeleteNote():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_id = 'testString'
         transaction_id = 'testString'
 
         # Invoke method
         response = _service.delete_note(
-            account_id,
             provider_id,
             note_id,
             transaction_id=transaction_id,
@@ -1177,13 +1147,11 @@ class TestDeleteNote():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_id = 'testString'
 
         # Invoke method
         response = _service.delete_note(
-            account_id,
             provider_id,
             note_id,
             headers={}
@@ -1206,13 +1174,11 @@ class TestDeleteNote():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_id = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "account_id": account_id,
             "provider_id": provider_id,
             "note_id": note_id,
         }
@@ -1252,14 +1218,12 @@ class TestGetOccurrenceNote():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         occurrence_id = 'testString'
         transaction_id = 'testString'
 
         # Invoke method
         response = _service.get_occurrence_note(
-            account_id,
             provider_id,
             occurrence_id,
             transaction_id=transaction_id,
@@ -1286,13 +1250,11 @@ class TestGetOccurrenceNote():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         occurrence_id = 'testString'
 
         # Invoke method
         response = _service.get_occurrence_note(
-            account_id,
             provider_id,
             occurrence_id,
             headers={}
@@ -1318,13 +1280,11 @@ class TestGetOccurrenceNote():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         occurrence_id = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "account_id": account_id,
             "provider_id": provider_id,
             "occurrence_id": occurrence_id,
         }
@@ -1424,7 +1384,6 @@ class TestCreateOccurrence():
         kpi_model['total'] = 72.5
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_name = 'testString'
         kind = 'FINDING'
@@ -1440,7 +1399,6 @@ class TestCreateOccurrence():
 
         # Invoke method
         response = _service.create_occurrence(
-            account_id,
             provider_id,
             note_name,
             kind,
@@ -1537,7 +1495,6 @@ class TestCreateOccurrence():
         kpi_model['total'] = 72.5
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_name = 'testString'
         kind = 'FINDING'
@@ -1551,7 +1508,6 @@ class TestCreateOccurrence():
 
         # Invoke method
         response = _service.create_occurrence(
-            account_id,
             provider_id,
             note_name,
             kind,
@@ -1646,7 +1602,6 @@ class TestCreateOccurrence():
         kpi_model['total'] = 72.5
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_name = 'testString'
         kind = 'FINDING'
@@ -1660,7 +1615,6 @@ class TestCreateOccurrence():
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "account_id": account_id,
             "provider_id": provider_id,
             "note_name": note_name,
             "kind": kind,
@@ -1702,7 +1656,6 @@ class TestListOccurrences():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         transaction_id = 'testString'
         page_size = 2
@@ -1710,7 +1663,6 @@ class TestListOccurrences():
 
         # Invoke method
         response = _service.list_occurrences(
-            account_id,
             provider_id,
             transaction_id=transaction_id,
             page_size=page_size,
@@ -1743,12 +1695,10 @@ class TestListOccurrences():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
 
         # Invoke method
         response = _service.list_occurrences(
-            account_id,
             provider_id,
             headers={}
         )
@@ -1773,12 +1723,10 @@ class TestListOccurrences():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "account_id": account_id,
             "provider_id": provider_id,
         }
         for param in req_param_dict.keys():
@@ -1817,7 +1765,6 @@ class TestListNoteOccurrences():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_id = 'testString'
         transaction_id = 'testString'
@@ -1826,7 +1773,6 @@ class TestListNoteOccurrences():
 
         # Invoke method
         response = _service.list_note_occurrences(
-            account_id,
             provider_id,
             note_id,
             transaction_id=transaction_id,
@@ -1860,13 +1806,11 @@ class TestListNoteOccurrences():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_id = 'testString'
 
         # Invoke method
         response = _service.list_note_occurrences(
-            account_id,
             provider_id,
             note_id,
             headers={}
@@ -1892,13 +1836,11 @@ class TestListNoteOccurrences():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         note_id = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "account_id": account_id,
             "provider_id": provider_id,
             "note_id": note_id,
         }
@@ -1938,14 +1880,12 @@ class TestGetOccurrence():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         occurrence_id = 'testString'
         transaction_id = 'testString'
 
         # Invoke method
         response = _service.get_occurrence(
-            account_id,
             provider_id,
             occurrence_id,
             transaction_id=transaction_id,
@@ -1972,13 +1912,11 @@ class TestGetOccurrence():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         occurrence_id = 'testString'
 
         # Invoke method
         response = _service.get_occurrence(
-            account_id,
             provider_id,
             occurrence_id,
             headers={}
@@ -2004,13 +1942,11 @@ class TestGetOccurrence():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         occurrence_id = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "account_id": account_id,
             "provider_id": provider_id,
             "occurrence_id": occurrence_id,
         }
@@ -2100,7 +2036,6 @@ class TestUpdateOccurrence():
         kpi_model['total'] = 72.5
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         occurrence_id = 'testString'
         note_name = 'testString'
@@ -2116,7 +2051,6 @@ class TestUpdateOccurrence():
 
         # Invoke method
         response = _service.update_occurrence(
-            account_id,
             provider_id,
             occurrence_id,
             note_name,
@@ -2213,7 +2147,6 @@ class TestUpdateOccurrence():
         kpi_model['total'] = 72.5
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         occurrence_id = 'testString'
         note_name = 'testString'
@@ -2228,7 +2161,6 @@ class TestUpdateOccurrence():
 
         # Invoke method
         response = _service.update_occurrence(
-            account_id,
             provider_id,
             occurrence_id,
             note_name,
@@ -2324,7 +2256,6 @@ class TestUpdateOccurrence():
         kpi_model['total'] = 72.5
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         occurrence_id = 'testString'
         note_name = 'testString'
@@ -2339,7 +2270,6 @@ class TestUpdateOccurrence():
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "account_id": account_id,
             "provider_id": provider_id,
             "occurrence_id": occurrence_id,
             "note_name": note_name,
@@ -2379,14 +2309,12 @@ class TestDeleteOccurrence():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         occurrence_id = 'testString'
         transaction_id = 'testString'
 
         # Invoke method
         response = _service.delete_occurrence(
-            account_id,
             provider_id,
             occurrence_id,
             transaction_id=transaction_id,
@@ -2410,13 +2338,11 @@ class TestDeleteOccurrence():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         occurrence_id = 'testString'
 
         # Invoke method
         response = _service.delete_occurrence(
-            account_id,
             provider_id,
             occurrence_id,
             headers={}
@@ -2439,13 +2365,11 @@ class TestDeleteOccurrence():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         provider_id = 'testString'
         occurrence_id = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "account_id": account_id,
             "provider_id": provider_id,
             "occurrence_id": occurrence_id,
         }
@@ -2487,7 +2411,7 @@ class TestListProviders():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers')
-        mock_response = '{"providers": [{"name": "name", "id": "id"}]}'
+        mock_response = '{"providers": [{"name": "name", "id": "id"}], "limit": 5, "skip": 4, "total_count": 11}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -2495,7 +2419,6 @@ class TestListProviders():
                       status=200)
 
         # Set up parameter values
-        account_id = 'testString'
         transaction_id = 'testString'
         limit = 2
         skip = 38
@@ -2504,7 +2427,6 @@ class TestListProviders():
 
         # Invoke method
         response = _service.list_providers(
-            account_id,
             transaction_id=transaction_id,
             limit=limit,
             skip=skip,
@@ -2532,21 +2454,16 @@ class TestListProviders():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers')
-        mock_response = '{"providers": [{"name": "name", "id": "id"}]}'
+        mock_response = '{"providers": [{"name": "name", "id": "id"}], "limit": 5, "skip": 4, "total_count": 11}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
                       content_type='application/json',
                       status=200)
 
-        # Set up parameter values
-        account_id = 'testString'
-
         # Invoke method
-        response = _service.list_providers(
-            account_id,
-            headers={}
-        )
+        response = _service.list_providers()
+
 
         # Check for correct operation
         assert len(responses.calls) == 1
@@ -2560,19 +2477,15 @@ class TestListProviders():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers')
-        mock_response = '{"providers": [{"name": "name", "id": "id"}]}'
+        mock_response = '{"providers": [{"name": "name", "id": "id"}], "limit": 5, "skip": 4, "total_count": 11}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
                       content_type='application/json',
                       status=200)
 
-        # Set up parameter values
-        account_id = 'testString'
-
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "account_id": account_id,
         }
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
@@ -3311,6 +3224,9 @@ class TestApiListProvidersResponse():
         # Construct a json representation of a ApiListProvidersResponse model
         api_list_providers_response_model_json = {}
         api_list_providers_response_model_json['providers'] = [api_provider_model]
+        api_list_providers_response_model_json['limit'] = 38
+        api_list_providers_response_model_json['skip'] = 38
+        api_list_providers_response_model_json['total_count'] = 38
 
         # Construct a model instance of ApiListProvidersResponse by calling from_dict on the json representation
         api_list_providers_response_model = ApiListProvidersResponse.from_dict(api_list_providers_response_model_json)
