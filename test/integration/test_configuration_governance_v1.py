@@ -26,8 +26,15 @@ from ibm_scc.configuration_governance_v1 import *
 config_file = 'configuration_governance_v1.env'
 
 # Variables to hold link values
+account_id = os.getenv("ACCOUNT_ID")
+rule_label = os.getenv("RULE_LABEL") or "sdk-it"
+resource_group_id = os.getenv("RESOURCE_GROUP_ID")
+
 rule_attachment_id_link = None
 rule_id_link = None
+
+rule_etag = None
+rule_attachment_etag = None
 
 class TestConfigurationGovernanceV1():
     """
@@ -56,26 +63,18 @@ class TestConfigurationGovernanceV1():
     @needscredentials
     def test_create_rules(self):
 
-        # Construct a dict representation of a TargetResourceAdditionalTargetAttributesItem model
-        target_resource_additional_target_attributes_item_model = {
-            'name': 'resource_id',
-            'value': '81f3db5e-f9db-4c46-9de3-a4a76e66adbf',
-            'operator': 'string_equals',
-        }
-
         # Construct a dict representation of a TargetResource model
         target_resource_model = {
-            'service_name': 'iam-groups',
-            'resource_kind': 'service',
-            'additional_target_attributes': [target_resource_additional_target_attributes_item_model],
+            'service_name': 'cloud-object-storage',
+            'resource_kind': 'bucket',
         }
 
         # Construct a dict representation of a RuleRequiredConfigSingleProperty model
         rule_required_config_model = {
             'description': 'Public access check',
-            'property': 'public_access_enabled',
-            'operator': 'is_true',
-            'value': 'testString',
+            'property': 'location',
+            'operator': 'string_equals',
+            'value': 'us-south',
         }
 
         # Construct a dict representation of a EnforcementAction model
@@ -85,20 +84,20 @@ class TestConfigurationGovernanceV1():
 
         # Construct a dict representation of a RuleRequest model
         rule_request_model = {
-            'account_id': '531fc3e28bfc43c5a2cea07786d93f5c',
+            'account_id': account_id,
             'name': 'Disable public access',
             'description': 'Ensure that public access to account resources is disabled.',
             'rule_type': 'user_defined',
-            'target': {'service_name':'iam-groups','resource_kind':'service'},
-            'required_config': {'description':'Public access check','and':[{'property':'public_access_enabled','operator':'is_false'}]},
+            'target': target_resource_model,
+            'required_config': rule_required_config_model,
             'enforcement_actions': [enforcement_action_model],
-            'labels': ['Access', 'IAM'],
+            'labels': [rule_label],
         }
 
         # Construct a dict representation of a CreateRuleRequest model
         create_rule_request_model = {
             'request_id': '3cebc877-58e7-44a5-a292-32114fa73558',
-            'rule': {'account_id':'531fc3e28bfc43c5a2cea07786d93f5c','name':'Disable public access','description':'Ensure that public access to account resources is disabled.','labels':['Access','IAM'],'target':{'service_name':'iam-groups','resource_kind':'service'},'required_config':{'description':'Public access check','and':[{'property':'public_access_enabled','operator':'is_false'}]},'enforcement_actions':[{'action':'disallow'},{'action':'audit_log'}]},
+            'rule': rule_request_model,
         }
 
         create_rules_response = self.configuration_governance_service.create_rules(
@@ -119,16 +118,22 @@ class TestConfigurationGovernanceV1():
 
         # Construct a dict representation of a RuleScope model
         rule_scope_model = {
-            'note': 'My enterprise',
-            'scope_id': '282cf433ac91493ba860480d92519990',
-            'scope_type': 'enterprise',
+            'note': 'My account',
+            'scope_id': account_id,
+            'scope_type': 'account',
+        }
+
+        rule_excluded_scope_model = {
+            'note': 'My account resource group',
+            'scope_id': resource_group_id,
+            'scope_type': 'account.resource_group',
         }
 
         # Construct a dict representation of a RuleAttachmentRequest model
         rule_attachment_request_model = {
-            'account_id': '531fc3e28bfc43c5a2cea07786d93f5c',
-            'included_scope': {'note':'My enterprise','scope_id':'282cf433ac91493ba860480d92519990','scope_type':'enterprise'},
-            'excluded_scopes': [rule_scope_model],
+            'account_id': account_id,
+            'included_scope': rule_scope_model,
+            'excluded_scopes': [rule_excluded_scope_model],
         }
 
         create_rule_attachments_response = self.configuration_governance_service.create_rule_attachments(
@@ -149,10 +154,10 @@ class TestConfigurationGovernanceV1():
     def test_list_rules(self):
 
         list_rules_response = self.configuration_governance_service.list_rules(
-            account_id='531fc3e28bfc43c5a2cea07786d93f5c',
+            account_id=account_id,
             transaction_id='testString',
             attached=True,
-            labels='SOC2,ITCS300',
+            labels=[rule_label],
             scopes='scope_id',
             limit=1000,
             offset=38
@@ -174,47 +179,42 @@ class TestConfigurationGovernanceV1():
         rule = get_rule_response.get_result()
         assert rule is not None
 
+        global rule_etag
+        rule_etag = get_rule_response.headers['etag']
+
     @needscredentials
     def test_update_rule(self):
 
-        # Construct a dict representation of a TargetResourceAdditionalTargetAttributesItem model
-        target_resource_additional_target_attributes_item_model = {
-            'name': 'testString',
-            'value': 'testString',
-            'operator': 'string_equals',
-        }
-
         # Construct a dict representation of a TargetResource model
         target_resource_model = {
-            'service_name': 'iam-groups',
-            'resource_kind': 'service',
-            'additional_target_attributes': [target_resource_additional_target_attributes_item_model],
+            'service_name': 'cloud-object-storage',
+            'resource_kind': 'bucket',
         }
 
         # Construct a dict representation of a RuleRequiredConfigSingleProperty model
         rule_required_config_model = {
             'description': 'testString',
-            'property': 'public_access_enabled',
-            'operator': 'is_false',
-            'value': 'testString',
+            'property': 'location',
+            'operator': 'string_equals',
+            'value': 'us-south',
         }
 
         # Construct a dict representation of a EnforcementAction model
         enforcement_action_model = {
-            'action': 'audit_log',
+            'action': 'disallow',
         }
 
         update_rule_response = self.configuration_governance_service.update_rule(
             rule_id=rule_id_link,
-            if_match='testString',
+            if_match=rule_etag,
             name='Disable public access',
             description='Ensure that public access to account resources is disabled.',
-            target={'service_name':'iam-groups','resource_kind':'service','additional_target_attributes':[]},
-            required_config={'property':'public_access_enabled','operator':'is_false'},
+            target=target_resource_model,
+            required_config=rule_required_config_model,
             enforcement_actions=[enforcement_action_model],
-            account_id='531fc3e28bfc43c5a2cea07786d93f5c',
+            account_id=account_id,
             rule_type='user_defined',
-            labels=['SOC2', 'ITCS300'],
+            labels=[rule_label],
             transaction_id='testString'
         )
 
@@ -249,23 +249,32 @@ class TestConfigurationGovernanceV1():
         rule_attachment = get_rule_attachment_response.get_result()
         assert rule_attachment is not None
 
+        global rule_attachment_etag
+        rule_attachment_etag = get_rule_attachment_response.headers['etag']
+
     @needscredentials
     def test_update_rule_attachment(self):
 
         # Construct a dict representation of a RuleScope model
         rule_scope_model = {
-            'note': 'My enterprise',
-            'scope_id': '282cf433ac91493ba860480d92519990',
-            'scope_type': 'enterprise',
+            'note': 'My account',
+            'scope_id': account_id,
+            'scope_type': 'account',
+        }
+
+        excluded_scope_model = {
+            'note': 'My account resource group',
+            'scope_id': resource_group_id,
+            'scope_type': 'account.resource_group',
         }
 
         update_rule_attachment_response = self.configuration_governance_service.update_rule_attachment(
             rule_id=rule_id_link,
             attachment_id=rule_attachment_id_link,
-            if_match='testString',
-            account_id='531fc3e28bfc43c5a2cea07786d93f5c',
-            included_scope={'note':'My enterprise','scope_id':'282cf433ac91493ba860480d92519990','scope_type':'enterprise'},
-            excluded_scopes=[rule_scope_model],
+            if_match=rule_attachment_etag,
+            account_id=account_id,
+            included_scope=rule_scope_model,
+            excluded_scopes=[excluded_scope_model],
             transaction_id='testString'
         )
 
