@@ -1,3 +1,10 @@
+## [0.0.9](https://github.com/IBM/scc-python-sdk/compare/v0.0.8...v0.0.9) (2021-06-14)
+
+
+### Bug Fixes
+
+* **SDK:** release with common FID ([7cc0ab0](https://github.com/IBM/scc-python-sdk/commit/7cc0ab0bf382dba70c73e5bd1c3992e336ad11b8))
+
 ## [0.0.8](https://github.com/IBM/scc-python-sdk/compare/v0.0.7...v0.0.8) (2021-06-11)
 
 
