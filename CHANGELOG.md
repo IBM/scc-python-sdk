@@ -1,3 +1,10 @@
+## [0.0.10](https://github.com/IBM/scc-python-sdk/compare/v0.0.9...v0.0.10) (2021-06-14)
+
+
+### Bug Fixes
+
+* **ITs:** config-gov ITs fixed ([07e4dd3](https://github.com/IBM/scc-python-sdk/commit/07e4dd398004e57d56c458430a00c057a9722cda))
+
 ## [0.0.9](https://github.com/IBM/scc-python-sdk/compare/v0.0.8...v0.0.9) (2021-06-14)
 
 
