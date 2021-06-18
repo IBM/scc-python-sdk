@@ -104,7 +104,7 @@ jobs:
         with:
           user: ${{ secrets.PYPI_USER }}
           password: ${{ secrets.PYPI_PASSWORD }}
-          repository_url: https://upload.pypi.org/legacy
+          repository_url: https://upload.pypi.org/legacy/
 
   documentation:
     runs-on: ubuntu-latest
@@ -117,12 +117,12 @@ jobs:
         run: pip install pdoc
 
       - name: generate pydoc
-        run: pdoc --html ibm_scc
+        run: pdoc ibm_scc -o html
       
       - name: deploy gopages to gh-pages
         uses: crazy-max/ghaction-github-pages@v1
         with:
           target_branch: gh-pages
-          build_dir: html/ibm_scc
+          build_dir: html
         env:
           GITHUB_TOKEN: ${{ secrets.ADMIN_TOKEN }}
