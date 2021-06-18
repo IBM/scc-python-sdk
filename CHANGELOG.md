@@ -1,3 +1,10 @@
+## [0.0.11](https://github.com/IBM/scc-python-sdk/compare/v0.0.10...v0.0.11) (2021-06-18)
+
+
+### Bug Fixes
+
+* **GithubAction:** workflow altered ([306c588](https://github.com/IBM/scc-python-sdk/commit/306c588b8e1c46de1179fb017d843340291ed36d))
+
 ## [0.0.10](https://github.com/IBM/scc-python-sdk/compare/v0.0.9...v0.0.10) (2021-06-14)
 
 
