@@ -28,7 +28,7 @@ config_file = 'notifications_v1.env'
 account_id = os.getenv("ACCOUNT_ID")
 testString = "testString"
 channel_id = ""
-identifier = os.getenv("TRAVIS_JOB_ID") or time.time()
+identifier = "py-{0}".format(str(time.time()).split(".")[0])
 
 class TestNotificationsV1():
     """
