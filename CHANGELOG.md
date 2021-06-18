@@ -1,3 +1,10 @@
+## [0.0.12](https://github.com/IBM/scc-python-sdk/compare/v0.0.11...v0.0.12) (2021-06-18)
+
+
+### Bug Fixes
+
+* **PyPi:** build project before publishing ([476bb6e](https://github.com/IBM/scc-python-sdk/commit/476bb6e60b84930f92e4a05de96c7d2a209c3a9a))
+
 ## [0.0.11](https://github.com/IBM/scc-python-sdk/compare/v0.0.10...v0.0.11) (2021-06-18)
 
 
