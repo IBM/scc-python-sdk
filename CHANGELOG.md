@@ -1,3 +1,10 @@
+## [0.0.13](https://github.com/IBM/scc-python-sdk/compare/v0.0.12...v0.0.13) (2021-06-18)
+
+
+### Bug Fixes
+
+* **PyPi:** redirection issue while publishing ([69e8651](https://github.com/IBM/scc-python-sdk/commit/69e8651721f9efa15a89d4955b8ea7c39e299523))
+
 ## [0.0.12](https://github.com/IBM/scc-python-sdk/compare/v0.0.11...v0.0.12) (2021-06-18)
 
 
