@@ -19,6 +19,7 @@ Integration Tests for ConfigurationGovernanceV1
 
 import os
 import pytest
+import time
 from ibm_cloud_sdk_core import *
 from ibm_scc.configuration_governance_v1 import *
 
@@ -29,6 +30,7 @@ config_file = 'configuration_governance_v1.env'
 account_id = os.getenv("ACCOUNT_ID")
 rule_label = os.getenv("RULE_LABEL") or "sdk-it"
 resource_group_id = os.getenv("RESOURCE_GROUP_ID")
+identifier = "py-{0}".format(str(time.time()).split(".")[0])
 
 rule_attachment_id_link = None
 rule_id_link = None
@@ -55,6 +57,31 @@ class TestConfigurationGovernanceV1():
             assert cls.config is not None
 
         print('Setup complete.')
+
+    @classmethod
+    def teardown_class(cls):
+        if os.path.exists(config_file):
+            os.environ['IBM_CREDENTIALS_FILE'] = config_file
+
+            cls.configuration_governance_service = ConfigurationGovernanceV1.new_instance(
+                )
+            assert cls.configuration_governance_service is not None
+
+            cls.config = read_external_sources(
+                ConfigurationGovernanceV1.DEFAULT_SERVICE_NAME)
+            assert cls.config is not None
+
+        print('Setup complete.')
+        print(f'cleaning up account: {account_id} with rules labelled {rule_label}-{identifier}\n')
+        list_rules_response = cls.configuration_governance_service.list_rules(
+            account_id=account_id,
+            labels=[f"{rule_label}-{identifier}"],
+        )
+        for rule in list_rules_response.get_result()['rules']:
+            cls.configuration_governance_service.delete_rule(
+                rule_id=rule['rule_id']
+            )
+        print("cleanup was successful\n")
 
     needscredentials = pytest.mark.skipif(
         not os.path.exists(config_file), reason="External configuration not available, skipping..."
@@ -91,7 +118,7 @@ class TestConfigurationGovernanceV1():
             'target': target_resource_model,
             'required_config': rule_required_config_model,
             'enforcement_actions': [enforcement_action_model],
-            'labels': [rule_label],
+            'labels': [f"{rule_label}-{identifier}"],
         }
 
         # Construct a dict representation of a CreateRuleRequest model
@@ -157,7 +184,7 @@ class TestConfigurationGovernanceV1():
             account_id=account_id,
             transaction_id='testString',
             attached=True,
-            labels=[rule_label],
+            labels=[f"{rule_label}-{identifier}"],
             scopes='scope_id',
             limit=1000,
             offset=38
@@ -214,7 +241,7 @@ class TestConfigurationGovernanceV1():
             enforcement_actions=[enforcement_action_model],
             account_id=account_id,
             rule_type='user_defined',
-            labels=[rule_label],
+            labels=[f"{rule_label}-{identifier}"],
             transaction_id='testString'
         )
 

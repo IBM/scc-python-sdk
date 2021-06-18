@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.com/IBM/scc-python-sdk.svg?branch=main)](https://travis-ci.com/github/IBM/scc-python-sdk)
+[![CI/CD Pipeline](https://github.com/IBM/scc-python-sdk/actions/workflows/main.yaml/badge.svg)](https://github.com/IBM/scc-python-sdk/actions/workflows/main.yaml)
+[![PyDoc](https://img.shields.io/static/v1?label=pydoc&message=latest&color=blue)](http://IBM.github.io/scc-python-sdk)
 [![Release](https://img.shields.io/github/v/release/IBM/scc-python-sdk)](https://img.shields.io/github/v/release/IBM/scc-python-sdk)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ibm-platform-services)](https://pypi.org/project/ibm-scc/)
 [![PyPi](https://pypip.in/v/ibm-scc/badge.svg)](https://pypi.python.org/pypi/ibm-scc/)

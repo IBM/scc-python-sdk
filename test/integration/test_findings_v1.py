@@ -29,9 +29,9 @@ config_file = 'findings_v1.env'
 account_id = os.getenv("ACCOUNT_ID")
 provider_id = os.getenv("PROVIDER_ID", "sdk-it")
 testString = "testString"
-identifier = os.getenv("TRAVIS_JOB_ID") or time.time()
+identifier = "py-{0}".format(str(time.time()).split(".")[0])
 
-class FindingsV1IntegrationTests():
+class TestFindingsV1():
     """
     Integration Test Class for FindingsV1
     """
@@ -58,6 +58,7 @@ class FindingsV1IntegrationTests():
             os.environ['IBM_CREDENTIALS_FILE'] = config_file
 
             cls.findings_service = FindingsV1.new_instance(
+                account_id=account_id,
                 )
             assert cls.findings_service is not None
 
@@ -68,33 +69,28 @@ class FindingsV1IntegrationTests():
         print('Setup complete.')
         print(f"cleaning up account: {account_id} with provider: {provider_id}\n")
         list_notes_response = cls.findings_service.list_notes(
-            account_id=account_id,
             provider_id=provider_id,
         )
         for note in list_notes_response.get_result()["notes"]:
             parts = note["id"].split("-")
-            if parts[-1]==identifier:
+            if f"{parts[len(parts)-2]}-{parts[len(parts)-1]}" == identifier:
                 cls.findings_service.delete_note(
-                    account_id=account_id,
                     provider_id=provider_id,
                     note_id=note["id"],
                 )
         list_occurrences_response = cls.findings_service.list_occurrences(
-            account_id=account_id,
             provider_id=provider_id,
         )
         for occurrence in list_occurrences_response.get_result()["occurrences"]:
             parts = occurrence["id"].split("-")
-            if parts[-1]==identifier:
+            if f"{parts[len(parts)-2]}-{parts[len(parts)-1]}" == identifier:
                 cls.findings_service.delete_occurrence(
-                    account_id=account_id,
                     provider_id=provider_id,
                     occurrence_id=occurrence["id"],
                 )
         print("cleanup was successful\n")
 
         list_providers_response = cls.findings_service.list_providers(
-            account_id=account_id,
         )
         for provider in list_providers_response.get_result()["providers"]:
             if provider["id"] == provider_id:
