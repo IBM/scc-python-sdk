@@ -117,7 +117,9 @@ jobs:
         run: pip install pdoc
 
       - name: generate pydoc
-        run: pdoc ibm_scc -o html
+        run: |
+          pip install -e .
+          pdoc ibm_scc -o html
       
       - name: deploy gopages to gh-pages
         uses: crazy-max/ghaction-github-pages@v1
