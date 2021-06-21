@@ -1,3 +1,10 @@
+## [0.0.14](https://github.com/IBM/scc-python-sdk/compare/v0.0.13...v0.0.14) (2021-06-21)
+
+
+### Bug Fixes
+
+* **pdoc:** install dependencies before generating pydoc ([362b9f6](https://github.com/IBM/scc-python-sdk/commit/362b9f6c6de0a338acdb780cb429664d3a0c14dc))
+
 ## [0.0.13](https://github.com/IBM/scc-python-sdk/compare/v0.0.12...v0.0.13) (2021-06-18)
 
 
