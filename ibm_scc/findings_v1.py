@@ -14,10 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.33.0-caf29bd0-20210603-225214
+# IBM OpenAPI SDK Code Generator Version: 3.34.1-ad041667-20210617-195430
  
 """
-API specification for the Findings service.
+The Findings API is used to find and display occurrences of security issues in your IBM
+Cloud account by using the artifact metadata specification. Findings are summarized in
+cards in the Security and Compliance Center that allow you to see the security status of
+your account at a glance and start an investigation into any potential issues.
 """
 
 from datetime import datetime
@@ -88,7 +91,7 @@ class FindingsV1(BaseService):
 
 
     #########################
-    # findingsGraph
+    # graph
     #########################
 
 
@@ -100,14 +103,15 @@ class FindingsV1(BaseService):
         **kwargs
     ) -> DetailedResponse:
         """
-        query findings.
+        Query findings.
 
-        query findings.
+        Query findings by using the GraphQL query language. For more information about
+        using GraphQL, see the [GraphQL documentation](https://graphql.org/learn/).
 
         :param str body: Body for query findings.
         :param str content_type: (optional) The type of the input.
-        :param str transaction_id: (optional) The transaction id for the request in
-               uuid v4 format.
+        :param str transaction_id: (optional) The transaction ID for the request in
+               UUID v4 format.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse
@@ -117,7 +121,7 @@ class FindingsV1(BaseService):
             raise ValueError('body must be provided')
         headers = {
             'Content-Type': content_type,
-            'Transaction-Id': transaction_id
+            'transaction_id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -148,8 +152,71 @@ class FindingsV1(BaseService):
         return response
 
     #########################
-    # findingsNotes
+    # notes
     #########################
+
+
+    def list_providers(self,
+        *,
+        transaction_id: str = None,
+        limit: int = None,
+        skip: int = None,
+        start_provider_id: str = None,
+        end_provider_id: str = None,
+        **kwargs
+    ) -> DetailedResponse:
+        """
+        List providers.
+
+        List all of the providers for a specified account.
+
+        :param str transaction_id: (optional) The transaction ID for the request in
+               UUID v4 format.
+        :param int limit: (optional) The number of documents that you want to
+               return.
+        :param int skip: (optional) The offset is the index of the item from which
+               you want to start returning data from. Default is 0.
+        :param str start_provider_id: (optional) The first provider ID included in
+               the result, sorted in ascending order. If not provided, this parameter is
+               ignored.
+        :param str end_provider_id: (optional) The last provider ID included in the
+               result, sorted in ascending order. If not provided, this parameter is
+               ignored.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `ApiListProvidersResponse` object
+        """
+
+        headers = {
+            'transaction_id': transaction_id
+        }
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='list_providers')
+        headers.update(sdk_headers)
+
+        params = {
+            'limit': limit,
+            'skip': skip,
+            'start_provider_id': start_provider_id,
+            'end_provider_id': end_provider_id
+        }
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['account_id']
+        path_param_values = self.encode_path_vars(self.account_id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/v1/{account_id}/providers'.format(**path_param_dict)
+        request = self.prepare_request(method='GET',
+                                       url=url,
+                                       headers=headers,
+                                       params=params)
+
+        response = self.send(request)
+        return response
 
 
     def create_note(self,
@@ -171,14 +238,19 @@ class FindingsV1(BaseService):
         **kwargs
     ) -> DetailedResponse:
         """
-        Creates a new `Note`.
+        Create a note.
 
-        :param str provider_id: Part of `parent`. This field contains the
-               provider_id for example: providers/{provider_id}.
-        :param str short_description: A one sentence description of this `Note`.
-        :param str long_description: A detailed description of this `Note`.
-        :param str kind: This must be 1&#58;1 with members of our oneofs, it can be
-               used for filtering Note and Occurrence on their kind.
+        Register a new finding type with the Security and Compliance Center.
+        A successful request creates a note with a high-level description of a particular
+        type of finding. To learn more about creating notes to register findings, see
+        [Custom findings](/docs/security-advisor?topic=security-advisor-setup_custom).
+
+        :param str provider_id: Part of the parent. This field contains the
+               provider ID. For example: providers/{provider_id}.
+        :param str short_description: A one sentence description of your note.
+        :param str long_description: A more detailed description of your note.
+        :param str kind: The type of note. Use this field to filter notes and
+               occurences by kind.
                 - FINDING&#58; The note and occurrence represent a finding.
                 - KPI&#58; The note and occurrence represent a KPI value.
                 - CARD&#58; The note represents a card showing findings and related metric
@@ -186,14 +258,13 @@ class FindingsV1(BaseService):
                 - CARD_CONFIGURED&#58; The note represents a card configured for a user
                account.
                 - SECTION&#58; The note represents a section in a dashboard.
-        :param str id: The id of the note.
+        :param str id: The ID of the note.
         :param Reporter reported_by: The entity reporting a note.
-        :param List[ApiNoteRelatedUrl] related_url: (optional) URLs associated with
-               this note.
+        :param List[ApiNoteRelatedUrl] related_url: (optional)
         :param datetime expiration_time: (optional) Time of expiration for this
                note, null if note does not expire.
-        :param bool shared: (optional) True if this `Note` can be shared by
-               multiple accounts.
+        :param bool shared: (optional) True if this note can be shared by multiple
+               accounts.
         :param FindingType finding: (optional) FindingType provides details about a
                finding note.
         :param KpiType kpi: (optional) KpiType provides details about a KPI note.
@@ -201,8 +272,8 @@ class FindingsV1(BaseService):
                note.
         :param Section section: (optional) Card provides details about a card kind
                of note.
-        :param str transaction_id: (optional) The transaction id for the request in
-               uuid v4 format.
+        :param str transaction_id: (optional) The transaction ID for the request in
+               UUID v4 format.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `ApiNote` object
@@ -234,7 +305,7 @@ class FindingsV1(BaseService):
         if section is not None:
             section = convert_model(section)
         headers = {
-            'Transaction-Id': transaction_id
+            'transaction_id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -285,12 +356,14 @@ class FindingsV1(BaseService):
         **kwargs
     ) -> DetailedResponse:
         """
-        Lists all `Notes` for a given provider.
+        List notes.
 
-        :param str provider_id: Part of `parent`. This field contains the
-               provider_id for example: providers/{provider_id}.
-        :param str transaction_id: (optional) The transaction id for the request in
-               uuid v4 format.
+        List all of the available notes for a specific provider.
+
+        :param str provider_id: Part of the parent. This field contains the
+               provider ID. For example: providers/{provider_id}.
+        :param str transaction_id: (optional) The transaction ID for the request in
+               UUID v4 format.
         :param int page_size: (optional) Number of notes to return in the list.
         :param str page_token: (optional) Token to provide to skip to a particular
                spot in the list.
@@ -302,7 +375,7 @@ class FindingsV1(BaseService):
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         headers = {
-            'Transaction-Id': transaction_id
+            'transaction_id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -339,14 +412,17 @@ class FindingsV1(BaseService):
         **kwargs
     ) -> DetailedResponse:
         """
-        Returns the requested `Note`.
+        Get a note by provider.
 
-        :param str provider_id: First part of note `name`:
-               providers/{provider_id}/notes/{note_id}.
+        Get the details of the note that is associated with a specified note ID and
+        provider ID.
+
+        :param str provider_id: Part of the parent. This field contains the
+               provider ID. For example: providers/{provider_id}.
         :param str note_id: Second part of note `name`:
                providers/{provider_id}/notes/{note_id}.
-        :param str transaction_id: (optional) The transaction id for the request in
-               uuid v4 format.
+        :param str transaction_id: (optional) The transaction ID for the request in
+               UUID v4 format.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `ApiNote` object
@@ -357,7 +433,7 @@ class FindingsV1(BaseService):
         if note_id is None:
             raise ValueError('note_id must be provided')
         headers = {
-            'Transaction-Id': transaction_id
+            'transaction_id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -400,16 +476,18 @@ class FindingsV1(BaseService):
         **kwargs
     ) -> DetailedResponse:
         """
-        Updates an existing `Note`.
+        Update a note.
 
-        :param str provider_id: First part of note `name`:
-               providers/{provider_id}/notes/{note_id}.
+        Update a note that already exists in your account.
+
+        :param str provider_id: Part of the parent. This field contains the
+               provider ID. For example: providers/{provider_id}.
         :param str note_id: Second part of note `name`:
                providers/{provider_id}/notes/{note_id}.
-        :param str short_description: A one sentence description of this `Note`.
-        :param str long_description: A detailed description of this `Note`.
-        :param str kind: This must be 1&#58;1 with members of our oneofs, it can be
-               used for filtering Note and Occurrence on their kind.
+        :param str short_description: A one sentence description of your note.
+        :param str long_description: A more detailed description of your note.
+        :param str kind: The type of note. Use this field to filter notes and
+               occurences by kind.
                 - FINDING&#58; The note and occurrence represent a finding.
                 - KPI&#58; The note and occurrence represent a KPI value.
                 - CARD&#58; The note represents a card showing findings and related metric
@@ -417,14 +495,13 @@ class FindingsV1(BaseService):
                 - CARD_CONFIGURED&#58; The note represents a card configured for a user
                account.
                 - SECTION&#58; The note represents a section in a dashboard.
-        :param str id: The id of the note.
+        :param str id: The ID of the note.
         :param Reporter reported_by: The entity reporting a note.
-        :param List[ApiNoteRelatedUrl] related_url: (optional) URLs associated with
-               this note.
+        :param List[ApiNoteRelatedUrl] related_url: (optional)
         :param datetime expiration_time: (optional) Time of expiration for this
                note, null if note does not expire.
-        :param bool shared: (optional) True if this `Note` can be shared by
-               multiple accounts.
+        :param bool shared: (optional) True if this note can be shared by multiple
+               accounts.
         :param FindingType finding: (optional) FindingType provides details about a
                finding note.
         :param KpiType kpi: (optional) KpiType provides details about a KPI note.
@@ -432,8 +509,8 @@ class FindingsV1(BaseService):
                note.
         :param Section section: (optional) Card provides details about a card kind
                of note.
-        :param str transaction_id: (optional) The transaction id for the request in
-               uuid v4 format.
+        :param str transaction_id: (optional) The transaction ID for the request in
+               UUID v4 format.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `ApiNote` object
@@ -467,7 +544,7 @@ class FindingsV1(BaseService):
         if section is not None:
             section = convert_model(section)
         headers = {
-            'Transaction-Id': transaction_id
+            'transaction_id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -517,14 +594,16 @@ class FindingsV1(BaseService):
         **kwargs
     ) -> DetailedResponse:
         """
-        Deletes the given `Note` from the system.
+        Delete a note.
 
-        :param str provider_id: First part of note `name`:
-               providers/{provider_id}/notes/{note_id}.
+        Delete a note with the ID and provider ID that you specify.
+
+        :param str provider_id: Part of the parent. This field contains the
+               provider ID. For example: providers/{provider_id}.
         :param str note_id: Second part of note `name`:
                providers/{provider_id}/notes/{note_id}.
-        :param str transaction_id: (optional) The transaction id for the request in
-               uuid v4 format.
+        :param str transaction_id: (optional) The transaction ID for the request in
+               UUID v4 format.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse
@@ -535,7 +614,7 @@ class FindingsV1(BaseService):
         if note_id is None:
             raise ValueError('note_id must be provided')
         headers = {
-            'Transaction-Id': transaction_id
+            'transaction_id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -566,14 +645,16 @@ class FindingsV1(BaseService):
         **kwargs
     ) -> DetailedResponse:
         """
-        Gets the `Note` attached to the given `Occurrence`.
+        Get a note by occurrence.
 
-        :param str provider_id: First part of occurrence `name`:
-               providers/{provider_id}/occurrences/{occurrence_id}.
+        Get a note that is associated with the occurrence ID that you specify.
+
+        :param str provider_id: Part of the parent. This field contains the
+               provider ID. For example: providers/{provider_id}.
         :param str occurrence_id: Second part of occurrence `name`:
                providers/{provider_id}/occurrences/{occurrence_id}.
-        :param str transaction_id: (optional) The transaction id for the request in
-               uuid v4 format.
+        :param str transaction_id: (optional) The transaction ID for the request in
+               UUID v4 format.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `ApiNote` object
@@ -584,7 +665,7 @@ class FindingsV1(BaseService):
         if occurrence_id is None:
             raise ValueError('occurrence_id must be provided')
         headers = {
-            'Transaction-Id': transaction_id
+            'transaction_id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -607,7 +688,7 @@ class FindingsV1(BaseService):
         return response
 
     #########################
-    # findingsOccurrences
+    # occurrences
     #########################
 
 
@@ -623,20 +704,24 @@ class FindingsV1(BaseService):
         finding: 'Finding' = None,
         kpi: 'Kpi' = None,
         reference_data: object = None,
-        replace_if_exists: bool = None,
         transaction_id: str = None,
+        replace_if_exists: bool = None,
         **kwargs
     ) -> DetailedResponse:
         """
-        Creates a new `Occurrence`. Use this method to create `Occurrences` for a resource.
+        Create an occurrence.
 
-        :param str provider_id: Part of `parent`. This contains the provider_id for
-               example: providers/{provider_id}.
+        Create an occurrence to denote the existence of a particular type of finding.
+        An occurrence describes provider-specific details of a note and contains
+        vulnerability details, remediation steps, and other general information.
+
+        :param str provider_id: Part of the parent. This field contains the
+               provider ID. For example: providers/{provider_id}.
         :param str note_name: An analysis note associated with this image, in the
                form "{account_id}/providers/{provider_id}/notes/{note_id}" This field can
                be used as a filter in list requests.
-        :param str kind: This must be 1&#58;1 with members of our oneofs, it can be
-               used for filtering Note and Occurrence on their kind.
+        :param str kind: The type of note. Use this field to filter notes and
+               occurences by kind.
                 - FINDING&#58; The note and occurrence represent a finding.
                 - KPI&#58; The note and occurrence represent a KPI value.
                 - CARD&#58; The note represents a card showing findings and related metric
@@ -657,10 +742,10 @@ class FindingsV1(BaseService):
         :param Kpi kpi: (optional) Kpi provides details about a KPI occurrence.
         :param object reference_data: (optional) Additional data for the finding,
                like AT event etc.
-        :param bool replace_if_exists: (optional) It allows replacing an existing
-               occurrence when set to true.
-        :param str transaction_id: (optional) The transaction id for the request in
-               uuid v4 format.
+        :param str transaction_id: (optional) The transaction ID for the request in
+               UUID v4 format.
+        :param bool replace_if_exists: (optional) When set to true, an existing
+               occurrence is replaced rather than duplicated.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `ApiOccurrence` object
@@ -681,8 +766,8 @@ class FindingsV1(BaseService):
         if kpi is not None:
             kpi = convert_model(kpi)
         headers = {
-            'Replace-If-Exists': replace_if_exists,
-            'Transaction-Id': transaction_id
+            'transaction_id': transaction_id,
+            'Replace-If-Exists': replace_if_exists
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -730,14 +815,16 @@ class FindingsV1(BaseService):
         **kwargs
     ) -> DetailedResponse:
         """
-        Lists active `Occurrences` for a given provider matching the filters.
+        List occurrences.
 
-        :param str provider_id: Part of `parent`. This contains the provider_id for
-               example: providers/{provider_id}.
-        :param str transaction_id: (optional) The transaction id for the request in
-               uuid v4 format.
-        :param int page_size: (optional) Number of occurrences to return in the
-               list.
+        List all of the occurrences that are associated with the provider ID that you
+        specify.
+
+        :param str provider_id: Part of the parent. This field contains the
+               provider ID. For example: providers/{provider_id}.
+        :param str transaction_id: (optional) The transaction ID for the request in
+               UUID v4 format.
+        :param int page_size: (optional) Number of notes to return in the list.
         :param str page_token: (optional) Token to provide to skip to a particular
                spot in the list.
         :param dict headers: A `dict` containing the request headers
@@ -748,7 +835,7 @@ class FindingsV1(BaseService):
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         headers = {
-            'Transaction-Id': transaction_id
+            'transaction_id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -787,14 +874,16 @@ class FindingsV1(BaseService):
         **kwargs
     ) -> DetailedResponse:
         """
-        Lists `Occurrences` referencing the specified `Note`. Use this method to get all occurrences referencing your `Note` across all your customer providers.
+        List occurrences by note.
 
-        :param str provider_id: First part of note `name`:
-               providers/{provider_id}/notes/{note_id}.
+        Get a list of occurrences that are associated with a specific note.
+
+        :param str provider_id: Part of the parent. This field contains the
+               provider ID. For example: providers/{provider_id}.
         :param str note_id: Second part of note `name`:
                providers/{provider_id}/notes/{note_id}.
-        :param str transaction_id: (optional) The transaction id for the request in
-               uuid v4 format.
+        :param str transaction_id: (optional) The transaction ID for the request in
+               UUID v4 format.
         :param int page_size: (optional) Number of notes to return in the list.
         :param str page_token: (optional) Token to provide to skip to a particular
                spot in the list.
@@ -808,7 +897,7 @@ class FindingsV1(BaseService):
         if note_id is None:
             raise ValueError('note_id must be provided')
         headers = {
-            'Transaction-Id': transaction_id
+            'transaction_id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -845,14 +934,16 @@ class FindingsV1(BaseService):
         **kwargs
     ) -> DetailedResponse:
         """
-        Returns the requested `Occurrence`.
+        Get a specific occurrence.
 
-        :param str provider_id: First part of occurrence `name`:
-               providers/{provider_id}/occurrences/{occurrence_id}.
+        Get the details of a specific occurrence by specifying the ID and provider ID.
+
+        :param str provider_id: Part of the parent. This field contains the
+               provider ID. For example: providers/{provider_id}.
         :param str occurrence_id: Second part of occurrence `name`:
                providers/{provider_id}/occurrences/{occurrence_id}.
-        :param str transaction_id: (optional) The transaction id for the request in
-               uuid v4 format.
+        :param str transaction_id: (optional) The transaction ID for the request in
+               UUID v4 format.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `ApiListOccurrencesResponse` object
@@ -863,7 +954,7 @@ class FindingsV1(BaseService):
         if occurrence_id is None:
             raise ValueError('occurrence_id must be provided')
         headers = {
-            'Transaction-Id': transaction_id
+            'transaction_id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -903,17 +994,19 @@ class FindingsV1(BaseService):
         **kwargs
     ) -> DetailedResponse:
         """
-        Updates an existing `Occurrence`.
+        Update an occurrence.
 
-        :param str provider_id: First part of occurrence `name`:
-               providers/{provider_id}/occurrences/{occurrence_id}.
+        Update an occurrence that already exists in your account.
+
+        :param str provider_id: Part of the parent. This field contains the
+               provider ID. For example: providers/{provider_id}.
         :param str occurrence_id: Second part of occurrence `name`:
                providers/{provider_id}/occurrences/{occurrence_id}.
         :param str note_name: An analysis note associated with this image, in the
                form "{account_id}/providers/{provider_id}/notes/{note_id}" This field can
                be used as a filter in list requests.
-        :param str kind: This must be 1&#58;1 with members of our oneofs, it can be
-               used for filtering Note and Occurrence on their kind.
+        :param str kind: The type of note. Use this field to filter notes and
+               occurences by kind.
                 - FINDING&#58; The note and occurrence represent a finding.
                 - KPI&#58; The note and occurrence represent a KPI value.
                 - CARD&#58; The note represents a card showing findings and related metric
@@ -934,8 +1027,8 @@ class FindingsV1(BaseService):
         :param Kpi kpi: (optional) Kpi provides details about a KPI occurrence.
         :param object reference_data: (optional) Additional data for the finding,
                like AT event etc.
-        :param str transaction_id: (optional) The transaction id for the request in
-               uuid v4 format.
+        :param str transaction_id: (optional) The transaction ID for the request in
+               UUID v4 format.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `ApiOccurrence` object
@@ -958,7 +1051,7 @@ class FindingsV1(BaseService):
         if kpi is not None:
             kpi = convert_model(kpi)
         headers = {
-            'Transaction-Id': transaction_id
+            'transaction_id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -1005,14 +1098,16 @@ class FindingsV1(BaseService):
         **kwargs
     ) -> DetailedResponse:
         """
-        Deletes the given `Occurrence` from the system.
+        Delete an occurrence.
 
-        :param str provider_id: First part of occurrence `name`:
-               providers/{provider_id}/notes/{occurrence_id}.
+        Delete an occurrence by specifying the occurrence ID and provider ID.
+
+        :param str provider_id: Part of the parent. This field contains the
+               provider ID. For example: providers/{provider_id}.
         :param str occurrence_id: Second part of occurrence `name`:
-               providers/{provider_id}/notes/{occurrence_id}.
-        :param str transaction_id: (optional) The transaction id for the request in
-               uuid v4 format.
+               providers/{provider_id}/occurrences/{occurrence_id}.
+        :param str transaction_id: (optional) The transaction ID for the request in
+               UUID v4 format.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse
@@ -1023,7 +1118,7 @@ class FindingsV1(BaseService):
         if occurrence_id is None:
             raise ValueError('occurrence_id must be provided')
         headers = {
-            'Transaction-Id': transaction_id
+            'transaction_id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -1041,69 +1136,6 @@ class FindingsV1(BaseService):
         request = self.prepare_request(method='DELETE',
                                        url=url,
                                        headers=headers)
-
-        response = self.send(request)
-        return response
-
-    #########################
-    # findingsProviders
-    #########################
-
-
-    def list_providers(self,
-        *,
-        transaction_id: str = None,
-        limit: int = None,
-        skip: int = None,
-        start_provider_id: str = None,
-        end_provider_id: str = None,
-        **kwargs
-    ) -> DetailedResponse:
-        """
-        Lists all `Providers` for a given account id.
-
-        :param str transaction_id: (optional) The transaction id for the request in
-               uuid v4 format.
-        :param int limit: (optional) Limit the number of the returned documents to
-               the specified number.
-        :param int skip: (optional) The offset is the index of the item from which
-               you want to start returning data from. Default is 0.
-        :param str start_provider_id: (optional) The first provider_id to include
-               in the result (sorted in ascending order). Ignored if not provided.
-        :param str end_provider_id: (optional) The last provider_id to include in
-               the result (sorted in ascending order). Ignored if not provided.
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `ApiListProvidersResponse` object
-        """
-
-        headers = {
-            'Transaction-Id': transaction_id
-        }
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='list_providers')
-        headers.update(sdk_headers)
-
-        params = {
-            'limit': limit,
-            'skip': skip,
-            'start_provider_id': start_provider_id,
-            'end_provider_id': end_provider_id
-        }
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-        headers['Accept'] = 'application/json'
-
-        path_param_keys = ['account_id']
-        path_param_values = self.encode_path_vars(self.account_id)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/v1/{account_id}/providers'.format(**path_param_dict)
-        request = self.prepare_request(method='GET',
-                                       url=url,
-                                       headers=headers,
-                                       params=params)
 
         response = self.send(request)
         return response
@@ -2496,13 +2528,13 @@ class ApiListOccurrencesResponse():
 
 class ApiListProvidersResponse():
     """
-    Response including listed providers.
+    A list of providers is returned.
 
     :attr List[ApiProvider] providers: (optional) The providers requested.
     :attr int limit: (optional) The number of elements returned in the current
-          instance. Default is 200.
+          instance. The default is 200.
     :attr int skip: (optional) The offset is the index of the item from which you
-          want to start returning data from. Default is 0.
+          want to start returning data from. The default is 0.
     :attr int total_count: (optional) The total number of providers available.
     """
 
@@ -2517,9 +2549,9 @@ class ApiListProvidersResponse():
 
         :param List[ApiProvider] providers: (optional) The providers requested.
         :param int limit: (optional) The number of elements returned in the current
-               instance. Default is 200.
+               instance. The default is 200.
         :param int skip: (optional) The offset is the index of the item from which
-               you want to start returning data from. Default is 0.
+               you want to start returning data from. The default is 0.
         :param int total_count: (optional) The total number of providers available.
         """
         self.providers = providers
@@ -2579,12 +2611,12 @@ class ApiListProvidersResponse():
 
 class ApiNote():
     """
-    Provides a detailed description of a `Note`.
+    Provides a detailed description of a note.
 
-    :attr str short_description: A one sentence description of this `Note`.
-    :attr str long_description: A detailed description of this `Note`.
-    :attr str kind: This must be 1&#58;1 with members of our oneofs, it can be used
-          for filtering Note and Occurrence on their kind.
+    :attr str short_description: A one sentence description of your note.
+    :attr str long_description: A more detailed description of your note.
+    :attr str kind: The type of note. Use this field to filter notes and occurences
+          by kind.
            - FINDING&#58; The note and occurrence represent a finding.
            - KPI&#58; The note and occurrence represent a KPI value.
            - CARD&#58; The note represents a card showing findings and related metric
@@ -2592,16 +2624,15 @@ class ApiNote():
            - CARD_CONFIGURED&#58; The note represents a card configured for a user
           account.
            - SECTION&#58; The note represents a section in a dashboard.
-    :attr List[ApiNoteRelatedUrl] related_url: (optional) URLs associated with this
-          note.
+    :attr List[ApiNoteRelatedUrl] related_url: (optional)
     :attr datetime expiration_time: (optional) Time of expiration for this note,
           null if note does not expire.
     :attr datetime create_time: (optional) Output only. The time this note was
           created. This field can be used as a filter in list requests.
     :attr datetime update_time: (optional) Output only. The time this note was last
           updated. This field can be used as a filter in list requests.
-    :attr str id: The id of the note.
-    :attr bool shared: (optional) True if this `Note` can be shared by multiple
+    :attr str id: The ID of the note.
+    :attr bool shared: (optional) True if this note can be shared by multiple
           accounts.
     :attr Reporter reported_by: The entity reporting a note.
     :attr FindingType finding: (optional) FindingType provides details about a
@@ -2631,10 +2662,10 @@ class ApiNote():
         """
         Initialize a ApiNote object.
 
-        :param str short_description: A one sentence description of this `Note`.
-        :param str long_description: A detailed description of this `Note`.
-        :param str kind: This must be 1&#58;1 with members of our oneofs, it can be
-               used for filtering Note and Occurrence on their kind.
+        :param str short_description: A one sentence description of your note.
+        :param str long_description: A more detailed description of your note.
+        :param str kind: The type of note. Use this field to filter notes and
+               occurences by kind.
                 - FINDING&#58; The note and occurrence represent a finding.
                 - KPI&#58; The note and occurrence represent a KPI value.
                 - CARD&#58; The note represents a card showing findings and related metric
@@ -2642,14 +2673,13 @@ class ApiNote():
                 - CARD_CONFIGURED&#58; The note represents a card configured for a user
                account.
                 - SECTION&#58; The note represents a section in a dashboard.
-        :param str id: The id of the note.
+        :param str id: The ID of the note.
         :param Reporter reported_by: The entity reporting a note.
-        :param List[ApiNoteRelatedUrl] related_url: (optional) URLs associated with
-               this note.
+        :param List[ApiNoteRelatedUrl] related_url: (optional)
         :param datetime expiration_time: (optional) Time of expiration for this
                note, null if note does not expire.
-        :param bool shared: (optional) True if this `Note` can be shared by
-               multiple accounts.
+        :param bool shared: (optional) True if this note can be shared by multiple
+               accounts.
         :param FindingType finding: (optional) FindingType provides details about a
                finding note.
         :param KpiType kpi: (optional) KpiType provides details about a KPI note.
@@ -2775,8 +2805,7 @@ class ApiNote():
 
     class KindEnum(str, Enum):
         """
-        This must be 1&#58;1 with members of our oneofs, it can be used for filtering Note
-        and Occurrence on their kind.
+        The type of note. Use this field to filter notes and occurences by kind.
          - FINDING&#58; The note and occurrence represent a finding.
          - KPI&#58; The note and occurrence represent a KPI value.
          - CARD&#58; The note represents a card showing findings and related metric
@@ -2796,7 +2825,7 @@ class ApiNoteRelatedUrl():
     Metadata for any related URL information.
 
     :attr str label: Label to describe usage of the URL.
-    :attr str url: Specific URL to associate with the note.
+    :attr str url: The URL that you want to associate with the note.
     """
 
     def __init__(self,
@@ -2806,7 +2835,7 @@ class ApiNoteRelatedUrl():
         Initialize a ApiNoteRelatedUrl object.
 
         :param str label: Label to describe usage of the URL.
-        :param str url: Specific URL to associate with the note.
+        :param str url: The URL that you want to associate with the note.
         """
         self.label = label
         self.url = url
@@ -2868,8 +2897,8 @@ class ApiOccurrence():
     :attr str note_name: An analysis note associated with this image, in the form
           "{account_id}/providers/{provider_id}/notes/{note_id}" This field can be used as
           a filter in list requests.
-    :attr str kind: This must be 1&#58;1 with members of our oneofs, it can be used
-          for filtering Note and Occurrence on their kind.
+    :attr str kind: The type of note. Use this field to filter notes and occurences
+          by kind.
            - FINDING&#58; The note and occurrence represent a finding.
            - KPI&#58; The note and occurrence represent a KPI value.
            - CARD&#58; The note represents a card showing findings and related metric
@@ -2911,8 +2940,8 @@ class ApiOccurrence():
         :param str note_name: An analysis note associated with this image, in the
                form "{account_id}/providers/{provider_id}/notes/{note_id}" This field can
                be used as a filter in list requests.
-        :param str kind: This must be 1&#58;1 with members of our oneofs, it can be
-               used for filtering Note and Occurrence on their kind.
+        :param str kind: The type of note. Use this field to filter notes and
+               occurences by kind.
                 - FINDING&#58; The note and occurrence represent a finding.
                 - KPI&#58; The note and occurrence represent a KPI value.
                 - CARD&#58; The note represents a card showing findings and related metric
@@ -3032,8 +3061,7 @@ class ApiOccurrence():
 
     class KindEnum(str, Enum):
         """
-        This must be 1&#58;1 with members of our oneofs, it can be used for filtering Note
-        and Occurrence on their kind.
+        The type of note. Use this field to filter notes and occurences by kind.
          - FINDING&#58; The note and occurrence represent a finding.
          - KPI&#58; The note and occurrence represent a KPI value.
          - CARD&#58; The note represents a card showing findings and related metric
@@ -3050,11 +3078,11 @@ class ApiOccurrence():
 
 class ApiProvider():
     """
-    Provides a detailed description of a `Provider`.
+    Provides a detailed description of a provider.
 
     :attr str name: The name of the provider in the form
-          "{account_id}/providers/{provider_id}".
-    :attr str id: The id of the provider.
+          '{account_id}/providers/{provider_id}'.
+    :attr str id: The ID of the provider.
     """
 
     def __init__(self,
@@ -3064,8 +3092,8 @@ class ApiProvider():
         Initialize a ApiProvider object.
 
         :param str name: The name of the provider in the form
-               "{account_id}/providers/{provider_id}".
-        :param str id: The id of the provider.
+               '{account_id}/providers/{provider_id}'.
+        :param str id: The ID of the provider.
         """
         self.name = name
         self.id = id
