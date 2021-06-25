@@ -40,7 +40,7 @@ _base_url = 'https://us-south.secadvisor.cloud.ibm.com/findings'
 _service.set_service_url(_base_url)
 
 ##############################################################################
-# Start of Service: FindingsGraph
+# Start of Service: Graph
 ##############################################################################
 # region
 
@@ -141,13 +141,117 @@ class TestPostGraph():
 
 # endregion
 ##############################################################################
-# End of Service: FindingsGraph
+# End of Service: Graph
 ##############################################################################
 
 ##############################################################################
-# Start of Service: FindingsNotes
+# Start of Service: Notes
 ##############################################################################
 # region
+
+class TestListProviders():
+    """
+    Test Class for list_providers
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_list_providers_all_params(self):
+        """
+        list_providers()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/v1/testString/providers')
+        mock_response = '{"providers": [{"name": "name", "id": "id"}], "limit": 5, "skip": 4, "total_count": 11}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        transaction_id = 'testString'
+        limit = 2
+        skip = 38
+        start_provider_id = 'testString'
+        end_provider_id = 'testString'
+
+        # Invoke method
+        response = _service.list_providers(
+            transaction_id=transaction_id,
+            limit=limit,
+            skip=skip,
+            start_provider_id=start_provider_id,
+            end_provider_id=end_provider_id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'limit={}'.format(limit) in query_string
+        assert 'skip={}'.format(skip) in query_string
+        assert 'start_provider_id={}'.format(start_provider_id) in query_string
+        assert 'end_provider_id={}'.format(end_provider_id) in query_string
+
+
+    @responses.activate
+    def test_list_providers_required_params(self):
+        """
+        test_list_providers_required_params()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/v1/testString/providers')
+        mock_response = '{"providers": [{"name": "name", "id": "id"}], "limit": 5, "skip": 4, "total_count": 11}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Invoke method
+        response = _service.list_providers()
+
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+
+    @responses.activate
+    def test_list_providers_value_error(self):
+        """
+        test_list_providers_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/v1/testString/providers')
+        mock_response = '{"providers": [{"name": "name", "id": "id"}], "limit": 5, "skip": 4, "total_count": 11}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.list_providers(**req_copy)
+
+
 
 class TestCreateNote():
     """
@@ -1297,11 +1401,11 @@ class TestGetOccurrenceNote():
 
 # endregion
 ##############################################################################
-# End of Service: FindingsNotes
+# End of Service: Notes
 ##############################################################################
 
 ##############################################################################
-# Start of Service: FindingsOccurrences
+# Start of Service: Occurrences
 ##############################################################################
 # region
 
@@ -1394,8 +1498,8 @@ class TestCreateOccurrence():
         finding = finding_model
         kpi = kpi_model
         reference_data = { 'foo': 'bar' }
-        replace_if_exists = True
         transaction_id = 'testString'
+        replace_if_exists = True
 
         # Invoke method
         response = _service.create_occurrence(
@@ -1409,8 +1513,8 @@ class TestCreateOccurrence():
             finding=finding,
             kpi=kpi,
             reference_data=reference_data,
-            replace_if_exists=replace_if_exists,
             transaction_id=transaction_id,
+            replace_if_exists=replace_if_exists,
             headers={}
         )
 
@@ -2382,121 +2486,7 @@ class TestDeleteOccurrence():
 
 # endregion
 ##############################################################################
-# End of Service: FindingsOccurrences
-##############################################################################
-
-##############################################################################
-# Start of Service: FindingsProviders
-##############################################################################
-# region
-
-class TestListProviders():
-    """
-    Test Class for list_providers
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_list_providers_all_params(self):
-        """
-        list_providers()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/v1/testString/providers')
-        mock_response = '{"providers": [{"name": "name", "id": "id"}], "limit": 5, "skip": 4, "total_count": 11}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        transaction_id = 'testString'
-        limit = 2
-        skip = 38
-        start_provider_id = 'testString'
-        end_provider_id = 'testString'
-
-        # Invoke method
-        response = _service.list_providers(
-            transaction_id=transaction_id,
-            limit=limit,
-            skip=skip,
-            start_provider_id=start_provider_id,
-            end_provider_id=end_provider_id,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-        # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
-        query_string = urllib.parse.unquote_plus(query_string)
-        assert 'limit={}'.format(limit) in query_string
-        assert 'skip={}'.format(skip) in query_string
-        assert 'start_provider_id={}'.format(start_provider_id) in query_string
-        assert 'end_provider_id={}'.format(end_provider_id) in query_string
-
-
-    @responses.activate
-    def test_list_providers_required_params(self):
-        """
-        test_list_providers_required_params()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/v1/testString/providers')
-        mock_response = '{"providers": [{"name": "name", "id": "id"}], "limit": 5, "skip": 4, "total_count": 11}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Invoke method
-        response = _service.list_providers()
-
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-
-
-    @responses.activate
-    def test_list_providers_value_error(self):
-        """
-        test_list_providers_value_error()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/v1/testString/providers')
-        mock_response = '{"providers": [{"name": "name", "id": "id"}], "limit": 5, "skip": 4, "total_count": 11}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Pass in all but one required param and check for a ValueError
-        req_param_dict = {
-        }
-        for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
-            with pytest.raises(ValueError):
-                _service.list_providers(**req_copy)
-
-
-
-# endregion
-##############################################################################
-# End of Service: FindingsProviders
+# End of Service: Occurrences
 ##############################################################################
 
 
@@ -2504,7 +2494,7 @@ class TestListProviders():
 # Start of Model Tests
 ##############################################################################
 # region
-class TestCard():
+class TestModel_Card():
     """
     Test Class for Card
     """
@@ -2555,7 +2545,7 @@ class TestCard():
         card_model_json2 = card_model.to_dict()
         assert card_model_json2 == card_model_json
 
-class TestContext():
+class TestModel_Context():
     """
     Test Class for Context
     """
@@ -2593,7 +2583,7 @@ class TestContext():
         context_model_json2 = context_model.to_dict()
         assert context_model_json2 == context_model_json
 
-class TestDataTransferred():
+class TestModel_DataTransferred():
     """
     Test Class for DataTransferred
     """
@@ -2625,7 +2615,7 @@ class TestDataTransferred():
         data_transferred_model_json2 = data_transferred_model.to_dict()
         assert data_transferred_model_json2 == data_transferred_model_json
 
-class TestFinding():
+class TestModel_Finding():
     """
     Test Class for Finding
     """
@@ -2680,7 +2670,7 @@ class TestFinding():
         finding_model_json2 = finding_model.to_dict()
         assert finding_model_json2 == finding_model_json
 
-class TestFindingType():
+class TestModel_FindingType():
     """
     Test Class for FindingType
     """
@@ -2716,7 +2706,7 @@ class TestFindingType():
         finding_type_model_json2 = finding_type_model.to_dict()
         assert finding_type_model_json2 == finding_type_model_json
 
-class TestKpi():
+class TestModel_Kpi():
     """
     Test Class for Kpi
     """
@@ -2746,7 +2736,7 @@ class TestKpi():
         kpi_model_json2 = kpi_model.to_dict()
         assert kpi_model_json2 == kpi_model_json
 
-class TestKpiType():
+class TestModel_KpiType():
     """
     Test Class for KpiType
     """
@@ -2775,7 +2765,7 @@ class TestKpiType():
         kpi_type_model_json2 = kpi_type_model.to_dict()
         assert kpi_type_model_json2 == kpi_type_model_json
 
-class TestNetworkConnection():
+class TestModel_NetworkConnection():
     """
     Test Class for NetworkConnection
     """
@@ -2813,7 +2803,7 @@ class TestNetworkConnection():
         network_connection_model_json2 = network_connection_model.to_dict()
         assert network_connection_model_json2 == network_connection_model_json
 
-class TestRemediationStep():
+class TestModel_RemediationStep():
     """
     Test Class for RemediationStep
     """
@@ -2843,7 +2833,7 @@ class TestRemediationStep():
         remediation_step_model_json2 = remediation_step_model.to_dict()
         assert remediation_step_model_json2 == remediation_step_model_json
 
-class TestReporter():
+class TestModel_Reporter():
     """
     Test Class for Reporter
     """
@@ -2874,7 +2864,7 @@ class TestReporter():
         reporter_model_json2 = reporter_model.to_dict()
         assert reporter_model_json2 == reporter_model_json
 
-class TestSection():
+class TestModel_Section():
     """
     Test Class for Section
     """
@@ -2904,7 +2894,7 @@ class TestSection():
         section_model_json2 = section_model.to_dict()
         assert section_model_json2 == section_model_json
 
-class TestSocketAddress():
+class TestModel_SocketAddress():
     """
     Test Class for SocketAddress
     """
@@ -2934,7 +2924,7 @@ class TestSocketAddress():
         socket_address_model_json2 = socket_address_model.to_dict()
         assert socket_address_model_json2 == socket_address_model_json
 
-class TestApiListNoteOccurrencesResponse():
+class TestModel_ApiListNoteOccurrencesResponse():
     """
     Test Class for ApiListNoteOccurrencesResponse
     """
@@ -3022,7 +3012,7 @@ class TestApiListNoteOccurrencesResponse():
         api_list_note_occurrences_response_model_json2 = api_list_note_occurrences_response_model.to_dict()
         assert api_list_note_occurrences_response_model_json2 == api_list_note_occurrences_response_model_json
 
-class TestApiListNotesResponse():
+class TestModel_ApiListNotesResponse():
     """
     Test Class for ApiListNotesResponse
     """
@@ -3117,7 +3107,7 @@ class TestApiListNotesResponse():
         api_list_notes_response_model_json2 = api_list_notes_response_model.to_dict()
         assert api_list_notes_response_model_json2 == api_list_notes_response_model_json
 
-class TestApiListOccurrencesResponse():
+class TestModel_ApiListOccurrencesResponse():
     """
     Test Class for ApiListOccurrencesResponse
     """
@@ -3205,7 +3195,7 @@ class TestApiListOccurrencesResponse():
         api_list_occurrences_response_model_json2 = api_list_occurrences_response_model.to_dict()
         assert api_list_occurrences_response_model_json2 == api_list_occurrences_response_model_json
 
-class TestApiListProvidersResponse():
+class TestModel_ApiListProvidersResponse():
     """
     Test Class for ApiListProvidersResponse
     """
@@ -3243,7 +3233,7 @@ class TestApiListProvidersResponse():
         api_list_providers_response_model_json2 = api_list_providers_response_model.to_dict()
         assert api_list_providers_response_model_json2 == api_list_providers_response_model_json
 
-class TestApiNote():
+class TestModel_ApiNote():
     """
     Test Class for ApiNote
     """
@@ -3334,7 +3324,7 @@ class TestApiNote():
         api_note_model_json2 = api_note_model.to_dict()
         assert api_note_model_json2 == api_note_model_json
 
-class TestApiNoteRelatedUrl():
+class TestModel_ApiNoteRelatedUrl():
     """
     Test Class for ApiNoteRelatedUrl
     """
@@ -3364,7 +3354,7 @@ class TestApiNoteRelatedUrl():
         api_note_related_url_model_json2 = api_note_related_url_model.to_dict()
         assert api_note_related_url_model_json2 == api_note_related_url_model_json
 
-class TestApiOccurrence():
+class TestModel_ApiOccurrence():
     """
     Test Class for ApiOccurrence
     """
@@ -3448,7 +3438,7 @@ class TestApiOccurrence():
         api_occurrence_model_json2 = api_occurrence_model.to_dict()
         assert api_occurrence_model_json2 == api_occurrence_model_json
 
-class TestApiProvider():
+class TestModel_ApiProvider():
     """
     Test Class for ApiProvider
     """
@@ -3478,7 +3468,7 @@ class TestApiProvider():
         api_provider_model_json2 = api_provider_model.to_dict()
         assert api_provider_model_json2 == api_provider_model_json
 
-class TestCardElementBreakdownCardElement():
+class TestModel_CardElementBreakdownCardElement():
     """
     Test Class for CardElementBreakdownCardElement
     """
@@ -3517,7 +3507,7 @@ class TestCardElementBreakdownCardElement():
         card_element_breakdown_card_element_model_json2 = card_element_breakdown_card_element_model.to_dict()
         assert card_element_breakdown_card_element_model_json2 == card_element_breakdown_card_element_model_json
 
-class TestCardElementNumericCardElement():
+class TestModel_CardElementNumericCardElement():
     """
     Test Class for CardElementNumericCardElement
     """
@@ -3553,7 +3543,7 @@ class TestCardElementNumericCardElement():
         card_element_numeric_card_element_model_json2 = card_element_numeric_card_element_model.to_dict()
         assert card_element_numeric_card_element_model_json2 == card_element_numeric_card_element_model_json
 
-class TestCardElementTimeSeriesCardElement():
+class TestModel_CardElementTimeSeriesCardElement():
     """
     Test Class for CardElementTimeSeriesCardElement
     """
@@ -3593,7 +3583,7 @@ class TestCardElementTimeSeriesCardElement():
         card_element_time_series_card_element_model_json2 = card_element_time_series_card_element_model.to_dict()
         assert card_element_time_series_card_element_model_json2 == card_element_time_series_card_element_model_json
 
-class TestNumericCardElementValueType():
+class TestModel_NumericCardElementValueType():
     """
     Test Class for NumericCardElementValueType
     """
@@ -3621,7 +3611,7 @@ class TestNumericCardElementValueType():
         numeric_card_element_value_type_model_json2 = numeric_card_element_value_type_model.to_dict()
         assert numeric_card_element_value_type_model_json2 == numeric_card_element_value_type_model_json
 
-class TestValueTypeFindingCountValueType():
+class TestModel_ValueTypeFindingCountValueType():
     """
     Test Class for ValueTypeFindingCountValueType
     """
@@ -3652,7 +3642,7 @@ class TestValueTypeFindingCountValueType():
         value_type_finding_count_value_type_model_json2 = value_type_finding_count_value_type_model.to_dict()
         assert value_type_finding_count_value_type_model_json2 == value_type_finding_count_value_type_model_json
 
-class TestValueTypeKpiValueType():
+class TestModel_ValueTypeKpiValueType():
     """
     Test Class for ValueTypeKpiValueType
     """
