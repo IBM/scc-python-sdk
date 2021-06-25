@@ -1,3 +1,11 @@
+## [0.0.15](https://github.com/IBM/scc-python-sdk/compare/v0.0.14...v0.0.15) (2021-06-25)
+
+
+### Bug Fixes
+
+* **SDK:** regeneration after content review ([fb8f030](https://github.com/IBM/scc-python-sdk/commit/fb8f0304ec143013699a5a257adbc7f8f14448be))
+* **SDK:** TransactionID parameter to comply with findingsapi ([80cacfa](https://github.com/IBM/scc-python-sdk/commit/80cacfadbb9ca32be6359852666b3b9b0fc1970e))
+
 ## [0.0.14](https://github.com/IBM/scc-python-sdk/compare/v0.0.13...v0.0.14) (2021-06-21)
 
 
