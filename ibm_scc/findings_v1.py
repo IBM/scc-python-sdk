@@ -121,7 +121,7 @@ class FindingsV1(BaseService):
             raise ValueError('body must be provided')
         headers = {
             'Content-Type': content_type,
-            'transaction_id': transaction_id
+            'Transaction-Id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -188,7 +188,7 @@ class FindingsV1(BaseService):
         """
 
         headers = {
-            'transaction_id': transaction_id
+            'Transaction-Id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -305,7 +305,7 @@ class FindingsV1(BaseService):
         if section is not None:
             section = convert_model(section)
         headers = {
-            'transaction_id': transaction_id
+            'Transaction-Id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -375,7 +375,7 @@ class FindingsV1(BaseService):
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         headers = {
-            'transaction_id': transaction_id
+            'Transaction-Id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -433,7 +433,7 @@ class FindingsV1(BaseService):
         if note_id is None:
             raise ValueError('note_id must be provided')
         headers = {
-            'transaction_id': transaction_id
+            'Transaction-Id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -544,7 +544,7 @@ class FindingsV1(BaseService):
         if section is not None:
             section = convert_model(section)
         headers = {
-            'transaction_id': transaction_id
+            'Transaction-Id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -614,7 +614,7 @@ class FindingsV1(BaseService):
         if note_id is None:
             raise ValueError('note_id must be provided')
         headers = {
-            'transaction_id': transaction_id
+            'Transaction-Id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -665,7 +665,7 @@ class FindingsV1(BaseService):
         if occurrence_id is None:
             raise ValueError('occurrence_id must be provided')
         headers = {
-            'transaction_id': transaction_id
+            'Transaction-Id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -766,7 +766,7 @@ class FindingsV1(BaseService):
         if kpi is not None:
             kpi = convert_model(kpi)
         headers = {
-            'transaction_id': transaction_id,
+            'Transaction-Id': transaction_id,
             'Replace-If-Exists': replace_if_exists
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
@@ -835,7 +835,7 @@ class FindingsV1(BaseService):
         if provider_id is None:
             raise ValueError('provider_id must be provided')
         headers = {
-            'transaction_id': transaction_id
+            'Transaction-Id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -897,7 +897,7 @@ class FindingsV1(BaseService):
         if note_id is None:
             raise ValueError('note_id must be provided')
         headers = {
-            'transaction_id': transaction_id
+            'Transaction-Id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -954,7 +954,7 @@ class FindingsV1(BaseService):
         if occurrence_id is None:
             raise ValueError('occurrence_id must be provided')
         headers = {
-            'transaction_id': transaction_id
+            'Transaction-Id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -1051,7 +1051,7 @@ class FindingsV1(BaseService):
         if kpi is not None:
             kpi = convert_model(kpi)
         headers = {
-            'transaction_id': transaction_id
+            'Transaction-Id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -1118,7 +1118,7 @@ class FindingsV1(BaseService):
         if occurrence_id is None:
             raise ValueError('occurrence_id must be provided')
         headers = {
-            'transaction_id': transaction_id
+            'Transaction-Id': transaction_id
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
