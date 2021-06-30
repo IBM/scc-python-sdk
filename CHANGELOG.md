@@ -1,3 +1,13 @@
+# [1.0.0](https://github.com/IBM/scc-python-sdk/compare/v0.0.15...v1.0.0) (2021-06-30)
+
+
+* Merge pull request #21 from IBM/major ([04bc0fa](https://github.com/IBM/scc-python-sdk/commit/04bc0fa87019807d88a6b266227854af1517404c)), closes [#21](https://github.com/IBM/scc-python-sdk/issues/21)
+
+
+### BREAKING CHANGES
+
+* Major release for GA
+
 ## [0.0.15](https://github.com/IBM/scc-python-sdk/compare/v0.0.14...v0.0.15) (2021-06-25)
 
 
