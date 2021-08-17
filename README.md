@@ -47,8 +47,8 @@ IBM Cloud services:
 
 Service Name | Module Name | Imported Class Name
 --- | --- | ---
-[Findings](https://cloud.ibm.com/apidocs/security-advisor/findings) | findings_v1 | FindingsV1
-[Notifications](https://cloud.ibm.com/apidocs/security-advisor/notifications) | notifications_v1 | NotificationsV1
+[Findings](https://cloud.ibm.com/apidocs/security-compliance/findings) | findings_v1 | FindingsV1
+[Notifications](https://cloud.ibm.com/apidocs/security-compliance/si-notifications) | notifications_v1 | NotificationsV1
 [Configuration Governance](https://cloud.ibm.com/apidocs/security-compliance/config) | configuration_governance_v1 | ConfigurationGovernanceV1
 
 ## Prerequisites
