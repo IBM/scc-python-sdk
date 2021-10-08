@@ -22,6 +22,7 @@ from ibm_cloud_sdk_core.authenticators.no_auth_authenticator import NoAuthAuthen
 from ibm_cloud_sdk_core.utils import datetime_to_string, string_to_datetime
 import inspect
 import json
+import os
 import pytest
 import re
 import requests
@@ -34,7 +35,7 @@ account_id = 'testString'
 _service = FindingsV1(
     authenticator=NoAuthAuthenticator(),
     account_id=account_id
-    )
+)
 
 _base_url = 'https://us-south.secadvisor.cloud.ibm.com/findings'
 _service.set_service_url(_base_url)
@@ -44,6 +45,49 @@ _service.set_service_url(_base_url)
 ##############################################################################
 # region
 
+class TestNewInstance():
+    """
+    Test Class for new_instance
+    """
+
+    def test_new_instance(self):
+        """
+        new_instance()
+        """
+        os.environ['TEST_SERVICE_AUTH_TYPE'] = 'noAuth'
+
+        service = FindingsV1.new_instance(
+            account_id=account_id,
+            service_name='TEST_SERVICE',
+        )
+
+        assert service is not None
+        assert isinstance(service, FindingsV1)
+
+    def test_new_instance_without_authenticator(self):
+        """
+        new_instance_without_authenticator()
+        """
+        with pytest.raises(ValueError, match='authenticator must be provided'):
+            service = FindingsV1.new_instance(
+                account_id=account_id,
+            )
+
+    def test_new_instance_without_required_params(self):
+        """
+        new_instance_without_required_params()
+        """
+        with pytest.raises(TypeError, match='new_instance\\(\\) missing \\d required positional arguments?: \'.*\''):
+            service = FindingsV1.new_instance()
+
+    def test_new_instance_required_param_none(self):
+        """
+        new_instance_required_param_none()
+        """
+        with pytest.raises(ValueError, match='account_id must be provided'):
+            service = FindingsV1.new_instance(
+                account_id=None,
+            )
 class TestPostGraph():
     """
     Test Class for post_graph
@@ -53,6 +97,8 @@ class TestPostGraph():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
         else:
@@ -87,6 +133,14 @@ class TestPostGraph():
         assert response.status_code == 200
         # Validate body params
 
+    def test_post_graph_all_params_with_retries(self):
+    	# Enable retries and run test_post_graph_all_params.
+    	_service.enable_retries()
+    	self.test_post_graph_all_params()
+
+    	# Disable retries and run test_post_graph_all_params.
+    	_service.disable_retries()
+    	self.test_post_graph_all_params()
 
     @responses.activate
     def test_post_graph_required_params(self):
@@ -113,6 +167,14 @@ class TestPostGraph():
         assert response.status_code == 200
         # Validate body params
 
+    def test_post_graph_required_params_with_retries(self):
+    	# Enable retries and run test_post_graph_required_params.
+    	_service.enable_retries()
+    	self.test_post_graph_required_params()
+
+    	# Disable retries and run test_post_graph_required_params.
+    	_service.disable_retries()
+    	self.test_post_graph_required_params()
 
     @responses.activate
     def test_post_graph_value_error(self):
@@ -138,6 +200,14 @@ class TestPostGraph():
                 _service.post_graph(**req_copy)
 
 
+    def test_post_graph_value_error_with_retries(self):
+    	# Enable retries and run test_post_graph_value_error.
+    	_service.enable_retries()
+    	self.test_post_graph_value_error()
+
+    	# Disable retries and run test_post_graph_value_error.
+    	_service.disable_retries()
+    	self.test_post_graph_value_error()
 
 # endregion
 ##############################################################################
@@ -149,6 +219,49 @@ class TestPostGraph():
 ##############################################################################
 # region
 
+class TestNewInstance():
+    """
+    Test Class for new_instance
+    """
+
+    def test_new_instance(self):
+        """
+        new_instance()
+        """
+        os.environ['TEST_SERVICE_AUTH_TYPE'] = 'noAuth'
+
+        service = FindingsV1.new_instance(
+            account_id=account_id,
+            service_name='TEST_SERVICE',
+        )
+
+        assert service is not None
+        assert isinstance(service, FindingsV1)
+
+    def test_new_instance_without_authenticator(self):
+        """
+        new_instance_without_authenticator()
+        """
+        with pytest.raises(ValueError, match='authenticator must be provided'):
+            service = FindingsV1.new_instance(
+                account_id=account_id,
+            )
+
+    def test_new_instance_without_required_params(self):
+        """
+        new_instance_without_required_params()
+        """
+        with pytest.raises(TypeError, match='new_instance\\(\\) missing \\d required positional arguments?: \'.*\''):
+            service = FindingsV1.new_instance()
+
+    def test_new_instance_required_param_none(self):
+        """
+        new_instance_required_param_none()
+        """
+        with pytest.raises(ValueError, match='account_id must be provided'):
+            service = FindingsV1.new_instance(
+                account_id=None,
+            )
 class TestListProviders():
     """
     Test Class for list_providers
@@ -158,6 +271,8 @@ class TestListProviders():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
         else:
@@ -205,6 +320,14 @@ class TestListProviders():
         assert 'start_provider_id={}'.format(start_provider_id) in query_string
         assert 'end_provider_id={}'.format(end_provider_id) in query_string
 
+    def test_list_providers_all_params_with_retries(self):
+    	# Enable retries and run test_list_providers_all_params.
+    	_service.enable_retries()
+    	self.test_list_providers_all_params()
+
+    	# Disable retries and run test_list_providers_all_params.
+    	_service.disable_retries()
+    	self.test_list_providers_all_params()
 
     @responses.activate
     def test_list_providers_required_params(self):
@@ -228,6 +351,14 @@ class TestListProviders():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_list_providers_required_params_with_retries(self):
+    	# Enable retries and run test_list_providers_required_params.
+    	_service.enable_retries()
+    	self.test_list_providers_required_params()
+
+    	# Disable retries and run test_list_providers_required_params.
+    	_service.disable_retries()
+    	self.test_list_providers_required_params()
 
     @responses.activate
     def test_list_providers_value_error(self):
@@ -252,6 +383,14 @@ class TestListProviders():
                 _service.list_providers(**req_copy)
 
 
+    def test_list_providers_value_error_with_retries(self):
+    	# Enable retries and run test_list_providers_value_error.
+    	_service.enable_retries()
+    	self.test_list_providers_value_error()
+
+    	# Disable retries and run test_list_providers_value_error.
+    	_service.disable_retries()
+    	self.test_list_providers_value_error()
 
 class TestCreateNote():
     """
@@ -262,6 +401,8 @@ class TestCreateNote():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
         else:
@@ -274,7 +415,7 @@ class TestCreateNote():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes')
-        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
+        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -304,20 +445,21 @@ class TestCreateNote():
 
         # Construct a dict representation of a KpiType model
         kpi_type_model = {}
+        kpi_type_model['Severity'] = 'MEDIUM'
         kpi_type_model['aggregation_type'] = 'SUM'
 
         # Construct a dict representation of a ValueTypeFindingCountValueType model
         value_type_model = {}
         value_type_model['kind'] = 'FINDING_COUNT'
         value_type_model['finding_note_names'] = ['testString']
-        value_type_model['text'] = 'testString'
+        value_type_model['text'] = 'label'
 
         # Construct a dict representation of a CardElementTimeSeriesCardElement model
         card_element_model = {}
         card_element_model['text'] = 'testString'
-        card_element_model['default_interval'] = 'testString'
+        card_element_model['default_interval'] = 'd'
         card_element_model['kind'] = 'TIME_SERIES'
-        card_element_model['default_time_range'] = '1d'
+        card_element_model['default_time_range'] = '4d'
         card_element_model['value_types'] = [value_type_model]
 
         # Construct a dict representation of a Card model
@@ -327,7 +469,7 @@ class TestCreateNote():
         card_model['subtitle'] = 'testString'
         card_model['order'] = 1
         card_model['finding_note_names'] = ['testString']
-        card_model['requires_configuration'] = True
+        card_model['requires_configuration'] = False
         card_model['badge_text'] = 'testString'
         card_model['badge_image'] = 'testString'
         card_model['elements'] = [card_element_model]
@@ -345,7 +487,6 @@ class TestCreateNote():
         id = 'testString'
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
-        expiration_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -362,7 +503,6 @@ class TestCreateNote():
             id,
             reported_by,
             related_url=related_url,
-            expiration_time=expiration_time,
             shared=shared,
             finding=finding,
             kpi=kpi,
@@ -383,13 +523,20 @@ class TestCreateNote():
         assert req_body['id'] == 'testString'
         assert req_body['reported_by'] == reporter_model
         assert req_body['related_url'] == [api_note_related_url_model]
-        assert req_body['expiration_time'] == "2019-01-01T12:00:00Z"
         assert req_body['shared'] == True
         assert req_body['finding'] == finding_type_model
         assert req_body['kpi'] == kpi_type_model
         assert req_body['card'] == card_model
         assert req_body['section'] == section_model
 
+    def test_create_note_all_params_with_retries(self):
+    	# Enable retries and run test_create_note_all_params.
+    	_service.enable_retries()
+    	self.test_create_note_all_params()
+
+    	# Disable retries and run test_create_note_all_params.
+    	_service.disable_retries()
+    	self.test_create_note_all_params()
 
     @responses.activate
     def test_create_note_required_params(self):
@@ -398,7 +545,7 @@ class TestCreateNote():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes')
-        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
+        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -428,20 +575,21 @@ class TestCreateNote():
 
         # Construct a dict representation of a KpiType model
         kpi_type_model = {}
+        kpi_type_model['Severity'] = 'MEDIUM'
         kpi_type_model['aggregation_type'] = 'SUM'
 
         # Construct a dict representation of a ValueTypeFindingCountValueType model
         value_type_model = {}
         value_type_model['kind'] = 'FINDING_COUNT'
         value_type_model['finding_note_names'] = ['testString']
-        value_type_model['text'] = 'testString'
+        value_type_model['text'] = 'label'
 
         # Construct a dict representation of a CardElementTimeSeriesCardElement model
         card_element_model = {}
         card_element_model['text'] = 'testString'
-        card_element_model['default_interval'] = 'testString'
+        card_element_model['default_interval'] = 'd'
         card_element_model['kind'] = 'TIME_SERIES'
-        card_element_model['default_time_range'] = '1d'
+        card_element_model['default_time_range'] = '4d'
         card_element_model['value_types'] = [value_type_model]
 
         # Construct a dict representation of a Card model
@@ -451,7 +599,7 @@ class TestCreateNote():
         card_model['subtitle'] = 'testString'
         card_model['order'] = 1
         card_model['finding_note_names'] = ['testString']
-        card_model['requires_configuration'] = True
+        card_model['requires_configuration'] = False
         card_model['badge_text'] = 'testString'
         card_model['badge_image'] = 'testString'
         card_model['elements'] = [card_element_model]
@@ -469,7 +617,6 @@ class TestCreateNote():
         id = 'testString'
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
-        expiration_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -485,7 +632,6 @@ class TestCreateNote():
             id,
             reported_by,
             related_url=related_url,
-            expiration_time=expiration_time,
             shared=shared,
             finding=finding,
             kpi=kpi,
@@ -505,13 +651,20 @@ class TestCreateNote():
         assert req_body['id'] == 'testString'
         assert req_body['reported_by'] == reporter_model
         assert req_body['related_url'] == [api_note_related_url_model]
-        assert req_body['expiration_time'] == "2019-01-01T12:00:00Z"
         assert req_body['shared'] == True
         assert req_body['finding'] == finding_type_model
         assert req_body['kpi'] == kpi_type_model
         assert req_body['card'] == card_model
         assert req_body['section'] == section_model
 
+    def test_create_note_required_params_with_retries(self):
+    	# Enable retries and run test_create_note_required_params.
+    	_service.enable_retries()
+    	self.test_create_note_required_params()
+
+    	# Disable retries and run test_create_note_required_params.
+    	_service.disable_retries()
+    	self.test_create_note_required_params()
 
     @responses.activate
     def test_create_note_value_error(self):
@@ -520,7 +673,7 @@ class TestCreateNote():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes')
-        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
+        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -550,20 +703,21 @@ class TestCreateNote():
 
         # Construct a dict representation of a KpiType model
         kpi_type_model = {}
+        kpi_type_model['Severity'] = 'MEDIUM'
         kpi_type_model['aggregation_type'] = 'SUM'
 
         # Construct a dict representation of a ValueTypeFindingCountValueType model
         value_type_model = {}
         value_type_model['kind'] = 'FINDING_COUNT'
         value_type_model['finding_note_names'] = ['testString']
-        value_type_model['text'] = 'testString'
+        value_type_model['text'] = 'label'
 
         # Construct a dict representation of a CardElementTimeSeriesCardElement model
         card_element_model = {}
         card_element_model['text'] = 'testString'
-        card_element_model['default_interval'] = 'testString'
+        card_element_model['default_interval'] = 'd'
         card_element_model['kind'] = 'TIME_SERIES'
-        card_element_model['default_time_range'] = '1d'
+        card_element_model['default_time_range'] = '4d'
         card_element_model['value_types'] = [value_type_model]
 
         # Construct a dict representation of a Card model
@@ -573,7 +727,7 @@ class TestCreateNote():
         card_model['subtitle'] = 'testString'
         card_model['order'] = 1
         card_model['finding_note_names'] = ['testString']
-        card_model['requires_configuration'] = True
+        card_model['requires_configuration'] = False
         card_model['badge_text'] = 'testString'
         card_model['badge_image'] = 'testString'
         card_model['elements'] = [card_element_model]
@@ -591,7 +745,6 @@ class TestCreateNote():
         id = 'testString'
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
-        expiration_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -613,6 +766,14 @@ class TestCreateNote():
                 _service.create_note(**req_copy)
 
 
+    def test_create_note_value_error_with_retries(self):
+    	# Enable retries and run test_create_note_value_error.
+    	_service.enable_retries()
+    	self.test_create_note_value_error()
+
+    	# Disable retries and run test_create_note_value_error.
+    	_service.disable_retries()
+    	self.test_create_note_value_error()
 
 class TestListNotes():
     """
@@ -623,6 +784,8 @@ class TestListNotes():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
         else:
@@ -635,7 +798,7 @@ class TestListNotes():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes')
-        mock_response = '{"notes": [{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}], "next_page_token": "next_page_token"}'
+        mock_response = '{"notes": [{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -666,6 +829,14 @@ class TestListNotes():
         assert 'page_size={}'.format(page_size) in query_string
         assert 'page_token={}'.format(page_token) in query_string
 
+    def test_list_notes_all_params_with_retries(self):
+    	# Enable retries and run test_list_notes_all_params.
+    	_service.enable_retries()
+    	self.test_list_notes_all_params()
+
+    	# Disable retries and run test_list_notes_all_params.
+    	_service.disable_retries()
+    	self.test_list_notes_all_params()
 
     @responses.activate
     def test_list_notes_required_params(self):
@@ -674,7 +845,7 @@ class TestListNotes():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes')
-        mock_response = '{"notes": [{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}], "next_page_token": "next_page_token"}'
+        mock_response = '{"notes": [{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -694,6 +865,14 @@ class TestListNotes():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_list_notes_required_params_with_retries(self):
+    	# Enable retries and run test_list_notes_required_params.
+    	_service.enable_retries()
+    	self.test_list_notes_required_params()
+
+    	# Disable retries and run test_list_notes_required_params.
+    	_service.disable_retries()
+    	self.test_list_notes_required_params()
 
     @responses.activate
     def test_list_notes_value_error(self):
@@ -702,7 +881,7 @@ class TestListNotes():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes')
-        mock_response = '{"notes": [{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}], "next_page_token": "next_page_token"}'
+        mock_response = '{"notes": [{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}], "next_page_token": "next_page_token"}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -722,6 +901,14 @@ class TestListNotes():
                 _service.list_notes(**req_copy)
 
 
+    def test_list_notes_value_error_with_retries(self):
+    	# Enable retries and run test_list_notes_value_error.
+    	_service.enable_retries()
+    	self.test_list_notes_value_error()
+
+    	# Disable retries and run test_list_notes_value_error.
+    	_service.disable_retries()
+    	self.test_list_notes_value_error()
 
 class TestGetNote():
     """
@@ -732,6 +919,8 @@ class TestGetNote():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
         else:
@@ -744,7 +933,7 @@ class TestGetNote():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
-        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
+        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -768,6 +957,14 @@ class TestGetNote():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_get_note_all_params_with_retries(self):
+    	# Enable retries and run test_get_note_all_params.
+    	_service.enable_retries()
+    	self.test_get_note_all_params()
+
+    	# Disable retries and run test_get_note_all_params.
+    	_service.disable_retries()
+    	self.test_get_note_all_params()
 
     @responses.activate
     def test_get_note_required_params(self):
@@ -776,7 +973,7 @@ class TestGetNote():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
-        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
+        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -798,6 +995,14 @@ class TestGetNote():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_get_note_required_params_with_retries(self):
+    	# Enable retries and run test_get_note_required_params.
+    	_service.enable_retries()
+    	self.test_get_note_required_params()
+
+    	# Disable retries and run test_get_note_required_params.
+    	_service.disable_retries()
+    	self.test_get_note_required_params()
 
     @responses.activate
     def test_get_note_value_error(self):
@@ -806,7 +1011,7 @@ class TestGetNote():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
-        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
+        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -828,6 +1033,14 @@ class TestGetNote():
                 _service.get_note(**req_copy)
 
 
+    def test_get_note_value_error_with_retries(self):
+    	# Enable retries and run test_get_note_value_error.
+    	_service.enable_retries()
+    	self.test_get_note_value_error()
+
+    	# Disable retries and run test_get_note_value_error.
+    	_service.disable_retries()
+    	self.test_get_note_value_error()
 
 class TestUpdateNote():
     """
@@ -838,6 +1051,8 @@ class TestUpdateNote():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
         else:
@@ -850,7 +1065,7 @@ class TestUpdateNote():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
-        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
+        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.PUT,
                       url,
                       body=mock_response,
@@ -880,20 +1095,21 @@ class TestUpdateNote():
 
         # Construct a dict representation of a KpiType model
         kpi_type_model = {}
+        kpi_type_model['Severity'] = 'MEDIUM'
         kpi_type_model['aggregation_type'] = 'SUM'
 
         # Construct a dict representation of a ValueTypeFindingCountValueType model
         value_type_model = {}
         value_type_model['kind'] = 'FINDING_COUNT'
         value_type_model['finding_note_names'] = ['testString']
-        value_type_model['text'] = 'testString'
+        value_type_model['text'] = 'label'
 
         # Construct a dict representation of a CardElementTimeSeriesCardElement model
         card_element_model = {}
         card_element_model['text'] = 'testString'
-        card_element_model['default_interval'] = 'testString'
+        card_element_model['default_interval'] = 'd'
         card_element_model['kind'] = 'TIME_SERIES'
-        card_element_model['default_time_range'] = '1d'
+        card_element_model['default_time_range'] = '4d'
         card_element_model['value_types'] = [value_type_model]
 
         # Construct a dict representation of a Card model
@@ -903,7 +1119,7 @@ class TestUpdateNote():
         card_model['subtitle'] = 'testString'
         card_model['order'] = 1
         card_model['finding_note_names'] = ['testString']
-        card_model['requires_configuration'] = True
+        card_model['requires_configuration'] = False
         card_model['badge_text'] = 'testString'
         card_model['badge_image'] = 'testString'
         card_model['elements'] = [card_element_model]
@@ -922,7 +1138,6 @@ class TestUpdateNote():
         id = 'testString'
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
-        expiration_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -940,7 +1155,6 @@ class TestUpdateNote():
             id,
             reported_by,
             related_url=related_url,
-            expiration_time=expiration_time,
             shared=shared,
             finding=finding,
             kpi=kpi,
@@ -961,13 +1175,20 @@ class TestUpdateNote():
         assert req_body['id'] == 'testString'
         assert req_body['reported_by'] == reporter_model
         assert req_body['related_url'] == [api_note_related_url_model]
-        assert req_body['expiration_time'] == "2019-01-01T12:00:00Z"
         assert req_body['shared'] == True
         assert req_body['finding'] == finding_type_model
         assert req_body['kpi'] == kpi_type_model
         assert req_body['card'] == card_model
         assert req_body['section'] == section_model
 
+    def test_update_note_all_params_with_retries(self):
+    	# Enable retries and run test_update_note_all_params.
+    	_service.enable_retries()
+    	self.test_update_note_all_params()
+
+    	# Disable retries and run test_update_note_all_params.
+    	_service.disable_retries()
+    	self.test_update_note_all_params()
 
     @responses.activate
     def test_update_note_required_params(self):
@@ -976,7 +1197,7 @@ class TestUpdateNote():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
-        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
+        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.PUT,
                       url,
                       body=mock_response,
@@ -1006,20 +1227,21 @@ class TestUpdateNote():
 
         # Construct a dict representation of a KpiType model
         kpi_type_model = {}
+        kpi_type_model['Severity'] = 'MEDIUM'
         kpi_type_model['aggregation_type'] = 'SUM'
 
         # Construct a dict representation of a ValueTypeFindingCountValueType model
         value_type_model = {}
         value_type_model['kind'] = 'FINDING_COUNT'
         value_type_model['finding_note_names'] = ['testString']
-        value_type_model['text'] = 'testString'
+        value_type_model['text'] = 'label'
 
         # Construct a dict representation of a CardElementTimeSeriesCardElement model
         card_element_model = {}
         card_element_model['text'] = 'testString'
-        card_element_model['default_interval'] = 'testString'
+        card_element_model['default_interval'] = 'd'
         card_element_model['kind'] = 'TIME_SERIES'
-        card_element_model['default_time_range'] = '1d'
+        card_element_model['default_time_range'] = '4d'
         card_element_model['value_types'] = [value_type_model]
 
         # Construct a dict representation of a Card model
@@ -1029,7 +1251,7 @@ class TestUpdateNote():
         card_model['subtitle'] = 'testString'
         card_model['order'] = 1
         card_model['finding_note_names'] = ['testString']
-        card_model['requires_configuration'] = True
+        card_model['requires_configuration'] = False
         card_model['badge_text'] = 'testString'
         card_model['badge_image'] = 'testString'
         card_model['elements'] = [card_element_model]
@@ -1048,7 +1270,6 @@ class TestUpdateNote():
         id = 'testString'
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
-        expiration_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -1065,7 +1286,6 @@ class TestUpdateNote():
             id,
             reported_by,
             related_url=related_url,
-            expiration_time=expiration_time,
             shared=shared,
             finding=finding,
             kpi=kpi,
@@ -1085,13 +1305,20 @@ class TestUpdateNote():
         assert req_body['id'] == 'testString'
         assert req_body['reported_by'] == reporter_model
         assert req_body['related_url'] == [api_note_related_url_model]
-        assert req_body['expiration_time'] == "2019-01-01T12:00:00Z"
         assert req_body['shared'] == True
         assert req_body['finding'] == finding_type_model
         assert req_body['kpi'] == kpi_type_model
         assert req_body['card'] == card_model
         assert req_body['section'] == section_model
 
+    def test_update_note_required_params_with_retries(self):
+    	# Enable retries and run test_update_note_required_params.
+    	_service.enable_retries()
+    	self.test_update_note_required_params()
+
+    	# Disable retries and run test_update_note_required_params.
+    	_service.disable_retries()
+    	self.test_update_note_required_params()
 
     @responses.activate
     def test_update_note_value_error(self):
@@ -1100,7 +1327,7 @@ class TestUpdateNote():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/notes/testString')
-        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
+        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.PUT,
                       url,
                       body=mock_response,
@@ -1130,20 +1357,21 @@ class TestUpdateNote():
 
         # Construct a dict representation of a KpiType model
         kpi_type_model = {}
+        kpi_type_model['Severity'] = 'MEDIUM'
         kpi_type_model['aggregation_type'] = 'SUM'
 
         # Construct a dict representation of a ValueTypeFindingCountValueType model
         value_type_model = {}
         value_type_model['kind'] = 'FINDING_COUNT'
         value_type_model['finding_note_names'] = ['testString']
-        value_type_model['text'] = 'testString'
+        value_type_model['text'] = 'label'
 
         # Construct a dict representation of a CardElementTimeSeriesCardElement model
         card_element_model = {}
         card_element_model['text'] = 'testString'
-        card_element_model['default_interval'] = 'testString'
+        card_element_model['default_interval'] = 'd'
         card_element_model['kind'] = 'TIME_SERIES'
-        card_element_model['default_time_range'] = '1d'
+        card_element_model['default_time_range'] = '4d'
         card_element_model['value_types'] = [value_type_model]
 
         # Construct a dict representation of a Card model
@@ -1153,7 +1381,7 @@ class TestUpdateNote():
         card_model['subtitle'] = 'testString'
         card_model['order'] = 1
         card_model['finding_note_names'] = ['testString']
-        card_model['requires_configuration'] = True
+        card_model['requires_configuration'] = False
         card_model['badge_text'] = 'testString'
         card_model['badge_image'] = 'testString'
         card_model['elements'] = [card_element_model]
@@ -1172,7 +1400,6 @@ class TestUpdateNote():
         id = 'testString'
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
-        expiration_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -1195,6 +1422,14 @@ class TestUpdateNote():
                 _service.update_note(**req_copy)
 
 
+    def test_update_note_value_error_with_retries(self):
+    	# Enable retries and run test_update_note_value_error.
+    	_service.enable_retries()
+    	self.test_update_note_value_error()
+
+    	# Disable retries and run test_update_note_value_error.
+    	_service.disable_retries()
+    	self.test_update_note_value_error()
 
 class TestDeleteNote():
     """
@@ -1205,6 +1440,8 @@ class TestDeleteNote():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
         else:
@@ -1238,6 +1475,14 @@ class TestDeleteNote():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_delete_note_all_params_with_retries(self):
+    	# Enable retries and run test_delete_note_all_params.
+    	_service.enable_retries()
+    	self.test_delete_note_all_params()
+
+    	# Disable retries and run test_delete_note_all_params.
+    	_service.disable_retries()
+    	self.test_delete_note_all_params()
 
     @responses.activate
     def test_delete_note_required_params(self):
@@ -1265,6 +1510,14 @@ class TestDeleteNote():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_delete_note_required_params_with_retries(self):
+    	# Enable retries and run test_delete_note_required_params.
+    	_service.enable_retries()
+    	self.test_delete_note_required_params()
+
+    	# Disable retries and run test_delete_note_required_params.
+    	_service.disable_retries()
+    	self.test_delete_note_required_params()
 
     @responses.activate
     def test_delete_note_value_error(self):
@@ -1292,6 +1545,14 @@ class TestDeleteNote():
                 _service.delete_note(**req_copy)
 
 
+    def test_delete_note_value_error_with_retries(self):
+    	# Enable retries and run test_delete_note_value_error.
+    	_service.enable_retries()
+    	self.test_delete_note_value_error()
+
+    	# Disable retries and run test_delete_note_value_error.
+    	_service.disable_retries()
+    	self.test_delete_note_value_error()
 
 class TestGetOccurrenceNote():
     """
@@ -1302,6 +1563,8 @@ class TestGetOccurrenceNote():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
         else:
@@ -1314,7 +1577,7 @@ class TestGetOccurrenceNote():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString/note')
-        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
+        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1338,6 +1601,14 @@ class TestGetOccurrenceNote():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_get_occurrence_note_all_params_with_retries(self):
+    	# Enable retries and run test_get_occurrence_note_all_params.
+    	_service.enable_retries()
+    	self.test_get_occurrence_note_all_params()
+
+    	# Disable retries and run test_get_occurrence_note_all_params.
+    	_service.disable_retries()
+    	self.test_get_occurrence_note_all_params()
 
     @responses.activate
     def test_get_occurrence_note_required_params(self):
@@ -1346,7 +1617,7 @@ class TestGetOccurrenceNote():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString/note')
-        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
+        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1368,6 +1639,14 @@ class TestGetOccurrenceNote():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_get_occurrence_note_required_params_with_retries(self):
+    	# Enable retries and run test_get_occurrence_note_required_params.
+    	_service.enable_retries()
+    	self.test_get_occurrence_note_required_params()
+
+    	# Disable retries and run test_get_occurrence_note_required_params.
+    	_service.disable_retries()
+    	self.test_get_occurrence_note_required_params()
 
     @responses.activate
     def test_get_occurrence_note_value_error(self):
@@ -1376,7 +1655,7 @@ class TestGetOccurrenceNote():
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/v1/testString/providers/testString/occurrences/testString/note')
-        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "expiration_time": "2019-01-01T12:00:00.000Z", "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": true, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "default_interval", "kind": "TIME_SERIES", "default_time_range": "1d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "text"}]}]}, "section": {"title": "title", "image": "image"}}'
+        mock_response = '{"short_description": "short_description", "long_description": "long_description", "kind": "FINDING", "related_url": [{"label": "label", "url": "url"}], "create_time": "2019-01-01T12:00:00.000Z", "update_time": "2019-01-01T12:00:00.000Z", "id": "id", "shared": true, "reported_by": {"id": "id", "title": "title", "url": "url"}, "finding": {"severity": "LOW", "next_steps": [{"title": "title", "url": "url"}]}, "kpi": {"Severity": "MEDIUM", "aggregation_type": "SUM"}, "card": {"section": "section", "title": "title", "subtitle": "subtitle", "order": 1, "finding_note_names": ["finding_note_names"], "requires_configuration": false, "badge_text": "badge_text", "badge_image": "badge_image", "elements": [{"text": "text", "default_interval": "d", "kind": "TIME_SERIES", "default_time_range": "4d", "value_types": [{"kind": "FINDING_COUNT", "finding_note_names": ["finding_note_names"], "text": "label"}]}]}, "section": {"title": "title", "image": "image"}}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1398,6 +1677,14 @@ class TestGetOccurrenceNote():
                 _service.get_occurrence_note(**req_copy)
 
 
+    def test_get_occurrence_note_value_error_with_retries(self):
+    	# Enable retries and run test_get_occurrence_note_value_error.
+    	_service.enable_retries()
+    	self.test_get_occurrence_note_value_error()
+
+    	# Disable retries and run test_get_occurrence_note_value_error.
+    	_service.disable_retries()
+    	self.test_get_occurrence_note_value_error()
 
 # endregion
 ##############################################################################
@@ -1409,6 +1696,49 @@ class TestGetOccurrenceNote():
 ##############################################################################
 # region
 
+class TestNewInstance():
+    """
+    Test Class for new_instance
+    """
+
+    def test_new_instance(self):
+        """
+        new_instance()
+        """
+        os.environ['TEST_SERVICE_AUTH_TYPE'] = 'noAuth'
+
+        service = FindingsV1.new_instance(
+            account_id=account_id,
+            service_name='TEST_SERVICE',
+        )
+
+        assert service is not None
+        assert isinstance(service, FindingsV1)
+
+    def test_new_instance_without_authenticator(self):
+        """
+        new_instance_without_authenticator()
+        """
+        with pytest.raises(ValueError, match='authenticator must be provided'):
+            service = FindingsV1.new_instance(
+                account_id=account_id,
+            )
+
+    def test_new_instance_without_required_params(self):
+        """
+        new_instance_without_required_params()
+        """
+        with pytest.raises(TypeError, match='new_instance\\(\\) missing \\d required positional arguments?: \'.*\''):
+            service = FindingsV1.new_instance()
+
+    def test_new_instance_required_param_none(self):
+        """
+        new_instance_required_param_none()
+        """
+        with pytest.raises(ValueError, match='account_id must be provided'):
+            service = FindingsV1.new_instance(
+                account_id=None,
+            )
 class TestCreateOccurrence():
     """
     Test Class for create_occurrence
@@ -1418,6 +1748,8 @@ class TestCreateOccurrence():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
         else:
@@ -1533,6 +1865,14 @@ class TestCreateOccurrence():
         assert req_body['kpi'] == kpi_model
         assert req_body['reference_data'] == { 'foo': 'bar' }
 
+    def test_create_occurrence_all_params_with_retries(self):
+    	# Enable retries and run test_create_occurrence_all_params.
+    	_service.enable_retries()
+    	self.test_create_occurrence_all_params()
+
+    	# Disable retries and run test_create_occurrence_all_params.
+    	_service.disable_retries()
+    	self.test_create_occurrence_all_params()
 
     @responses.activate
     def test_create_occurrence_required_params(self):
@@ -1640,6 +1980,14 @@ class TestCreateOccurrence():
         assert req_body['kpi'] == kpi_model
         assert req_body['reference_data'] == { 'foo': 'bar' }
 
+    def test_create_occurrence_required_params_with_retries(self):
+    	# Enable retries and run test_create_occurrence_required_params.
+    	_service.enable_retries()
+    	self.test_create_occurrence_required_params()
+
+    	# Disable retries and run test_create_occurrence_required_params.
+    	_service.disable_retries()
+    	self.test_create_occurrence_required_params()
 
     @responses.activate
     def test_create_occurrence_value_error(self):
@@ -1730,6 +2078,14 @@ class TestCreateOccurrence():
                 _service.create_occurrence(**req_copy)
 
 
+    def test_create_occurrence_value_error_with_retries(self):
+    	# Enable retries and run test_create_occurrence_value_error.
+    	_service.enable_retries()
+    	self.test_create_occurrence_value_error()
+
+    	# Disable retries and run test_create_occurrence_value_error.
+    	_service.disable_retries()
+    	self.test_create_occurrence_value_error()
 
 class TestListOccurrences():
     """
@@ -1740,6 +2096,8 @@ class TestListOccurrences():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
         else:
@@ -1783,6 +2141,14 @@ class TestListOccurrences():
         assert 'page_size={}'.format(page_size) in query_string
         assert 'page_token={}'.format(page_token) in query_string
 
+    def test_list_occurrences_all_params_with_retries(self):
+    	# Enable retries and run test_list_occurrences_all_params.
+    	_service.enable_retries()
+    	self.test_list_occurrences_all_params()
+
+    	# Disable retries and run test_list_occurrences_all_params.
+    	_service.disable_retries()
+    	self.test_list_occurrences_all_params()
 
     @responses.activate
     def test_list_occurrences_required_params(self):
@@ -1811,6 +2177,14 @@ class TestListOccurrences():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_list_occurrences_required_params_with_retries(self):
+    	# Enable retries and run test_list_occurrences_required_params.
+    	_service.enable_retries()
+    	self.test_list_occurrences_required_params()
+
+    	# Disable retries and run test_list_occurrences_required_params.
+    	_service.disable_retries()
+    	self.test_list_occurrences_required_params()
 
     @responses.activate
     def test_list_occurrences_value_error(self):
@@ -1839,6 +2213,14 @@ class TestListOccurrences():
                 _service.list_occurrences(**req_copy)
 
 
+    def test_list_occurrences_value_error_with_retries(self):
+    	# Enable retries and run test_list_occurrences_value_error.
+    	_service.enable_retries()
+    	self.test_list_occurrences_value_error()
+
+    	# Disable retries and run test_list_occurrences_value_error.
+    	_service.disable_retries()
+    	self.test_list_occurrences_value_error()
 
 class TestListNoteOccurrences():
     """
@@ -1849,6 +2231,8 @@ class TestListNoteOccurrences():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
         else:
@@ -1894,6 +2278,14 @@ class TestListNoteOccurrences():
         assert 'page_size={}'.format(page_size) in query_string
         assert 'page_token={}'.format(page_token) in query_string
 
+    def test_list_note_occurrences_all_params_with_retries(self):
+    	# Enable retries and run test_list_note_occurrences_all_params.
+    	_service.enable_retries()
+    	self.test_list_note_occurrences_all_params()
+
+    	# Disable retries and run test_list_note_occurrences_all_params.
+    	_service.disable_retries()
+    	self.test_list_note_occurrences_all_params()
 
     @responses.activate
     def test_list_note_occurrences_required_params(self):
@@ -1924,6 +2316,14 @@ class TestListNoteOccurrences():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_list_note_occurrences_required_params_with_retries(self):
+    	# Enable retries and run test_list_note_occurrences_required_params.
+    	_service.enable_retries()
+    	self.test_list_note_occurrences_required_params()
+
+    	# Disable retries and run test_list_note_occurrences_required_params.
+    	_service.disable_retries()
+    	self.test_list_note_occurrences_required_params()
 
     @responses.activate
     def test_list_note_occurrences_value_error(self):
@@ -1954,6 +2354,14 @@ class TestListNoteOccurrences():
                 _service.list_note_occurrences(**req_copy)
 
 
+    def test_list_note_occurrences_value_error_with_retries(self):
+    	# Enable retries and run test_list_note_occurrences_value_error.
+    	_service.enable_retries()
+    	self.test_list_note_occurrences_value_error()
+
+    	# Disable retries and run test_list_note_occurrences_value_error.
+    	_service.disable_retries()
+    	self.test_list_note_occurrences_value_error()
 
 class TestGetOccurrence():
     """
@@ -1964,6 +2372,8 @@ class TestGetOccurrence():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
         else:
@@ -2000,6 +2410,14 @@ class TestGetOccurrence():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_get_occurrence_all_params_with_retries(self):
+    	# Enable retries and run test_get_occurrence_all_params.
+    	_service.enable_retries()
+    	self.test_get_occurrence_all_params()
+
+    	# Disable retries and run test_get_occurrence_all_params.
+    	_service.disable_retries()
+    	self.test_get_occurrence_all_params()
 
     @responses.activate
     def test_get_occurrence_required_params(self):
@@ -2030,6 +2448,14 @@ class TestGetOccurrence():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_get_occurrence_required_params_with_retries(self):
+    	# Enable retries and run test_get_occurrence_required_params.
+    	_service.enable_retries()
+    	self.test_get_occurrence_required_params()
+
+    	# Disable retries and run test_get_occurrence_required_params.
+    	_service.disable_retries()
+    	self.test_get_occurrence_required_params()
 
     @responses.activate
     def test_get_occurrence_value_error(self):
@@ -2060,6 +2486,14 @@ class TestGetOccurrence():
                 _service.get_occurrence(**req_copy)
 
 
+    def test_get_occurrence_value_error_with_retries(self):
+    	# Enable retries and run test_get_occurrence_value_error.
+    	_service.enable_retries()
+    	self.test_get_occurrence_value_error()
+
+    	# Disable retries and run test_get_occurrence_value_error.
+    	_service.disable_retries()
+    	self.test_get_occurrence_value_error()
 
 class TestUpdateOccurrence():
     """
@@ -2070,6 +2504,8 @@ class TestUpdateOccurrence():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
         else:
@@ -2185,6 +2621,14 @@ class TestUpdateOccurrence():
         assert req_body['kpi'] == kpi_model
         assert req_body['reference_data'] == { 'foo': 'bar' }
 
+    def test_update_occurrence_all_params_with_retries(self):
+    	# Enable retries and run test_update_occurrence_all_params.
+    	_service.enable_retries()
+    	self.test_update_occurrence_all_params()
+
+    	# Disable retries and run test_update_occurrence_all_params.
+    	_service.disable_retries()
+    	self.test_update_occurrence_all_params()
 
     @responses.activate
     def test_update_occurrence_required_params(self):
@@ -2294,6 +2738,14 @@ class TestUpdateOccurrence():
         assert req_body['kpi'] == kpi_model
         assert req_body['reference_data'] == { 'foo': 'bar' }
 
+    def test_update_occurrence_required_params_with_retries(self):
+    	# Enable retries and run test_update_occurrence_required_params.
+    	_service.enable_retries()
+    	self.test_update_occurrence_required_params()
+
+    	# Disable retries and run test_update_occurrence_required_params.
+    	_service.disable_retries()
+    	self.test_update_occurrence_required_params()
 
     @responses.activate
     def test_update_occurrence_value_error(self):
@@ -2386,6 +2838,14 @@ class TestUpdateOccurrence():
                 _service.update_occurrence(**req_copy)
 
 
+    def test_update_occurrence_value_error_with_retries(self):
+    	# Enable retries and run test_update_occurrence_value_error.
+    	_service.enable_retries()
+    	self.test_update_occurrence_value_error()
+
+    	# Disable retries and run test_update_occurrence_value_error.
+    	_service.disable_retries()
+    	self.test_update_occurrence_value_error()
 
 class TestDeleteOccurrence():
     """
@@ -2396,6 +2856,8 @@ class TestDeleteOccurrence():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
         else:
@@ -2429,6 +2891,14 @@ class TestDeleteOccurrence():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_delete_occurrence_all_params_with_retries(self):
+    	# Enable retries and run test_delete_occurrence_all_params.
+    	_service.enable_retries()
+    	self.test_delete_occurrence_all_params()
+
+    	# Disable retries and run test_delete_occurrence_all_params.
+    	_service.disable_retries()
+    	self.test_delete_occurrence_all_params()
 
     @responses.activate
     def test_delete_occurrence_required_params(self):
@@ -2456,6 +2926,14 @@ class TestDeleteOccurrence():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_delete_occurrence_required_params_with_retries(self):
+    	# Enable retries and run test_delete_occurrence_required_params.
+    	_service.enable_retries()
+    	self.test_delete_occurrence_required_params()
+
+    	# Disable retries and run test_delete_occurrence_required_params.
+    	_service.disable_retries()
+    	self.test_delete_occurrence_required_params()
 
     @responses.activate
     def test_delete_occurrence_value_error(self):
@@ -2483,6 +2961,14 @@ class TestDeleteOccurrence():
                 _service.delete_occurrence(**req_copy)
 
 
+    def test_delete_occurrence_value_error_with_retries(self):
+    	# Enable retries and run test_delete_occurrence_value_error.
+    	_service.enable_retries()
+    	self.test_delete_occurrence_value_error()
+
+    	# Disable retries and run test_delete_occurrence_value_error.
+    	_service.disable_retries()
+    	self.test_delete_occurrence_value_error()
 
 # endregion
 ##############################################################################
@@ -2509,13 +2995,13 @@ class TestModel_Card():
         value_type_model = {} # ValueTypeFindingCountValueType
         value_type_model['kind'] = 'FINDING_COUNT'
         value_type_model['finding_note_names'] = ['testString']
-        value_type_model['text'] = 'testString'
+        value_type_model['text'] = 'label'
 
         card_element_model = {} # CardElementTimeSeriesCardElement
         card_element_model['text'] = 'testString'
-        card_element_model['default_interval'] = 'testString'
+        card_element_model['default_interval'] = 'd'
         card_element_model['kind'] = 'TIME_SERIES'
-        card_element_model['default_time_range'] = '1d'
+        card_element_model['default_time_range'] = '4d'
         card_element_model['value_types'] = [value_type_model]
 
         # Construct a json representation of a Card model
@@ -2525,7 +3011,7 @@ class TestModel_Card():
         card_model_json['subtitle'] = 'testString'
         card_model_json['order'] = 1
         card_model_json['finding_note_names'] = ['testString']
-        card_model_json['requires_configuration'] = True
+        card_model_json['requires_configuration'] = False
         card_model_json['badge_text'] = 'testString'
         card_model_json['badge_image'] = 'testString'
         card_model_json['elements'] = [card_element_model]
@@ -2748,6 +3234,7 @@ class TestModel_KpiType():
 
         # Construct a json representation of a KpiType model
         kpi_type_model_json = {}
+        kpi_type_model_json['Severity'] = 'MEDIUM'
         kpi_type_model_json['aggregation_type'] = 'SUM'
 
         # Construct a model instance of KpiType by calling from_dict on the json representation
@@ -3042,18 +3529,19 @@ class TestModel_ApiListNotesResponse():
         finding_type_model['next_steps'] = [remediation_step_model]
 
         kpi_type_model = {} # KpiType
+        kpi_type_model['Severity'] = 'MEDIUM'
         kpi_type_model['aggregation_type'] = 'SUM'
 
         value_type_model = {} # ValueTypeFindingCountValueType
         value_type_model['kind'] = 'FINDING_COUNT'
         value_type_model['finding_note_names'] = ['testString']
-        value_type_model['text'] = 'testString'
+        value_type_model['text'] = 'label'
 
         card_element_model = {} # CardElementTimeSeriesCardElement
         card_element_model['text'] = 'testString'
-        card_element_model['default_interval'] = 'testString'
+        card_element_model['default_interval'] = 'd'
         card_element_model['kind'] = 'TIME_SERIES'
-        card_element_model['default_time_range'] = '1d'
+        card_element_model['default_time_range'] = '4d'
         card_element_model['value_types'] = [value_type_model]
 
         card_model = {} # Card
@@ -3062,7 +3550,7 @@ class TestModel_ApiListNotesResponse():
         card_model['subtitle'] = 'testString'
         card_model['order'] = 1
         card_model['finding_note_names'] = ['testString']
-        card_model['requires_configuration'] = True
+        card_model['requires_configuration'] = False
         card_model['badge_text'] = 'testString'
         card_model['badge_image'] = 'testString'
         card_model['elements'] = [card_element_model]
@@ -3076,7 +3564,6 @@ class TestModel_ApiListNotesResponse():
         api_note_model['long_description'] = 'testString'
         api_note_model['kind'] = 'FINDING'
         api_note_model['related_url'] = [api_note_related_url_model]
-        api_note_model['expiration_time'] = "2019-01-01T12:00:00Z"
         api_note_model['create_time'] = "2019-01-01T12:00:00Z"
         api_note_model['update_time'] = "2019-01-01T12:00:00Z"
         api_note_model['id'] = 'testString'
@@ -3263,18 +3750,19 @@ class TestModel_ApiNote():
         finding_type_model['next_steps'] = [remediation_step_model]
 
         kpi_type_model = {} # KpiType
+        kpi_type_model['Severity'] = 'MEDIUM'
         kpi_type_model['aggregation_type'] = 'SUM'
 
         value_type_model = {} # ValueTypeFindingCountValueType
         value_type_model['kind'] = 'FINDING_COUNT'
         value_type_model['finding_note_names'] = ['testString']
-        value_type_model['text'] = 'testString'
+        value_type_model['text'] = 'label'
 
         card_element_model = {} # CardElementTimeSeriesCardElement
         card_element_model['text'] = 'testString'
-        card_element_model['default_interval'] = 'testString'
+        card_element_model['default_interval'] = 'd'
         card_element_model['kind'] = 'TIME_SERIES'
-        card_element_model['default_time_range'] = '1d'
+        card_element_model['default_time_range'] = '4d'
         card_element_model['value_types'] = [value_type_model]
 
         card_model = {} # Card
@@ -3283,7 +3771,7 @@ class TestModel_ApiNote():
         card_model['subtitle'] = 'testString'
         card_model['order'] = 1
         card_model['finding_note_names'] = ['testString']
-        card_model['requires_configuration'] = True
+        card_model['requires_configuration'] = False
         card_model['badge_text'] = 'testString'
         card_model['badge_image'] = 'testString'
         card_model['elements'] = [card_element_model]
@@ -3298,7 +3786,6 @@ class TestModel_ApiNote():
         api_note_model_json['long_description'] = 'testString'
         api_note_model_json['kind'] = 'FINDING'
         api_note_model_json['related_url'] = [api_note_related_url_model]
-        api_note_model_json['expiration_time'] = "2019-01-01T12:00:00Z"
         api_note_model_json['create_time'] = "2019-01-01T12:00:00Z"
         api_note_model_json['update_time'] = "2019-01-01T12:00:00Z"
         api_note_model_json['id'] = 'testString'
@@ -3483,13 +3970,13 @@ class TestModel_CardElementBreakdownCardElement():
         value_type_model = {} # ValueTypeFindingCountValueType
         value_type_model['kind'] = 'FINDING_COUNT'
         value_type_model['finding_note_names'] = ['testString']
-        value_type_model['text'] = 'testString'
+        value_type_model['text'] = 'label'
 
         # Construct a json representation of a CardElementBreakdownCardElement model
         card_element_breakdown_card_element_model_json = {}
         card_element_breakdown_card_element_model_json['text'] = 'testString'
         card_element_breakdown_card_element_model_json['kind'] = 'BREAKDOWN'
-        card_element_breakdown_card_element_model_json['default_time_range'] = '1d'
+        card_element_breakdown_card_element_model_json['default_time_range'] = '4d'
         card_element_breakdown_card_element_model_json['value_types'] = [value_type_model]
 
         # Construct a model instance of CardElementBreakdownCardElement by calling from_dict on the json representation
@@ -3525,7 +4012,7 @@ class TestModel_CardElementNumericCardElement():
         card_element_numeric_card_element_model_json = {}
         card_element_numeric_card_element_model_json['text'] = 'testString'
         card_element_numeric_card_element_model_json['kind'] = 'NUMERIC'
-        card_element_numeric_card_element_model_json['default_time_range'] = '1d'
+        card_element_numeric_card_element_model_json['default_time_range'] = '4d'
         card_element_numeric_card_element_model_json['value_type'] = numeric_card_element_value_type_model
 
         # Construct a model instance of CardElementNumericCardElement by calling from_dict on the json representation
@@ -3558,14 +4045,14 @@ class TestModel_CardElementTimeSeriesCardElement():
         value_type_model = {} # ValueTypeFindingCountValueType
         value_type_model['kind'] = 'FINDING_COUNT'
         value_type_model['finding_note_names'] = ['testString']
-        value_type_model['text'] = 'testString'
+        value_type_model['text'] = 'label'
 
         # Construct a json representation of a CardElementTimeSeriesCardElement model
         card_element_time_series_card_element_model_json = {}
         card_element_time_series_card_element_model_json['text'] = 'testString'
-        card_element_time_series_card_element_model_json['default_interval'] = 'testString'
+        card_element_time_series_card_element_model_json['default_interval'] = 'd'
         card_element_time_series_card_element_model_json['kind'] = 'TIME_SERIES'
-        card_element_time_series_card_element_model_json['default_time_range'] = '1d'
+        card_element_time_series_card_element_model_json['default_time_range'] = '4d'
         card_element_time_series_card_element_model_json['value_types'] = [value_type_model]
 
         # Construct a model instance of CardElementTimeSeriesCardElement by calling from_dict on the json representation
@@ -3625,7 +4112,7 @@ class TestModel_ValueTypeFindingCountValueType():
         value_type_finding_count_value_type_model_json = {}
         value_type_finding_count_value_type_model_json['kind'] = 'FINDING_COUNT'
         value_type_finding_count_value_type_model_json['finding_note_names'] = ['testString']
-        value_type_finding_count_value_type_model_json['text'] = 'testString'
+        value_type_finding_count_value_type_model_json['text'] = 'label'
 
         # Construct a model instance of ValueTypeFindingCountValueType by calling from_dict on the json representation
         value_type_finding_count_value_type_model = ValueTypeFindingCountValueType.from_dict(value_type_finding_count_value_type_model_json)
@@ -3656,7 +4143,7 @@ class TestModel_ValueTypeKpiValueType():
         value_type_kpi_value_type_model_json = {}
         value_type_kpi_value_type_model_json['kind'] = 'KPI'
         value_type_kpi_value_type_model_json['kpi_note_name'] = 'testString'
-        value_type_kpi_value_type_model_json['text'] = 'testString'
+        value_type_kpi_value_type_model_json['text'] = 'label'
 
         # Construct a model instance of ValueTypeKpiValueType by calling from_dict on the json representation
         value_type_kpi_value_type_model = ValueTypeKpiValueType.from_dict(value_type_kpi_value_type_model_json)

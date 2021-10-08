@@ -18,7 +18,6 @@ Examples for FindingsV1
 """
 
 from ibm_cloud_sdk_core import ApiException, read_external_sources
-from ibm_cloud_sdk_core.utils import datetime_to_string, string_to_datetime
 import os
 import pytest
 from ibm_scc.findings_v1 import *
@@ -93,6 +92,24 @@ class TestFindingsV1Examples():
 
             # end-postGraph
             print('\npost_graph() response status code: ', response.get_status_code())
+
+        except ApiException as e:
+            pytest.fail(str(e))
+
+    @needscredentials
+    def test_list_providers_example(self):
+        """
+        list_providers request example
+        """
+        try:
+            print('\nlist_providers() result:')
+            # begin-listProviders
+
+            api_list_providers_response = findings_service.list_providers().get_result()
+
+            print(json.dumps(api_list_providers_response, indent=2))
+
+            # end-listProviders
 
         except ApiException as e:
             pytest.fail(str(e))
@@ -325,24 +342,6 @@ class TestFindingsV1Examples():
             print(json.dumps(api_occurrence, indent=2))
 
             # end-updateOccurrence
-
-        except ApiException as e:
-            pytest.fail(str(e))
-
-    @needscredentials
-    def test_list_providers_example(self):
-        """
-        list_providers request example
-        """
-        try:
-            print('\nlist_providers() result:')
-            # begin-listProviders
-
-            api_list_providers_response = findings_service.list_providers().get_result()
-
-            print(json.dumps(api_list_providers_response, indent=2))
-
-            # end-listProviders
 
         except ApiException as e:
             pytest.fail(str(e))

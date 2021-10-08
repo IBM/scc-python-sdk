@@ -43,12 +43,14 @@ class TestFindingsV1():
 
             cls.findings_service = FindingsV1.new_instance(
                 account_id=account_id
-                )
+            )
             assert cls.findings_service is not None
 
             cls.config = read_external_sources(
                 FindingsV1.DEFAULT_SERVICE_NAME)
             assert cls.config is not None
+
+            cls.findings_service.enable_retries()
 
         print('Setup complete.')
 
@@ -146,9 +148,6 @@ class TestFindingsV1():
             id=f'finding-note-{identifier}',
             reported_by=reporter_model,
             related_url=[api_note_related_url_model],
-            expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            update_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             shared=True,
             finding=finding_type_model,
         )
@@ -169,7 +168,8 @@ class TestFindingsV1():
 
         # Construct a dict representation of a KpiType model
         kpi_type_model = {
-            'aggregation_type': 'SUM'
+            'aggregation_type': 'SUM',
+            'severity': "HIGH"
         }
 
         create_note_response = self.findings_service.create_note(
@@ -179,9 +179,6 @@ class TestFindingsV1():
             kind='KPI',
             id=f'kpi-note-{identifier}',
             reported_by=reporter_model,
-            expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            update_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             shared=True,
             kpi=kpi_type_model,
         )
@@ -236,9 +233,6 @@ class TestFindingsV1():
             kind='CARD',
             id=f'card-note-{identifier}',
             reported_by=reporter_model,
-            expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            update_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             shared=True,
             card=card_model,
         )
@@ -270,9 +264,6 @@ class TestFindingsV1():
             kind='SECTION',
             id=f'section-note-{identifier}',
             reported_by=reporter_model,
-            expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            update_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             shared=True,
             section=section_model,
         )
@@ -341,9 +332,6 @@ class TestFindingsV1():
             id=f'finding-note-{identifier}',
             reported_by=reporter_model,
             related_url=[api_note_related_url_model],
-            expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            update_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             shared=True,
             finding=finding_type_model,
         )
@@ -364,7 +352,8 @@ class TestFindingsV1():
 
         # Construct a dict representation of a KpiType model
         kpi_type_model = {
-            'aggregation_type': 'SUM'
+            'aggregation_type': 'SUM',
+            'severity': "HIGH"
         }
 
         update_note_response = self.findings_service.update_note(
@@ -375,9 +364,6 @@ class TestFindingsV1():
             kind='KPI',
             id=f'kpi-note-{identifier}',
             reported_by=reporter_model,
-            expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            update_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             shared=True,
             kpi=kpi_type_model,
         )
@@ -432,9 +418,6 @@ class TestFindingsV1():
             kind='CARD',
             id=f'card-note-{identifier}',
             reported_by=reporter_model,
-            expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            update_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             shared=True,
             card=card_model,
         )
@@ -467,9 +450,6 @@ class TestFindingsV1():
             kind='SECTION',
             id=f'section-note-{identifier}',
             reported_by=reporter_model,
-            expiration_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            update_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             shared=True,
             section=section_model,
         )
@@ -539,8 +519,6 @@ class TestFindingsV1():
             id=f'finding-occurrence-{identifier}',
             resource_url=testString,
             remediation=testString,
-            create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            update_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             context=context_model,
             finding=finding_model,
             replace_if_exists=True,
@@ -617,8 +595,6 @@ class TestFindingsV1():
             id=f'kpi-occurrence-{identifier}',
             resource_url=testString,
             remediation=testString,
-            create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            update_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             context=context_model,
             kpi=kpi_model,
             replace_if_exists=True,
@@ -632,7 +608,7 @@ class TestFindingsV1():
     def test_get_occurrence_note(self):
 
         get_occurrence_note_response = self.findings_service.get_occurrence_note(
-            provider_id=provider_id,
+           provider_id=provider_id,
             occurrence_id=f'kpi-occurrence-{identifier}',
         )
 
@@ -669,6 +645,7 @@ class TestFindingsV1():
         get_occurrence_response = self.findings_service.get_occurrence(
             provider_id=provider_id,
             occurrence_id=f'finding-occurrence-{identifier}',
+
         )
 
         assert get_occurrence_response.get_status_code() == 200
@@ -699,8 +676,6 @@ class TestFindingsV1():
             occurrence_id=f'finding-occurrence-{identifier}',
             resource_url=testString,
             remediation=testString,
-            create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            update_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             finding=finding_model,
         )
 
@@ -731,23 +706,12 @@ class TestFindingsV1():
             occurrence_id=f'kpi-occurrence-{identifier}',
             resource_url=testString,
             remediation=testString,
-            create_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            update_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
             kpi=kpi_model,
         )
 
         assert update_occurrence_response.get_status_code() == 200
         api_occurrence = update_occurrence_response.get_result()
         assert api_occurrence is not None
-
-    @needscredentials
-    def test_list_providers(self):
-
-        list_providers_response = self.findings_service.list_providers()
-
-        assert list_providers_response.get_status_code() == 200
-        api_list_providers_response = list_providers_response.get_result()
-        assert api_list_providers_response is not None
 
     @needscredentials
     def test_delete_occurrence(self):
@@ -768,3 +732,4 @@ class TestFindingsV1():
         )
 
         assert delete_note_response.get_status_code() == 200
+
