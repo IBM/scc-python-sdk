@@ -14,13 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.34.1-ad041667-20210617-195430
+# IBM OpenAPI SDK Code Generator Version: 3.40.0-910cf8c2-20211006-154754
  
 """
 The Findings API is used to find and display occurrences of security issues in your IBM
 Cloud account by using the artifact metadata specification. Findings are summarized in
 cards in the Security and Compliance Center that allow you to see the security status of
 your account at a glance and start an investigation into any potential issues.
+
+API Version: 1.0.0
 """
 
 from datetime import datetime
@@ -78,7 +80,7 @@ class FindingsV1(BaseService):
         :param str account_id: Account ID.
 
         :param Authenticator authenticator: The authenticator specifies the authentication mechanism.
-               Get up to date information from https://github.com/IBM/python-sdk-core/blob/master/README.md
+               Get up to date information from https://github.com/IBM/python-sdk-core/blob/main/README.md
                about initializing the authenticator of your choice.
         """
         if account_id is None:
@@ -148,7 +150,7 @@ class FindingsV1(BaseService):
                                        headers=headers,
                                        data=data)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     #########################
@@ -215,7 +217,7 @@ class FindingsV1(BaseService):
                                        headers=headers,
                                        params=params)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
 
@@ -228,7 +230,6 @@ class FindingsV1(BaseService):
         reported_by: 'Reporter',
         *,
         related_url: List['ApiNoteRelatedUrl'] = None,
-        expiration_time: datetime = None,
         shared: bool = None,
         finding: 'FindingType' = None,
         kpi: 'KpiType' = None,
@@ -261,8 +262,6 @@ class FindingsV1(BaseService):
         :param str id: The ID of the note.
         :param Reporter reported_by: The entity reporting a note.
         :param List[ApiNoteRelatedUrl] related_url: (optional)
-        :param datetime expiration_time: (optional) Time of expiration for this
-               note, null if note does not expire.
         :param bool shared: (optional) True if this note can be shared by multiple
                accounts.
         :param FindingType finding: (optional) FindingType provides details about a
@@ -294,8 +293,6 @@ class FindingsV1(BaseService):
         reported_by = convert_model(reported_by)
         if related_url is not None:
             related_url = [convert_model(x) for x in related_url]
-        if expiration_time is not None:
-            expiration_time = datetime_to_string(expiration_time)
         if finding is not None:
             finding = convert_model(finding)
         if kpi is not None:
@@ -319,7 +316,6 @@ class FindingsV1(BaseService):
             'id': id,
             'reported_by': reported_by,
             'related_url': related_url,
-            'expiration_time': expiration_time,
             'shared': shared,
             'finding': finding,
             'kpi': kpi,
@@ -343,7 +339,7 @@ class FindingsV1(BaseService):
                                        headers=headers,
                                        data=data)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
 
@@ -400,7 +396,7 @@ class FindingsV1(BaseService):
                                        headers=headers,
                                        params=params)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
 
@@ -452,7 +448,7 @@ class FindingsV1(BaseService):
                                        url=url,
                                        headers=headers)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
 
@@ -466,7 +462,6 @@ class FindingsV1(BaseService):
         reported_by: 'Reporter',
         *,
         related_url: List['ApiNoteRelatedUrl'] = None,
-        expiration_time: datetime = None,
         shared: bool = None,
         finding: 'FindingType' = None,
         kpi: 'KpiType' = None,
@@ -498,8 +493,6 @@ class FindingsV1(BaseService):
         :param str id: The ID of the note.
         :param Reporter reported_by: The entity reporting a note.
         :param List[ApiNoteRelatedUrl] related_url: (optional)
-        :param datetime expiration_time: (optional) Time of expiration for this
-               note, null if note does not expire.
         :param bool shared: (optional) True if this note can be shared by multiple
                accounts.
         :param FindingType finding: (optional) FindingType provides details about a
@@ -533,8 +526,6 @@ class FindingsV1(BaseService):
         reported_by = convert_model(reported_by)
         if related_url is not None:
             related_url = [convert_model(x) for x in related_url]
-        if expiration_time is not None:
-            expiration_time = datetime_to_string(expiration_time)
         if finding is not None:
             finding = convert_model(finding)
         if kpi is not None:
@@ -558,7 +549,6 @@ class FindingsV1(BaseService):
             'id': id,
             'reported_by': reported_by,
             'related_url': related_url,
-            'expiration_time': expiration_time,
             'shared': shared,
             'finding': finding,
             'kpi': kpi,
@@ -582,7 +572,7 @@ class FindingsV1(BaseService):
                                        headers=headers,
                                        data=data)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
 
@@ -633,7 +623,7 @@ class FindingsV1(BaseService):
                                        url=url,
                                        headers=headers)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
 
@@ -684,7 +674,7 @@ class FindingsV1(BaseService):
                                        url=url,
                                        headers=headers)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     #########################
@@ -802,7 +792,7 @@ class FindingsV1(BaseService):
                                        headers=headers,
                                        data=data)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
 
@@ -860,7 +850,7 @@ class FindingsV1(BaseService):
                                        headers=headers,
                                        params=params)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
 
@@ -922,7 +912,7 @@ class FindingsV1(BaseService):
                                        headers=headers,
                                        params=params)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
 
@@ -973,7 +963,7 @@ class FindingsV1(BaseService):
                                        url=url,
                                        headers=headers)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
 
@@ -1086,7 +1076,7 @@ class FindingsV1(BaseService):
                                        headers=headers,
                                        data=data)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
 
@@ -1137,7 +1127,7 @@ class FindingsV1(BaseService):
                                        url=url,
                                        headers=headers)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
 
@@ -1858,13 +1848,16 @@ class KpiType():
     """
     KpiType provides details about a KPI note.
 
+    :attr str severity: (optional)
     :attr str aggregation_type: The aggregation type of the KPI values. - SUM&#58; A
           single-value metrics aggregation type that sums up numeric values
             that are extracted from KPI occurrences.
     """
 
     def __init__(self,
-                 aggregation_type: str) -> None:
+                 aggregation_type: str,
+                 *,
+                 severity: str = None) -> None:
         """
         Initialize a KpiType object.
 
@@ -1872,13 +1865,17 @@ class KpiType():
                SUM&#58; A single-value metrics aggregation type that sums up numeric
                values
                  that are extracted from KPI occurrences.
+        :param str severity: (optional)
         """
+        self.severity = severity
         self.aggregation_type = aggregation_type
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'KpiType':
         """Initialize a KpiType object from a json dictionary."""
         args = {}
+        if 'Severity' in _dict:
+            args['severity'] = _dict.get('Severity')
         if 'aggregation_type' in _dict:
             args['aggregation_type'] = _dict.get('aggregation_type')
         else:
@@ -1893,6 +1890,8 @@ class KpiType():
     def to_dict(self) -> Dict:
         """Return a json dictionary representing this model."""
         _dict = {}
+        if hasattr(self, 'severity') and self.severity is not None:
+            _dict['Severity'] = self.severity
         if hasattr(self, 'aggregation_type') and self.aggregation_type is not None:
             _dict['aggregation_type'] = self.aggregation_type
         return _dict
@@ -1914,6 +1913,16 @@ class KpiType():
     def __ne__(self, other: 'KpiType') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
+    class SeverityEnum(str, Enum):
+        """
+        severity.
+        """
+        LOW = 'LOW'
+        MEDIUM = 'MEDIUM'
+        HIGH = 'HIGH'
+        CRITICAL = 'CRITICAL'
+
 
     class AggregationTypeEnum(str, Enum):
         """
@@ -2625,8 +2634,6 @@ class ApiNote():
           account.
            - SECTION&#58; The note represents a section in a dashboard.
     :attr List[ApiNoteRelatedUrl] related_url: (optional)
-    :attr datetime expiration_time: (optional) Time of expiration for this note,
-          null if note does not expire.
     :attr datetime create_time: (optional) Output only. The time this note was
           created. This field can be used as a filter in list requests.
     :attr datetime update_time: (optional) Output only. The time this note was last
@@ -2651,7 +2658,6 @@ class ApiNote():
                  reported_by: 'Reporter',
                  *,
                  related_url: List['ApiNoteRelatedUrl'] = None,
-                 expiration_time: datetime = None,
                  create_time: datetime = None,
                  update_time: datetime = None,
                  shared: bool = None,
@@ -2676,8 +2682,6 @@ class ApiNote():
         :param str id: The ID of the note.
         :param Reporter reported_by: The entity reporting a note.
         :param List[ApiNoteRelatedUrl] related_url: (optional)
-        :param datetime expiration_time: (optional) Time of expiration for this
-               note, null if note does not expire.
         :param bool shared: (optional) True if this note can be shared by multiple
                accounts.
         :param FindingType finding: (optional) FindingType provides details about a
@@ -2692,7 +2696,6 @@ class ApiNote():
         self.long_description = long_description
         self.kind = kind
         self.related_url = related_url
-        self.expiration_time = expiration_time
         self.create_time = create_time
         self.update_time = update_time
         self.id = id
@@ -2721,8 +2724,6 @@ class ApiNote():
             raise ValueError('Required property \'kind\' not present in ApiNote JSON')
         if 'related_url' in _dict:
             args['related_url'] = [ApiNoteRelatedUrl.from_dict(x) for x in _dict.get('related_url')]
-        if 'expiration_time' in _dict:
-            args['expiration_time'] = string_to_datetime(_dict.get('expiration_time'))
         if 'create_time' in _dict:
             args['create_time'] = string_to_datetime(_dict.get('create_time'))
         if 'update_time' in _dict:
@@ -2763,8 +2764,6 @@ class ApiNote():
             _dict['kind'] = self.kind
         if hasattr(self, 'related_url') and self.related_url is not None:
             _dict['related_url'] = [x.to_dict() for x in self.related_url]
-        if hasattr(self, 'expiration_time') and self.expiration_time is not None:
-            _dict['expiration_time'] = datetime_to_string(self.expiration_time)
         if hasattr(self, 'create_time') and getattr(self, 'create_time') is not None:
             _dict['create_time'] = datetime_to_string(getattr(self, 'create_time'))
         if hasattr(self, 'update_time') and getattr(self, 'update_time') is not None:
