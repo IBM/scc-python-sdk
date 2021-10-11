@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/IBM/scc-python-sdk/compare/v1.0.0...v1.1.0) (2021-10-11)
+
+
+### Bug Fixes
+
+* **SemanticRelease:** latest SR needs node version >= 14.17 ([5056a2d](https://github.com/IBM/scc-python-sdk/commit/5056a2df197da9b7c556b1c0f7467483384a9e9e))
+
+
+### Features
+
+* **kpi severity:** Add severity for kpi ([e0ea982](https://github.com/IBM/scc-python-sdk/commit/e0ea982180263abf5b58aa377f1d3ebe7a0f0bdf))
+
 # [1.0.0](https://github.com/IBM/scc-python-sdk/compare/v0.0.15...v1.0.0) (2021-06-30)
 
 
