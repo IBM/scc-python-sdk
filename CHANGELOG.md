@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/IBM/scc-python-sdk/compare/v1.1.0...v1.1.1) (2021-10-12)
+
+
+### Bug Fixes
+
+* **Findings:** createTime and updateTime in NoteOptions ([71c4027](https://github.com/IBM/scc-python-sdk/commit/71c4027c385e01ad07d26f90aedaee8124bb0015))
+
 # [1.1.0](https://github.com/IBM/scc-python-sdk/compare/v1.0.0...v1.1.0) (2021-10-11)
 
 
