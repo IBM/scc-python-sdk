@@ -960,7 +960,7 @@ class FindingsV1(BaseService):
                UUID v4 format.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `ApiListOccurrencesResponse` object
+        :rtype: DetailedResponse with `dict` result representing a `ApiOccurrence` object
         """
 
         if provider_id is None:
