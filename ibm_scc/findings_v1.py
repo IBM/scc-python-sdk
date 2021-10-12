@@ -230,6 +230,8 @@ class FindingsV1(BaseService):
         reported_by: 'Reporter',
         *,
         related_url: List['ApiNoteRelatedUrl'] = None,
+        create_time: datetime = None,
+        update_time: datetime = None,
         shared: bool = None,
         finding: 'FindingType' = None,
         kpi: 'KpiType' = None,
@@ -262,6 +264,10 @@ class FindingsV1(BaseService):
         :param str id: The ID of the note.
         :param Reporter reported_by: The entity reporting a note.
         :param List[ApiNoteRelatedUrl] related_url: (optional)
+        :param datetime create_time: (optional) Output only. The time this note was
+               created. This field can be used as a filter in list requests.
+        :param datetime update_time: (optional) Output only. The time this note was
+               last updated. This field can be used as a filter in list requests.
         :param bool shared: (optional) True if this note can be shared by multiple
                accounts.
         :param FindingType finding: (optional) FindingType provides details about a
@@ -293,6 +299,10 @@ class FindingsV1(BaseService):
         reported_by = convert_model(reported_by)
         if related_url is not None:
             related_url = [convert_model(x) for x in related_url]
+        if create_time is not None:
+            create_time = datetime_to_string(create_time)
+        if update_time is not None:
+            update_time = datetime_to_string(update_time)
         if finding is not None:
             finding = convert_model(finding)
         if kpi is not None:
@@ -316,6 +326,8 @@ class FindingsV1(BaseService):
             'id': id,
             'reported_by': reported_by,
             'related_url': related_url,
+            'create_time': create_time,
+            'update_time': update_time,
             'shared': shared,
             'finding': finding,
             'kpi': kpi,
@@ -462,6 +474,8 @@ class FindingsV1(BaseService):
         reported_by: 'Reporter',
         *,
         related_url: List['ApiNoteRelatedUrl'] = None,
+        create_time: datetime = None,
+        update_time: datetime = None,
         shared: bool = None,
         finding: 'FindingType' = None,
         kpi: 'KpiType' = None,
@@ -493,6 +507,10 @@ class FindingsV1(BaseService):
         :param str id: The ID of the note.
         :param Reporter reported_by: The entity reporting a note.
         :param List[ApiNoteRelatedUrl] related_url: (optional)
+        :param datetime create_time: (optional) Output only. The time this note was
+               created. This field can be used as a filter in list requests.
+        :param datetime update_time: (optional) Output only. The time this note was
+               last updated. This field can be used as a filter in list requests.
         :param bool shared: (optional) True if this note can be shared by multiple
                accounts.
         :param FindingType finding: (optional) FindingType provides details about a
@@ -526,6 +544,10 @@ class FindingsV1(BaseService):
         reported_by = convert_model(reported_by)
         if related_url is not None:
             related_url = [convert_model(x) for x in related_url]
+        if create_time is not None:
+            create_time = datetime_to_string(create_time)
+        if update_time is not None:
+            update_time = datetime_to_string(update_time)
         if finding is not None:
             finding = convert_model(finding)
         if kpi is not None:
@@ -549,6 +571,8 @@ class FindingsV1(BaseService):
             'id': id,
             'reported_by': reported_by,
             'related_url': related_url,
+            'create_time': create_time,
+            'update_time': update_time,
             'shared': shared,
             'finding': finding,
             'kpi': kpi,
@@ -2682,6 +2706,10 @@ class ApiNote():
         :param str id: The ID of the note.
         :param Reporter reported_by: The entity reporting a note.
         :param List[ApiNoteRelatedUrl] related_url: (optional)
+        :param datetime create_time: (optional) Output only. The time this note was
+               created. This field can be used as a filter in list requests.
+        :param datetime update_time: (optional) Output only. The time this note was
+               last updated. This field can be used as a filter in list requests.
         :param bool shared: (optional) True if this note can be shared by multiple
                accounts.
         :param FindingType finding: (optional) FindingType provides details about a
@@ -2764,10 +2792,10 @@ class ApiNote():
             _dict['kind'] = self.kind
         if hasattr(self, 'related_url') and self.related_url is not None:
             _dict['related_url'] = [x.to_dict() for x in self.related_url]
-        if hasattr(self, 'create_time') and getattr(self, 'create_time') is not None:
-            _dict['create_time'] = datetime_to_string(getattr(self, 'create_time'))
-        if hasattr(self, 'update_time') and getattr(self, 'update_time') is not None:
-            _dict['update_time'] = datetime_to_string(getattr(self, 'update_time'))
+        if hasattr(self, 'create_time') and self.create_time is not None:
+            _dict['create_time'] = datetime_to_string(self.create_time)
+        if hasattr(self, 'update_time') and self.update_time is not None:
+            _dict['update_time'] = datetime_to_string(self.update_time)
         if hasattr(self, 'id') and self.id is not None:
             _dict['id'] = self.id
         if hasattr(self, 'shared') and self.shared is not None:

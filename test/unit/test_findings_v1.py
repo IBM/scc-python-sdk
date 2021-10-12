@@ -487,6 +487,8 @@ class TestCreateNote():
         id = 'testString'
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
+        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
+        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -503,6 +505,8 @@ class TestCreateNote():
             id,
             reported_by,
             related_url=related_url,
+            create_time=create_time,
+            update_time=update_time,
             shared=shared,
             finding=finding,
             kpi=kpi,
@@ -523,6 +527,8 @@ class TestCreateNote():
         assert req_body['id'] == 'testString'
         assert req_body['reported_by'] == reporter_model
         assert req_body['related_url'] == [api_note_related_url_model]
+        assert req_body['create_time'] == "2019-01-01T12:00:00Z"
+        assert req_body['update_time'] == "2019-01-01T12:00:00Z"
         assert req_body['shared'] == True
         assert req_body['finding'] == finding_type_model
         assert req_body['kpi'] == kpi_type_model
@@ -617,6 +623,8 @@ class TestCreateNote():
         id = 'testString'
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
+        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
+        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -632,6 +640,8 @@ class TestCreateNote():
             id,
             reported_by,
             related_url=related_url,
+            create_time=create_time,
+            update_time=update_time,
             shared=shared,
             finding=finding,
             kpi=kpi,
@@ -651,6 +661,8 @@ class TestCreateNote():
         assert req_body['id'] == 'testString'
         assert req_body['reported_by'] == reporter_model
         assert req_body['related_url'] == [api_note_related_url_model]
+        assert req_body['create_time'] == "2019-01-01T12:00:00Z"
+        assert req_body['update_time'] == "2019-01-01T12:00:00Z"
         assert req_body['shared'] == True
         assert req_body['finding'] == finding_type_model
         assert req_body['kpi'] == kpi_type_model
@@ -745,6 +757,8 @@ class TestCreateNote():
         id = 'testString'
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
+        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
+        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -1138,6 +1152,8 @@ class TestUpdateNote():
         id = 'testString'
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
+        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
+        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -1155,6 +1171,8 @@ class TestUpdateNote():
             id,
             reported_by,
             related_url=related_url,
+            create_time=create_time,
+            update_time=update_time,
             shared=shared,
             finding=finding,
             kpi=kpi,
@@ -1175,6 +1193,8 @@ class TestUpdateNote():
         assert req_body['id'] == 'testString'
         assert req_body['reported_by'] == reporter_model
         assert req_body['related_url'] == [api_note_related_url_model]
+        assert req_body['create_time'] == "2019-01-01T12:00:00Z"
+        assert req_body['update_time'] == "2019-01-01T12:00:00Z"
         assert req_body['shared'] == True
         assert req_body['finding'] == finding_type_model
         assert req_body['kpi'] == kpi_type_model
@@ -1270,6 +1290,8 @@ class TestUpdateNote():
         id = 'testString'
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
+        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
+        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
@@ -1286,6 +1308,8 @@ class TestUpdateNote():
             id,
             reported_by,
             related_url=related_url,
+            create_time=create_time,
+            update_time=update_time,
             shared=shared,
             finding=finding,
             kpi=kpi,
@@ -1305,6 +1329,8 @@ class TestUpdateNote():
         assert req_body['id'] == 'testString'
         assert req_body['reported_by'] == reporter_model
         assert req_body['related_url'] == [api_note_related_url_model]
+        assert req_body['create_time'] == "2019-01-01T12:00:00Z"
+        assert req_body['update_time'] == "2019-01-01T12:00:00Z"
         assert req_body['shared'] == True
         assert req_body['finding'] == finding_type_model
         assert req_body['kpi'] == kpi_type_model
@@ -1400,6 +1426,8 @@ class TestUpdateNote():
         id = 'testString'
         reported_by = reporter_model
         related_url = [api_note_related_url_model]
+        create_time = string_to_datetime('2019-01-01T12:00:00.000Z')
+        update_time = string_to_datetime('2019-01-01T12:00:00.000Z')
         shared = True
         finding = finding_type_model
         kpi = kpi_type_model
