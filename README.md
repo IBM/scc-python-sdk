@@ -5,7 +5,7 @@
 [![PyPi](https://badge.fury.io/py/ibm-scc.svg)](https://pypi.python.org/pypi/ibm-scc/)
 [![PyPi](https://img.shields.io/pypi/dw/ibm-scc.svg)](https://pypi.python.org/pypi/ibm-scc/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![codecov](https://codecov.io/gh/IBM/scc-python-sdk/branch/main/graph/badge.svg?token=U0DC9HWWOA)](https://codecov.io/gh/IBM/scc-python-sdk)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a87748d845549d045483/test_coverage)](https://codeclimate.com/github/IBM/scc-python-sdk/test_coverage)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 # IBM Cloud Security & Compliance Center Python SDK Version 1.1.2
 

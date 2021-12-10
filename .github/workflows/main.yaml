@@ -26,6 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     if: "!startsWith(github.event.head_commit.message, 'chore') && !startsWith(github.ref, 'refs/tags/v')"
     strategy:
+      max-parallel: 2
       matrix: 
         python-version: [3.6, 3.7, 3.8, 3.9]
     steps:
@@ -41,7 +42,16 @@ jobs:
         run: make setup
 
       - name: running unit tests
-        run: make test-unit
+        run: tox
+
+      - name: publishing code coverage report to codeclimate
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+          build/publishCodeCoverage.sh
 
       - name: running integration tests
         env:
