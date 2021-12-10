@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/IBM/scc-python-sdk/compare/v1.1.1...v1.1.2) (2021-12-10)
+
+
+### Bug Fixes
+
+* **FindingsAPI:** getOccurrence should not return list ([f5a9c7f](https://github.com/IBM/scc-python-sdk/commit/f5a9c7fcc8c761401a6b0507b259ed64dc72eb12))
+
 ## [1.1.1](https://github.com/IBM/scc-python-sdk/compare/v1.1.0...v1.1.1) (2021-10-12)
 
 
