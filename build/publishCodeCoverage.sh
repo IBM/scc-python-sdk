@@ -6,5 +6,5 @@
 
 printf ">>>>> Publishing code coverage info\n"
 
-./cc-test-reporter format-coverage --prefix "/${pwd}/" --input-type coverage.py --output coverage.json -d
+./cc-test-reporter format-coverage --prefix "/home/runner/work/scc-python-sdk/scc-python-sdk/" --input-type coverage.py --output coverage.json -d
 ./cc-test-reporter upload-coverage --input coverage.json -d
