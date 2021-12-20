@@ -1,3 +1,13 @@
+# [2.0.0](https://github.com/IBM/scc-python-sdk/compare/v1.1.2...v2.0.0) (2021-12-20)
+
+
+* Merge pull request #32 from IBM/deprecate ([a9bd032](https://github.com/IBM/scc-python-sdk/commit/a9bd032957f8e4bcc8c8aba9b9703edaf37af1d9)), closes [#32](https://github.com/IBM/scc-python-sdk/issues/32)
+
+
+### BREAKING CHANGES
+
+* deprecating NotificationsAPI
+
 ## [1.1.2](https://github.com/IBM/scc-python-sdk/compare/v1.1.1...v1.1.2) (2021-12-10)
 
 
