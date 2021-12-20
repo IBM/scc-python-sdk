@@ -57,7 +57,6 @@ jobs:
         env:
           ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
           FINDINGS_ENV: ${{ secrets.FINDINGS_ENV }}
-          NOTIFICATIONS_ENV: ${{ secrets.NOTIFICATIONS_ENV }}
           CONFIGURATION_GOVERNANCE_ENV: ${{ secrets.CONFIGURATION_GOVERNANCE_ENV }}
           RESOURCE_GROUP_ID: ${{ secrets.RESOURCE_GROUP_ID }}
         run: build/testScript.sh
