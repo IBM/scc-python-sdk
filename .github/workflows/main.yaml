@@ -59,6 +59,7 @@ jobs:
           FINDINGS_ENV: ${{ secrets.FINDINGS_ENV }}
           CONFIGURATION_GOVERNANCE_ENV: ${{ secrets.CONFIGURATION_GOVERNANCE_ENV }}
           RESOURCE_GROUP_ID: ${{ secrets.RESOURCE_GROUP_ID }}
+          ADDON_MGR_API_ENV: ${{ secrets.ADDON_MGR_API_ENV }}
         run: build/testScript.sh
 
   release:
