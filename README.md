@@ -47,7 +47,6 @@ IBM Cloud services:
 
 Service Name | Module Name | Imported Class Name
 --- | --- | ---
-[Findings](https://cloud.ibm.com/apidocs/security-compliance/findings) | findings_v1 | FindingsV1
 [Configuration Governance](https://cloud.ibm.com/apidocs/security-compliance/config) | configuration_governance_v1 | ConfigurationGovernanceV1
 
 ## Prerequisites
@@ -56,7 +55,7 @@ Service Name | Module Name | Imported Class Name
 
 * An [IBM Cloud][ibm-cloud-onboarding] account.
 * An IAM API key to allow the SDK to access your account. Create one [here](https://cloud.ibm.com/iam/apikeys).
-* Python 3.6 or above.
+* Python 3.7 or above.
 
 ## Installation
 
