@@ -1,3 +1,19 @@
+# [3.0.0](https://github.com/IBM/scc-python-sdk/compare/v2.0.0...v3.0.0) (2022-08-04)
+
+
+### Bug Fixes
+
+* **FindingsAPI:** deprecated ([e4fa001](https://github.com/IBM/scc-python-sdk/commit/e4fa0014c33c65fe559ad41d3ab101968a0f34c5))
+
+
+* Merge pull request #34 from IBM/si-deprecation ([8ec9c21](https://github.com/IBM/scc-python-sdk/commit/8ec9c21e9acc608443064a126455568a0ee8cb9f)), closes [#34](https://github.com/IBM/scc-python-sdk/issues/34)
+
+
+### BREAKING CHANGES
+
+* Deprecating Security Insights
+* **FindingsAPI:** deprecating Security Insights
+
 # [2.0.0](https://github.com/IBM/scc-python-sdk/compare/v1.1.2...v2.0.0) (2021-12-20)
 
 
