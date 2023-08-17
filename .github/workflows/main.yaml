@@ -55,9 +55,7 @@ jobs:
 
       - name: running integration tests
         env:
-          ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
-          CONFIGURATION_GOVERNANCE_ENV: ${{ secrets.CONFIGURATION_GOVERNANCE_ENV }}
-          RESOURCE_GROUP_ID: ${{ secrets.RESOURCE_GROUP_ID }}
+          SCC_ENV: ${{ secrets.SCC_ENV }}
         run: build/testScript.sh
 
   release:
