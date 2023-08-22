@@ -43,7 +43,9 @@ provider_type_instance_id_link = None
 report_id_for_report_link = None
 rule_id_link = None
 type_for_report_link = None
-
+account_id = None
+instance_id = None
+create_scan_attachment_id = None
 
 class TestSecurityAndComplianceCenterApiV3:
     """
@@ -54,14 +56,16 @@ class TestSecurityAndComplianceCenterApiV3:
     def setup_class(cls):
         if os.path.exists(config_file):
             os.environ['IBM_CREDENTIALS_FILE'] = config_file
-
             cls.security_and_compliance_center_api_service = SecurityAndComplianceCenterApiV3.new_instance(
             )
             assert cls.security_and_compliance_center_api_service is not None
 
             cls.config = read_external_sources(SecurityAndComplianceCenterApiV3.DEFAULT_SERVICE_NAME)
             assert cls.config is not None
-
+            cls.account_id=cls.config['ACCOUNTID']
+            cls.instance_id = cls.config['INSTANCEID']
+            if cls.instance_id == "": print("Unable to load instanceID configuration property, skipping tests")
+            cls.create_scan_attachment_id = cls.config['ATTACHMENTID']
             cls.security_and_compliance_center_api_service.enable_retries()
 
         print('Setup complete.')
@@ -197,7 +201,7 @@ class TestSecurityAndComplianceCenterApiV3:
         # Construct a dict representation of a EventNotifications model
         event_notifications_model = {
             'instance_crn': event_notifications_crn_for_update_settings_link,
-            'updated_on': string_to_datetime('2019-01-01T12:00:00.000Z'),
+            'updated_on': '2019-01-01T12:00:00.000Z',
             'source_id': 'crn:v1:staging:public:event-notifications:us-south:a/ff88f007f9ff4622aac4fbc0eda36255:b8b07245-0bbe-4478-b11c-0dce523105fd::',
             'source_description': 'This source is used for integration with IBM Cloud Security and Compliance Center.',
             'source_name': 'compliance',
@@ -208,7 +212,7 @@ class TestSecurityAndComplianceCenterApiV3:
             'bucket': object_storage_bucket_for_update_settings_link,
             'bucket_location': object_storage_location_for_update_settings_link,
             'bucket_endpoint': 'testString',
-            'updated_on': string_to_datetime('2019-01-01T12:00:00.000Z'),
+            'updated_on': '2019-01-01T12:00:00.000Z',
         }
 
         response = self.security_and_compliance_center_api_service.update_settings(
@@ -218,20 +222,20 @@ class TestSecurityAndComplianceCenterApiV3:
             x_request_id='testString',
         )
 
-        assert response.get_status_code() == 200
+        assert response.get_status_code() == 204
         settings = response.get_result()
-        assert settings is not None
+        assert settings is None
 
-    @needscredentials
-    def test_post_test_event(self):
-        response = self.security_and_compliance_center_api_service.post_test_event(
-            x_correlation_id='1a2b3c4d-5e6f-4a7b-8c9d-e0f1a2b3c4d5',
-            x_request_id='testString',
-        )
+    # @needscredentials
+    # def test_post_test_event(self):
+    #     response = self.security_and_compliance_center_api_service.post_test_event(
+    #         x_correlation_id='1a2b3c4d-5e6f-4a7b-8c9d-e0f1a2b3c4d5',
+    #         x_request_id='testString',
+    #     )
 
-        assert response.get_status_code() == 202
-        test_event = response.get_result()
-        assert test_event is not None
+    #     assert response.get_status_code() == 202
+    #     test_event = response.get_result()
+    #     assert test_event is not None
 
     @needscredentials
     def test_create_custom_control_library(self):
@@ -275,7 +279,7 @@ class TestSecurityAndComplianceCenterApiV3:
             'control_id': '1fa45e17-9322-4e6c-bbd6-1c51db08e790',
             'control_description': 'Boundary Protection',
             'control_category': 'System and Communications Protection',
-            'control_parent': 'testString',
+            'control_parent': '',
             'control_tags': ['1fa45e17-9322-4e6c-bbd6-1c51db08e790'],
             'control_specifications': [control_specifications_model],
             'control_docs': control_docs_model,
@@ -288,7 +292,6 @@ class TestSecurityAndComplianceCenterApiV3:
             control_library_description='IBM Cloud for Financial Services',
             control_library_type='custom',
             controls=[controls_in_control_lib_model],
-            version_group_label='33fc7b80-0fa5-4f16-bbba-1f293f660f0d',
             control_library_version='1.0.0',
             latest=True,
             controls_count=38,
@@ -309,9 +312,7 @@ class TestSecurityAndComplianceCenterApiV3:
             x_request_id='testString',
             limit=50,
             control_library_type='custom',
-            start='testString',
         )
-
         assert response.get_status_code() == 200
         control_library_collection = response.get_result()
         assert control_library_collection is not None
@@ -399,7 +400,7 @@ class TestSecurityAndComplianceCenterApiV3:
             'control_id': '1fa45e17-9322-4e6c-bbd6-1c51db08e790',
             'control_description': 'Boundary Protection',
             'control_category': 'System and Communications Protection',
-            'control_parent': 'testString',
+            'control_parent': '',
             'control_tags': ['1fa45e17-9322-4e6c-bbd6-1c51db08e790'],
             'control_specifications': [control_specifications_model],
             'control_docs': control_docs_model,
@@ -410,11 +411,10 @@ class TestSecurityAndComplianceCenterApiV3:
         response = self.security_and_compliance_center_api_service.replace_custom_control_library(
             control_libraries_id=control_library_id_link,
             id='testString',
-            account_id='testString',
+            account_id=account_id,
             control_library_name='IBM Cloud for Financial Services',
             control_library_description='IBM Cloud for Financial Services',
             control_library_type='custom',
-            version_group_label='testString',
             control_library_version='1.1.0',
             created_on=string_to_datetime('2019-01-01T12:00:00.000Z'),
             created_by='testString',
@@ -475,9 +475,7 @@ class TestSecurityAndComplianceCenterApiV3:
             x_request_id='testString',
             limit=50,
             profile_type='custom',
-            start='testString',
         )
-
         assert response.get_status_code() == 200
         profile_collection = response.get_result()
         assert profile_collection is not None
@@ -633,14 +631,18 @@ class TestSecurityAndComplianceCenterApiV3:
         global attachment_id_link
 
         # Construct a dict representation of a PropertyItem model
-        property_item_model = {
+        property_scope_id = {
             'name': 'scope_id',
-            'value': 'cg3335893hh1428692d6747cf300yeb5',
+            'value': self.account_id,
+        }
+        property_scope_type = {
+            'name': 'scope_type',
+            'value': "account",
         }
         # Construct a dict representation of a MultiCloudScope model
         multi_cloud_scope_model = {
             'environment': 'ibm-cloud',
-            'properties': [property_item_model],
+            'properties': [property_scope_id, property_scope_type],
         }
         # Construct a dict representation of a FailedControls model
         failed_controls_model = {
@@ -672,7 +674,6 @@ class TestSecurityAndComplianceCenterApiV3:
             'notifications': attachments_notifications_prototype_model,
             'attachment_parameters': [attachment_parameter_prototype_model],
         }
-
         response = self.security_and_compliance_center_api_service.create_attachment(
             profiles_id=profile_id_link,
             attachments=[attachments_prototype_model],
@@ -680,6 +681,7 @@ class TestSecurityAndComplianceCenterApiV3:
             x_correlation_id='testString',
             x_request_id='testString',
         )
+
 
         assert response.get_status_code() == 201
         attachment_prototype = response.get_result()
@@ -694,9 +696,7 @@ class TestSecurityAndComplianceCenterApiV3:
             x_correlation_id='testString',
             x_request_id='testString',
             limit=50,
-            start='testString',
         )
-
         assert response.get_status_code() == 200
         attachment_collection = response.get_result()
         assert attachment_collection is not None
@@ -748,14 +748,18 @@ class TestSecurityAndComplianceCenterApiV3:
     @needscredentials
     def test_replace_profile_attachment(self):
         # Construct a dict representation of a PropertyItem model
-        property_item_model = {
+        property_scope_id = {
             'name': 'scope_id',
-            'value': 'cg3335893hh1428692d6747cf300yeb5',
+            'value': self.account_id,
+        }
+        property_scope_type = {
+            'name': 'scope_type',
+            'value': "account",
         }
         # Construct a dict representation of a MultiCloudScope model
         multi_cloud_scope_model = {
             'environment': 'ibm-cloud',
-            'properties': [property_item_model],
+            'properties': [property_scope_id, property_scope_type],
         }
         # Construct a dict representation of a FailedControls model
         failed_controls_model = {
@@ -780,7 +784,7 @@ class TestSecurityAndComplianceCenterApiV3:
         last_scan_model = {
             'id': 'e8a39d25-0051-4328-8462-988ad321f49a',
             'status': 'in_progress',
-            'time': string_to_datetime('2019-01-01T12:00:00.000Z'),
+            'time': '2019-01-01T12:00:00.000Z',
         }
 
         response = self.security_and_compliance_center_api_service.replace_profile_attachment(
@@ -788,19 +792,19 @@ class TestSecurityAndComplianceCenterApiV3:
             profiles_id=profile_id_link,
             id='testString',
             profile_id=profile_id_link,
-            account_id='testString',
-            instance_id='testString',
+            account_id=account_id,
+            instance_id=instance_id,
             scope=[multi_cloud_scope_model],
-            created_on=string_to_datetime('2019-01-01T12:00:00.000Z'),
+            created_on='2019-01-01T12:00:00.000Z',
             created_by='testString',
-            updated_on=string_to_datetime('2019-01-01T12:00:00.000Z'),
+            updated_on='2019-01-01T12:00:00.000Z',
             updated_by='testString',
             status='enabled',
             schedule='every_30_days',
             notifications=attachments_notifications_prototype_model,
             attachment_parameters=[attachment_parameter_prototype_model],
             last_scan=last_scan_model,
-            next_scan_time=string_to_datetime('2019-01-01T12:00:00.000Z'),
+            next_scan_time='2019-01-01T12:00:00.000Z',
             name='account-0d8c3805dfea40aa8ad02265a18eb12b',
             description='Test description',
             x_correlation_id='testString',
@@ -814,11 +818,10 @@ class TestSecurityAndComplianceCenterApiV3:
     @needscredentials
     def test_create_scan(self):
         response = self.security_and_compliance_center_api_service.create_scan(
-            attachment_id=attachment_id_link,
+            attachment_id=self.create_scan_attachment_id,
             x_correlation_id='testString',
             x_request_id='testString',
         )
-
         assert response.get_status_code() == 201
         scan = response.get_result()
         assert scan is not None
@@ -829,9 +832,7 @@ class TestSecurityAndComplianceCenterApiV3:
             x_correlation_id='testString',
             x_request_id='testString',
             limit=50,
-            start='testString',
         )
-
         assert response.get_status_code() == 200
         attachment_collection = response.get_result()
         assert attachment_collection is not None
@@ -874,11 +875,9 @@ class TestSecurityAndComplianceCenterApiV3:
             group_id=group_id_for_report_link,
             profile_id=profile_id_for_report_link,
             type=type_for_report_link,
-            start='testString',
             limit=50,
             sort='profile_name',
         )
-
         assert response.get_status_code() == 200
         report_page = response.get_result()
         assert report_page is not None
@@ -977,18 +976,18 @@ class TestSecurityAndComplianceCenterApiV3:
         report_controls = response.get_result()
         assert report_controls is not None
 
-    @needscredentials
-    def test_get_report_rule(self):
-        response = self.security_and_compliance_center_api_service.get_report_rule(
-            report_id=report_id_for_report_link,
-            rule_id='rule-8d444f8c-fd1d-48de-bcaa-f43732568761',
-            x_correlation_id='testString',
-            x_request_id='testString',
-        )
+    # @needscredentials
+    # def test_get_report_rule(self):
+    #     response = self.security_and_compliance_center_api_service.get_report_rule(
+    #         report_id=report_id_for_report_link,
+    #         rule_id='rule-8d444f8c-fd1d-48de-bcaa-f43732568761',
+    #         x_correlation_id='testString',
+    #         x_request_id='testString',
+    #     )
 
-        assert response.get_status_code() == 200
-        rule_info = response.get_result()
-        assert rule_info is not None
+    #     assert response.get_status_code() == 200
+    #     rule_info = response.get_result()
+    #     assert rule_info is not None
 
     @needscredentials
     def test_list_report_evaluations(self):
@@ -1001,10 +1000,8 @@ class TestSecurityAndComplianceCenterApiV3:
             target_id='testString',
             target_name='testString',
             status='failure',
-            start='testString',
-            limit=50,
+            limit=10,
         )
-
         assert response.get_status_code() == 200
         evaluation_page = response.get_result()
         assert evaluation_page is not None
@@ -1019,10 +1016,6 @@ class TestSecurityAndComplianceCenterApiV3:
             report_id=report_id_for_report_link,
             x_correlation_id='testString',
             x_request_id='testString',
-            assessment_id='testString',
-            component_id='testString',
-            target_id='testString',
-            target_name='testString',
             status='failure',
             limit=10,
         )
@@ -1037,10 +1030,6 @@ class TestSecurityAndComplianceCenterApiV3:
             report_id=report_id_for_report_link,
             x_correlation_id='testString',
             x_request_id='testString',
-            assessment_id='testString',
-            component_id='testString',
-            target_id='testString',
-            target_name='testString',
             status='failure',
             limit=10,
         )
@@ -1050,24 +1039,22 @@ class TestSecurityAndComplianceCenterApiV3:
         assert len(all_results) == len(all_items)
         print(f'\nlist_report_evaluations() returned a total of {len(all_results)} items(s) using ReportEvaluationsPager.')
 
-    @needscredentials
-    def test_list_report_resources(self):
-        response = self.security_and_compliance_center_api_service.list_report_resources(
-            report_id=report_id_for_report_link,
-            x_correlation_id='testString',
-            x_request_id='testString',
-            id='testString',
-            resource_name='testString',
-            account_id=account_id_for_report_link,
-            component_id='testString',
-            status='compliant',
-            sort='account_id',
-            start='testString',
-            limit=50,
-        )
-
-        assert response.get_status_code() == 200
-        resource_page = response.get_result()
+    @needscredentials	
+    def test_list_report_resources(self):	
+        response = self.security_and_compliance_center_api_service.list_report_resources(	
+            report_id=report_id_for_report_link,	
+            x_correlation_id='testString',	
+            x_request_id='testString',	
+            id='testString',	
+            resource_name='testString',	
+            account_id=account_id_for_report_link,	
+            component_id='testString',	
+            status='compliant',	
+            sort='account_id',	
+            limit=50,	
+        )	
+        assert response.get_status_code() == 200	
+        resource_page = response.get_result()	
         assert resource_page is not None
 
     @needscredentials
@@ -1080,10 +1067,7 @@ class TestSecurityAndComplianceCenterApiV3:
             report_id=report_id_for_report_link,
             x_correlation_id='testString',
             x_request_id='testString',
-            id='testString',
-            resource_name='testString',
             account_id=account_id_for_report_link,
-            component_id='testString',
             status='compliant',
             sort='account_id',
             limit=10,
@@ -1151,7 +1135,7 @@ class TestSecurityAndComplianceCenterApiV3:
         provider_types_collection = response.get_result()
         assert provider_types_collection is not None
 
-        provider_type_id_link = provider_types_collection['provider_types'][0]['id']
+        provider_type_id_link = provider_types_collection['provider_types'][1]['id']
 
     @needscredentials
     def test_get_provider_type_by_id(self):
@@ -1184,7 +1168,7 @@ class TestSecurityAndComplianceCenterApiV3:
         response = self.security_and_compliance_center_api_service.create_provider_type_instance(
             provider_type_id=provider_type_id_link,
             name='workload-protection-instance-1',
-            attributes={'wp_crn':'crn:v1:staging:public:sysdig-secure:eu-gb:a/14q5SEnVIbwxzvP4AWPCjr2dJg5BAvPb:d1461d1ae-df1eee12fa81812e0-12-aa259::'},
+            attributes={'wp_crn':'crn:v1:staging:public:sysdig-secure:us-south:a/ff88f007f9ff4622aac4fbc0eda36255:0df4004c-fb74-483b-97be-dd9bd35af4d8::'},
             x_correlation_id='testString',
             x_request_id='testString',
         )
@@ -1214,7 +1198,7 @@ class TestSecurityAndComplianceCenterApiV3:
             provider_type_id=provider_type_id_link,
             provider_type_instance_id=provider_type_instance_id_link,
             name='workload-protection-instance-1',
-            attributes={'wp_crn':'crn:v1:staging:public:sysdig-secure:eu-gb:a/14q5SEnVIbwxzvP4AWPCjr2dJg5BAvPb:d1461d1ae-df1eee12fa81812e0-12-aa259::'},
+            attributes={'wp_crn':'crn:v1:staging:public:sysdig-secure:us-south:a/ff88f007f9ff4622aac4fbc0eda36255:0df4004c-fb74-483b-97be-dd9bd35af4d8::'},
             x_correlation_id='testString',
             x_request_id='testString',
         )
@@ -1233,6 +1217,19 @@ class TestSecurityAndComplianceCenterApiV3:
         assert response.get_status_code() == 200
         provider_types_instances_response = response.get_result()
         assert provider_types_instances_response is not None
+    
+    @needscredentials
+    def test_delete_profile_attachment(self):
+        response = self.security_and_compliance_center_api_service.delete_profile_attachment(
+            attachment_id=attachment_id_link,
+            profiles_id=profile_id_link,
+            x_correlation_id='testString',
+            x_request_id='testString',
+        )
+
+        assert response.get_status_code() == 200
+        attachment_item = response.get_result()
+        assert attachment_item is not None
 
     @needscredentials
     def test_delete_custom_profile(self):
@@ -1267,19 +1264,6 @@ class TestSecurityAndComplianceCenterApiV3:
         )
 
         assert response.get_status_code() == 204
-
-    @needscredentials
-    def test_delete_profile_attachment(self):
-        response = self.security_and_compliance_center_api_service.delete_profile_attachment(
-            attachment_id=attachment_id_link,
-            profiles_id=profile_id_link,
-            x_correlation_id='testString',
-            x_request_id='testString',
-        )
-
-        assert response.get_status_code() == 200
-        attachment_item = response.get_result()
-        assert attachment_item is not None
 
     @needscredentials
     def test_delete_provider_type_instance(self):

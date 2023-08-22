@@ -3177,7 +3177,6 @@ class SecurityAndComplianceCenterApiV3(BaseService):
             headers=headers,
             data=data,
         )
-
         response = self.send(request, **kwargs)
         return response
 
@@ -8958,8 +8957,8 @@ class PropertyItem:
     def __init__(
         self,
         *,
-        name: str = None,
-        value: str = None,
+        name: {} = None,
+        value: {} = None,
     ) -> None:
         """
         Initialize a PropertyItem object.
