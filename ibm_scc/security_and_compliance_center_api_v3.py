@@ -5840,7 +5840,7 @@ class ControlSpecifications:
     :attr str responsibility: (optional) The responsibility for managing the
           control.
     :attr str component_id: (optional) The component ID.
-    :attr str componenet_name: (optional) The component name.
+    :attr str component_name: (optional) The component name.
     :attr str environment: (optional) The control specifications environment.
     :attr str control_specification_description: (optional) The control
           specifications description.
@@ -5854,7 +5854,7 @@ class ControlSpecifications:
         control_specification_id: str = None,
         responsibility: str = None,
         component_id: str = None,
-        componenet_name: str = None,
+        component_name: str = None,
         environment: str = None,
         control_specification_description: str = None,
         assessments_count: int = None,
@@ -5868,7 +5868,7 @@ class ControlSpecifications:
         :param str responsibility: (optional) The responsibility for managing the
                control.
         :param str component_id: (optional) The component ID.
-        :param str componenet_name: (optional) The component name.
+        :param str component_name: (optional) The component name.
         :param str environment: (optional) The control specifications environment.
         :param str control_specification_description: (optional) The control
                specifications description.
@@ -5878,7 +5878,7 @@ class ControlSpecifications:
         self.control_specification_id = control_specification_id
         self.responsibility = responsibility
         self.component_id = component_id
-        self.componenet_name = componenet_name
+        self.component_name = component_name
         self.environment = environment
         self.control_specification_description = control_specification_description
         self.assessments_count = assessments_count
@@ -5894,8 +5894,8 @@ class ControlSpecifications:
             args['responsibility'] = _dict.get('responsibility')
         if 'component_id' in _dict:
             args['component_id'] = _dict.get('component_id')
-        if 'componenet_name' in _dict:
-            args['componenet_name'] = _dict.get('componenet_name')
+        if 'component_name' in _dict:
+            args['component_name'] = _dict.get('component_name')
         if 'environment' in _dict:
             args['environment'] = _dict.get('environment')
         if 'control_specification_description' in _dict:
@@ -5920,8 +5920,8 @@ class ControlSpecifications:
             _dict['responsibility'] = self.responsibility
         if hasattr(self, 'component_id') and self.component_id is not None:
             _dict['component_id'] = self.component_id
-        if hasattr(self, 'componenet_name') and self.componenet_name is not None:
-            _dict['componenet_name'] = self.componenet_name
+        if hasattr(self, 'component_name') and self.component_name is not None:
+            _dict['component_name'] = self.component_name
         if hasattr(self, 'environment') and self.environment is not None:
             _dict['environment'] = self.environment
         if hasattr(self, 'control_specification_description') and self.control_specification_description is not None:
