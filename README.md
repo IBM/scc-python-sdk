@@ -47,7 +47,7 @@ IBM Cloud services:
 
 Service Name | Module Name | Imported Class Name
 --- | --- | ---
-[Configuration Governance](https://cloud.ibm.com/apidocs/security-compliance/config) | configuration_governance_v1 | ConfigurationGovernanceV1
+[Security and Compliance Center](https://cloud.ibm.com/apidocs/security-compliance/) | ibm_scc.security_and_compliance_center_api_v3 | SecurityAndComplianceCenterApiV3
 
 ## Prerequisites
 
