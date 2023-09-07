@@ -9,7 +9,7 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 # IBM Cloud Security & Compliance Center Python SDK Version 3.0.0
 
-Python client library to interact with various [IBM Cloud Security & Compliance Center APIs](https://cloud.ibm.com/docs?tab=api-docs&category=platform_services%2Csecurity).
+Python client library to interact with various [IBM Cloud Security & Compliance Center APIs](https://cloud.ibm.com/apidocs/security-compliance?code=python).
 
 Disclaimer: this SDK is being released initially as a **pre-release** version.
 Changes might occur which impact applications that use this SDK.
@@ -47,7 +47,7 @@ IBM Cloud services:
 
 Service Name | Module Name | Imported Class Name
 --- | --- | ---
-[Configuration Governance](https://cloud.ibm.com/apidocs/security-compliance/config) | configuration_governance_v1 | ConfigurationGovernanceV1
+[Security and Compliance Center](https://cloud.ibm.com/apidocs/security-compliance) | ibm_scc.security_and_compliance_center_api_v3 | SecurityAndComplianceCenterApiV3
 
 ## Prerequisites
 
