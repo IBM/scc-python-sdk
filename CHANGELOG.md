@@ -1,3 +1,17 @@
+# [4.0.0](https://github.com/IBM/scc-python-sdk/compare/v3.0.0...v4.0.0) (2023-09-15)
+
+
+### Performance Improvements
+
+* **SCC:** Releasing SCC v2 Python SDK ([9471fdc](https://github.com/IBM/scc-python-sdk/commit/9471fdc46456c371c0fa014514a3437e00f8e917))
+
+
+### BREAKING CHANGES
+
+* **SCC:** SCC v2 Python SDK
+
+Signed-off-by: Gaurav Goswami <gouravgoswami48@gmail.com>
+
 # [3.0.0](https://github.com/IBM/scc-python-sdk/compare/v2.0.0...v3.0.0) (2022-08-04)
 
 
