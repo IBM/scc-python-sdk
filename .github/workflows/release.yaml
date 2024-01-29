@@ -1,0 +1,63 @@
+name: Publish/Release New Version
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+jobs:
+  publish:
+    name: Publish the release to pypi
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup extensions
+        uses: actions/checkout@v1
+
+      - name: install build module
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+      
+      - name: build project
+        run: python -m build
+
+      - name: publish to pypi
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: ${{ secrets.PYPI_USER }}
+          password: ${{ secrets.PYPI_PASSWORD }}
+          repository_url: https://upload.pypi.org/legacy/
+
+  documentation:
+    runs-on: ubuntu-latest
+    if: "github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')"
+    steps:
+      - name: setup extensions
+        uses: actions/checkout@v1
+
+      - name: install pdoc
+        run: pip install pdoc
+
+      - name: generate pydoc
+        run: |
+          pip install -e .
+          pdoc ibm_scc -o html
+      
+      - name: deploy python to gh-pages
+        run: |
+          git config --global user.email "scccomm@in.ibm.com"
+          git config --global user.name "sccdeveloper"
+          git config --global user.password "${{ secrets.ADMIN_TOKEN }}"
+          cd v4/dist
+          git init
+          git add .
+          git commit -m "Deploy to GitHub pages"
+          git branch -m gh-pages
+          git remote add origin https://github.com/IBM/scc-python-sdk
+          git push -f origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.ADMIN_TOKEN }}
+          GIT_AUTHOR_NAME: sccdeveloper
+          GIT_AUTHOR_EMAIL: scccomm@in.ibm.com
+          GIT_COMMITTER_NAME: sccdeveloper
+          GIT_COMMITTER_EMAIL: scccomm@in.ibm.com
