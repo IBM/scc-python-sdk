@@ -1613,7 +1613,6 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         profile_id: str,
         attachments: List['AttachmentsPrototype'],
         *,
-        profile_id: str = None,
         x_correlation_id: str = None,
         x_request_id: str = None,
         **kwargs,
