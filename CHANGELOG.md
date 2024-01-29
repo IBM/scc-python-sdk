@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/IBM/scc-python-sdk/compare/v4.0.0...v4.0.1) (2024-01-29)
+
+
+### Bug Fixes
+
+* consolidate profiles_id and profile_id ([#53](https://github.com/IBM/scc-python-sdk/issues/53)) ([0497844](https://github.com/IBM/scc-python-sdk/commit/0497844640d9fdcbd8f0dc7429ecb0cd716cc2b5))
+
 # [4.0.0](https://github.com/IBM/scc-python-sdk/compare/v3.0.0...v4.0.0) (2023-09-15)
 
 
