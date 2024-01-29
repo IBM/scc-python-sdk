@@ -1128,6 +1128,8 @@ class TestSecurityAndComplianceCenterApiV3:
     @needscredentials
     def test_list_provider_types(self):
         global provider_type_id_link
+        # manual fix to target caveonix
+        provider_type_id_link = "3e25966275dccfa2c3a34786919c5af7"
 
         response = self.security_and_compliance_center_api_service.list_provider_types(
             x_correlation_id='testString',
@@ -1138,7 +1140,7 @@ class TestSecurityAndComplianceCenterApiV3:
         provider_types_collection = response.get_result()
         assert provider_types_collection is not None
 
-        provider_type_id_link = provider_types_collection['provider_types'][1]['id']
+        # provider_type_id_link = provider_types_collection['provider_types'][1]['id']
 
     @needscredentials
     def test_get_provider_type_by_id(self):
@@ -1171,7 +1173,7 @@ class TestSecurityAndComplianceCenterApiV3:
         response = self.security_and_compliance_center_api_service.create_provider_type_instance(
             provider_type_id=provider_type_id_link,
             name='workload-protection-instance-1',
-            attributes={'wp_crn':'crn:v1:staging:public:sysdig-secure:us-south:a/ff88f007f9ff4622aac4fbc0eda36255:0df4004c-fb74-483b-97be-dd9bd35af4d8::'},
+            attributes={},
             x_correlation_id='testString',
             x_request_id='testString',
         )
@@ -1201,7 +1203,7 @@ class TestSecurityAndComplianceCenterApiV3:
             provider_type_id=provider_type_id_link,
             provider_type_instance_id=provider_type_instance_id_link,
             name='workload-protection-instance-1',
-            attributes={'wp_crn':'crn:v1:staging:public:sysdig-secure:us-south:a/ff88f007f9ff4622aac4fbc0eda36255:0df4004c-fb74-483b-97be-dd9bd35af4d8::'},
+            attributes={},
             x_correlation_id='testString',
             x_request_id='testString',
         )
