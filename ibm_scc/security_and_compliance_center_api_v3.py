@@ -1828,7 +1828,6 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         profile_id: str,
         *,
         id: str = None,
-        profile_id: str = None,
         account_id: str = None,
         instance_id: str = None,
         scope: List['MultiCloudScope'] = None,

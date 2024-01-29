@@ -3653,7 +3653,6 @@ class TestCreateAttachment:
         response = _service.create_attachment(
             profile_id,
             attachments,
-            profile_id=profile_id,
             x_correlation_id=x_correlation_id,
             x_request_id=x_request_id,
             headers={},
@@ -3741,7 +3740,6 @@ class TestCreateAttachment:
         response = _service.create_attachment(
             profile_id,
             attachments,
-            profile_id=profile_id,
             headers={},
         )
 
@@ -4161,7 +4159,6 @@ class TestReplaceProfileAttachment:
         attachment_id = 'testString'
         profile_id = 'testString'
         id = 'testString'
-        profile_id = 'testString'
         account_id = 'testString'
         instance_id = 'testString'
         scope = [multi_cloud_scope_model]
@@ -4185,7 +4182,6 @@ class TestReplaceProfileAttachment:
             attachment_id,
             profile_id,
             id=id,
-            profile_id=profile_id,
             account_id=account_id,
             instance_id=instance_id,
             scope=scope,
@@ -4315,7 +4311,6 @@ class TestReplaceProfileAttachment:
             attachment_id,
             profile_id,
             id=id,
-            profile_id=profile_id,
             account_id=account_id,
             instance_id=instance_id,
             scope=scope,

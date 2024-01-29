@@ -790,7 +790,6 @@ class TestSecurityAndComplianceCenterApiV3:
             attachment_id=attachment_id_link,
             profile_id=profile_id_link,
             id='testString',
-            profile_id=profile_id_link,
             account_id=account_id,
             instance_id=instance_id,
             scope=[multi_cloud_scope_model],
