@@ -19,10 +19,10 @@ install_project:
 test: test-unit test-int
 
 test-unit:
-	python -m pytest test/unit
+	python -m pytest tests/unit
 
 test-int:
-	python -m pytest test/integration
+	python -m pytest tests/integration
 
 lint:
 	./pylint.sh
