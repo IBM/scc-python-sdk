@@ -1962,13 +1962,13 @@ class TestDeleteCustomProfile:
         )
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
         x_correlation_id = 'testString'
         x_request_id = 'testString'
 
         # Invoke method
         response = _service.delete_custom_profile(
-            profile_id,
+            profiles_id,
             x_correlation_id=x_correlation_id,
             x_request_id=x_request_id,
             headers={},
@@ -2004,11 +2004,11 @@ class TestDeleteCustomProfile:
         )
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
 
         # Invoke method
         response = _service.delete_custom_profile(
-            profile_id,
+            profiles_id,
             headers={},
         )
 
@@ -2042,11 +2042,11 @@ class TestDeleteCustomProfile:
         )
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "profile_id": profile_id,
+            "profiles_id": profiles_id,
         }
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
@@ -2085,13 +2085,13 @@ class TestGetProfile:
         )
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
         x_correlation_id = 'testString'
         x_request_id = 'testString'
 
         # Invoke method
         response = _service.get_profile(
-            profile_id,
+            profiles_id,
             x_correlation_id=x_correlation_id,
             x_request_id=x_request_id,
             headers={},
@@ -2127,11 +2127,11 @@ class TestGetProfile:
         )
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
 
         # Invoke method
         response = _service.get_profile(
-            profile_id,
+            profiles_id,
             headers={},
         )
 
@@ -2165,11 +2165,11 @@ class TestGetProfile:
         )
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "profile_id": profile_id,
+            "profiles_id": profiles_id,
         }
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
@@ -2222,7 +2222,7 @@ class TestReplaceProfile:
         default_parameters_prototype_model['parameter_type'] = 'numeric'
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
         profile_name = 'test_profile1'
         profile_description = 'test_description1'
         profile_type = 'custom'
@@ -2233,7 +2233,7 @@ class TestReplaceProfile:
 
         # Invoke method
         response = _service.replace_profile(
-            profile_id,
+            profiles_id,
             profile_name,
             profile_description,
             profile_type,
@@ -2295,7 +2295,7 @@ class TestReplaceProfile:
         default_parameters_prototype_model['parameter_type'] = 'numeric'
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
         profile_name = 'test_profile1'
         profile_description = 'test_description1'
         profile_type = 'custom'
@@ -2304,7 +2304,7 @@ class TestReplaceProfile:
 
         # Invoke method
         response = _service.replace_profile(
-            profile_id,
+            profiles_id,
             profile_name,
             profile_description,
             profile_type,
@@ -2364,7 +2364,7 @@ class TestReplaceProfile:
         default_parameters_prototype_model['parameter_type'] = 'numeric'
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
         profile_name = 'test_profile1'
         profile_description = 'test_description1'
         profile_type = 'custom'
@@ -2373,7 +2373,7 @@ class TestReplaceProfile:
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "profile_id": profile_id,
+            "profiles_id": profiles_id,
             "profile_name": profile_name,
             "profile_description": profile_description,
             "profile_type": profile_type,
@@ -3396,7 +3396,7 @@ class TestListAttachments:
         )
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
         x_correlation_id = 'testString'
         x_request_id = 'testString'
         limit = 50
@@ -3404,7 +3404,7 @@ class TestListAttachments:
 
         # Invoke method
         response = _service.list_attachments(
-            profile_id,
+            profiles_id,
             x_correlation_id=x_correlation_id,
             x_request_id=x_request_id,
             limit=limit,
@@ -3447,11 +3447,11 @@ class TestListAttachments:
         )
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
 
         # Invoke method
         response = _service.list_attachments(
-            profile_id,
+            profiles_id,
             headers={},
         )
 
@@ -3485,11 +3485,11 @@ class TestListAttachments:
         )
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "profile_id": profile_id,
+            "profiles_id": profiles_id,
         }
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
@@ -3533,7 +3533,7 @@ class TestListAttachments:
         all_results = []
         pager = AttachmentsPager(
             client=_service,
-            profile_id='testString',
+            profiles_id='testString',
             x_correlation_id='testString',
             x_request_id='testString',
             limit=10,
@@ -3571,7 +3571,7 @@ class TestListAttachments:
         # Exercise the pager class for this operation
         pager = AttachmentsPager(
             client=_service,
-            profile_id='testString',
+            profiles_id='testString',
             x_correlation_id='testString',
             x_request_id='testString',
             limit=10,
@@ -3643,7 +3643,7 @@ class TestCreateAttachment:
         attachments_prototype_model['attachment_parameters'] = [attachment_parameter_prototype_model]
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
         attachments = [attachments_prototype_model]
         profile_id = 'testString'
         x_correlation_id = 'testString'
@@ -3651,7 +3651,7 @@ class TestCreateAttachment:
 
         # Invoke method
         response = _service.create_attachment(
-            profile_id,
+            profiles_id,
             attachments,
             profile_id=profile_id,
             x_correlation_id=x_correlation_id,
@@ -3733,13 +3733,13 @@ class TestCreateAttachment:
         attachments_prototype_model['attachment_parameters'] = [attachment_parameter_prototype_model]
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
         attachments = [attachments_prototype_model]
         profile_id = 'testString'
 
         # Invoke method
         response = _service.create_attachment(
-            profile_id,
+            profiles_id,
             attachments,
             profile_id=profile_id,
             headers={},
@@ -3819,13 +3819,13 @@ class TestCreateAttachment:
         attachments_prototype_model['attachment_parameters'] = [attachment_parameter_prototype_model]
 
         # Set up parameter values
-        profile_id = 'testString'
+        profiles_id = 'testString'
         attachments = [attachments_prototype_model]
         profile_id = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "profile_id": profile_id,
+            "profiles_id": profiles_id,
             "attachments": attachments,
         }
         for param in req_param_dict.keys():
@@ -3866,14 +3866,14 @@ class TestDeleteProfileAttachment:
 
         # Set up parameter values
         attachment_id = 'testString'
-        profile_id = 'testString'
+        profiles_id = 'testString'
         x_correlation_id = 'testString'
         x_request_id = 'testString'
 
         # Invoke method
         response = _service.delete_profile_attachment(
             attachment_id,
-            profile_id,
+            profiles_id,
             x_correlation_id=x_correlation_id,
             x_request_id=x_request_id,
             headers={},
@@ -3910,12 +3910,12 @@ class TestDeleteProfileAttachment:
 
         # Set up parameter values
         attachment_id = 'testString'
-        profile_id = 'testString'
+        profiles_id = 'testString'
 
         # Invoke method
         response = _service.delete_profile_attachment(
             attachment_id,
-            profile_id,
+            profiles_id,
             headers={},
         )
 
@@ -3950,12 +3950,12 @@ class TestDeleteProfileAttachment:
 
         # Set up parameter values
         attachment_id = 'testString'
-        profile_id = 'testString'
+        profiles_id = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "attachment_id": attachment_id,
-            "profile_id": profile_id,
+            "profiles_id": profiles_id,
         }
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
@@ -3995,14 +3995,14 @@ class TestGetProfileAttachment:
 
         # Set up parameter values
         attachment_id = 'testString'
-        profile_id = 'testString'
+        profiles_id = 'testString'
         x_correlation_id = 'testString'
         x_request_id = 'testString'
 
         # Invoke method
         response = _service.get_profile_attachment(
             attachment_id,
-            profile_id,
+            profiles_id,
             x_correlation_id=x_correlation_id,
             x_request_id=x_request_id,
             headers={},
@@ -4039,12 +4039,12 @@ class TestGetProfileAttachment:
 
         # Set up parameter values
         attachment_id = 'testString'
-        profile_id = 'testString'
+        profiles_id = 'testString'
 
         # Invoke method
         response = _service.get_profile_attachment(
             attachment_id,
-            profile_id,
+            profiles_id,
             headers={},
         )
 
@@ -4079,12 +4079,12 @@ class TestGetProfileAttachment:
 
         # Set up parameter values
         attachment_id = 'testString'
-        profile_id = 'testString'
+        profiles_id = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "attachment_id": attachment_id,
-            "profile_id": profile_id,
+            "profiles_id": profiles_id,
         }
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
@@ -4159,7 +4159,7 @@ class TestReplaceProfileAttachment:
 
         # Set up parameter values
         attachment_id = 'testString'
-        profile_id = 'testString'
+        profiles_id = 'testString'
         id = 'testString'
         profile_id = 'testString'
         account_id = 'testString'
@@ -4183,7 +4183,7 @@ class TestReplaceProfileAttachment:
         # Invoke method
         response = _service.replace_profile_attachment(
             attachment_id,
-            profile_id,
+            profiles_id,
             id=id,
             profile_id=profile_id,
             account_id=account_id,
@@ -4291,7 +4291,7 @@ class TestReplaceProfileAttachment:
 
         # Set up parameter values
         attachment_id = 'testString'
-        profile_id = 'testString'
+        profiles_id = 'testString'
         id = 'testString'
         profile_id = 'testString'
         account_id = 'testString'
@@ -4313,7 +4313,7 @@ class TestReplaceProfileAttachment:
         # Invoke method
         response = _service.replace_profile_attachment(
             attachment_id,
-            profile_id,
+            profiles_id,
             id=id,
             profile_id=profile_id,
             account_id=account_id,
@@ -4419,7 +4419,7 @@ class TestReplaceProfileAttachment:
 
         # Set up parameter values
         attachment_id = 'testString'
-        profile_id = 'testString'
+        profiles_id = 'testString'
         id = 'testString'
         profile_id = 'testString'
         account_id = 'testString'
@@ -4441,7 +4441,7 @@ class TestReplaceProfileAttachment:
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "attachment_id": attachment_id,
-            "profile_id": profile_id,
+            "profiles_id": profiles_id,
         }
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}

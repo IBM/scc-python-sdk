@@ -901,7 +901,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
 
     def delete_custom_profile(
         self,
-        profile_id: str,
+        profiles_id: str,
         *,
         x_correlation_id: str = None,
         x_request_id: str = None,
@@ -915,7 +915,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         profiles, see [Building custom
         profiles](https://test.cloud.ibm.com/docs/security-compliance?topic=security-compliance-build-custom-profiles&interface=api).
 
-        :param str profile_id: The profile ID.
+        :param str profiles_id: The profile ID.
         :param str x_correlation_id: (optional) The supplied or generated value of
                this header is logged for a request and repeated in a response header for
                the corresponding response. The same value is used for downstream requests
@@ -931,8 +931,8 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `Profile` object
         """
 
-        if not profile_id:
-            raise ValueError('profile_id must be provided')
+        if not profiles_id:
+            raise ValueError('profiles_id must be provided')
         headers = {
             'X-Correlation-ID': x_correlation_id,
             'X-Request-ID': x_request_id,
@@ -949,10 +949,10 @@ class SecurityAndComplianceCenterApiV3(BaseService):
             del kwargs['headers']
         headers['Accept'] = 'application/json'
 
-        path_param_keys = ['profile_id']
-        path_param_values = self.encode_path_vars(profile_id)
+        path_param_keys = ['profiles_id']
+        path_param_values = self.encode_path_vars(profiles_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/profiles/{profile_id}'.format(**path_param_dict)
+        url = '/profiles/{profiles_id}'.format(**path_param_dict)
         request = self.prepare_request(
             method='DELETE',
             url=url,
@@ -964,7 +964,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
 
     def get_profile(
         self,
-        profile_id: str,
+        profiles_id: str,
         *,
         x_correlation_id: str = None,
         x_request_id: str = None,
@@ -978,7 +978,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         [Building custom
         profiles](https://test.cloud.ibm.com/docs/security-compliance?topic=security-compliance-build-custom-profiles&interface=api).
 
-        :param str profile_id: The profile ID.
+        :param str profiles_id: The profile ID.
         :param str x_correlation_id: (optional) The supplied or generated value of
                this header is logged for a request and repeated in a response header for
                the corresponding response. The same value is used for downstream requests
@@ -994,8 +994,8 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `Profile` object
         """
 
-        if not profile_id:
-            raise ValueError('profile_id must be provided')
+        if not profiles_id:
+            raise ValueError('profiles_id must be provided')
         headers = {
             'X-Correlation-ID': x_correlation_id,
             'X-Request-ID': x_request_id,
@@ -1012,10 +1012,10 @@ class SecurityAndComplianceCenterApiV3(BaseService):
             del kwargs['headers']
         headers['Accept'] = 'application/json'
 
-        path_param_keys = ['profile_id']
-        path_param_values = self.encode_path_vars(profile_id)
+        path_param_keys = ['profiles_id']
+        path_param_values = self.encode_path_vars(profiles_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/profiles/{profile_id}'.format(**path_param_dict)
+        url = '/profiles/{profiles_id}'.format(**path_param_dict)
         request = self.prepare_request(
             method='GET',
             url=url,
@@ -1027,7 +1027,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
 
     def replace_profile(
         self,
-        profile_id: str,
+        profiles_id: str,
         profile_name: str,
         profile_description: str,
         profile_type: str,
@@ -1046,7 +1046,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         library as a starting point.  For more information, see [Building custom
         profiles](https://test.cloud.ibm.com/docs/security-compliance?topic=security-compliance-build-custom-profiles&interface=api).
 
-        :param str profile_id: The profile ID.
+        :param str profiles_id: The profile ID.
         :param str profile_name: The name of the profile.
         :param str profile_description: The description of the profile.
         :param str profile_type: The profile type.
@@ -1069,8 +1069,8 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `Profile` object
         """
 
-        if not profile_id:
-            raise ValueError('profile_id must be provided')
+        if not profiles_id:
+            raise ValueError('profiles_id must be provided')
         if profile_name is None:
             raise ValueError('profile_name must be provided')
         if profile_description is None:
@@ -1110,10 +1110,10 @@ class SecurityAndComplianceCenterApiV3(BaseService):
             del kwargs['headers']
         headers['Accept'] = 'application/json'
 
-        path_param_keys = ['profile_id']
-        path_param_values = self.encode_path_vars(profile_id)
+        path_param_keys = ['profiles_id']
+        path_param_values = self.encode_path_vars(profiles_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/profiles/{profile_id}'.format(**path_param_dict)
+        url = '/profiles/{profiles_id}'.format(**path_param_dict)
         request = self.prepare_request(
             method='PUT',
             url=url,
@@ -1534,7 +1534,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
 
     def list_attachments(
         self,
-        profile_id: str,
+        profiles_id: str,
         *,
         x_correlation_id: str = None,
         x_request_id: str = None,
@@ -1551,7 +1551,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         information, see [Running an evaluation for IBM
         Cloud](https://test.cloud.ibm.com/docs/security-compliance?topic=security-compliance-scan-resources).
 
-        :param str profile_id: The profile ID.
+        :param str profiles_id: The profile ID.
         :param str x_correlation_id: (optional) The supplied or generated value of
                this header is logged for a request and repeated in a response header for
                the corresponding response. The same value is used for downstream requests
@@ -1571,8 +1571,8 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `AttachmentCollection` object
         """
 
-        if not profile_id:
-            raise ValueError('profile_id must be provided')
+        if not profiles_id:
+            raise ValueError('profiles_id must be provided')
         headers = {
             'X-Correlation-ID': x_correlation_id,
             'X-Request-ID': x_request_id,
@@ -1594,10 +1594,10 @@ class SecurityAndComplianceCenterApiV3(BaseService):
             del kwargs['headers']
         headers['Accept'] = 'application/json'
 
-        path_param_keys = ['profile_id']
-        path_param_values = self.encode_path_vars(profile_id)
+        path_param_keys = ['profiles_id']
+        path_param_values = self.encode_path_vars(profiles_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/profiles/{profile_id}/attachments'.format(**path_param_dict)
+        url = '/profiles/{profiles_id}/attachments'.format(**path_param_dict)
         request = self.prepare_request(
             method='GET',
             url=url,
@@ -1610,7 +1610,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
 
     def create_attachment(
         self,
-        profile_id: str,
+        profiles_id: str,
         attachments: List['AttachmentsPrototype'],
         *,
         profile_id: str = None,
@@ -1626,7 +1626,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         [Running an evaluation for IBM
         Cloud](https://test.cloud.ibm.com/docs/security-compliance?topic=security-compliance-scan-resources).
 
-        :param str profile_id: The profile ID.
+        :param str profiles_id: The profile ID.
         :param List[AttachmentsPrototype] attachments: The array that displays all
                of the available attachments.
         :param str profile_id: (optional) The ID of the profile that is specified
@@ -1646,8 +1646,8 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `AttachmentPrototype` object
         """
 
-        if not profile_id:
-            raise ValueError('profile_id must be provided')
+        if not profiles_id:
+            raise ValueError('profiles_id must be provided')
         if attachments is None:
             raise ValueError('attachments must be provided')
         attachments = [convert_model(x) for x in attachments]
@@ -1675,10 +1675,10 @@ class SecurityAndComplianceCenterApiV3(BaseService):
             del kwargs['headers']
         headers['Accept'] = 'application/json'
 
-        path_param_keys = ['profile_id']
-        path_param_values = self.encode_path_vars(profile_id)
+        path_param_keys = ['profiles_id']
+        path_param_values = self.encode_path_vars(profiles_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/profiles/{profile_id}/attachments'.format(**path_param_dict)
+        url = '/profiles/{profiles_id}/attachments'.format(**path_param_dict)
         request = self.prepare_request(
             method='POST',
             url=url,
@@ -1692,7 +1692,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
     def delete_profile_attachment(
         self,
         attachment_id: str,
-        profile_id: str,
+        profiles_id: str,
         *,
         x_correlation_id: str = None,
         x_request_id: str = None,
@@ -1707,7 +1707,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         Cloud](https://test.cloud.ibm.com/docs/security-compliance?topic=security-compliance-scan-resources).
 
         :param str attachment_id: The attachment ID.
-        :param str profile_id: The profile ID.
+        :param str profiles_id: The profile ID.
         :param str x_correlation_id: (optional) The supplied or generated value of
                this header is logged for a request and repeated in a response header for
                the corresponding response. The same value is used for downstream requests
@@ -1725,8 +1725,8 @@ class SecurityAndComplianceCenterApiV3(BaseService):
 
         if not attachment_id:
             raise ValueError('attachment_id must be provided')
-        if not profile_id:
-            raise ValueError('profile_id must be provided')
+        if not profiles_id:
+            raise ValueError('profiles_id must be provided')
         headers = {
             'X-Correlation-ID': x_correlation_id,
             'X-Request-ID': x_request_id,
@@ -1743,10 +1743,10 @@ class SecurityAndComplianceCenterApiV3(BaseService):
             del kwargs['headers']
         headers['Accept'] = 'application/json'
 
-        path_param_keys = ['attachment_id', 'profile_id']
-        path_param_values = self.encode_path_vars(attachment_id, profile_id)
+        path_param_keys = ['attachment_id', 'profiles_id']
+        path_param_values = self.encode_path_vars(attachment_id, profiles_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/profiles/{profile_id}/attachments/{attachment_id}'.format(**path_param_dict)
+        url = '/profiles/{profiles_id}/attachments/{attachment_id}'.format(**path_param_dict)
         request = self.prepare_request(
             method='DELETE',
             url=url,
@@ -1759,7 +1759,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
     def get_profile_attachment(
         self,
         attachment_id: str,
-        profile_id: str,
+        profiles_id: str,
         *,
         x_correlation_id: str = None,
         x_request_id: str = None,
@@ -1774,7 +1774,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         Cloud](https://test.cloud.ibm.com/docs/security-compliance?topic=security-compliance-scan-resources).
 
         :param str attachment_id: The attachment ID.
-        :param str profile_id: The profile ID.
+        :param str profiles_id: The profile ID.
         :param str x_correlation_id: (optional) The supplied or generated value of
                this header is logged for a request and repeated in a response header for
                the corresponding response. The same value is used for downstream requests
@@ -1792,8 +1792,8 @@ class SecurityAndComplianceCenterApiV3(BaseService):
 
         if not attachment_id:
             raise ValueError('attachment_id must be provided')
-        if not profile_id:
-            raise ValueError('profile_id must be provided')
+        if not profiles_id:
+            raise ValueError('profiles_id must be provided')
         headers = {
             'X-Correlation-ID': x_correlation_id,
             'X-Request-ID': x_request_id,
@@ -1810,10 +1810,10 @@ class SecurityAndComplianceCenterApiV3(BaseService):
             del kwargs['headers']
         headers['Accept'] = 'application/json'
 
-        path_param_keys = ['attachment_id', 'profile_id']
-        path_param_values = self.encode_path_vars(attachment_id, profile_id)
+        path_param_keys = ['attachment_id', 'profiles_id']
+        path_param_values = self.encode_path_vars(attachment_id, profiles_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/profiles/{profile_id}/attachments/{attachment_id}'.format(**path_param_dict)
+        url = '/profiles/{profiles_id}/attachments/{attachment_id}'.format(**path_param_dict)
         request = self.prepare_request(
             method='GET',
             url=url,
@@ -1826,7 +1826,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
     def replace_profile_attachment(
         self,
         attachment_id: str,
-        profile_id: str,
+        profiles_id: str,
         *,
         id: str = None,
         profile_id: str = None,
@@ -1858,7 +1858,7 @@ class SecurityAndComplianceCenterApiV3(BaseService):
         Cloud](https://test.cloud.ibm.com/docs/security-compliance?topic=security-compliance-scan-resources).
 
         :param str attachment_id: The attachment ID.
-        :param str profile_id: The profile ID.
+        :param str profiles_id: The profile ID.
         :param str id: (optional) The ID of the attachment.
         :param str profile_id: (optional) The ID of the profile that is specified
                in the attachment.
@@ -1902,8 +1902,8 @@ class SecurityAndComplianceCenterApiV3(BaseService):
 
         if not attachment_id:
             raise ValueError('attachment_id must be provided')
-        if not profile_id:
-            raise ValueError('profile_id must be provided')
+        if not profiles_id:
+            raise ValueError('profiles_id must be provided')
         if scope is not None:
             scope = [convert_model(x) for x in scope]
         if created_on is not None:
@@ -1957,10 +1957,10 @@ class SecurityAndComplianceCenterApiV3(BaseService):
             del kwargs['headers']
         headers['Accept'] = 'application/json'
 
-        path_param_keys = ['attachment_id', 'profile_id']
-        path_param_values = self.encode_path_vars(attachment_id, profile_id)
+        path_param_keys = ['attachment_id', 'profiles_id']
+        path_param_values = self.encode_path_vars(attachment_id, profiles_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/profiles/{profile_id}/attachments/{attachment_id}'.format(**path_param_dict)
+        url = '/profiles/{profiles_id}/attachments/{attachment_id}'.format(**path_param_dict)
         request = self.prepare_request(
             method='PUT',
             url=url,
@@ -12798,14 +12798,14 @@ class AttachmentsPager:
         self,
         *,
         client: SecurityAndComplianceCenterApiV3,
-        profile_id: str,
+        profiles_id: str,
         x_correlation_id: str = None,
         x_request_id: str = None,
         limit: int = None,
     ) -> None:
         """
         Initialize a AttachmentsPager object.
-        :param str profile_id: The profile ID.
+        :param str profiles_id: The profile ID.
         :param str x_correlation_id: (optional) The supplied or generated value of
                this header is logged for a request and repeated in a response header for
                the corresponding response. The same value is used for downstream requests
@@ -12822,7 +12822,7 @@ class AttachmentsPager:
         self._has_next = True
         self._client = client
         self._page_context = {'next': None}
-        self._profile_id = profile_id
+        self._profiles_id = profiles_id
         self._x_correlation_id = x_correlation_id
         self._x_request_id = x_request_id
         self._limit = limit
@@ -12843,7 +12843,7 @@ class AttachmentsPager:
             raise StopIteration(message='No more results available')
 
         result = self._client.list_attachments(
-            profile_id=self._profile_id,
+            profiles_id=self._profiles_id,
             x_correlation_id=self._x_correlation_id,
             x_request_id=self._x_request_id,
             limit=self._limit,

@@ -26,26 +26,26 @@ from ibm_scc.security_and_compliance_center_api_v3 import *
 config_file = 'security_and_compliance_center_api_v3.env'
 
 # Variables to hold link values
-account_id_for_report_link = ""
-attachment_id_for_report_link = ""
-attachment_id_link = ""
-control_library_id_link = ""
-e_tag_link = ""
-event_notifications_crn_for_update_settings_link = ""
-group_id_for_report_link = ""
-object_storage_bucket_for_update_settings_link = ""
-object_storage_crn_for_update_settings_link = ""
-object_storage_location_for_update_settings_link = ""
-profile_id_for_report_link = ""
-profile_id_link = ""
-provider_type_id_link = ""
-provider_type_instance_id_link = ""
-report_id_for_report_link = ""
-rule_id_link = ""
-type_for_report_link = ""
-account_id = ""
-instance_id = ""
-create_scan_attachment_id = ""
+account_id_for_report_link = None
+attachment_id_for_report_link = None
+attachment_id_link = None
+control_library_id_link = None
+e_tag_link = None
+event_notifications_crn_for_update_settings_link = None
+group_id_for_report_link = None
+object_storage_bucket_for_update_settings_link = None
+object_storage_crn_for_update_settings_link = None
+object_storage_location_for_update_settings_link = None
+profile_id_for_report_link = None
+profile_id_link = None
+provider_type_id_link = None
+provider_type_instance_id_link = None
+report_id_for_report_link = None
+rule_id_link = None
+type_for_report_link = None
+account_id = None
+instance_id = None
+create_scan_attachment_id = None
 
 class TestSecurityAndComplianceCenterApiV3:
     """
@@ -514,7 +514,7 @@ class TestSecurityAndComplianceCenterApiV3:
     @needscredentials
     def test_get_profile(self):
         response = self.security_and_compliance_center_api_service.get_profile(
-            profile_id=profile_id_link,
+            profiles_id=profile_id_link,
             x_correlation_id='testString',
             x_request_id='testString',
         )
@@ -541,7 +541,7 @@ class TestSecurityAndComplianceCenterApiV3:
         }
 
         response = self.security_and_compliance_center_api_service.replace_profile(
-            profile_id=profile_id_link,
+            profiles_id=profile_id_link,
             profile_name='test_profile1',
             profile_description='test_description1',
             profile_type='custom',
@@ -675,8 +675,9 @@ class TestSecurityAndComplianceCenterApiV3:
             'attachment_parameters': [attachment_parameter_prototype_model],
         }
         response = self.security_and_compliance_center_api_service.create_attachment(
-            profile_id=profile_id_link,
+            profiles_id=profile_id_link,
             attachments=[attachments_prototype_model],
+            profile_id=profile_id_link,
             x_correlation_id='testString',
             x_request_id='testString',
         )
@@ -691,7 +692,7 @@ class TestSecurityAndComplianceCenterApiV3:
     @needscredentials
     def test_list_attachments(self):
         response = self.security_and_compliance_center_api_service.list_attachments(
-            profile_id=profile_id_link,
+            profiles_id=profile_id_link,
             x_correlation_id='testString',
             x_request_id='testString',
             limit=50,
@@ -707,7 +708,7 @@ class TestSecurityAndComplianceCenterApiV3:
         # Test get_next().
         pager = AttachmentsPager(
             client=self.security_and_compliance_center_api_service,
-            profile_id=profile_id_link,
+            profiles_id=profile_id_link,
             x_correlation_id='testString',
             x_request_id='testString',
             limit=10,
@@ -720,7 +721,7 @@ class TestSecurityAndComplianceCenterApiV3:
         # Test get_all().
         pager = AttachmentsPager(
             client=self.security_and_compliance_center_api_service,
-            profile_id=profile_id_link,
+            profiles_id=profile_id_link,
             x_correlation_id='testString',
             x_request_id='testString',
             limit=10,
@@ -735,7 +736,7 @@ class TestSecurityAndComplianceCenterApiV3:
     def test_get_profile_attachment(self):
         response = self.security_and_compliance_center_api_service.get_profile_attachment(
             attachment_id=attachment_id_link,
-            profile_id=profile_id_link,
+            profiles_id=profile_id_link,
             x_correlation_id='testString',
             x_request_id='testString',
         )
@@ -788,7 +789,7 @@ class TestSecurityAndComplianceCenterApiV3:
 
         response = self.security_and_compliance_center_api_service.replace_profile_attachment(
             attachment_id=attachment_id_link,
-            profile_id=profile_id_link,
+            profiles_id=profile_id_link,
             id='testString',
             profile_id=profile_id_link,
             account_id=account_id,
@@ -1226,7 +1227,7 @@ class TestSecurityAndComplianceCenterApiV3:
     def test_delete_profile_attachment(self):
         response = self.security_and_compliance_center_api_service.delete_profile_attachment(
             attachment_id=attachment_id_link,
-            profile_id=profile_id_link,
+            profiles_id=profile_id_link,
             x_correlation_id='testString',
             x_request_id='testString',
         )
@@ -1238,7 +1239,7 @@ class TestSecurityAndComplianceCenterApiV3:
     @needscredentials
     def test_delete_custom_profile(self):
         response = self.security_and_compliance_center_api_service.delete_custom_profile(
-            profile_id=profile_id_link,
+            profiles_id=profile_id_link,
             x_correlation_id='testString',
             x_request_id='testString',
         )
