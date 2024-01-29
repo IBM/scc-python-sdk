@@ -563,7 +563,7 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             # begin-get_profile
 
             response = security_and_compliance_center_api_service.get_profile(
-                profiles_id=profile_id_link,
+                profile_id=profile_id_link,
             )
             profile = response.get_result()
 
@@ -598,7 +598,7 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             }
 
             response = security_and_compliance_center_api_service.replace_profile(
-                profiles_id=profile_id_link,
+                profile_id=profile_id_link,
                 profile_name='test_profile1',
                 profile_description='test_description1',
                 profile_type='custom',
@@ -752,7 +752,7 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             }
 
             response = security_and_compliance_center_api_service.create_attachment(
-                profiles_id=profile_id_link,
+                profile_id=profile_id_link,
                 attachments=[attachments_prototype_model],
             )
             attachment_prototype = response.get_result()
@@ -777,7 +777,7 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             all_results = []
             pager = AttachmentsPager(
                 client=security_and_compliance_center_api_service,
-                profiles_id=profile_id_link,
+                profile_id=profile_id_link,
                 x_correlation_id='testString',
                 x_request_id='testString',
                 limit=10,
@@ -804,7 +804,7 @@ class TestSecurityAndComplianceCenterApiV3Examples:
 
             response = security_and_compliance_center_api_service.get_profile_attachment(
                 attachment_id=attachment_id_link,
-                profiles_id=profile_id_link,
+                profile_id=profile_id_link,
             )
             attachment_item = response.get_result()
 
@@ -857,7 +857,7 @@ class TestSecurityAndComplianceCenterApiV3Examples:
 
             response = security_and_compliance_center_api_service.replace_profile_attachment(
                 attachment_id=attachment_id_link,
-                profiles_id=profile_id_link,
+                profile_id=profile_id_link,
                 scope=[multi_cloud_scope_model],
                 status='enabled',
                 schedule='every_30_days',
@@ -1340,7 +1340,7 @@ class TestSecurityAndComplianceCenterApiV3Examples:
 
             response = security_and_compliance_center_api_service.delete_profile_attachment(
                 attachment_id=attachment_id_link,
-                profiles_id=profile_id_link,
+                profile_id=profile_id_link,
             )
             attachment_item = response.get_result()
 
@@ -1361,7 +1361,7 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             # begin-delete_custom_profile
 
             response = security_and_compliance_center_api_service.delete_custom_profile(
-                profiles_id=profile_id_link,
+                profile_id=profile_id_link,
             )
             profile = response.get_result()
 
