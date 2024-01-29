@@ -1203,7 +1203,7 @@ class TestSecurityAndComplianceCenterApiV3:
             provider_type_id=provider_type_id_link,
             provider_type_instance_id=provider_type_instance_id_link,
             name='workload-protection-instance-1',
-            attributes={'wp_crn':'crn:v1:staging:public:sysdig-secure:us-south:a/ff88f007f9ff4622aac4fbc0eda36255:0df4004c-fb74-483b-97be-dd9bd35af4d8::'},
+            attributes={},
             x_correlation_id='testString',
             x_request_id='testString',
         )
