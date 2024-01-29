@@ -1128,6 +1128,8 @@ class TestSecurityAndComplianceCenterApiV3:
     @needscredentials
     def test_list_provider_types(self):
         global provider_type_id_link
+        # manual fix to target caveonix
+        provider_type_id_link = "3e25966275dccfa2c3a34786919c5af7"
 
         response = self.security_and_compliance_center_api_service.list_provider_types(
             x_correlation_id='testString',
@@ -1138,9 +1140,7 @@ class TestSecurityAndComplianceCenterApiV3:
         provider_types_collection = response.get_result()
         assert provider_types_collection is not None
 
-        # manual fix to target caveonix
         # provider_type_id_link = provider_types_collection['provider_types'][1]['id']
-        provider_type_id_link = "3e25966275dccfa2c3a34786919c5af7"
 
     @needscredentials
     def test_get_provider_type_by_id(self):
