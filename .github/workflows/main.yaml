@@ -30,9 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     if: "!startsWith(github.event.head_commit.message, 'chore') && !startsWith(github.ref, 'refs/tags/v')"
     strategy:
-      max-parallel: 2
+      max-parallel: 1
       matrix: 
-        python-version: [3.9, "3.10", 3.11]
+        python-version: [3.9, 3.10, 3.11]
     steps:
       - name: setup extensions
         uses: actions/checkout@v1
