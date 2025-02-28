@@ -19,7 +19,7 @@ import os
 import sys
 import pkg_resources
 
-__version__ = '4.0.1'
+__version__ = '5.0.0'
 PACKAGE_NAME = 'ibm_scc'
 PACKAGE_DESC = 'Python client library for IBM Cloud Security & Compliance Center Services'
 
