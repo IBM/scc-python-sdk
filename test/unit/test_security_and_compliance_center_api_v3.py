@@ -116,7 +116,7 @@ class TestListInstanceAttachments:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/attachments')
-        mock_response = '{"limit": 50, "total_count": 230, "first": {"href": "href"}, "next": {"href": "href", "start": "start"}, "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
+        mock_response = '{"limit": 50, "total_count": 230, "first": {"href": "href"}, "next": {"href": "href", "start": "start"}, "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
         responses.add(
             responses.GET,
             url,
@@ -175,7 +175,7 @@ class TestListInstanceAttachments:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/attachments')
-        mock_response = '{"limit": 50, "total_count": 230, "first": {"href": "href"}, "next": {"href": "href", "start": "start"}, "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
+        mock_response = '{"limit": 50, "total_count": 230, "first": {"href": "href"}, "next": {"href": "href", "start": "start"}, "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
         responses.add(
             responses.GET,
             url,
@@ -213,7 +213,7 @@ class TestListInstanceAttachments:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/attachments')
-        mock_response = '{"limit": 50, "total_count": 230, "first": {"href": "href"}, "next": {"href": "href", "start": "start"}, "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
+        mock_response = '{"limit": 50, "total_count": 230, "first": {"href": "href"}, "next": {"href": "href", "start": "start"}, "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
         responses.add(
             responses.GET,
             url,
@@ -250,8 +250,8 @@ class TestListInstanceAttachments:
         """
         # Set up a two-page mock response
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/attachments')
-        mock_response1 = '{"next":{"start":"1"},"attachments":[{"attachment_parameters":[{"assessment_type":"assessment_type","assessment_id":"assessment_id","parameter_name":"location","parameter_display_name":"Location","parameter_type":"string","parameter_value":"anyValue"}],"description":"description","name":"name","notifications":{"enabled":false,"controls":{"threshold_limit":15,"failed_control_ids":["failed_control_ids"]}},"schedule":"daily","scope":[{"id":"id","environment":"environment","properties":[{"name":"scope_type","value":"account"}]}],"status":"enabled","account_id":"account_id","created_by":"created_by","created_on":"2019-01-01T12:00:00.000Z","id":"id","instance_id":"instance_id","last_scan":{"id":"id","status":"status","time":"2019-01-01T12:00:00.000Z"},"next_scan_time":"2019-01-01T12:00:00.000Z","profile_id":"profile_id","updated_by":"updated_by","updated_on":"2019-01-01T12:00:00.000Z"}],"total_count":2,"limit":1}'
-        mock_response2 = '{"attachments":[{"attachment_parameters":[{"assessment_type":"assessment_type","assessment_id":"assessment_id","parameter_name":"location","parameter_display_name":"Location","parameter_type":"string","parameter_value":"anyValue"}],"description":"description","name":"name","notifications":{"enabled":false,"controls":{"threshold_limit":15,"failed_control_ids":["failed_control_ids"]}},"schedule":"daily","scope":[{"id":"id","environment":"environment","properties":[{"name":"scope_type","value":"account"}]}],"status":"enabled","account_id":"account_id","created_by":"created_by","created_on":"2019-01-01T12:00:00.000Z","id":"id","instance_id":"instance_id","last_scan":{"id":"id","status":"status","time":"2019-01-01T12:00:00.000Z"},"next_scan_time":"2019-01-01T12:00:00.000Z","profile_id":"profile_id","updated_by":"updated_by","updated_on":"2019-01-01T12:00:00.000Z"}],"total_count":2,"limit":1}'
+        mock_response1 = '{"next":{"start":"1"},"attachments":[{"attachment_parameters":[{"assessment_type":"assessment_type","assessment_id":"assessment_id","parameter_name":"location","parameter_display_name":"Location","parameter_type":"string","parameter_value":"anyValue"}],"description":"description","name":"name","notifications":{"enabled":false,"controls":{"threshold_limit":15,"failed_control_ids":["failed_control_ids"]}},"schedule":"daily","scope":[{"id":"id","environment":"environment","properties":[{"name":"scope_type","value":"account"}]}],"status":"enabled","date_selection_range":{"start_date":"2025-02-28T05:42:58.000Z","end_date":"2025-02-28T05:42:58.000Z"},"account_id":"account_id","created_by":"created_by","created_on":"2019-01-01T12:00:00.000Z","id":"id","instance_id":"instance_id","last_scan":{"id":"id","status":"status","time":"2019-01-01T12:00:00.000Z"},"next_scan_time":"2019-01-01T12:00:00.000Z","profile_id":"profile_id","updated_by":"updated_by","updated_on":"2019-01-01T12:00:00.000Z"}],"total_count":2,"limit":1}'
+        mock_response2 = '{"attachments":[{"attachment_parameters":[{"assessment_type":"assessment_type","assessment_id":"assessment_id","parameter_name":"location","parameter_display_name":"Location","parameter_type":"string","parameter_value":"anyValue"}],"description":"description","name":"name","notifications":{"enabled":false,"controls":{"threshold_limit":15,"failed_control_ids":["failed_control_ids"]}},"schedule":"daily","scope":[{"id":"id","environment":"environment","properties":[{"name":"scope_type","value":"account"}]}],"status":"enabled","date_selection_range":{"start_date":"2025-02-28T05:42:58.000Z","end_date":"2025-02-28T05:42:58.000Z"},"account_id":"account_id","created_by":"created_by","created_on":"2019-01-01T12:00:00.000Z","id":"id","instance_id":"instance_id","last_scan":{"id":"id","status":"status","time":"2019-01-01T12:00:00.000Z"},"next_scan_time":"2019-01-01T12:00:00.000Z","profile_id":"profile_id","updated_by":"updated_by","updated_on":"2019-01-01T12:00:00.000Z"}],"total_count":2,"limit":1}'
         responses.add(
             responses.GET,
             url,
@@ -291,8 +291,8 @@ class TestListInstanceAttachments:
         """
         # Set up a two-page mock response
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/attachments')
-        mock_response1 = '{"next":{"start":"1"},"attachments":[{"attachment_parameters":[{"assessment_type":"assessment_type","assessment_id":"assessment_id","parameter_name":"location","parameter_display_name":"Location","parameter_type":"string","parameter_value":"anyValue"}],"description":"description","name":"name","notifications":{"enabled":false,"controls":{"threshold_limit":15,"failed_control_ids":["failed_control_ids"]}},"schedule":"daily","scope":[{"id":"id","environment":"environment","properties":[{"name":"scope_type","value":"account"}]}],"status":"enabled","account_id":"account_id","created_by":"created_by","created_on":"2019-01-01T12:00:00.000Z","id":"id","instance_id":"instance_id","last_scan":{"id":"id","status":"status","time":"2019-01-01T12:00:00.000Z"},"next_scan_time":"2019-01-01T12:00:00.000Z","profile_id":"profile_id","updated_by":"updated_by","updated_on":"2019-01-01T12:00:00.000Z"}],"total_count":2,"limit":1}'
-        mock_response2 = '{"attachments":[{"attachment_parameters":[{"assessment_type":"assessment_type","assessment_id":"assessment_id","parameter_name":"location","parameter_display_name":"Location","parameter_type":"string","parameter_value":"anyValue"}],"description":"description","name":"name","notifications":{"enabled":false,"controls":{"threshold_limit":15,"failed_control_ids":["failed_control_ids"]}},"schedule":"daily","scope":[{"id":"id","environment":"environment","properties":[{"name":"scope_type","value":"account"}]}],"status":"enabled","account_id":"account_id","created_by":"created_by","created_on":"2019-01-01T12:00:00.000Z","id":"id","instance_id":"instance_id","last_scan":{"id":"id","status":"status","time":"2019-01-01T12:00:00.000Z"},"next_scan_time":"2019-01-01T12:00:00.000Z","profile_id":"profile_id","updated_by":"updated_by","updated_on":"2019-01-01T12:00:00.000Z"}],"total_count":2,"limit":1}'
+        mock_response1 = '{"next":{"start":"1"},"attachments":[{"attachment_parameters":[{"assessment_type":"assessment_type","assessment_id":"assessment_id","parameter_name":"location","parameter_display_name":"Location","parameter_type":"string","parameter_value":"anyValue"}],"description":"description","name":"name","notifications":{"enabled":false,"controls":{"threshold_limit":15,"failed_control_ids":["failed_control_ids"]}},"schedule":"daily","scope":[{"id":"id","environment":"environment","properties":[{"name":"scope_type","value":"account"}]}],"status":"enabled","date_selection_range":{"start_date":"2025-02-28T05:42:58.000Z","end_date":"2025-02-28T05:42:58.000Z"},"account_id":"account_id","created_by":"created_by","created_on":"2019-01-01T12:00:00.000Z","id":"id","instance_id":"instance_id","last_scan":{"id":"id","status":"status","time":"2019-01-01T12:00:00.000Z"},"next_scan_time":"2019-01-01T12:00:00.000Z","profile_id":"profile_id","updated_by":"updated_by","updated_on":"2019-01-01T12:00:00.000Z"}],"total_count":2,"limit":1}'
+        mock_response2 = '{"attachments":[{"attachment_parameters":[{"assessment_type":"assessment_type","assessment_id":"assessment_id","parameter_name":"location","parameter_display_name":"Location","parameter_type":"string","parameter_value":"anyValue"}],"description":"description","name":"name","notifications":{"enabled":false,"controls":{"threshold_limit":15,"failed_control_ids":["failed_control_ids"]}},"schedule":"daily","scope":[{"id":"id","environment":"environment","properties":[{"name":"scope_type","value":"account"}]}],"status":"enabled","date_selection_range":{"start_date":"2025-02-28T05:42:58.000Z","end_date":"2025-02-28T05:42:58.000Z"},"account_id":"account_id","created_by":"created_by","created_on":"2019-01-01T12:00:00.000Z","id":"id","instance_id":"instance_id","last_scan":{"id":"id","status":"status","time":"2019-01-01T12:00:00.000Z"},"next_scan_time":"2019-01-01T12:00:00.000Z","profile_id":"profile_id","updated_by":"updated_by","updated_on":"2019-01-01T12:00:00.000Z"}],"total_count":2,"limit":1}'
         responses.add(
             responses.GET,
             url,
@@ -335,7 +335,7 @@ class TestCreateProfileAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments')
-        mock_response = '{"profile_id": "profile_id", "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
+        mock_response = '{"profile_id": "profile_id", "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
         responses.add(
             responses.POST,
             url,
@@ -374,6 +374,11 @@ class TestCreateProfileAttachment:
         multi_cloud_scope_payload_model['environment'] = 'testString'
         multi_cloud_scope_payload_model['properties'] = [scope_property_model]
 
+        # Construct a dict representation of a DateRange model
+        date_range_model = {}
+        date_range_model['start_date'] = '2025-02-28T05:42:58Z'
+        date_range_model['end_date'] = '2025-02-28T05:42:58Z'
+
         # Construct a dict representation of a ProfileAttachmentBase model
         profile_attachment_base_model = {}
         profile_attachment_base_model['attachment_parameters'] = [parameter_model]
@@ -383,6 +388,7 @@ class TestCreateProfileAttachment:
         profile_attachment_base_model['schedule'] = 'daily'
         profile_attachment_base_model['scope'] = [multi_cloud_scope_payload_model]
         profile_attachment_base_model['status'] = 'disabled'
+        profile_attachment_base_model['date_selection_range'] = date_range_model
 
         # Set up parameter values
         instance_id = 'acd7032c-15a3-484f-bf5b-67d41534d940'
@@ -426,7 +432,7 @@ class TestCreateProfileAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments')
-        mock_response = '{"profile_id": "profile_id", "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
+        mock_response = '{"profile_id": "profile_id", "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
         responses.add(
             responses.POST,
             url,
@@ -465,6 +471,11 @@ class TestCreateProfileAttachment:
         multi_cloud_scope_payload_model['environment'] = 'testString'
         multi_cloud_scope_payload_model['properties'] = [scope_property_model]
 
+        # Construct a dict representation of a DateRange model
+        date_range_model = {}
+        date_range_model['start_date'] = '2025-02-28T05:42:58Z'
+        date_range_model['end_date'] = '2025-02-28T05:42:58Z'
+
         # Construct a dict representation of a ProfileAttachmentBase model
         profile_attachment_base_model = {}
         profile_attachment_base_model['attachment_parameters'] = [parameter_model]
@@ -474,6 +485,7 @@ class TestCreateProfileAttachment:
         profile_attachment_base_model['schedule'] = 'daily'
         profile_attachment_base_model['scope'] = [multi_cloud_scope_payload_model]
         profile_attachment_base_model['status'] = 'disabled'
+        profile_attachment_base_model['date_selection_range'] = date_range_model
 
         # Set up parameter values
         instance_id = 'acd7032c-15a3-484f-bf5b-67d41534d940'
@@ -511,7 +523,7 @@ class TestCreateProfileAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments')
-        mock_response = '{"profile_id": "profile_id", "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
+        mock_response = '{"profile_id": "profile_id", "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
         responses.add(
             responses.POST,
             url,
@@ -550,6 +562,11 @@ class TestCreateProfileAttachment:
         multi_cloud_scope_payload_model['environment'] = 'testString'
         multi_cloud_scope_payload_model['properties'] = [scope_property_model]
 
+        # Construct a dict representation of a DateRange model
+        date_range_model = {}
+        date_range_model['start_date'] = '2025-02-28T05:42:58Z'
+        date_range_model['end_date'] = '2025-02-28T05:42:58Z'
+
         # Construct a dict representation of a ProfileAttachmentBase model
         profile_attachment_base_model = {}
         profile_attachment_base_model['attachment_parameters'] = [parameter_model]
@@ -559,6 +576,7 @@ class TestCreateProfileAttachment:
         profile_attachment_base_model['schedule'] = 'daily'
         profile_attachment_base_model['scope'] = [multi_cloud_scope_payload_model]
         profile_attachment_base_model['status'] = 'disabled'
+        profile_attachment_base_model['date_selection_range'] = date_range_model
 
         # Set up parameter values
         instance_id = 'acd7032c-15a3-484f-bf5b-67d41534d940'
@@ -598,7 +616,7 @@ class TestGetProfileAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments/testString')
-        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
+        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
         responses.add(
             responses.GET,
             url,
@@ -646,7 +664,7 @@ class TestGetProfileAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments/testString')
-        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
+        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
         responses.add(
             responses.GET,
             url,
@@ -688,7 +706,7 @@ class TestGetProfileAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments/testString')
-        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
+        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
         responses.add(
             responses.GET,
             url,
@@ -735,7 +753,7 @@ class TestReplaceProfileAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments/testString')
-        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
+        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
         responses.add(
             responses.PUT,
             url,
@@ -774,6 +792,11 @@ class TestReplaceProfileAttachment:
         multi_cloud_scope_payload_model['environment'] = 'testString'
         multi_cloud_scope_payload_model['properties'] = [scope_property_model]
 
+        # Construct a dict representation of a DateRange model
+        date_range_model = {}
+        date_range_model['start_date'] = '2025-02-28T05:42:58Z'
+        date_range_model['end_date'] = '2025-02-28T05:42:58Z'
+
         # Construct a dict representation of a ProfileAttachmentBase model
         profile_attachment_base_model = {}
         profile_attachment_base_model['attachment_parameters'] = [parameter_model]
@@ -783,6 +806,7 @@ class TestReplaceProfileAttachment:
         profile_attachment_base_model['schedule'] = 'daily'
         profile_attachment_base_model['scope'] = [multi_cloud_scope_payload_model]
         profile_attachment_base_model['status'] = 'enabled'
+        profile_attachment_base_model['date_selection_range'] = date_range_model
 
         # Set up parameter values
         instance_id = 'acd7032c-15a3-484f-bf5b-67d41534d940'
@@ -828,7 +852,7 @@ class TestReplaceProfileAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments/testString')
-        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
+        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
         responses.add(
             responses.PUT,
             url,
@@ -867,6 +891,11 @@ class TestReplaceProfileAttachment:
         multi_cloud_scope_payload_model['environment'] = 'testString'
         multi_cloud_scope_payload_model['properties'] = [scope_property_model]
 
+        # Construct a dict representation of a DateRange model
+        date_range_model = {}
+        date_range_model['start_date'] = '2025-02-28T05:42:58Z'
+        date_range_model['end_date'] = '2025-02-28T05:42:58Z'
+
         # Construct a dict representation of a ProfileAttachmentBase model
         profile_attachment_base_model = {}
         profile_attachment_base_model['attachment_parameters'] = [parameter_model]
@@ -876,6 +905,7 @@ class TestReplaceProfileAttachment:
         profile_attachment_base_model['schedule'] = 'daily'
         profile_attachment_base_model['scope'] = [multi_cloud_scope_payload_model]
         profile_attachment_base_model['status'] = 'enabled'
+        profile_attachment_base_model['date_selection_range'] = date_range_model
 
         # Set up parameter values
         instance_id = 'acd7032c-15a3-484f-bf5b-67d41534d940'
@@ -915,7 +945,7 @@ class TestReplaceProfileAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments/testString')
-        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
+        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
         responses.add(
             responses.PUT,
             url,
@@ -954,6 +984,11 @@ class TestReplaceProfileAttachment:
         multi_cloud_scope_payload_model['environment'] = 'testString'
         multi_cloud_scope_payload_model['properties'] = [scope_property_model]
 
+        # Construct a dict representation of a DateRange model
+        date_range_model = {}
+        date_range_model['start_date'] = '2025-02-28T05:42:58Z'
+        date_range_model['end_date'] = '2025-02-28T05:42:58Z'
+
         # Construct a dict representation of a ProfileAttachmentBase model
         profile_attachment_base_model = {}
         profile_attachment_base_model['attachment_parameters'] = [parameter_model]
@@ -963,6 +998,7 @@ class TestReplaceProfileAttachment:
         profile_attachment_base_model['schedule'] = 'daily'
         profile_attachment_base_model['scope'] = [multi_cloud_scope_payload_model]
         profile_attachment_base_model['status'] = 'enabled'
+        profile_attachment_base_model['date_selection_range'] = date_range_model
 
         # Set up parameter values
         instance_id = 'acd7032c-15a3-484f-bf5b-67d41534d940'
@@ -1004,7 +1040,7 @@ class TestDeleteProfileAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments/testString')
-        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
+        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
         responses.add(
             responses.DELETE,
             url,
@@ -1052,7 +1088,7 @@ class TestDeleteProfileAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments/testString')
-        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
+        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
         responses.add(
             responses.DELETE,
             url,
@@ -1094,7 +1130,7 @@ class TestDeleteProfileAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments/testString')
-        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
+        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
         responses.add(
             responses.DELETE,
             url,
@@ -1141,7 +1177,7 @@ class TestUpgradeAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments/testString/upgrade')
-        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
+        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
         responses.add(
             responses.POST,
             url,
@@ -1203,7 +1239,7 @@ class TestUpgradeAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments/testString/upgrade')
-        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
+        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
         responses.add(
             responses.POST,
             url,
@@ -1259,7 +1295,7 @@ class TestUpgradeAttachment:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments/testString/upgrade')
-        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
+        mock_response = '{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}'
         responses.add(
             responses.POST,
             url,
@@ -3666,7 +3702,7 @@ class TestListProfileAttachments:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments')
-        mock_response = '{"limit": 50, "total_count": 230, "first": {"href": "href"}, "next": {"href": "href", "start": "start"}, "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
+        mock_response = '{"limit": 50, "total_count": 230, "first": {"href": "href"}, "next": {"href": "href", "start": "start"}, "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
         responses.add(
             responses.GET,
             url,
@@ -3712,7 +3748,7 @@ class TestListProfileAttachments:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments')
-        mock_response = '{"limit": 50, "total_count": 230, "first": {"href": "href"}, "next": {"href": "href", "start": "start"}, "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
+        mock_response = '{"limit": 50, "total_count": 230, "first": {"href": "href"}, "next": {"href": "href", "start": "start"}, "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
         responses.add(
             responses.GET,
             url,
@@ -3752,7 +3788,7 @@ class TestListProfileAttachments:
         """
         # Set up mock
         url = preprocess_url('/instances/acd7032c-15a3-484f-bf5b-67d41534d940/v3/profiles/48279384-3d29-4089-8259-8ed354774b4a/attachments')
-        mock_response = '{"limit": 50, "total_count": 230, "first": {"href": "href"}, "next": {"href": "href", "start": "start"}, "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
+        mock_response = '{"limit": 50, "total_count": 230, "first": {"href": "href"}, "next": {"href": "href", "start": "start"}, "attachments": [{"attachment_parameters": [{"assessment_type": "assessment_type", "assessment_id": "assessment_id", "parameter_name": "location", "parameter_display_name": "Location", "parameter_type": "string", "parameter_value": "anyValue"}], "description": "description", "name": "name", "notifications": {"enabled": false, "controls": {"threshold_limit": 15, "failed_control_ids": ["failed_control_ids"]}}, "schedule": "daily", "scope": [{"id": "id", "environment": "environment", "properties": [{"name": "scope_type", "value": "account"}]}], "status": "enabled", "date_selection_range": {"start_date": "2025-02-28T05:42:58.000Z", "end_date": "2025-02-28T05:42:58.000Z"}, "account_id": "account_id", "created_by": "created_by", "created_on": "2019-01-01T12:00:00.000Z", "id": "id", "instance_id": "instance_id", "last_scan": {"id": "id", "status": "status", "time": "2019-01-01T12:00:00.000Z"}, "next_scan_time": "2019-01-01T12:00:00.000Z", "profile_id": "profile_id", "updated_by": "updated_by", "updated_on": "2019-01-01T12:00:00.000Z"}]}'
         responses.add(
             responses.GET,
             url,
@@ -11472,6 +11508,37 @@ class TestModel_CredentialResponse:
         assert credential_response_model_json2 == credential_response_model_json
 
 
+class TestModel_DateRange:
+    """
+    Test Class for DateRange
+    """
+
+    def test_date_range_serialization(self):
+        """
+        Test serialization/deserialization for DateRange
+        """
+
+        # Construct a json representation of a DateRange model
+        date_range_model_json = {}
+        date_range_model_json['start_date'] = '2025-02-28T05:42:58Z'
+        date_range_model_json['end_date'] = '2025-02-28T05:42:58Z'
+
+        # Construct a model instance of DateRange by calling from_dict on the json representation
+        date_range_model = DateRange.from_dict(date_range_model_json)
+        assert date_range_model != False
+
+        # Construct a model instance of DateRange by calling from_dict on the json representation
+        date_range_model_dict = DateRange.from_dict(date_range_model_json).__dict__
+        date_range_model2 = DateRange(**date_range_model_dict)
+
+        # Verify the model instances are equivalent
+        assert date_range_model == date_range_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        date_range_model_json2 = date_range_model.to_dict()
+        assert date_range_model_json2 == date_range_model_json
+
+
 class TestModel_DefaultParameters:
     """
     Test Class for DefaultParameters
@@ -12495,6 +12562,10 @@ class TestModel_ProfileAttachment:
         multi_cloud_scope_payload_model['environment'] = 'testString'
         multi_cloud_scope_payload_model['properties'] = [scope_property_model]
 
+        date_range_model = {}  # DateRange
+        date_range_model['start_date'] = '2025-02-28T05:42:58Z'
+        date_range_model['end_date'] = '2025-02-28T05:42:58Z'
+
         last_scan_model = {}  # LastScan
         last_scan_model['id'] = 'testString'
         last_scan_model['status'] = 'testString'
@@ -12509,6 +12580,7 @@ class TestModel_ProfileAttachment:
         profile_attachment_model_json['schedule'] = 'daily'
         profile_attachment_model_json['scope'] = [multi_cloud_scope_payload_model]
         profile_attachment_model_json['status'] = 'enabled'
+        profile_attachment_model_json['date_selection_range'] = date_range_model
         profile_attachment_model_json['account_id'] = 'testString'
         profile_attachment_model_json['created_by'] = 'testString'
         profile_attachment_model_json['created_on'] = '2019-01-01T12:00:00Z'
@@ -12573,6 +12645,10 @@ class TestModel_ProfileAttachmentBase:
         multi_cloud_scope_payload_model['environment'] = 'testString'
         multi_cloud_scope_payload_model['properties'] = [scope_property_model]
 
+        date_range_model = {}  # DateRange
+        date_range_model['start_date'] = '2025-02-28T05:42:58Z'
+        date_range_model['end_date'] = '2025-02-28T05:42:58Z'
+
         # Construct a json representation of a ProfileAttachmentBase model
         profile_attachment_base_model_json = {}
         profile_attachment_base_model_json['attachment_parameters'] = [parameter_model]
@@ -12582,6 +12658,7 @@ class TestModel_ProfileAttachmentBase:
         profile_attachment_base_model_json['schedule'] = 'daily'
         profile_attachment_base_model_json['scope'] = [multi_cloud_scope_payload_model]
         profile_attachment_base_model_json['status'] = 'enabled'
+        profile_attachment_base_model_json['date_selection_range'] = date_range_model
 
         # Construct a model instance of ProfileAttachmentBase by calling from_dict on the json representation
         profile_attachment_base_model = ProfileAttachmentBase.from_dict(profile_attachment_base_model_json)
@@ -12643,6 +12720,10 @@ class TestModel_ProfileAttachmentCollection:
         multi_cloud_scope_payload_model['environment'] = 'testString'
         multi_cloud_scope_payload_model['properties'] = [scope_property_model]
 
+        date_range_model = {}  # DateRange
+        date_range_model['start_date'] = '2025-02-28T05:42:58Z'
+        date_range_model['end_date'] = '2025-02-28T05:42:58Z'
+
         last_scan_model = {}  # LastScan
         last_scan_model['id'] = 'testString'
         last_scan_model['status'] = 'testString'
@@ -12656,6 +12737,7 @@ class TestModel_ProfileAttachmentCollection:
         profile_attachment_model['schedule'] = 'daily'
         profile_attachment_model['scope'] = [multi_cloud_scope_payload_model]
         profile_attachment_model['status'] = 'enabled'
+        profile_attachment_model['date_selection_range'] = date_range_model
         profile_attachment_model['account_id'] = 'testString'
         profile_attachment_model['created_by'] = 'testString'
         profile_attachment_model['created_on'] = '2019-01-01T12:00:00Z'
@@ -12728,6 +12810,10 @@ class TestModel_ProfileAttachmentResponse:
         multi_cloud_scope_payload_model['environment'] = 'testString'
         multi_cloud_scope_payload_model['properties'] = [scope_property_model]
 
+        date_range_model = {}  # DateRange
+        date_range_model['start_date'] = '2025-02-28T05:42:58Z'
+        date_range_model['end_date'] = '2025-02-28T05:42:58Z'
+
         last_scan_model = {}  # LastScan
         last_scan_model['id'] = 'testString'
         last_scan_model['status'] = 'testString'
@@ -12741,6 +12827,7 @@ class TestModel_ProfileAttachmentResponse:
         profile_attachment_model['schedule'] = 'daily'
         profile_attachment_model['scope'] = [multi_cloud_scope_payload_model]
         profile_attachment_model['status'] = 'enabled'
+        profile_attachment_model['date_selection_range'] = date_range_model
         profile_attachment_model['account_id'] = 'testString'
         profile_attachment_model['created_by'] = 'testString'
         profile_attachment_model['created_on'] = '2019-01-01T12:00:00Z'

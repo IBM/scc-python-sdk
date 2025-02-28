@@ -131,6 +131,11 @@ class TestSecurityAndComplianceCenterApiV3:
             'environment': 'testString',
             'properties': [scope_property_model],
         }
+        # Construct a dict representation of a DateRange model
+        date_range_model = {
+            'start_date': '2025-02-28T05:42:58.000Z',
+            'end_date': '2025-02-28T05:42:58.000Z',
+        }
         # Construct a dict representation of a ProfileAttachmentBase model
         profile_attachment_base_model = {
             'attachment_parameters': [parameter_model],
@@ -140,6 +145,7 @@ class TestSecurityAndComplianceCenterApiV3:
             'schedule': 'daily',
             'scope': [multi_cloud_scope_payload_model],
             'status': 'disabled',
+            'date_selection_range': date_range_model,
         }
 
         response = self.security_and_compliance_center_api_service.create_profile_attachment(
@@ -532,6 +538,11 @@ class TestSecurityAndComplianceCenterApiV3:
             'environment': 'testString',
             'properties': [scope_property_model],
         }
+        # Construct a dict representation of a DateRange model
+        date_range_model = {
+            'start_date': '2025-02-28T05:42:58.000Z',
+            'end_date': '2025-02-28T05:42:58.000Z',
+        }
         # Construct a dict representation of a ProfileAttachmentBase model
         profile_attachment_base_model = {
             'attachment_parameters': [parameter_model],
@@ -541,6 +552,7 @@ class TestSecurityAndComplianceCenterApiV3:
             'schedule': 'daily',
             'scope': [multi_cloud_scope_payload_model],
             'status': 'enabled',
+            'date_selection_range': date_range_model,
         }
 
         response = self.security_and_compliance_center_api_service.replace_profile_attachment(

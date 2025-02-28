@@ -8419,6 +8419,75 @@ class CredentialResponse:
         return not self == other
 
 
+class DateRange:
+    """
+    Date range.
+
+    :param datetime start_date: date/time for the start of the range.
+    :param datetime end_date: date/time for the end of the range.
+    """
+
+    def __init__(
+        self,
+        start_date: datetime,
+        end_date: datetime,
+    ) -> None:
+        """
+        Initialize a DateRange object.
+
+        :param datetime start_date: date/time for the start of the range.
+        :param datetime end_date: date/time for the end of the range.
+        """
+        self.start_date = start_date
+        self.end_date = end_date
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'DateRange':
+        """Initialize a DateRange object from a json dictionary."""
+        args = {}
+        if (start_date := _dict.get('start_date')) is not None:
+            args['start_date'] = string_to_datetime(start_date)
+        else:
+            raise ValueError('Required property \'start_date\' not present in DateRange JSON')
+        if (end_date := _dict.get('end_date')) is not None:
+            args['end_date'] = string_to_datetime(end_date)
+        else:
+            raise ValueError('Required property \'end_date\' not present in DateRange JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a DateRange object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'start_date') and self.start_date is not None:
+            _dict['start_date'] = datetime_to_string(self.start_date)
+        if hasattr(self, 'end_date') and self.end_date is not None:
+            _dict['end_date'] = datetime_to_string(self.end_date)
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this DateRange object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'DateRange') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'DateRange') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
 class DefaultParameters:
     """
     The parameters of the profile that are inherently set by the profile.
@@ -10663,6 +10732,7 @@ class ProfileAttachment:
     :param List[MultiCloudScopePayload] scope: A list of scopes associated with a
           profile attachment.
     :param str status: Details the state of a profile attachment.
+    :param DateRange date_selection_range: (optional) Date range.
     :param str account_id: (optional) The ID of the account.
     :param str created_by: (optional) User who created the profile attachment.
     :param datetime created_on: (optional) The date-time that the profile attachment
@@ -10690,6 +10760,7 @@ class ProfileAttachment:
         scope: List['MultiCloudScopePayload'],
         status: str,
         *,
+        date_selection_range: Optional['DateRange'] = None,
         account_id: Optional[str] = None,
         created_by: Optional[str] = None,
         created_on: Optional[datetime] = None,
@@ -10715,6 +10786,7 @@ class ProfileAttachment:
         :param List[MultiCloudScopePayload] scope: A list of scopes associated with
                a profile attachment.
         :param str status: Details the state of a profile attachment.
+        :param DateRange date_selection_range: (optional) Date range.
         :param str account_id: (optional) The ID of the account.
         :param str created_by: (optional) User who created the profile attachment.
         :param datetime created_on: (optional) The date-time that the profile
@@ -10738,6 +10810,7 @@ class ProfileAttachment:
         self.schedule = schedule
         self.scope = scope
         self.status = status
+        self.date_selection_range = date_selection_range
         self.account_id = account_id
         self.created_by = created_by
         self.created_on = created_on
@@ -10781,6 +10854,8 @@ class ProfileAttachment:
             args['status'] = status
         else:
             raise ValueError('Required property \'status\' not present in ProfileAttachment JSON')
+        if (date_selection_range := _dict.get('date_selection_range')) is not None:
+            args['date_selection_range'] = DateRange.from_dict(date_selection_range)
         if (account_id := _dict.get('account_id')) is not None:
             args['account_id'] = account_id
         if (created_by := _dict.get('created_by')) is not None:
@@ -10840,6 +10915,11 @@ class ProfileAttachment:
             _dict['scope'] = scope_list
         if hasattr(self, 'status') and self.status is not None:
             _dict['status'] = self.status
+        if hasattr(self, 'date_selection_range') and self.date_selection_range is not None:
+            if isinstance(self.date_selection_range, dict):
+                _dict['date_selection_range'] = self.date_selection_range
+            else:
+                _dict['date_selection_range'] = self.date_selection_range.to_dict()
         if hasattr(self, 'account_id') and self.account_id is not None:
             _dict['account_id'] = self.account_id
         if hasattr(self, 'created_by') and self.created_by is not None:
@@ -10917,6 +10997,7 @@ class ProfileAttachmentBase:
     :param List[MultiCloudScopePayload] scope: A list of scopes associated with a
           profile attachment.
     :param str status: Details the state of a profile attachment.
+    :param DateRange date_selection_range: (optional) Date range.
     """
 
     def __init__(
@@ -10928,6 +11009,8 @@ class ProfileAttachmentBase:
         schedule: str,
         scope: List['MultiCloudScopePayload'],
         status: str,
+        *,
+        date_selection_range: Optional['DateRange'] = None,
     ) -> None:
         """
         Initialize a ProfileAttachmentBase object.
@@ -10943,6 +11026,7 @@ class ProfileAttachmentBase:
         :param List[MultiCloudScopePayload] scope: A list of scopes associated with
                a profile attachment.
         :param str status: Details the state of a profile attachment.
+        :param DateRange date_selection_range: (optional) Date range.
         """
         self.attachment_parameters = attachment_parameters
         self.description = description
@@ -10951,6 +11035,7 @@ class ProfileAttachmentBase:
         self.schedule = schedule
         self.scope = scope
         self.status = status
+        self.date_selection_range = date_selection_range
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'ProfileAttachmentBase':
@@ -10984,6 +11069,8 @@ class ProfileAttachmentBase:
             args['status'] = status
         else:
             raise ValueError('Required property \'status\' not present in ProfileAttachmentBase JSON')
+        if (date_selection_range := _dict.get('date_selection_range')) is not None:
+            args['date_selection_range'] = DateRange.from_dict(date_selection_range)
         return cls(**args)
 
     @classmethod
@@ -11023,6 +11110,11 @@ class ProfileAttachmentBase:
             _dict['scope'] = scope_list
         if hasattr(self, 'status') and self.status is not None:
             _dict['status'] = self.status
+        if hasattr(self, 'date_selection_range') and self.date_selection_range is not None:
+            if isinstance(self.date_selection_range, dict):
+                _dict['date_selection_range'] = self.date_selection_range
+            else:
+                _dict['date_selection_range'] = self.date_selection_range.to_dict()
         return _dict
 
     def _to_dict(self):
