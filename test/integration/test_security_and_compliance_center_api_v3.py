@@ -1389,8 +1389,6 @@ class TestSecurityAndComplianceCenterApiV3:
         response = self.security_and_compliance_center_api_service.list_scan_reports(
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
             report_id=report_id_for_report_link,
-            scope_id='testString',
-            subscope_id='testString',
             sort='status',
         )
 
