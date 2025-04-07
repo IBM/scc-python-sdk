@@ -1814,32 +1814,39 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             print('\ncreate_rule() result:')
 
             # begin-create_rule
-
+            # Construct a dict representation of a AdditionalTargetAttribute model
             additional_target_attribute_model = {
                 'name': 'location',
                 'operator': 'string_equals',
                 'value': 'us-east',
             }
-
+            # Construct a dict representation of a RuleTargetPrototype model
             rule_target_prototype_model = {
                 'service_name': 'cloud-object-storage',
                 'resource_kind': 'bucket',
                 'additional_target_attributes': [additional_target_attribute_model],
             }
-
-            required_config_model = {
+            # Construct a dict representation of ConditionItemConditionBase model
+            condition_item_model = {
                 'description': 'The Cloud Object Storage rule.',
-                'property': 'testString',
-                'operator': 'string_equals',
+                'property': 'hard_quota',
+                'operator': 'num_equals',
+                'value': '${hard_quota}',
             }
 
+            # Construct a dict representation of a RequiredConfigConditionBase model
+            required_config_model = {
+                'description': 'The Cloud Object Storage rule.',
+                'and': [condition_item_model],
+            }
+            # Construct a dict representation of a RuleParameter model
             rule_parameter_model = {
                 'name': 'hard_quota',
                 'display_name': 'The Cloud Object Storage bucket quota.',
                 'description': 'The maximum bytes that are allocated to the Cloud Object Storage bucket.',
                 'type': 'numeric',
             }
-
+            # Construct a dict representation of a Import model
             import_model = {
                 'parameters': [rule_parameter_model],
             }
@@ -1854,11 +1861,9 @@ class TestSecurityAndComplianceCenterApiV3Examples:
                 labels=[],
             )
             rule = response.get_result()
-
             print(json.dumps(rule, indent=2))
 
             # end-create_rule
-
             rule_id_link = rule['id']
         except ApiException as e:
             pytest.fail(str(e))
