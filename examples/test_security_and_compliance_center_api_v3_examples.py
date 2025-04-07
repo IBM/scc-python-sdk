@@ -1593,23 +1593,13 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             print('\nlist_report_evaluations() result:')
 
             # begin-list_report_evaluations
-
             all_results = []
             pager = ReportEvaluationsPager(
                 client=security_and_compliance_center_api_service,
                 instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
                 report_id=report_id_for_report_link,
-                assessment_id='testString',
-                assessment_method='testString',
-                component_id='testString',
-                target_id='testString',
-                target_env='testString',
-                target_name='testString',
                 status='failure',
                 limit=10,
-                sort='assessment_id',
-                scope_id='testString',
-                subscope_id='testString',
             )
             while pager.has_next():
                 next_page = pager.get_next()
