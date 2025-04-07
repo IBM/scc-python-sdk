@@ -1524,18 +1524,17 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             print('\nget_report_download_file() result:')
 
             # begin-get_report_download_file
-
             response = security_and_compliance_center_api_service.get_report_download_file(
                 instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
                 report_id=report_id_for_report_link,
+                accept='application/csv',
+                exclude_summary=True,
             )
             result = response.get_result()
-
             with open('/tmp/result.out', 'wb') as fp:
-                fp.write(result)
+                fp.write(result.content)
 
             # end-get_report_download_file
-
         except ApiException as e:
             pytest.fail(str(e))
 
