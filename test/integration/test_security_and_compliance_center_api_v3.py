@@ -1246,14 +1246,7 @@ class TestSecurityAndComplianceCenterApiV3:
         response = self.security_and_compliance_center_api_service.get_report_controls(
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
             report_id=report_id_for_report_link,
-            control_id='testString',
-            control_name='testString',
-            control_description='testString',
-            control_category='testString',
             status='compliant',
-            sort='control_name',
-            scope_id='testString',
-            subscope_id='testString',
         )
 
         assert response.get_status_code() == 200
