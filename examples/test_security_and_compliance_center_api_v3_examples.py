@@ -942,14 +942,18 @@ class TestSecurityAndComplianceCenterApiV3Examples:
         """
         try:
             global scope_id_link
-
             print('\ncreate_scope() result:')
 
             # begin-create_scope
-
-            scope_property_model = {
+            # Construct a dict representation of a ScopePropertyScopeAny model
+            scope_property_model0 = {
                 'name': 'scope_id',
                 'value': 'ff88f007f9ff4622aac4fbc0eda36255',
+            }
+
+            scope_property_model1 = {
+                'name': 'scope_type',
+                'value': 'account',
             }
 
             response = security_and_compliance_center_api_service.create_scope(
@@ -957,14 +961,12 @@ class TestSecurityAndComplianceCenterApiV3Examples:
                 name='ibm scope',
                 description='The scope that is defined for IBM resources.',
                 environment='ibm-cloud',
-                properties=[scope_property_model],
+                properties=[scope_property_model0, scope_property_model1],
             )
             scope = response.get_result()
-
             print(json.dumps(scope, indent=2))
 
             # end-create_scope
-
             scope_id_link = scope['id']
         except ApiException as e:
             pytest.fail(str(e))
