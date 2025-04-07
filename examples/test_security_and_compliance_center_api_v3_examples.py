@@ -1696,17 +1696,15 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             print('\nlist_scan_reports() result:')
 
             # begin-list_scan_reports
-
             response = security_and_compliance_center_api_service.list_scan_reports(
                 instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
                 report_id=report_id_for_report_link,
+                sort='status',
             )
             scan_report_collection = response.get_result()
-
             print(json.dumps(scan_report_collection, indent=2))
 
             # end-list_scan_reports
-
             scan_id_for_scan_report_link = scan_report_collection['scan_reports'][0]['id']
         except ApiException as e:
             pytest.fail(str(e))
