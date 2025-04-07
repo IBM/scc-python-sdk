@@ -1896,62 +1896,57 @@ class TestSecurityAndComplianceCenterApiV3Examples:
 
     @needscredentials
     def test_replace_rule_example(self):
-        """
-        replace_rule request example
-        """
-        try:
-            print('\nreplace_rule() result:')
+        # Construct a dict representation of a AdditionalTargetAttribute model
+        additional_target_attribute_model = {
+            'name': 'location',
+            'operator': 'string_equals',
+            'value': 'us-south',
+        }
+        # Construct a dict representation of a RuleTargetPrototype model
+        rule_target_prototype_model = {
+            'service_name': 'cloud-object-storage',
+            'resource_kind': 'bucket',
+            'additional_target_attributes': [additional_target_attribute_model],
+        }
+        # Construct a dict representation of ConditionItemConditionBase model
+        condition_item_model = {
+            'description': 'The Cloud Object Storage rule.',
+            'property': 'hard_quota',
+            'operator': 'num_equals',
+            'value': '${hard_quota}',
+        }
+        # Construct a dict representation of a RequiredConfigConditionBase model
+        required_config_model = {
+            'description': 'The Cloud Object Storage rule.',
+            'and': [condition_item_model],
+        }
+        # Construct a dict representation of a RuleParameter model
+        rule_parameter_model = {
+            'name': 'hard_quota',
+            'display_name': 'The Cloud Object Storage bucket quota.',
+            'description': 'The maximum bytes that are allocated to the Cloud Object Storage bucket.',
+            'type': 'numeric',
+        }
+        # Construct a dict representation of a Import model
+        import_model = {
+            'parameters': [rule_parameter_model],
+        }
 
-            # begin-replace_rule
+        response = security_and_compliance_center_api_service.replace_rule(
+            instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
+            rule_id=rule_id_link,
+            if_match=e_tag_link,
+            description='Example rule',
+            target=rule_target_prototype_model,
+            required_config=required_config_model,
+            version='1.0.1',
+            import_=import_model,
+            labels=[],
+        )
 
-            additional_target_attribute_model = {
-                'name': 'location',
-                'operator': 'string_equals',
-                'value': 'us-south',
-            }
-
-            rule_target_prototype_model = {
-                'service_name': 'cloud-object-storage',
-                'resource_kind': 'bucket',
-                'additional_target_attributes': [additional_target_attribute_model],
-            }
-
-            required_config_model = {
-                'description': 'The Cloud Object Storage rule.',
-                'property': 'testString',
-                'operator': 'string_equals',
-            }
-
-            rule_parameter_model = {
-                'name': 'hard_quota',
-                'display_name': 'The Cloud Object Storage bucket quota.',
-                'description': 'The maximum bytes that are allocated to the Cloud Object Storage bucket.',
-                'type': 'numeric',
-            }
-
-            import_model = {
-                'parameters': [rule_parameter_model],
-            }
-
-            response = security_and_compliance_center_api_service.replace_rule(
-                instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
-                rule_id=rule_id_link,
-                if_match=e_tag_link,
-                description='Example rule',
-                target=rule_target_prototype_model,
-                required_config=required_config_model,
-                version='1.0.1',
-                import_=import_model,
-                labels=[],
-            )
-            rule = response.get_result()
-
-            print(json.dumps(rule, indent=2))
-
-            # end-replace_rule
-
-        except ApiException as e:
-            pytest.fail(str(e))
+        assert response.get_status_code() == 200
+        rule = response.get_result()
+        assert rule is not None
 
     @needscredentials
     def test_list_services_example(self):
