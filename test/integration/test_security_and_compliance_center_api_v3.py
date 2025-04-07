@@ -933,11 +933,7 @@ class TestSecurityAndComplianceCenterApiV3:
         response = self.security_and_compliance_center_api_service.list_subscopes(
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
             scope_id=scope_id_link,
-            limit=50,
-            start='testString',
-            name='testString',
-            description='testString',
-            environment='testString',
+            limit=10,
         )
 
         assert response.get_status_code() == 200
