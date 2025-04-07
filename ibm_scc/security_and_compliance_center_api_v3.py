@@ -18797,7 +18797,7 @@ class ControlLibrariesPager:
         if next_page_link is not None:
             next = next_page_link.get('start')
         self._page_context['next'] = next
-        if next is None:
+        if next is None or next == "":
             self._has_next = False
 
         return result.get('control_libraries')
@@ -18871,7 +18871,7 @@ class ProfilesPager:
         if next_page_link is not None:
             next = next_page_link.get('start')
         self._page_context['next'] = next
-        if next is None:
+        if next is None or next == "":
             self._has_next = False
 
         return result.get('profiles')
@@ -18955,7 +18955,7 @@ class ScopesPager:
         if next_page_link is not None:
             next = next_page_link.get('start')
         self._page_context['next'] = next
-        if next is None:
+        if next is None or next == "":
             self._has_next = False
 
         return result.get('scopes')
@@ -19044,7 +19044,7 @@ class SubscopesPager:
         if next_page_link is not None:
             next = next_page_link.get('start')
         self._page_context['next'] = next
-        if next is None:
+        if next is None or next == "":
             self._has_next = False
 
         return result.get('subscopes')
@@ -19135,7 +19135,7 @@ class ReportsPager:
         if next_page_link is not None:
             next = next_page_link.get('start')
         self._page_context['next'] = next
-        if next is None:
+        if next is None or next == "":
             self._has_next = False
 
         return result.get('reports')
@@ -19251,7 +19251,7 @@ class ReportEvaluationsPager:
         if next_page_link is not None:
             next = next_page_link.get('start')
         self._page_context['next'] = next
-        if next is None:
+        if next is None or next == "":
             self._has_next = False
 
         return result.get('evaluations')
@@ -19359,7 +19359,7 @@ class ReportResourcesPager:
         if next_page_link is not None:
             next = next_page_link.get('start')
         self._page_context['next'] = next
-        if next is None:
+        if next is None or next == "":
             self._has_next = False
 
         return result.get('resources')
@@ -19449,7 +19449,7 @@ class RulesPager:
         if next_page_link is not None:
             next = next_page_link.get('start')
         self._page_context['next'] = next
-        if next is None:
+        if next is None or next == "":
             self._has_next = False
 
         return result.get('rules')
