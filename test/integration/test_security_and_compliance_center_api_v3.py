@@ -1376,8 +1376,6 @@ class TestSecurityAndComplianceCenterApiV3:
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
             report_id=report_id_for_report_link,
             scan_time_duration=0,
-            scope_id='testString',
-            subscope_id='testString',
         )
 
         assert response.get_status_code() == 200
