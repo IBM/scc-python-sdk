@@ -136,7 +136,6 @@ class TestSecurityAndComplianceCenterApiV3:
             limit=25,
             sort='created_on',
             direction='desc',
-            start='testString',
         )
 
         assert response.get_status_code() == 200
