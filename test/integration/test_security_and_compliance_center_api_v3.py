@@ -1317,16 +1317,10 @@ class TestSecurityAndComplianceCenterApiV3:
         response = self.security_and_compliance_center_api_service.list_report_resources(
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
             report_id=report_id_for_report_link,
-            id='testString',
-            resource_name='testString',
             account_id=account_id_for_report_link,
-            component_id='testString',
             status='compliant',
             sort='account_id',
-            start='testString',
-            limit=50,
-            scope_id='testString',
-            subscope_id='testString',
+            limit=10,
         )
 
         assert response.get_status_code() == 200
