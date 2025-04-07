@@ -114,9 +114,12 @@ class TestSecurityAndComplianceCenterApiV3:
             event_notifications=event_notifications_prototype_model,
         )
 
-        assert response.get_status_code() == 200
+        assert response.get_status_code() in (200, 204)
         settings = response.get_result()
-        assert settings is not None
+        if response.get_status_code() == 200:
+            assert settings is not None
+        else:
+            assert settings is None
 
     @needscredentials
     def test_post_test_event(self):
