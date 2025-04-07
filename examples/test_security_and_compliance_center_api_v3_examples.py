@@ -1447,7 +1447,6 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             print('\nlist_reports() result:')
 
             # begin-list_reports
-
             all_results = []
             pager = ReportsPager(
                 client=security_and_compliance_center_api_service,
@@ -1456,7 +1455,7 @@ class TestSecurityAndComplianceCenterApiV3Examples:
                 group_id=group_id_for_report_link,
                 report_profile_id=profile_id_for_report_link,
                 type=type_for_report_link,
-                limit=10,
+                limit=50,
                 sort='profile_name',
             )
             while pager.has_next():
