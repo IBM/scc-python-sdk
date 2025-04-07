@@ -1274,17 +1274,16 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             print('\ncreate_provider_type_instance() result:')
 
             # begin-create_provider_type_instance
-
             response = security_and_compliance_center_api_service.create_provider_type_instance(
                 instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
                 provider_type_id='3e25966275dccfa2c3a34786919c5af7',
+                name='Caveonix-instance-1',
+                attributes={},
             )
             provider_type_instance = response.get_result()
-
             print(json.dumps(provider_type_instance, indent=2))
 
             # end-create_provider_type_instance
-
             provider_type_instance_id_link = provider_type_instance['id']
         except ApiException as e:
             pytest.fail(str(e))
