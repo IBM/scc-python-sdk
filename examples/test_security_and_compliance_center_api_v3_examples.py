@@ -526,59 +526,45 @@ class TestSecurityAndComplianceCenterApiV3Examples:
 
     @needscredentials
     def test_create_control_library_example(self):
-        """
-        create_control_library request example
-        """
-        try:
-            global control_library_id_link
+        global control_library_id_link
 
-            print('\ncreate_control_library() result:')
+        # Construct a dict representation of a AssessmentPrototype model
+        assessment_prototype_model = {
+            'assessment_id': 'rule-d1bd9f3f-bee1-46c5-9533-da8bba9eed4e',
+            'assessment_description': 'This rule will check on regulation',
+        }
+        # Construct a dict representation of a ControlSpecificationPrototype model
+        control_specification_prototype_model = {
+            'component_id': 'apprapp',
+            'environment': 'ibm-cloud',
+            'control_specification_description': 'This field is used to describe a control specification',
+            'assessments': [assessment_prototype_model],
+        }
+        # Construct a dict representation of a ControlPrototype model
+        control_prototype_model = {
+            'control_name': 'security',
+            'control_description': 'This is a description of a control',
+            'control_category': 'test-control',
+            'control_requirement': True,
+            'control_specifications': [control_specification_prototype_model],
+            'status': 'disabled',
+        }
 
-            # begin-create_control_library
+        response = security_and_compliance_center_api_service.create_control_library(
+            instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
+            control_library_name='custom control library from SDK',
+            control_library_description='This is a custom control library made from the SDK test framework',
+            control_library_type='custom',
+            control_library_version='0.0.1',
+            controls=[control_prototype_model],
+            account_id=account_id_for_report_link,
+        )
 
-            assessment_prototype_model = {
-                'assessment_id': 'rule-d1bd9f3f-bee1-46c5-9533-da8bba9eed4e',
-                'assessment_description': 'This rule will check on regulation',
-            }
+        assert response.get_status_code() == 201
+        control_library = response.get_result()
+        assert control_library is not None
 
-            control_specification_prototype_model = {
-                'component_id': 'apprapp',
-                'environment': 'ibm-cloud',
-                'control_specification_description': 'This field is used to describe a control specification',
-                'assessments': [assessment_prototype_model],
-            }
-
-            control_doc_model = {
-            }
-
-            control_prototype_model = {
-                'control_name': 'security',
-                'control_description': 'This is a description of a control',
-                'control_category': 'test-control',
-                'control_requirement': True,
-                'control_parent': 'testString',
-                'control_specifications': [control_specification_prototype_model],
-                'control_docs': control_doc_model,
-                'status': 'disabled',
-            }
-
-            response = security_and_compliance_center_api_service.create_control_library(
-                instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
-                control_library_name='custom control library from SDK',
-                control_library_description='This is a custom control library made from the SDK test framework',
-                control_library_type='custom',
-                control_library_version='0.0.1',
-                controls=[control_prototype_model],
-            )
-            control_library = response.get_result()
-
-            print(json.dumps(control_library, indent=2))
-
-            # end-create_control_library
-
-            control_library_id_link = control_library['id']
-        except ApiException as e:
-            pytest.fail(str(e))
+        control_library_id_link = control_library['id']
 
     @needscredentials
     def test_list_control_libraries_example(self):
