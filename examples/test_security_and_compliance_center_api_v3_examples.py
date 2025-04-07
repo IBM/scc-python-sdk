@@ -1056,21 +1056,24 @@ class TestSecurityAndComplianceCenterApiV3Examples:
         """
         try:
             global sub_scope_id_link
-
             print('\ncreate_subscope() result:')
 
             # begin-create_subscope
-
-            scope_property_model = {
+            scope_property_model0 = {
                 'name': 'scope_id',
                 'value': '1f689f08ec9b47b885c2659c17029581',
+            }
+
+            scope_property_model1 = {
+                'name': 'scope_type',
+                'value': 'account.resource_group',
             }
 
             scope_prototype_model = {
                 'name': 'ibm subscope update',
                 'description': 'The subscope that is defined for IBM resources.',
                 'environment': 'ibm-cloud',
-                'properties': [scope_property_model],
+                'properties': [scope_property_model0, scope_property_model1],
             }
 
             response = security_and_compliance_center_api_service.create_subscope(
@@ -1079,11 +1082,9 @@ class TestSecurityAndComplianceCenterApiV3Examples:
                 subscopes=[scope_prototype_model],
             )
             sub_scope_response = response.get_result()
-
             print(json.dumps(sub_scope_response, indent=2))
 
             # end-create_subscope
-
             sub_scope_id_link = sub_scope_response['subscopes'][0]['id']
         except ApiException as e:
             pytest.fail(str(e))
