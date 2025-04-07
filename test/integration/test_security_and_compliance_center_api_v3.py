@@ -1099,8 +1099,8 @@ class TestSecurityAndComplianceCenterApiV3:
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
             provider_type_id='3e25966275dccfa2c3a34786919c5af7',
             provider_type_instance_id=provider_type_instance_id_link,
-            name='workload-protection-instance-1',
-            attributes={'wp_crn': 'crn:v1:staging:public:sysdig-secure:eu-gb:a/14q5SEnVIbwxzvP4AWPCjr2dJg5BAvPb:d1461d1ae-df1eee12fa81812e0-12-aa259::'},
+            name='Caveonix-instance-1-update',
+            attributes={},
         )
 
         assert response.get_status_code() == 200
