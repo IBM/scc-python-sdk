@@ -679,54 +679,21 @@ class TestSecurityAndComplianceCenterApiV3:
 
     @needscredentials
     def test_replace_profile(self):
-        # Construct a dict representation of a ControlDoc model
-        control_doc_model = {
-            'control_docs_id': 'testString',
-            'control_docs_type': 'testString',
-        }
         # Construct a dict representation of a Parameter model
-        parameter_model = {
-            'assessment_type': 'testString',
-            'assessment_id': 'testString',
-            'parameter_name': 'location',
-            'parameter_display_name': 'Location',
-            'parameter_type': 'string',
-            'parameter_value': 'testString',
-        }
-        # Construct a dict representation of a Assessment model
-        assessment_model = {
-            'assessment_id': '382c2b06-e6b2-43ee-b189-c1c7743b67ee',
-            'assessment_type': 'ibm-cloud-rule',
-            'assessment_method': 'ibm-cloud-rule',
-            'assessment_description': 'Check whether Cloud Object Storage is accessible only by using private endpoints',
-            'parameter_count': 1,
-            'parameters': [parameter_model],
-        }
-        # Construct a dict representation of a ControlSpecification model
-        control_specification_model = {
-            'id': 'testString',
-            'responsibility': 'testString',
-            'component_id': 'testString',
-            'component_name': 'testString',
-            'component_type': 'testString',
-            'environment': 'testString',
-            'description': 'testString',
-            'assessments_count': 38,
-            'assessments': [assessment_model],
-        }
-        # Construct a dict representation of a ProfileControls model
-        profile_controls_model = {
+        profile_controls_model0 = {
             'control_requirement': True,
             'control_library_id': 'a046fb6b-aba5-4646-b190-a2c76241e7af',
+            'control_id': '2ce21ba3-0548-49a3-88e2-1122632218f4',
+        }
+
+        profile_controls_model1 = {
+            'control_library_id': 'a046fb6b-aba5-4646-b190-a2c76241e7af',
+            'control_id': 'bdc5fdab-6934-461c-8bb1-9af7ed8e8d33',
+        }
+
+        profile_controls_model2 = {
+            'control_library_id': 'a046fb6b-aba5-4646-b190-a2c76241e7af',
             'control_id': '60dae3b5-6104-4b3e-bac7-26cc7b741aca',
-            'control_library_version': 'testString',
-            'control_name': 'testString',
-            'control_description': 'testString',
-            'control_severity': 'testString',
-            'control_category': 'testString',
-            'control_parent': 'testString',
-            'control_docs': control_doc_model,
-            'control_specifications': [control_specification_model],
         }
         # Construct a dict representation of a DefaultParameters model
         default_parameters_model = {
@@ -742,22 +709,13 @@ class TestSecurityAndComplianceCenterApiV3:
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
             profile_id=profile_id_link,
             new_profile_type='custom',
-            new_controls=[profile_controls_model],
+            new_controls=[profile_controls_model0, profile_controls_model1, profile_controls_model2],
             new_default_parameters=[default_parameters_model],
-            new_id='testString',
             new_profile_name='Example Profile Updated',
-            new_instance_id='testString',
             new_hierarchy_enabled=True,
             new_profile_description='This profile has been updated',
             new_profile_version='0.0.2',
-            new_version_group_label='testString',
             new_latest=True,
-            new_created_by='testString',
-            new_created_on=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            new_updated_by='testString',
-            new_updated_on=string_to_datetime('2019-01-01T12:00:00.000Z'),
-            new_controls_count=38,
-            new_attachments_count=38,
             account_id=account_id_for_report_link,
         )
 
