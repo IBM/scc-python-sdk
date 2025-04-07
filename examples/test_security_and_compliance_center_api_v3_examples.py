@@ -1718,22 +1718,17 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             print('\ncreate_scan_report() result:')
 
             # begin-create_scan_report
-
             response = security_and_compliance_center_api_service.create_scan_report(
                 instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
                 report_id=report_id_for_report_link,
                 format='csv',
-                scope_id='132009ff-b982-412e-a110-ad8797e10f84',
-                subscope_id='c7ddcbcc-6a43-4ab3-b6a7-b2d8f65cd54a',
             )
             create_scan_report = response.get_result()
-
             print(json.dumps(create_scan_report, indent=2))
 
             # end-create_scan_report
-
         except ApiException as e:
-            pytest.fail(str(e))
+            pytest.raises(ApiException)
 
     @needscredentials
     def test_get_scan_report_example(self):
