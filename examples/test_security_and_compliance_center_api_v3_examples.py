@@ -630,18 +630,14 @@ class TestSecurityAndComplianceCenterApiV3Examples:
                 'assessments': [assessment_prototype_model],
             }
 
-            control_doc_model = {
-            }
-
             control_prototype_model = {
                 'control_name': 'security',
                 'control_description': 'This is a description of a control',
                 'control_category': 'test-control',
                 'control_requirement': True,
-                'control_parent': 'testString',
+                'control_parent': '',
                 'control_specifications': [control_specification_prototype_model],
-                'control_docs': control_doc_model,
-                'status': 'disabled',
+                'status': 'enabled',
             }
 
             response = security_and_compliance_center_api_service.replace_custom_control_library(
