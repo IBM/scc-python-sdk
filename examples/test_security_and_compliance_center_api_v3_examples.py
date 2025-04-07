@@ -349,26 +349,77 @@ class TestSecurityAndComplianceCenterApiV3Examples:
 
             # begin-replace_profile_attachment
 
-            parameter_model = {
+            parameter_list = [
+                {
+                    'assessment_id': 'rule-e16fcfea-fe21-4d30-a721-423611481fea',
+                    'parameter_name': 'tls_version',
+                    'parameter_display_name': 'IBM Cloud Internet Services TLS version',
+                    'parameter_type': 'string_list',
+                    'parameter_value': "['1.2', '1.3']",
+                },
+                {
+                    'assessment_id': 'rule-f9137be8-2490-4afb-8cd5-a201cb167eb2',
+                    'parameter_name': 'ssh_port',
+                    'parameter_display_name': 'Network ACL rule for allowed IPs to SSH port',
+                    'parameter_type': 'numeric',
+                    'parameter_value': '22',
+                },
+                {
+                    'assessment_id': 'rule-9653d2c7-6290-4128-a5a3-65487ba40370',
+                    'parameter_name': 'rdp_port',
+                    'parameter_display_name': 'Security group rule RDP allow port number',
+                    'parameter_type': 'numeric',
+                    'parameter_value': '22',
+                },
+                {
+                    'assessment_id': 'rule-7c5f6385-67e4-4edf-bec8-c722558b2dec',
+                    'parameter_name': 'ssh_port',
+                    'parameter_display_name': 'Security group rule SSH allow port number',
+                    'parameter_type': 'numeric',
+                    'parameter_value': '22',
+                },
+                {
+                    'assessment_id': 'rule-f1e80ee7-88d5-4bf2-b42f-c863bb24601c',
+                    'parameter_name': 'rdp_port',
+                    'parameter_display_name': 'Disallowed IPs for ingress to RDP port',
+                    'parameter_type': 'numeric',
+                    'parameter_value': '3389',
+                },
+                {
+                    'assessment_id': 'rule-96527f89-1867-4581-b923-1400e04661e0',
+                    'parameter_name': 'exclude_default_security_groups',
+                    'parameter_display_name': 'Exclude the default security groups',
+                    'parameter_type': 'string_list',
+                    'parameter_value': "['Default']",
+                },
+            ]
+
+            attachment_notifications_controls_model = {
+                'threshold_limit': 15,
+                'failed_control_ids': [],
             }
 
             attachment_notifications_model = {
+                'enabled': True,
+                'controls': attachment_notifications_controls_model,
             }
 
             multi_cloud_scope_payload_model = {
+                'id': '8baad3b5-2e69-4027-9967-efac19508e1c',
             }
 
             response = security_and_compliance_center_api_service.replace_profile_attachment(
                 instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
                 profile_id='9c265b4a-4cdf-47f1-acd3-17b5808f7f3f',
                 attachment_id=attachment_id_link,
-                attachment_parameters=[parameter_model],
-                description='testString',
-                name='testString',
+                attachment_parameters=parameter_list,
+                description='New Profile Attachment',
+                name='SDK Updated Test',
                 notifications=attachment_notifications_model,
                 schedule='daily',
                 scope=[multi_cloud_scope_payload_model],
-                status='enabled',
+                status='disabled',
+                account_id=account_id_for_report_link,
             )
             profile_attachment = response.get_result()
 
