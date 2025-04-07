@@ -900,16 +900,20 @@ class TestSecurityAndComplianceCenterApiV3:
         global sub_scope_id_link
 
         # Construct a dict representation of a ScopePropertyScopeAny model
-        scope_property_model = {
+        scope_property_model0 = {
             'name': 'scope_id',
             'value': '1f689f08ec9b47b885c2659c17029581',
+        }
+        scope_property_model1 = {
+            'name': 'scope_type',
+            'value': 'account.resource_group',
         }
         # Construct a dict representation of a ScopePrototype model
         scope_prototype_model = {
             'name': 'ibm subscope update',
             'description': 'The subscope that is defined for IBM resources.',
             'environment': 'ibm-cloud',
-            'properties': [scope_property_model],
+            'properties': [scope_property_model0, scope_property_model1],
         }
 
         response = self.security_and_compliance_center_api_service.create_subscope(
