@@ -1181,7 +1181,6 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             print('\ncreate_target() result:')
 
             # begin-create_target
-
             response = security_and_compliance_center_api_service.create_target(
                 instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
                 account_id='62ecf99b240144dea9125666249edfcb',
@@ -1189,11 +1188,9 @@ class TestSecurityAndComplianceCenterApiV3Examples:
                 name='Target for IBM account',
             )
             target = response.get_result()
-
             print(json.dumps(target, indent=2))
 
             # end-create_target
-
             target_id_link = target['id']
         except ApiException as e:
             pytest.fail(str(e))
