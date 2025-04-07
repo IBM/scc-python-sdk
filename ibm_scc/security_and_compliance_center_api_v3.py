@@ -16980,6 +16980,7 @@ class TestEvent:
     :param bool success: The indication of whether the event was received by Event
           Notifications.
     """
+    __test__ = False
 
     def __init__(
         self,
