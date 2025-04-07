@@ -1454,10 +1454,8 @@ class TestSecurityAndComplianceCenterApiV3:
         pager = RulesPager(
             client=self.security_and_compliance_center_api_service,
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
-            limit=10,
+            limit=100,
             type='system_defined',
-            search='testString',
-            service_name='testString',
             sort='updated_on',
         )
         while pager.has_next():
@@ -1469,10 +1467,8 @@ class TestSecurityAndComplianceCenterApiV3:
         pager = RulesPager(
             client=self.security_and_compliance_center_api_service,
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
-            limit=10,
+            limit=100,
             type='system_defined',
-            search='testString',
-            service_name='testString',
             sort='updated_on',
         )
         all_items = pager.get_all()
