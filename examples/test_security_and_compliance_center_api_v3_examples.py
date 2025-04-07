@@ -1344,18 +1344,17 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             print('\nupdate_provider_type_instance() result:')
 
             # begin-update_provider_type_instance
-
             response = security_and_compliance_center_api_service.update_provider_type_instance(
                 instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
                 provider_type_id='3e25966275dccfa2c3a34786919c5af7',
                 provider_type_instance_id=provider_type_instance_id_link,
+                name='Caveonix-instance-1-update',
+                attributes={},
             )
             provider_type_instance = response.get_result()
-
             print(json.dumps(provider_type_instance, indent=2))
 
             # end-update_provider_type_instance
-
         except ApiException as e:
             pytest.fail(str(e))
 
