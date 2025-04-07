@@ -642,7 +642,6 @@ class TestSecurityAndComplianceCenterApiV3:
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
             account_id=account_id_for_report_link,
             limit=50,
-            start='testString',
         )
 
         assert response.get_status_code() == 200
