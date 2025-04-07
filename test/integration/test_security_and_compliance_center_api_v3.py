@@ -1161,7 +1161,6 @@ class TestSecurityAndComplianceCenterApiV3:
             group_id=group_id_for_report_link,
             report_profile_id=profile_id_for_report_link,
             type=type_for_report_link,
-            start='testString',
             limit=50,
             sort='profile_name',
         )
