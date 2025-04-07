@@ -1493,12 +1493,18 @@ class TestSecurityAndComplianceCenterApiV3:
             'resource_kind': 'bucket',
             'additional_target_attributes': [additional_target_attribute_model],
         }
+        # Construct a dict representation of ConditionItemConditionBase model
+        condition_item_model = {
+            'description': 'The Cloud Object Storage rule.',
+            'property': 'hard_quota',
+            'operator': 'num_equals',
+            'value': '${hard_quota}',
+        }
+
         # Construct a dict representation of a RequiredConfigConditionBase model
         required_config_model = {
             'description': 'The Cloud Object Storage rule.',
-            'property': 'testString',
-            'operator': 'string_equals',
-            'value': 'testString',
+            'and': [condition_item_model],
         }
         # Construct a dict representation of a RuleParameter model
         rule_parameter_model = {
