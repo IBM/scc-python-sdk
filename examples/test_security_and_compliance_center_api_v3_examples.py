@@ -1674,17 +1674,15 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             print('\nget_report_violations_drift() result:')
 
             # begin-get_report_violations_drift
-
             response = security_and_compliance_center_api_service.get_report_violations_drift(
                 instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
                 report_id=report_id_for_report_link,
+                scan_time_duration=0,
             )
             report_violations_drift = response.get_result()
-
             print(json.dumps(report_violations_drift, indent=2))
 
             # end-get_report_violations_drift
-
         except ApiException as e:
             pytest.fail(str(e))
 
