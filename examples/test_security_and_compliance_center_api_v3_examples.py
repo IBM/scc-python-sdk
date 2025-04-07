@@ -1249,20 +1249,17 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             print('\nreplace_target() result:')
 
             # begin-replace_target
-
             response = security_and_compliance_center_api_service.replace_target(
                 instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
                 target_id=target_id_link,
-                account_id='be200c80cabc456e91139e4152327823',
-                trusted_profile_id='Profile-a0a4c149-4fed-47ff-bfb2-680bcfaa64d3',
-                name='Sample Target Name',
+                account_id='62ecf99b240144dea9125666249edfcb',
+                trusted_profile_id='Profile-cb2c1829-9a8d-4218-b9cd-9f83fc814e54',
+                name='Updated Target Name',
             )
             target = response.get_result()
-
             print(json.dumps(target, indent=2))
 
             # end-replace_target
-
         except ApiException as e:
             pytest.fail(str(e))
 
