@@ -772,22 +772,20 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             print('\nreplace_profile() result:')
 
             # begin-replace_profile
-
-            parameter_model = {
+            profile_controls_model0 = {
+                'control_requirement': True,
+                'control_library_id': 'a046fb6b-aba5-4646-b190-a2c76241e7af',
+                'control_id': '2ce21ba3-0548-49a3-88e2-1122632218f4',
             }
 
-            assessment_model = {
-                'parameters': [parameter_model],
+            profile_controls_model1 = {
+                'control_library_id': 'a046fb6b-aba5-4646-b190-a2c76241e7af',
+                'control_id': 'bdc5fdab-6934-461c-8bb1-9af7ed8e8d33',
             }
 
-            control_specification_model = {
-                'assessments': [assessment_model],
-            }
-
-            profile_controls_model = {
+            profile_controls_model2 = {
                 'control_library_id': 'a046fb6b-aba5-4646-b190-a2c76241e7af',
                 'control_id': '60dae3b5-6104-4b3e-bac7-26cc7b741aca',
-                'control_specifications': [control_specification_model],
             }
 
             default_parameters_model = {
@@ -803,19 +801,18 @@ class TestSecurityAndComplianceCenterApiV3Examples:
                 instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
                 profile_id=profile_id_link,
                 new_profile_type='custom',
-                new_controls=[profile_controls_model],
+                new_controls=[profile_controls_model0, profile_controls_model1, profile_controls_model2],
                 new_default_parameters=[default_parameters_model],
                 new_profile_name='Example Profile Updated',
                 new_profile_description='This profile has been updated',
                 new_profile_version='0.0.2',
                 new_latest=True,
+                account_id=account_id_for_report_link
             )
             profile = response.get_result()
-
             print(json.dumps(profile, indent=2))
 
             # end-replace_profile
-
         except ApiException as e:
             pytest.fail(str(e))
 
