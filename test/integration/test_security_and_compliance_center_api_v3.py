@@ -1437,11 +1437,8 @@ class TestSecurityAndComplianceCenterApiV3:
     def test_list_rules(self):
         response = self.security_and_compliance_center_api_service.list_rules(
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
-            limit=50,
-            start='testString',
+            limit=100,
             type='system_defined',
-            search='testString',
-            service_name='testString',
             sort='updated_on',
         )
 
