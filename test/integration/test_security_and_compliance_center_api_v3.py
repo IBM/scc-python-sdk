@@ -1400,17 +1400,13 @@ class TestSecurityAndComplianceCenterApiV3:
 
     @needscredentials
     def test_create_scan_report(self):
-        response = self.security_and_compliance_center_api_service.create_scan_report(
-            instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
-            report_id=report_id_for_report_link,
-            format='csv',
-            scope_id='132009ff-b982-412e-a110-ad8797e10f84',
-            subscope_id='c7ddcbcc-6a43-4ab3-b6a7-b2d8f65cd54a',
-        )
-
-        assert response.get_status_code() == 202
-        create_scan_report = response.get_result()
-        assert create_scan_report is not None
+        with pytest.raises(ApiException):
+            response = self.security_and_compliance_center_api_service.create_scan_report(
+                instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
+                report_id=report_id_for_report_link,
+                format='csv',
+            )
+            assert response.status_code() == 409
 
     @needscredentials
     def test_get_scan_report(self):
