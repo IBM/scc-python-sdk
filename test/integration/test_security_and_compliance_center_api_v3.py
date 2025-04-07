@@ -541,7 +541,6 @@ class TestSecurityAndComplianceCenterApiV3:
         control_specification_prototype_model = {
             'component_id': 'apprapp',
             'environment': 'ibm-cloud',
-            'control_specification_id': 'testString',
             'control_specification_description': 'This field is used to describe a control specification',
             'assessments': [assessment_prototype_model],
         }
@@ -556,21 +555,20 @@ class TestSecurityAndComplianceCenterApiV3:
             'control_description': 'This is a description of a control',
             'control_category': 'test-control',
             'control_requirement': True,
-            'control_parent': 'testString',
+            'control_parent': '',
             'control_specifications': [control_specification_prototype_model],
             'control_docs': control_doc_model,
-            'status': 'disabled',
+            'status': 'enabled',
         }
 
         response = self.security_and_compliance_center_api_service.replace_custom_control_library(
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
             control_library_id=control_library_id_link,
-            control_library_name='custom control library from SDK',
+            control_library_name='custom control library update from SDK',
             control_library_description='This is a custom control library made from the SDK test framework',
             control_library_type='custom',
             control_library_version='0.0.2',
             controls=[control_prototype_model],
-            bss_account='testString',
         )
 
         assert response.get_status_code() == 200
