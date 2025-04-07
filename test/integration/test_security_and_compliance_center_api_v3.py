@@ -1287,17 +1287,9 @@ class TestSecurityAndComplianceCenterApiV3:
             client=self.security_and_compliance_center_api_service,
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
             report_id=report_id_for_report_link,
-            assessment_id='testString',
-            assessment_method='testString',
-            component_id='testString',
-            target_id='testString',
-            target_env='testString',
-            target_name='testString',
             status='failure',
             limit=10,
             sort='assessment_id',
-            scope_id='testString',
-            subscope_id='testString',
         )
         while pager.has_next():
             next_page = pager.get_next()
@@ -1309,23 +1301,16 @@ class TestSecurityAndComplianceCenterApiV3:
             client=self.security_and_compliance_center_api_service,
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
             report_id=report_id_for_report_link,
-            assessment_id='testString',
-            assessment_method='testString',
-            component_id='testString',
-            target_id='testString',
-            target_env='testString',
-            target_name='testString',
             status='failure',
             limit=10,
             sort='assessment_id',
-            scope_id='testString',
-            subscope_id='testString',
         )
         all_items = pager.get_all()
         assert all_items is not None
 
         assert len(all_results) == len(all_items)
-        print(f'\nlist_report_evaluations() returned a total of {len(all_results)} items(s) using ReportEvaluationsPager.')
+        print(
+            f'\nlist_report_evaluations() returned a total of {len(all_results)} items(s) using ReportEvaluationsPager.')
 
     @needscredentials
     def test_list_report_resources(self):
