@@ -592,10 +592,21 @@ class TestSecurityAndComplianceCenterApiV3:
         global profile_id_link
 
         # Construct a dict representation of a ProfileControlsPrototype model
-        profile_controls_prototype_model = {
+        profile_controls_prototype_model0 = {
+            'control_library_id': 'a046fb6b-aba5-4646-b190-a2c76241e7af',
+            'control_id': '2ce21ba3-0548-49a3-88e2-1122632218f4',
+        }
+
+        profile_controls_prototype_model1 = {
+            'control_library_id': 'a046fb6b-aba5-4646-b190-a2c76241e7af',
+            'control_id': 'bdc5fdab-6934-461c-8bb1-9af7ed8e8d33',
+        }
+
+        profile_controls_prototype_model2 = {
             'control_library_id': 'a046fb6b-aba5-4646-b190-a2c76241e7af',
             'control_id': '60dae3b5-6104-4b3e-bac7-26cc7b741aca',
         }
+
         # Construct a dict representation of a DefaultParameters model
         default_parameters_model = {
             'assessment_type': 'automated',
@@ -610,7 +621,8 @@ class TestSecurityAndComplianceCenterApiV3:
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
             profile_name='Example Profile',
             profile_version='0.0.1',
-            controls=[profile_controls_prototype_model],
+            controls=[profile_controls_prototype_model0, profile_controls_prototype_model1,
+                      profile_controls_prototype_model2],
             default_parameters=[default_parameters_model],
             profile_description='This profile is created as an example of the SDK gen',
             latest=True,
