@@ -460,14 +460,8 @@ class TestSecurityAndComplianceCenterApiV3:
         control_specification_prototype_model = {
             'component_id': 'apprapp',
             'environment': 'ibm-cloud',
-            'control_specification_id': 'testString',
             'control_specification_description': 'This field is used to describe a control specification',
             'assessments': [assessment_prototype_model],
-        }
-        # Construct a dict representation of a ControlDoc model
-        control_doc_model = {
-            'control_docs_id': 'testString',
-            'control_docs_type': 'testString',
         }
         # Construct a dict representation of a ControlPrototype model
         control_prototype_model = {
@@ -475,9 +469,7 @@ class TestSecurityAndComplianceCenterApiV3:
             'control_description': 'This is a description of a control',
             'control_category': 'test-control',
             'control_requirement': True,
-            'control_parent': 'testString',
             'control_specifications': [control_specification_prototype_model],
-            'control_docs': control_doc_model,
             'status': 'disabled',
         }
 
