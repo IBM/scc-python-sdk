@@ -1548,18 +1548,15 @@ class TestSecurityAndComplianceCenterApiV3Examples:
             print('\nget_report_controls() result:')
 
             # begin-get_report_controls
-
             response = security_and_compliance_center_api_service.get_report_controls(
                 instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
                 report_id=report_id_for_report_link,
                 status='compliant',
             )
             report_controls = response.get_result()
-
             print(json.dumps(report_controls, indent=2))
 
             # end-get_report_controls
-
         except ApiException as e:
             pytest.fail(str(e))
 
