@@ -1354,6 +1354,7 @@ class TestSecurityAndComplianceCenterApiV3:
             instance_id='acd7032c-15a3-484f-bf5b-67d41534d940',
             report_id=report_id_for_report_link,
             account_id=account_id_for_report_link,
+            status='compliant',
             limit=10,
         )
         all_items = pager.get_all()
