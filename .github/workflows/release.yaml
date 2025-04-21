@@ -46,8 +46,8 @@ jobs:
       
       - name: deploy python to gh-pages
         run: |
-          git config --global user.email "scccomm@in.ibm.com"
-          git config --global user.name "sccdeveloper"
+          git config --global user.email "scc.results@ibm.com"
+          git config --global user.name "sccibm"
           git config --global user.password "${{ secrets.ADMIN_TOKEN }}"
           cd v4/dist
           git init
@@ -58,7 +58,7 @@ jobs:
           git push -f origin gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.ADMIN_TOKEN }}
-          GIT_AUTHOR_NAME: sccdeveloper
-          GIT_AUTHOR_EMAIL: scccomm@in.ibm.com
-          GIT_COMMITTER_NAME: sccdeveloper
-          GIT_COMMITTER_EMAIL: scccomm@in.ibm.com
+          GIT_AUTHOR_NAME: sccibm
+          GIT_AUTHOR_EMAIL: scc.results@ibm.com
+          GIT_COMMITTER_NAME: sccibm
+          GIT_COMMITTER_EMAIL: scc.results@ibm.com
