@@ -1,3 +1,23 @@
+# [5.0.0](https://github.com/IBM/scc-python-sdk/compare/v4.0.1...v5.0.0) (2025-04-21)
+
+
+### Features
+
+* access control segmentation ([fbc915c](https://github.com/IBM/scc-python-sdk/commit/fbc915c15f972b165e4150c1c26d08674f66f81e))
+* access control segmentation ([7fb9dae](https://github.com/IBM/scc-python-sdk/commit/7fb9dae8ed13dbd8e16d9a071e7561df95b81014))
+* access control segmentation ([#62](https://github.com/IBM/scc-python-sdk/issues/62)) ([f7e9e2d](https://github.com/IBM/scc-python-sdk/commit/f7e9e2d2bdb8cadf25a4c5d05d75e4ea82a0b669))
+* access control segmentation ([#65](https://github.com/IBM/scc-python-sdk/issues/65)) ([a7f6d69](https://github.com/IBM/scc-python-sdk/commit/a7f6d697e69db0e20b163d8408b7ada0891e3cf4))
+
+
+### BREAKING CHANGES
+
+* ScopeID is now required to create a new profile attachment
+
+Signed-off-by: Bryan Bosely <bbosely@us.ibm.com>
+* ScopeID is now required to create a new profile attachment
+
+Signed-off-by: Bryan Bosely <bbosely@us.ibm.com>
+
 ## [4.0.1](https://github.com/IBM/scc-python-sdk/compare/v4.0.0...v4.0.1) (2024-01-29)
 
 
